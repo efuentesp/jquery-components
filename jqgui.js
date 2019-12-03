@@ -84,7 +84,7 @@ $.fn.fieldInputPlusMinus = function() {
 
   const spanError = document.createElement("span");
   spanError.setAttribute("class", "field-error flex");
-  divPlusMinus.appendChild(spanError);
+  divControl.appendChild(spanError);
 
   const divErrorTip = document.createElement("div");
   divErrorTip.setAttribute("class", "error-tip");
@@ -96,10 +96,10 @@ $.fn.fieldInputPlusMinus = function() {
   spanError.appendChild(divErrorMsg);
 
   const ulTagList = document.createElement("ul");
-  ulTagList.setAttribute("id", "tag_list_id" + fieldId);
+  ulTagList.setAttribute("id", "tag_list_" + fieldId);
   ulTagList.setAttribute("class", "tag-list");
   ulTagList.setAttribute("style", fieldWidth);
-  divPlusMinus.appendChild(ulTagList);
+  divControl.appendChild(ulTagList);
 
   fieldPlusMinus(fieldId, {});
 };
