@@ -6,3 +6,5 @@ $("#contrato3").fieldInputPlusMinus();
 $("#contrato4").fieldInputPlusMinus();
 $("#contrato5").fieldInputPlusMinus();
 $("#contrato6").fieldInputPlusMinus();
+
+$("[data-component-type='text']").fieldInput();

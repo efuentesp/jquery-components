@@ -103,3 +103,70 @@ $.fn.fieldInputPlusMinus = function() {
 
   fieldPlusMinus(fieldId, {});
 };
+
+$.fn.fieldInput = function() {
+  this.filter("[data-component-type='text']").each(function() {
+    const c = $(this);
+    const fieldId = c.attr("id");
+    console.log("Id", fieldId);
+    const fieldWidth =
+      "width: " +
+      (c.data("componentWidth") ? c.data("componentWidth") : "8em") +
+      ";";
+    const fieldClass =
+      "is_" +
+      (c.data("componentOrientation")
+        ? c.data("componentOrientation")
+        : "vertical");
+    const spanRequiredClass =
+      "pr-3 " + (c.data("componentRequired") == true ? "required" : "");
+
+    c.attr("id", "field_" + fieldId);
+    c.attr("class", "field " + fieldClass);
+
+    const divLabel = document.createElement("div");
+    divLabel.setAttribute("class", "field-label flex");
+
+    const label = document.createElement("label");
+    label.setAttribute("for", fieldId);
+    label.innerHTML = c.data("componentLabel");
+    divLabel.appendChild(label);
+    c.append(divLabel);
+
+    const spanRequired = document.createElement("span");
+    spanRequired.setAttribute("class", spanRequiredClass);
+    if (c.data("componentRequired") == true) {
+      spanRequired.innerHTML = "*";
+    }
+    label.appendChild(spanRequired);
+
+    const divControl = document.createElement("div");
+    divControl.setAttribute("class", "field-control");
+
+    const divFieldInput = document.createElement("div");
+    divFieldInput.setAttribute("class", "field-input has-addons flex");
+    if (c.data("componentTooltip")) {
+      divFieldInput.setAttribute("data-tooltip", c.data("componentTooltip"));
+    }
+    divControl.appendChild(divFieldInput);
+    c.append(divControl);
+
+    const input = document.createElement("input");
+    input.setAttribute("id", fieldId);
+    input.setAttribute("class", "input");
+    input.setAttribute("type", "text");
+    input.setAttribute("style", fieldWidth);
+    input.setAttribute("data-parsley-trigger", "keyup");
+    input.setAttribute("data-parsley-maxlength", "32");
+    input.setAttribute(
+      "data-parsley-maxlength-message",
+      "Solo puede ingresar 32 caracteres."
+    );
+    input.setAttribute("data-parsley-validation-threshold", "10");
+    input.setAttribute(
+      "data-parsley-errors-container",
+      "field_error_block_" + fieldId
+    );
+    divFieldInput.appendChild(input);
+  });
+};
