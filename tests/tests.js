@@ -1,7 +1,6 @@
 QUnit.test("InputPlusMinus inicializado correctamente", function(assert) {
   // arrange
   const txtInput = $("#contrato");
-  const btnPlus = $("#field_contrato #btn_plus_contrato");
   const lstTags = $("#field_contrato #tag_list_contrato li a");
 
   // act
@@ -16,7 +15,6 @@ QUnit.test("InputPlusMinus agregar 3 elementos con botón +", function(assert) {
   const txtInput = $("#contrato");
   const btnPlus = $("#field_contrato #btn_plus_contrato");
   const lstTags = $("#field_contrato #tag_list_contrato li a");
-  console.log(lstTags);
 
   // act
   [...Array(3).keys()].forEach(element => {
@@ -41,9 +39,15 @@ QUnit.skip("InputPlusMinus agregar 30 elementos con Enter", function(
   assert
 ) {});
 
-QUnit.skip("InputPlusMinus Eliminar 5 elementos con botón -", function(
-  assert
-) {});
+QUnit.skip(
+  "InputPlusMinus Eliminar 5 elementos con botón - y ya no queden elementos en la lista",
+  function(assert) {}
+);
+
+QUnit.skip(
+  "InputPlusMinus Eliminar 5 elementos con botón - y que queden elementos en la lista",
+  function(assert) {}
+);
 
 QUnit.skip("InputPlusMinus Solo permitir agregar 4 elementos", function(
   assert
