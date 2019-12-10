@@ -104,6 +104,78 @@ $.fn.fieldInputPlusMinus = function() {
   fieldPlusMinus(fieldId, {});
 };
 
+
+$.fn.button = function() {
+  const imagenames= [
+                ["button-accept",      "btn-aceptar.png",        "reset"],
+                ["button-search",      "btn-consultar_32x32.png","submit"],
+                ["button-save",        "btn-enviar.png",         ""],
+                ["button-send",        "btn-enviar.png",         ""],
+                ["button-add",         "btn-agregar.png",        ""],
+                ["button-cancel",      "btn-cancelar.png",       "reset"],
+                ["button-clean",       "btn-limpiar_32x32.png",  "reset"],
+                ["button-delete",      "btn-borrar.png",         "submit"],
+                ["button-filter-clean","btn-filter-clean.png",   "reset"],
+                ["button-filter",      "btn-filter.png",         "submit"],
+                ["button-pdf",         "btn-pdf_32x32.png",      ""],
+                ["button-reset",       "btn-reiniciar.png",      "submit"],
+                ["button-validate",    "btn-validar.png",        ""],
+                ["button-xls",         "btn-xls_32x32.png",      ""]
+               ]
+
+  var imgname=""
+  var type=""
+
+  for(i=0;i<imagenames.length;i++)
+    if (imagenames[i][0] ===this.data("componentType")){
+      imgname= imagenames[i][1];
+      type   = imagenames[i][2];
+      break;
+    }
+
+
+if (imgname!=="") {
+  const label = this.data("componentLabel") ? this.data("componentLabel"):"";
+  const tooltip = this.data("componentTooltip") ? this.data("componentTooltip"):"";
+
+  var btnclass = "button big-button"
+  if (this.data("componentSize")==="medium")
+    btnclass="button medium-button flex items-center"
+  if (this.data("componentSize")==="small")
+    btnclass="button small-button"
+
+  const divbutton = document.createElement("div");
+
+  const button = document.createElement("button");
+  button.setAttribute("id", this.data("componentType")+"_"+this.attr("id") );
+
+  button.setAttribute("class", btnclass);
+
+  if (type!=="" && btnclass === "button big-button") {
+    button.setAttribute("type", type);
+  }
+  if (this.data("componentDisabled")==="true") {
+    button.setAttribute("disabled","disabled");
+  }
+
+  if (tooltip !== "") {
+    button.setAttribute("title",tooltip);
+  }
+
+  const img = document.createElement("img");
+  img.setAttribute("src", "../../assets/images/"+imgname);
+  button.appendChild(img);
+
+  if (this.data("componentSize")!=="small"){
+   const span = document.createElement("span");
+   span.innerHTML = label;
+   button.appendChild(span);
+  }
+
+  this.append(divbutton.appendChild(button));
+ }
+};
+
 $.fn.fieldInput = function() {
   this.filter("[data-component-type='text']").each(function() {
     const c = $(this);
