@@ -8,3 +8,12 @@ $("#contrato5").fieldInputPlusMinus();
 $("#contrato6").fieldInputPlusMinus();
 
 $("[data-component-type='text']").fieldInput();
+
+$("#fecha1").fielDate();
+$("#fecha2").fielDate();
+$("#fecha3").fielDate();
+$("#fecha4").fielDate();
+
+$("#negocio").fieldOptions();
+
+

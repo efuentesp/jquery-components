@@ -1587,10 +1587,11 @@ var fillQuiz = function (field_group, id, quiz) {
     }
 };
 var fieldDateClear = function (id) {
-    var _id = "#" + id;
-    var $dates = $(_id).datepicker();
-    $("#clear_" + id).on("click", function () {
-        $dates.datepicker("setDate", null);
+    var btn_calendar_id = "#clear_" + id;
+    var input_date_id = "#inpt-" + id; 
+
+    $(btn_calendar_id).on("click", function() {
+        $(input_date_id).datepicker("setDate", null);
     });
 };
 var fieldBeginDateRangeClear = function (id) {
