@@ -1,5 +1,6 @@
 $.fn.fieldInputPlusMinus = function() {
   const fieldId = this.attr("id");
+  const fieldMaxsize = this.data("componentMaxsize");
   const fieldWidth =
     "width: " +
     (this.data("componentWidth") ? this.data("componentWidth") : "8em") +
@@ -101,79 +102,84 @@ $.fn.fieldInputPlusMinus = function() {
   ulTagList.setAttribute("style", fieldWidth);
   divControl.appendChild(ulTagList);
 
-  fieldPlusMinus(fieldId, {});
+  fieldPlusMinus(fieldId, { maxsize: fieldMaxsize });
 };
 
-
 $.fn.button = function() {
-  const imagenames= [
-                ["button-accept",      "btn-aceptar.png",        "reset"],
-                ["button-search",      "btn-consultar_32x32.png","submit"],
-                ["button-save",        "btn-enviar.png",         ""],
-                ["button-send",        "btn-enviar.png",         ""],
-                ["button-add",         "btn-agregar.png",        ""],
-                ["button-cancel",      "btn-cancelar.png",       "reset"],
-                ["button-clean",       "btn-limpiar_32x32.png",  "reset"],
-                ["button-delete",      "btn-borrar.png",         "submit"],
-                ["button-filter-clean","btn-filter-clean.png",   "reset"],
-                ["button-filter",      "btn-filter.png",         "submit"],
-                ["button-pdf",         "btn-pdf_32x32.png",      ""],
-                ["button-reset",       "btn-reiniciar.png",      "submit"],
-                ["button-validate",    "btn-validar.png",        ""],
-                ["button-xls",         "btn-xls_32x32.png",      ""]
-               ]
+  const imagenames = [
+    ["button-accept", "btn-aceptar.png", "reset"],
+    ["button-search", "btn-consultar_32x32.png", "submit"],
+    ["button-save", "btn-enviar.png", ""],
+    ["button-send", "btn-enviar.png", ""],
+    ["button-add", "btn-agregar.png", ""],
+    ["button-cancel", "btn-cancelar.png", "reset"],
+    ["button-clean", "btn-limpiar_32x32.png", "reset"],
+    ["button-delete", "btn-borrar.png", "submit"],
+    ["button-filter-clean", "btn-filter-clean.png", "reset"],
+    ["button-filter", "btn-filter.png", "submit"],
+    ["button-pdf", "btn-pdf_32x32.png", ""],
+    ["button-reset", "btn-reiniciar.png", "submit"],
+    ["button-validate", "btn-validar.png", ""],
+    ["button-xls", "btn-xls_32x32.png", ""]
+  ];
 
-  var imgname=""
-  var type=""
+  var imgname = "";
+  var type = "";
 
-  for(i=0;i<imagenames.length;i++)
-    if (imagenames[i][0] ===this.data("componentType")){
-      imgname= imagenames[i][1];
-      type   = imagenames[i][2];
+  for (i = 0; i < imagenames.length; i++)
+    if (imagenames[i][0] === this.data("componentType")) {
+      imgname = imagenames[i][1];
+      type = imagenames[i][2];
       break;
     }
 
+  if (imgname !== "") {
+    const label = this.data("componentLabel")
+      ? this.data("componentLabel")
+      : "";
+    const tooltip = this.data("componentTooltip")
+      ? this.data("componentTooltip")
+      : "";
 
-if (imgname!=="") {
-  const label = this.data("componentLabel") ? this.data("componentLabel"):"";
-  const tooltip = this.data("componentTooltip") ? this.data("componentTooltip"):"";
+    var btnclass = "button big-button";
+    if (this.data("componentSize") === "medium")
+      btnclass = "button medium-button flex items-center";
+    if (this.data("componentSize") === "small")
+      btnclass = "button small-button";
 
-  var btnclass = "button big-button"
-  if (this.data("componentSize")==="medium")
-    btnclass="button medium-button flex items-center"
-  if (this.data("componentSize")==="small")
-    btnclass="button small-button"
+    const divbutton = document.createElement("div");
 
-  const divbutton = document.createElement("div");
+    const button = document.createElement("button");
+    button.setAttribute(
+      "id",
+      this.data("componentType") + "_" + this.attr("id")
+    );
 
-  const button = document.createElement("button");
-  button.setAttribute("id", this.data("componentType")+"_"+this.attr("id") );
+    button.setAttribute("class", btnclass);
 
-  button.setAttribute("class", btnclass);
+    if (type !== "" && btnclass === "button big-button") {
+      button.setAttribute("type", type);
+    }
+    if (this.data("componentDisabled") === "true") {
+      button.setAttribute("disabled", "disabled");
+    }
 
-  if (type!=="" && btnclass === "button big-button") {
-    button.setAttribute("type", type);
+    if (tooltip !== "") {
+      button.setAttribute("title", tooltip);
+    }
+
+    const img = document.createElement("img");
+    img.setAttribute("src", "../../assets/images/" + imgname);
+    button.appendChild(img);
+
+    if (this.data("componentSize") !== "small") {
+      const span = document.createElement("span");
+      span.innerHTML = label;
+      button.appendChild(span);
+    }
+
+    this.append(divbutton.appendChild(button));
   }
-  if (this.data("componentDisabled")==="true") {
-    button.setAttribute("disabled","disabled");
-  }
-
-  if (tooltip !== "") {
-    button.setAttribute("title",tooltip);
-  }
-
-  const img = document.createElement("img");
-  img.setAttribute("src", "../../assets/images/"+imgname);
-  button.appendChild(img);
-
-  if (this.data("componentSize")!=="small"){
-   const span = document.createElement("span");
-   span.innerHTML = label;
-   button.appendChild(span);
-  }
-
-  this.append(divbutton.appendChild(button));
- }
 };
 
 $.fn.fieldInput = function() {
@@ -247,9 +253,13 @@ $.fn.fieldInput = function() {
 $.fn.fielDate = function() {
   const fieldId = this.attr("id");
   const fieldLabel = this.attr("data-component-label");
-  const spanRequiredClass = "pr-3 " + (this.data("componentRequired") == true ? "required" : "");
-  const fieldClassOrientation = "is_" + (this.data("componentOrientation") ? this.data("componentOrientation") : "vertical");
-
+  const spanRequiredClass =
+    "pr-3 " + (this.data("componentRequired") == true ? "required" : "");
+  const fieldClassOrientation =
+    "is_" +
+    (this.data("componentOrientation")
+      ? this.data("componentOrientation")
+      : "vertical");
 
   //this.attr("id", "field_" + fieldId);
   this.attr("id", fieldId);
@@ -264,7 +274,7 @@ $.fn.fielDate = function() {
   var t = document.createTextNode(fieldLabel);
   label.setAttribute("for", "male");
   label.appendChild(t);
-  
+
   const spanRequired = document.createElement("span");
   spanRequired.setAttribute("class", spanRequiredClass);
   if (this.data("componentRequired") == true) {
@@ -274,10 +284,8 @@ $.fn.fielDate = function() {
 
   divLbl.appendChild(label);
   this.append(divLbl);
-  
+
   //------------------------------------------------------------------------------------------------
-
-
 
   const divDate = document.createElement("div");
   divDate.setAttribute("class", "field-input flex items-center");
@@ -285,11 +293,11 @@ $.fn.fielDate = function() {
   const inpt = document.createElement("input");
   //inpt.setAttribute("class", "input datepicker hasDatepicker");
   inpt.setAttribute("class", "input datepicker");
-  inpt.setAttribute("id", "inpt-"+fieldId);
+  inpt.setAttribute("id", "inpt-" + fieldId);
   inpt.setAttribute("style", "width: 8em;");
   inpt.setAttribute("maxlength", "10");
-  divDate.appendChild(inpt);//divDate.append(inpt);
-  
+  divDate.appendChild(inpt); //divDate.append(inpt);
+
   /*
   const image = document.createElement("img");
   image.setAttribute("class", "ui-datepicker-trigger");
@@ -298,11 +306,11 @@ $.fn.fielDate = function() {
   image.setAttribute("title", "");
   divDate.appendChild(image);//divDate.append(image);
   */
- 
+
   const inpt2 = document.createElement("input");
   inpt2.setAttribute("class", "pl-1");
   inpt2.setAttribute("type", "image");
-  inpt2.setAttribute("id", "clear_"+fieldId);
+  inpt2.setAttribute("id", "clear_" + fieldId);
   inpt2.setAttribute("src", "../../assets/images/meddelete.png");
   inpt2.setAttribute("style", "width:15px;height:15px;");
   inpt2.setAttribute("value", " ");
@@ -312,37 +320,42 @@ $.fn.fielDate = function() {
   span.setAttribute("class", "field-error flex");
 
   const divErrorTip = document.createElement("div");
-  divErrorTip.setAttribute("class", "error-tip");  
+  divErrorTip.setAttribute("class", "error-tip");
   span.appendChild(divErrorTip);
 
   const divErrorMsg = document.createElement("div");
   divErrorMsg.setAttribute("class", "error-msg");
-  divErrorMsg.setAttribute("id", "field_error_block_fecha");  
+  divErrorMsg.setAttribute("id", "field_error_block_fecha");
 
   span.appendChild(divErrorMsg);
   divDate.appendChild(span);
-  
-  $( function() {
-    $("#inpt-"+fieldId).datepicker({
+
+  $(function() {
+    $("#inpt-" + fieldId).datepicker({
       showOn: "button",
       buttonImage: "../../assets/images/btn-calendario.svg",
       buttonImageOnly: true,
       buttonText: "Select date"
     });
-  } );
+  });
 
   this.append(divDate);
 
   fieldDateClear(fieldId);
-  
+
   $(".datepicker").mask("99-99-9999");
 };
 
 $.fn.fieldOptions = function() {
   const fieldId = this.attr("id");
   const fieldLabel = this.attr("data-component-label");
-  const spanRequiredClass = "pr-3 " + (this.data("componentRequired") == true ? "required" : "");
-  const fieldClassOrientation = "is_" + (this.data("componentOrientation") ? this.data("componentOrientation") : "vertical");
+  const spanRequiredClass =
+    "pr-3 " + (this.data("componentRequired") == true ? "required" : "");
+  const fieldClassOrientation =
+    "is_" +
+    (this.data("componentOrientation")
+      ? this.data("componentOrientation")
+      : "vertical");
   const childrenDIV = this.children("div");
   console.log("childrenDIV: ", childrenDIV);
 
@@ -356,12 +369,12 @@ $.fn.fieldOptions = function() {
 
   //Se agrega div vacio
   const div1 = document.createElement("div");
-  div1.setAttribute("class", "field-label flex");  
-    const label = document.createElement("label");
-    label.setAttribute("class", "field-label");
+  div1.setAttribute("class", "field-label flex");
+  const label = document.createElement("label");
+  label.setAttribute("class", "field-label");
 
-    const span = document.createElement("span");
-    span.setAttribute("class", "pr-5");
+  const span = document.createElement("span");
+  span.setAttribute("class", "pr-5");
   div1.appendChild(label);
   div1.appendChild(span);
   this.append(div1);
@@ -369,44 +382,47 @@ $.fn.fieldOptions = function() {
   //Se anexan las opciones del componente Options
   const divOpt = document.createElement("div");
   divOpt.setAttribute("class", "field-control");
-  divOpt.setAttribute("data-tooltip", " ");  
-    for(var i=0; i < childrenDIV.length; i++){
-      var divChild = childrenDIV[i];
+  divOpt.setAttribute("data-tooltip", " ");
+  for (var i = 0; i < childrenDIV.length; i++) {
+    var divChild = childrenDIV[i];
 
-      //Se remueve el i-esimo div
-      $("#"+divChild.id).remove();
+    //Se remueve el i-esimo div
+    $("#" + divChild.id).remove();
 
-      const labelOpt = document.createElement("label");
-      labelOpt.setAttribute("id", divChild.id);
-      labelOpt.setAttribute("class", "radio_button");
-      var t = document.createTextNode(divChild.innerHTML);
-      labelOpt.appendChild(t);
-        const inptOpt = document.createElement("input");
-        inptOpt.setAttribute("id", "radio_"+fieldId+"_"+i);
-        inptOpt.setAttribute("type", "radio");
-        inptOpt.setAttribute("name", fieldId);
-        inptOpt.setAttribute("value", divChild.id);
-        inptOpt.setAttribute("data-parsley-class-handler", "#field_"+fieldId);
-        inptOpt.setAttribute("data-parsley-errors-container", "#field_error_block_"+fieldId);
-        inptOpt.setAttribute("data-parsley-multiple", fieldId);
-        inptOpt.setAttribute("data-parsley-id", "22");
-      
-        const span = document.createElement("span");
-        span.setAttribute("class", "checkmark");
-      labelOpt.appendChild(inptOpt);
-      labelOpt.appendChild(span);
+    const labelOpt = document.createElement("label");
+    labelOpt.setAttribute("id", divChild.id);
+    labelOpt.setAttribute("class", "radio_button");
+    var t = document.createTextNode(divChild.innerHTML);
+    labelOpt.appendChild(t);
+    const inptOpt = document.createElement("input");
+    inptOpt.setAttribute("id", "radio_" + fieldId + "_" + i);
+    inptOpt.setAttribute("type", "radio");
+    inptOpt.setAttribute("name", fieldId);
+    inptOpt.setAttribute("value", divChild.id);
+    inptOpt.setAttribute("data-parsley-class-handler", "#field_" + fieldId);
+    inptOpt.setAttribute(
+      "data-parsley-errors-container",
+      "#field_error_block_" + fieldId
+    );
+    inptOpt.setAttribute("data-parsley-multiple", fieldId);
+    inptOpt.setAttribute("data-parsley-id", "22");
 
-      divOpt.appendChild(labelOpt);
-    }
+    const span = document.createElement("span");
+    span.setAttribute("class", "checkmark");
+    labelOpt.appendChild(inptOpt);
+    labelOpt.appendChild(span);
 
-    //Se agrega div para errores
-    const divError = document.createElement("div");
-    divError.setAttribute("class", "field-error");  
-      const divFieldError = document.createElement("div");
-      divFieldError.setAttribute("id", "field_error_block_negocio");  
-    divError.append(divFieldError);
+    divOpt.appendChild(labelOpt);
+  }
 
-  divOpt.appendChild(divError);  
+  //Se agrega div para errores
+  const divError = document.createElement("div");
+  divError.setAttribute("class", "field-error");
+  const divFieldError = document.createElement("div");
+  divFieldError.setAttribute("id", "field_error_block_negocio");
+  divError.append(divFieldError);
 
-  this.append(divOpt)
+  divOpt.appendChild(divError);
+
+  this.append(divOpt);
 };
