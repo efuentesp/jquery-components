@@ -1,5 +1,5 @@
 function simulateKeydown(selector) {
-  var e = jQuery.Event("keydown");
+  let e = jQuery.Event("keydown");
   e.which = 13;
   e.keyCode = 13;
   selector.trigger(e);
