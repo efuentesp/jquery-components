@@ -2289,3 +2289,249 @@ var barHighchart = function (params) {
 };
 
 //# sourceMappingURL=../maps/common.js.map
+
+function pad(n, width, z) {
+    z = z || "0";
+    n = n + "";
+    return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+}
+
+/*
+const verifyDay = (day, month, year) => {
+    let countMonth = 0;
+    let monthNum = 0;
+    let monthL = 0;
+    let monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];  // Day of month
+    var indexMonth = 0;
+  
+    if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
+      monthLength[1] = 29;
+    }
+  
+    // suma numero de meses
+    if (!(month > 0 && month < 13)) {
+      while (!(month > 0 && month < 13)) {
+        month = month - 12;
+      }
+    }
+  
+    monthNum = month;
+  
+    if (day < 0 || day > monthLength[monthNum - 1]) {
+        while (day < 0 || day > monthLength[monthNum - 1]) {
+          
+          indexMonth = monthNum - 1 + countMonth;
+          if (indexMonth <= 11) {
+            monthL = monthLength[monthNum - 1];
+          } else {
+            // monthL = monthLength[(monthNum - 1 + countMonth - 12)];
+          }
+          day = day - monthL;
+          countMonth++;
+        }  
+    }
+    return day;
+  };
+  */
+ const verifyDay = (day, month, year) => {
+    let countMonth = 0;
+    let monthNum = 0;
+    let monthL = 0;
+    let monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];  // Day of month
+    var indexMonth = 0;
+  
+    if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
+      monthLength[1] = 29;
+    }
+    
+    monthNum = 0;
+  
+    if (day > monthLength[monthNum]) {
+        while (day > monthLength[monthNum]) {
+          indexMonth = monthNum + countMonth;
+          if (indexMonth < 12) {
+            monthL = monthLength[monthNum];
+          } else {
+            // monthL = monthLength[(monthNum - 1 + countMonth - 12)];
+          }
+          day = day - monthL;
+        }  
+    }
+  
+    return day;
+  };
+
+  /*
+  const verifyMonth = (day, month, year) => {
+
+    // Day
+    let countMonth = 0;
+    let monthNum = 0;
+    let monthL = 0;
+    let monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];  // Day of month
+    var indexMonth = 0;
+    
+    if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
+      monthLength[1] = 29;
+    }
+  
+    monthNum = month;
+  
+    if (day < 0 || day > monthLength[monthNum - 1]) {
+        while (day < 0 || day > monthLength[monthNum - 1]) {
+          
+          indexMonth = monthNum - 1 + countMonth;
+          if (indexMonth <= 11) {
+            monthL = monthLength[monthNum - 1];
+          } else {
+            // monthL = monthLength[(monthNum - 1 + countMonth - 12)];
+          }
+          day = day - monthL;
+          countMonth++;
+        }  
+    }
+  
+    month = month + countMonth;
+  
+    if (!(month > 0 && month < 13)) {
+      while (!(month > 0 && month < 13)) {
+        month = month - 12;
+      }
+    }
+    return month;
+  };
+  */
+ const verifyMonth = (day, month, year) => {
+  
+    // Day
+    let countMonth = 0;
+    let monthNum = 0;
+    let monthL = 0;
+    let monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];  // Day of month
+    var indexMonth = 0;
+    
+    if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
+      monthLength[1] = 29;
+    }
+  
+    monthNum = 0;
+   
+    if (day > monthLength[monthNum]) {
+        while (day > monthLength[monthNum]) {
+          
+          indexMonth = monthNum + countMonth;
+  
+          if (indexMonth < 12) {
+            monthL = monthLength[monthNum];
+          } else {
+            // monthL = monthLength[(monthNum - 1 + countMonth - 12)];
+          }
+  
+          day = day - monthL;
+          monthNum++;
+          countMonth++;
+        }  
+    }
+  
+   if (month > 11) {
+      while (month > 11) {
+        month = month - 12;
+      }
+    }
+   
+    month = month + countMonth;
+    return month;
+  };
+  /*
+  const verifyYear = (day, month, year) => {
+
+    // Day
+    let countMonth = 0;
+    let monthNum = 0;
+    let monthL = 0;
+    let monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];  // Day of month
+    var indexMonth = 0;
+  
+    // Month
+    let countMonthYear = 0;
+    
+    if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
+      monthLength[1] = 29;
+    }
+  
+    monthNum = month;
+  
+    if (day < 0 || day > monthLength[monthNum - 1]) {
+        while (day < 0 || day > monthLength[monthNum - 1]) {
+          indexMonth = monthNum - 1 + countMonth;
+  
+          if (indexMonth <= 11) {
+            monthL = monthLength[monthNum - 1];
+          } else {
+            // monthL = monthLength[(monthNum - 1 + countMonth - 12)];
+          }
+          day = day - monthL;
+          countMonth++;
+        }  
+    }
+  
+    month = month + countMonth;
+  
+    if (!(month > 0 && month < 13)) {
+      while (!(month > 0 && month < 13)) {
+        month = month - 12;
+        countMonthYear++;
+      }
+    }
+  
+    year = year + countMonthYear;
+  
+    return year;
+  };
+  */
+ const verifyYear = (day, month, year) => {
+    // Day
+    let countMonth = 0;
+    let monthNum = 0;
+    let monthL = 0;
+    let monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];  // Day of month
+    var indexMonth = 0;
+  
+    // Month
+    let countMonthYear = 0;
+    
+    if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
+      monthLength[1] = 29;
+    }
+  
+    monthNum = 0;
+  
+    if (day > monthLength[monthNum]) {
+        while (day > monthLength[monthNum]) {
+          indexMonth = monthNum + countMonth;
+  
+          if (indexMonth < 12) {
+            monthL = monthLength[monthNum];
+          } else {
+            // monthL = monthLength[(monthNum - 1 + countMonth - 12)];
+          }
+  
+          day = day - monthL;
+          monthNum++;
+          countMonth++;
+        }  
+    }
+  
+    month = month + countMonth;
+  
+    if (month > 11) {
+      while (month > 11) {
+        month = month - 12;
+        countMonthYear++;
+      }
+    }
+  
+    year = year + countMonthYear;
+    return year;
+  };
+  

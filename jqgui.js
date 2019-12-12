@@ -250,78 +250,79 @@ $.fn.fielDate = function() {
   const spanRequiredClass = "pr-3 " + (this.data("componentRequired") == true ? "required" : "");
   const fieldClassOrientation = "is_" + (this.data("componentOrientation") ? this.data("componentOrientation") : "vertical");
 
-
-  //this.attr("id", "field_" + fieldId);
-  this.attr("id", fieldId);
+  this.attr("id", "field_" + fieldId);
   this.attr("class", "field " + fieldClassOrientation);
+  this.removeAttr("data-component-type");
+  this.removeAttr("data-component-label");
+  this.removeAttr("data-component-required");
+  this.removeAttr("data-component-orientation");
 
-  //------------------------------------------------------------------------------------------------
-  const divLbl = document.createElement("div");
-  divLbl.setAttribute("id", "divLbl");
-  divLbl.setAttribute("class", "field-label flex");
-
-  const label = document.createElement("label");
-  var t = document.createTextNode(fieldLabel);
-  label.setAttribute("for", "male");
-  label.appendChild(t);
+    const divLbl = document.createElement("div");
+    //divLbl.setAttribute("id", "divLbl");
+    divLbl.setAttribute("class", "field-label flex");
+      const label = document.createElement("label");
+      var t = document.createTextNode(fieldLabel);
+      label.setAttribute("for", fieldId);
+      label.appendChild(t);
+        const spanRequired = document.createElement("span");
+        spanRequired.setAttribute("class", spanRequiredClass);
+        if (this.data("componentRequired") == true) {
+          spanRequired.innerHTML = "*";
+        }
+      label.appendChild(spanRequired);
+    divLbl.appendChild(label);
   
-  const spanRequired = document.createElement("span");
-  spanRequired.setAttribute("class", spanRequiredClass);
-  if (this.data("componentRequired") == true) {
-    spanRequired.innerHTML = "*";
-  }
-  label.appendChild(spanRequired);
+    const divDateTT = document.createElement("div");
+    divDateTT.setAttribute("class", "field-control");
 
-  divLbl.appendChild(label);
-  this.append(divLbl);
-  
-  //------------------------------------------------------------------------------------------------
+      const divDate = document.createElement("div");
+      divDate.setAttribute("class", "field-input flex items-center");
+        const inpt = document.createElement("input");
+        //inpt.setAttribute("class", "input datepicker hasDatepicker");
+        inpt.setAttribute("class", "input datepicker");
+        inpt.setAttribute("id", "inpt-"+fieldId);
+        inpt.setAttribute("style", "width: 8em;");
+        inpt.setAttribute("data-parsley-errors-container", "#field_error_block_"+fieldId);
+        inpt.setAttribute("maxlength", "10");
+        
+        /*
+        const image = document.createElement("img");
+        image.setAttribute("class", "ui-datepicker-trigger");
+        image.setAttribute("src", "./images/btn-calendario.svg");
+        image.setAttribute("alt", "");
+        image.setAttribute("title", "");
+        divDate.appendChild(image);//divDate.append(image);
+        */
+        const inpt2 = document.createElement("input");
+        inpt2.setAttribute("class", "pl-1");
+        inpt2.setAttribute("type", "image");
+        inpt2.setAttribute("id", "clear_"+fieldId);
+        inpt2.setAttribute("src", "../../assets/images/meddelete.png");
+        inpt2.setAttribute("style", "width:15px;height:15px;");
+        inpt2.setAttribute("value", " ");
+        
+        const span = document.createElement("span");
+        span.setAttribute("class", "field-error flex");
+          const divErrorTip = document.createElement("div");
+          divErrorTip.setAttribute("class", "error-tip");  
+        
+          const divErrorMsg = document.createElement("div");
+          divErrorMsg.setAttribute("class", "error-msg");
+          divErrorMsg.setAttribute("id", "field_error_block_"+fieldId);  
+        span.appendChild(divErrorTip);
+        span.appendChild(divErrorMsg);
+      divDate.appendChild(inpt);  
+      divDate.appendChild(inpt2);
+      divDate.appendChild(span);
+    divDateTT.append(divDate);
+  this.append(divLbl);  
+  this.append(divDateTT);
 
+//-----------------------------------------------------------------------------
+  fieldDateClear(fieldId);      
 
+  $(".datepicker").mask("99-99-9999");
 
-  const divDate = document.createElement("div");
-  divDate.setAttribute("class", "field-input flex items-center");
-
-  const inpt = document.createElement("input");
-  //inpt.setAttribute("class", "input datepicker hasDatepicker");
-  inpt.setAttribute("class", "input datepicker");
-  inpt.setAttribute("id", "inpt-"+fieldId);
-  inpt.setAttribute("style", "width: 8em;");
-  inpt.setAttribute("maxlength", "10");
-  divDate.appendChild(inpt);//divDate.append(inpt);
-  
-  /*
-  const image = document.createElement("img");
-  image.setAttribute("class", "ui-datepicker-trigger");
-  image.setAttribute("src", "./images/btn-calendario.svg");
-  image.setAttribute("alt", "");
-  image.setAttribute("title", "");
-  divDate.appendChild(image);//divDate.append(image);
-  */
- 
-  const inpt2 = document.createElement("input");
-  inpt2.setAttribute("class", "pl-1");
-  inpt2.setAttribute("type", "image");
-  inpt2.setAttribute("id", "clear_"+fieldId);
-  inpt2.setAttribute("src", "../../assets/images/meddelete.png");
-  inpt2.setAttribute("style", "width:15px;height:15px;");
-  inpt2.setAttribute("value", " ");
-  divDate.appendChild(inpt2);
-
-  const span = document.createElement("span");
-  span.setAttribute("class", "field-error flex");
-
-  const divErrorTip = document.createElement("div");
-  divErrorTip.setAttribute("class", "error-tip");  
-  span.appendChild(divErrorTip);
-
-  const divErrorMsg = document.createElement("div");
-  divErrorMsg.setAttribute("class", "error-msg");
-  divErrorMsg.setAttribute("id", "field_error_block_fecha");  
-
-  span.appendChild(divErrorMsg);
-  divDate.appendChild(span);
-  
   $( function() {
     $("#inpt-"+fieldId).datepicker({
       showOn: "button",
@@ -330,12 +331,47 @@ $.fn.fielDate = function() {
       buttonText: "Select date"
     });
   } );
+//-----------------------------------------------------------------------------
+  $(".datepicker").focusout(function(){
+    let date = $(this)
+    .val()
+    .toString();
+    if (date != ""){
+      verifyDate(date, $(this));
+    }
+  });
 
-  this.append(divDate);
-
-  fieldDateClear(fieldId);
+  const verifyDate = (data, obj) => {
+    let array = [];
+    array = data.split("-");
+    let day = parseInt(array[0]);
+    let month = parseInt(array[1]);
+    let year = parseInt(array[2]);
   
-  $(".datepicker").mask("99-99-9999");
+    let nMonth = 0;
+    let nDay = 0;
+    let nYear = 0;
+  
+    nDay = verifyDay(day, month, year);
+    nMonth = verifyMonth(day, month, year);
+    nYear = verifyYear(day, month, year);
+  
+    $(obj).val("" + pad(nDay, 2, "") + "-" + pad(nMonth, 2, "") + "-" + nYear);
+  
+  }
+
+  $(".datepicker").on("keydown",function(e){
+    let date = $(this)
+    .val()
+    .toString();
+
+    if (e.which == 13) {
+      e.preventDefault();
+      if (date != ""){
+        verifyDate(date, $(this));
+      }
+    }
+  });
 };
 
 $.fn.fieldOptions = function() {
@@ -377,7 +413,7 @@ $.fn.fieldOptions = function() {
       $("#"+divChild.id).remove();
 
       const labelOpt = document.createElement("label");
-      labelOpt.setAttribute("id", divChild.id);
+      //labelOpt.setAttribute("id", divChild.id);
       labelOpt.setAttribute("class", "radio_button");
       var t = document.createTextNode(divChild.innerHTML);
       labelOpt.appendChild(t);
