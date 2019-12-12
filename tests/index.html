@@ -21,8 +21,32 @@
       data-component-orientation="horizontal"
     ></div>
 
+    <div
+      id="contrato2"
+      data-component-type="input-plus-minus"
+      data-component-label="Contrato"
+      data-component-required="true"
+      data-component-orientation="horizontal"
+      data-component-maxsize="4"
+    ></div>
+
+    <div
+      id="contrato3"
+      data-component-type="select-plus-minus"
+      data-component-label="Contrato"
+      data-component-required="true"
+      data-component-orientation="horizontal"
+      data-component-items="
+        {key: '', value:''},
+        {key: 'C001', value:'Contrato 01'},
+        {key: 'C002', value:'Contrato 02'},
+        {key: 'C003', value:'Contrato 03'},
+        {key: 'C004', value:'Contrato 04'},
+        {key: 'C005', value:'Contrato 05'}"
+    ></div>
+
     <!-- Test: Fechas -->
-    <div 
+    <div
       id="fecha"
       data-component-type="date"
       data-component-label="Fecha"
@@ -30,11 +54,13 @@
       data-component-orientation="vartical"
     ></div>    
 
-    <div id="negocio"   
+    <div
+      id="negocio"
       data-component-type="options"
       data-component-label="Opciones"
-      data-component-required=false
-      data-component-orientation="vertical">
+      data-component-required="false"
+      data-component-orientation="vertical"
+    >
       <div id="CB">Casa de Bolsa</div>
       <div id="B">Banco</div>
       <div id="S">Sucursal</div>
