@@ -10,6 +10,8 @@ $("#buttonsearch1").button();
 $("#buttonsearch2").button();
 $("#buttonsearch21").button();
 $("#buttonsearch3").button();
+$("#grid1").grid();
+$("#gridrecordscount1").gridrecordscount();
 $("[data-component-type='text']").fieldInput();
 
 $("#fecha1").fielDate();
@@ -18,5 +20,3 @@ $("#fecha3").fielDate();
 $("#fecha4").fielDate();
 
 $("#negocio").fieldOptions();
-
-

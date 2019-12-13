@@ -157,16 +157,14 @@ $.fn.button = function() {
 
     button.setAttribute("class", btnclass);
 
-    if (type !== "" && btnclass === "button big-button") {
+    if (type !== "" && btnclass === "button big-button")
       button.setAttribute("type", type);
-    }
-    if (this.data("componentDisabled") === "true") {
-      button.setAttribute("disabled", "disabled");
-    }
 
-    if (tooltip !== "") {
+    if (this.data("componentDisabled") === "true")
+      button.setAttribute("disabled", "disabled");
+
+    if (tooltip !== "")
       button.setAttribute("title", tooltip);
-    }
 
     const img = document.createElement("img");
     img.setAttribute("src", "../../assets/images/" + imgname);
@@ -181,6 +179,40 @@ $.fn.button = function() {
     this.append(divbutton.appendChild(button));
   }
 };
+
+
+$.fn.grid = function() {
+  if (this.data("componentType")==="grid") {
+     const divgrid = document.createElement("div");
+     const table = document.createElement("table");
+     table.setAttribute("id", "table_"+this.attr("id") );
+     const tr = document.createElement("tr");
+     table.appendChild(tr)
+     const td = document.createElement("td");
+     tr.appendChild(td)
+     const pager = document.createElement("div");
+     pager.setAttribute("id", "pager_"+this.attr("id") );
+     divgrid.appendChild(table)
+     divgrid.appendChild(pager)
+     this.append(divgrid);
+ }
+}
+
+
+$.fn.gridrecordscount = function() {
+  if (this.data("componentType")==="grid-records-count") {
+     const divgrid = document.createElement("div");
+     divgrid.setAttribute("class", "ui-jqgrid-count-rec");
+     const span = document.createElement("span");
+     span.innerHTML = this.data("componentLabel")
+                      ? this.data("componentLabel"):"Total registros:";
+     const spancount = document.createElement("span");
+     spancount.setAttribute("id", "count_"+this.attr("id") );
+     span.appendChild(spancount)
+     divgrid.appendChild(span)
+     this.append(divgrid);
+  }
+}
 
 // objects array
 const buildArray = stringItems => {
@@ -407,7 +439,7 @@ $.fn.fielDate = function() {
         }
       label.appendChild(spanRequired);
     divLbl.appendChild(label);
-  
+
     const divDateTT = document.createElement("div");
     divDateTT.setAttribute("class", "field-control");
 
@@ -420,7 +452,7 @@ $.fn.fielDate = function() {
         inpt.setAttribute("style", "width: 8em;");
         inpt.setAttribute("data-parsley-errors-container", "#field_error_block_"+fieldId);
         inpt.setAttribute("maxlength", "10");
-        
+
         /*
         const image = document.createElement("img");
         image.setAttribute("class", "ui-datepicker-trigger");
@@ -436,26 +468,26 @@ $.fn.fielDate = function() {
         inpt2.setAttribute("src", "../../assets/images/meddelete.png");
         inpt2.setAttribute("style", "width:15px;height:15px;");
         inpt2.setAttribute("value", " ");
-        
+
         const span = document.createElement("span");
         span.setAttribute("class", "field-error flex");
           const divErrorTip = document.createElement("div");
-          divErrorTip.setAttribute("class", "error-tip");  
-        
+          divErrorTip.setAttribute("class", "error-tip");
+
           const divErrorMsg = document.createElement("div");
           divErrorMsg.setAttribute("class", "error-msg");
-          divErrorMsg.setAttribute("id", "field_error_block_"+fieldId);  
+          divErrorMsg.setAttribute("id", "field_error_block_"+fieldId);
         span.appendChild(divErrorTip);
         span.appendChild(divErrorMsg);
-      divDate.appendChild(inpt);  
+      divDate.appendChild(inpt);
       divDate.appendChild(inpt2);
       divDate.appendChild(span);
     divDateTT.append(divDate);
-  this.append(divLbl);  
+  this.append(divLbl);
   this.append(divDateTT);
 
 //-----------------------------------------------------------------------------
-  fieldDateClear(fieldId);      
+  fieldDateClear(fieldId);
 
   $(".datepicker").mask("99-99-9999");
 
@@ -484,17 +516,17 @@ $.fn.fielDate = function() {
     let day = parseInt(array[0]);
     let month = parseInt(array[1]);
     let year = parseInt(array[2]);
-  
+
     let nMonth = 0;
     let nDay = 0;
     let nYear = 0;
-  
+
     nDay = verifyDay(day, month, year);
     nMonth = verifyMonth(day, month, year);
     nYear = verifyYear(day, month, year);
-  
+
     $(obj).val("" + pad(nDay, 2, "") + "-" + pad(nMonth, 2, "") + "-" + nYear);
-  
+
   }
 
   $(".datepicker").on("keydown",function(e){
@@ -547,7 +579,7 @@ $.fn.fieldOptions = function() {
   //Se anexan las opciones del componente Options
   const divOpt = document.createElement("div");
   divOpt.setAttribute("class", "field-control");
-  divOpt.setAttribute("data-tooltip", " ");  
+  divOpt.setAttribute("data-tooltip", " ");
     for(var i=0; i < childrenDIV.length; i++){
       var divChild = childrenDIV[i];
 
@@ -568,7 +600,7 @@ $.fn.fieldOptions = function() {
         inptOpt.setAttribute("data-parsley-errors-container", "#field_error_block_"+fieldId);
         inptOpt.setAttribute("data-parsley-multiple", fieldId);
         inptOpt.setAttribute("data-parsley-id", "22");
-      
+
         const span = document.createElement("span");
         span.setAttribute("class", "checkmark");
       labelOpt.appendChild(inptOpt);
