@@ -6,3 +6,6 @@ $("#contrato3").fieldSelectPlusMinus();
 $("#fecha").fielDate();
 
 $("#negocio").fieldOptions();
+
+$("#bancos").fieldCheckBox();
+

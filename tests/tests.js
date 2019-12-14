@@ -253,9 +253,7 @@ QUnit.test("10 - InputPlusMinus Solo permitir agregar 4 elementos", function(
 });
 
 //----------------------------------------------------------
-var QUnitDate = QUnit.test(
-  "SELECTED OPTIONS - First option selected",
-  function(assert) {
+var QUnitDate = QUnit.test("SELECTED OPTIONS - First option selected", function(assert) {
     //arrange
     const options = $("#field_negocio")
       .children(".field-control")
@@ -279,9 +277,7 @@ var QUnitDate = QUnit.test(
     assert.equal(optionSelectedValue, optionSelectedValueExpected);
 }); 
 
-var QUnitDate = QUnit.test(
-  "SELECTED OPTIONS - Second option selected",
-  function(assert) {
+var QUnitDate = QUnit.test("SELECTED OPTIONS - Second option selected", function(assert) {
     //arrange
     const options = $("#field_negocio")
       .children(".field-control")
@@ -326,31 +322,6 @@ var QUnitDate = QUnit.test(
     // assert
     assert.equal(optionSelectedValue, optionSelectedValueExpected);
   });   
-/*
-QUnit.skip("InputPlusMinus agregar 30 elementos con botón +", function(
-  assert
-) {});
-
-QUnit.skip("InputPlusMinus agregar 3 elementos con Enter", function(assert) {});
-
-QUnit.skip("InputPlusMinus agregar 30 elementos con Enter", function(
-  assert
-) {});
-
-QUnit.skip(
-  "InputPlusMinus Eliminar 5 elementos con botón - y ya no queden elementos en la lista",
-  function(assert) {}
-);
-
-QUnit.skip(
-  "InputPlusMinus Eliminar 5 elementos con botón - y que queden elementos en la lista",
-  function(assert) {}
-);
-
-QUnit.skip("InputPlusMinus Solo permitir agregar 4 elementos", function(
-  assert
-) {});
-*/
 
 QUnit.test("DATEPICKER captura de fecha válida", function(assert) {
   // arrange
@@ -407,6 +378,188 @@ QUnit.test("DATEPICKER captura de fecha inválida por año", function(assert) {
   // assert
   assert.equal(txtInputFecha.val(), fechaEsperada);
 });
+
+QUnit.test("CHECKBOX Select first option", function(assert){
+  // arrange
+  const index = 0;
+  const checksBox = $("#field_bancos").children("div .field-control").children("div").children("label");
+  const checkBoxExpected = checksBox[index];
+  const checkBoxSelectedValueExpected = checkBoxExpected.childNodes[1].value;  
+
+  // act
+  for(var i=0; i<checksBox.length; i++){
+    $("#"+checksBox[i].childNodes[1].id).prop("checked", false);
+  }  
+  const checkBoxSelected = checksBox[index];
+  const checkBoxSelectedCN = checkBoxSelected.childNodes;
+  checkBoxSelectedCN[1].click();
+
+  var checkBoxSelectedValue;
+  for(var i=0; i<checksBox.length; i++){
+    if( $("#"+checksBox[i].childNodes[1].id).is(":checked") ){
+      checkBoxSelectedValue = checksBox[i].childNodes[1].value;
+    }
+  }
+
+  // assert
+  assert.equal(checkBoxSelectedValue, checkBoxSelectedValueExpected);
+});
+
+QUnit.test("CHECKBOX Select second option", function(assert){
+  // arrange
+  const index = 1;
+  const checksBox = $("#field_bancos").children("div .field-control").children("div").children("label");
+  const checkBoxExpected = checksBox[index];
+  const checkBoxSelectedValueExpected = checkBoxExpected.childNodes[1].value;  
+
+  // act
+  for(var i=0; i<checksBox.length; i++){
+    $("#"+checksBox[i].childNodes[1].id).prop("checked", false);
+  }
+  const checkBoxSelected = checksBox[index];
+  const checkBoxSelectedCN = checkBoxSelected.childNodes;
+  checkBoxSelectedCN[1].click();
+
+  var checkBoxSelectedValue;
+  for(var i=0; i<checksBox.length; i++){
+    if( $("#"+checksBox[i].childNodes[1].id).is(":checked") ){
+      checkBoxSelectedValue = checksBox[i].childNodes[1].value;
+    }
+  }
+
+  // assert
+  assert.equal(checkBoxSelectedValue, checkBoxSelectedValueExpected);
+});
+
+QUnit.test("CHECKBOX Select third option", function(assert){
+  // arrange
+  const index = 2;
+  const checksBox = $("#field_bancos").children("div .field-control").children("div").children("label");
+  const checkBoxExpected = checksBox[index];
+  const checkBoxSelectedValueExpected = checkBoxExpected.childNodes[1].value;  
+
+  // act
+  for(var i=0; i<checksBox.length; i++){
+    $("#"+checksBox[i].childNodes[1].id).prop("checked", false);
+  }
+  const checkBoxSelected = checksBox[index];
+  const checkBoxSelectedCN = checkBoxSelected.childNodes;
+  checkBoxSelectedCN[1].click();
+
+  var checkBoxSelectedValue;
+  for(var i=0; i<checksBox.length; i++){
+    if( $("#"+checksBox[i].childNodes[1].id).is(":checked") ){
+      checkBoxSelectedValue = checksBox[i].childNodes[1].value;
+    }
+  }
+
+  // assert
+  assert.equal(checkBoxSelectedValue, checkBoxSelectedValueExpected);
+});
+
+QUnit.test("CHECKBOX Select first and second options", function(assert){
+  // arrange
+  const index_1 = 0;
+  const index_2 = 1;
+  const checksBox = $("#field_bancos").children("div .field-control").children("div").children("label");
+  const checkBoxExpected1 = checksBox[index_1];
+  const checkBoxExpected2 = checksBox[index_2];
+  const checkBoxSelectedValueExpected = checkBoxExpected1.childNodes[1].value + checkBoxExpected2.childNodes[1].value;  
+
+  // act
+  for(var i=0; i<checksBox.length; i++){
+    $("#"+checksBox[i].childNodes[1].id).prop("checked", false);
+  }
+  const checkBoxSelected1 = checksBox[index_1];
+  const checkBoxSelectedCN1 = checkBoxSelected1.childNodes;
+  checkBoxSelectedCN1[1].click();
+
+  const checkBoxSelected2 = checksBox[index_2];
+  const checkBoxSelectedCN2 = checkBoxSelected2.childNodes;
+  checkBoxSelectedCN2[1].click();
+
+  var checkBoxSelectedValue="";
+  for(var i=0; i<checksBox.length; i++){
+    if( $("#"+checksBox[i].childNodes[1].id).is(":checked") ){
+      checkBoxSelectedValue += checksBox[i].childNodes[1].value;
+    }
+  }
+
+  // assert
+  assert.equal(checkBoxSelectedValue, checkBoxSelectedValueExpected);
+});
+
+QUnit.test("CHECKBOX Select first and third options", function(assert){
+  // arrange
+  const index_1 = 0;
+  const index_2 = 2;
+  const checksBox = $("#field_bancos").children("div .field-control").children("div").children("label");
+  const checkBoxExpected1 = checksBox[index_1];
+  const checkBoxExpected2 = checksBox[index_2];
+  const checkBoxSelectedValueExpected = checkBoxExpected1.childNodes[1].value + checkBoxExpected2.childNodes[1].value;  
+
+  // act
+  for(var i=0; i<checksBox.length; i++){
+    $("#"+checksBox[i].childNodes[1].id).prop("checked", false);
+  }
+  const checkBoxSelected1 = checksBox[index_1];
+  const checkBoxSelectedCN1 = checkBoxSelected1.childNodes;
+  checkBoxSelectedCN1[1].click();
+
+  const checkBoxSelected2 = checksBox[index_2];
+  const checkBoxSelectedCN2 = checkBoxSelected2.childNodes;
+  checkBoxSelectedCN2[1].click();
+
+  var checkBoxSelectedValue="";
+  for(var i=0; i<checksBox.length; i++){
+    if( $("#"+checksBox[i].childNodes[1].id).is(":checked") ){
+      checkBoxSelectedValue += checksBox[i].childNodes[1].value;
+    }
+  }
+
+  // assert
+  assert.equal(checkBoxSelectedValue, checkBoxSelectedValueExpected);
+});
+
+QUnit.test("CHECKBOX Select first, second and third options", function(assert){
+  // arrange
+  const index_1 = 0;
+  const index_2 = 1;
+  const index_3 = 2;
+  const checksBox = $("#field_bancos").children("div .field-control").children("div").children("label");
+  const checkBoxExpected1 = checksBox[index_1];
+  const checkBoxExpected2 = checksBox[index_2];
+  const checkBoxExpected3 = checksBox[index_3];
+  const checkBoxSelectedValueExpected = checkBoxExpected1.childNodes[1].value + checkBoxExpected2.childNodes[1].value + checkBoxExpected3.childNodes[1].value;  
+
+  // act
+  for(var i=0; i<checksBox.length; i++){
+    $("#"+checksBox[i].childNodes[1].id).prop("checked", false);
+  }
+  const checkBoxSelected1 = checksBox[index_1];
+  const checkBoxSelectedCN1 = checkBoxSelected1.childNodes;
+  checkBoxSelectedCN1[1].click();
+
+  const checkBoxSelected2 = checksBox[index_2];
+  const checkBoxSelectedCN2 = checkBoxSelected2.childNodes;
+  checkBoxSelectedCN2[1].click();
+
+  const checkBoxSelected3 = checksBox[index_3];
+  const checkBoxSelectedCN3 = checkBoxSelected3.childNodes;
+  checkBoxSelectedCN3[1].click();  
+
+  var checkBoxSelectedValue="";
+  for(var i=0; i<checksBox.length; i++){
+    if( $("#"+checksBox[i].childNodes[1].id).is(":checked") ){
+      console.log("checksBox[i]: ", checksBox[i].childNodes);
+      checkBoxSelectedValue += checksBox[i].childNodes[1].value;
+    }
+  }
+
+  // assert
+  assert.equal(checkBoxSelectedValue, checkBoxSelectedValueExpected);
+});
+
 
 /*
 QUnit.test("1-DATEPICKER seleccionando una fecha con el calendario", function(assert) {
