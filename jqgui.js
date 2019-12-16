@@ -417,6 +417,7 @@ $.fn.fielDate = function() {
     (this.data("componentOrientation")
       ? this.data("componentOrientation")
       : "vertical");
+  const isWithBotonClear = this.data("componentClear") == true ? true : false
 
   this.attr("id", "field_" + fieldId);
   this.attr("class", "field " + fieldClassOrientation);
@@ -455,14 +456,17 @@ $.fn.fielDate = function() {
         image.setAttribute("title", "");
         divDate.appendChild(image);//divDate.append(image);
         */
-        const inpt2 = document.createElement("input");
-        inpt2.setAttribute("class", "pl-1");
-        inpt2.setAttribute("type", "image");
-        inpt2.setAttribute("id", "clear_"+fieldId);
-        inpt2.setAttribute("src", "../../assets/images/meddelete.png");
-        inpt2.setAttribute("style", "width:15px;height:15px;");
-        inpt2.setAttribute("value", " ");
-      divDate.appendChild(inpt2);
+        if( isWithBotonClear ){
+          const inpt2 = document.createElement("input");
+          inpt2.setAttribute("class", "pl-1");
+          inpt2.setAttribute("type", "image");
+          inpt2.setAttribute("id", "clear_"+fieldId);
+          inpt2.setAttribute("src", "../../assets/images/meddelete.png");
+          inpt2.setAttribute("style", "width:15px;height:15px;");
+          inpt2.setAttribute("value", " ");
+
+          divDate.appendChild(inpt2);
+        }
         const span = document.createElement("span");
         span.setAttribute("class", "field-error flex");
           const divErrorTip = document.createElement("div");
@@ -479,6 +483,7 @@ $.fn.fielDate = function() {
   this.removeAttr("data-component-label");
   this.removeAttr("data-component-required");
   this.removeAttr("data-component-orientation");
+  this.removeAttr("data-component-clear");
 //-----------------------------------------------------------------------------
   fieldDateClear(fieldId);      
 

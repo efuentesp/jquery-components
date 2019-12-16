@@ -618,6 +618,23 @@ QUnit.test("DATEPICKER captura de fecha inválida por año", function(assert) {
   assert.equal(txtInputFecha.val(), fechaEsperada);
 });
 
+QUnit.test("DATEPICKER botón clear", function(assert) {
+  // arrange
+  const fechaIngresada = "16-11-2019";
+  const txtInputFecha = $("#inpt-fecha");
+  const btnClear = $("#clear_fecha");
+
+  // act
+  txtInputFecha.val(fechaIngresada);
+  txtInputFecha.blur();
+  if( btnClear != null ){
+    btnClear.click();
+  }
+
+  // assert
+  assert.equal(txtInputFecha.val(), fechaIngresada);
+});
+
 QUnit.test("CHECKBOX Select first option", function(assert){
   // arrange
   const index = 0;
