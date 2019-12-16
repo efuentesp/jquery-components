@@ -421,33 +421,36 @@ $.fn.fielDate = function() {
 
   this.attr("id", "field_" + fieldId);
   this.attr("class", "field " + fieldClassOrientation);
-    const divLbl = document.createElement("div");
-    divLbl.setAttribute("class", "field-label flex");
-      const label = document.createElement("label");
-      label.setAttribute("for", fieldId);
-        var t = document.createTextNode(fieldLabel);
-      label.appendChild(t);
-        const spanRequired = document.createElement("span");
-        spanRequired.setAttribute("class", spanRequiredClass);
-        if (this.data("componentRequired") == true) {
-          spanRequired.innerHTML = "*";
-        }
-      label.appendChild(spanRequired);
-    divLbl.appendChild(label);
+  const divLbl = document.createElement("div");
+  divLbl.setAttribute("class", "field-label flex");
+  const label = document.createElement("label");
+  label.setAttribute("for", fieldId);
+  var t = document.createTextNode(fieldLabel);
+  label.appendChild(t);
+  const spanRequired = document.createElement("span");
+  spanRequired.setAttribute("class", spanRequiredClass);
+  if (this.data("componentRequired") == true) {
+    spanRequired.innerHTML = "*";
+  }
+  label.appendChild(spanRequired);
+  divLbl.appendChild(label);
   this.append(divLbl);
-    const divDateTT = document.createElement("div");
-    divDateTT.setAttribute("class", "field-control");
-      const divDate = document.createElement("div");
-      divDate.setAttribute("class", "field-input flex items-center");
-        const inpt = document.createElement("input");
-        //inpt.setAttribute("class", "input datepicker hasDatepicker");
-        inpt.setAttribute("class", "input datepicker");
-        inpt.setAttribute("id", "inpt-"+fieldId);
-        inpt.setAttribute("style", "width: 8em;");
-        inpt.setAttribute("data-parsley-errors-container", "#field_error_block_"+fieldId);
-        inpt.setAttribute("maxlength", "10");
-      divDate.appendChild(inpt);  
-        /*
+  const divDateTT = document.createElement("div");
+  divDateTT.setAttribute("class", "field-control");
+  const divDate = document.createElement("div");
+  divDate.setAttribute("class", "field-input flex items-center");
+  const inpt = document.createElement("input");
+  //inpt.setAttribute("class", "input datepicker hasDatepicker");
+  inpt.setAttribute("class", "input datepicker");
+  inpt.setAttribute("id", "inpt-" + fieldId);
+  inpt.setAttribute("style", "width: 8em;");
+  inpt.setAttribute(
+    "data-parsley-errors-container",
+    "#field_error_block_" + fieldId
+  );
+  inpt.setAttribute("maxlength", "10");
+  divDate.appendChild(inpt);
+  /*
 
         const image = document.createElement("img");
         image.setAttribute("class", "ui-datepicker-trigger");
@@ -478,6 +481,7 @@ $.fn.fielDate = function() {
         span.appendChild(divErrorMsg);
       divDate.appendChild(span);
     divDateTT.appendChild(divDate);  
+
   this.append(divDateTT);
   this.removeAttr("data-component-type");
   this.removeAttr("data-component-label");
@@ -486,6 +490,7 @@ $.fn.fielDate = function() {
   this.removeAttr("data-component-clear");
 //-----------------------------------------------------------------------------
   fieldDateClear(fieldId);      
+
 
   $(".datepicker").mask("99-99-9999");
 
@@ -542,63 +547,71 @@ $.fn.fielDate = function() {
 $.fn.fieldOptions = function() {
   const fieldId = this.attr("id");
   const fieldLabel = this.attr("data-component-label");
-  const spanRequiredClass = "pr-3 " + (this.data("componentRequired") == true ? "required" : "");
-  const fieldClassOrientation = "is_" + (this.data("componentOrientation") ? this.data("componentOrientation") : "vertical");
+  const spanRequiredClass =
+    "pr-3 " + (this.data("componentRequired") == true ? "required" : "");
+  const fieldClassOrientation =
+    "is_" +
+    (this.data("componentOrientation")
+      ? this.data("componentOrientation")
+      : "vertical");
   const childrenDIV = this.children("div");
 
   //Se indica id y orientacion del div principal
   this.attr("id", "field_" + fieldId);
   this.attr("class", "field " + fieldClassOrientation);
 
-    //Se agrega div vacio
-    const div1 = document.createElement("div");
-    div1.setAttribute("class", "field-label flex");
-      const label = document.createElement("label");
-      label.setAttribute("class", "field-label");
-    div1.appendChild(label);
-      const span = document.createElement("span");
-      span.setAttribute("class", "pr-5");
-    div1.appendChild(span);
-    this.append(div1);
+  //Se agrega div vacio
+  const div1 = document.createElement("div");
+  div1.setAttribute("class", "field-label flex");
+  const label = document.createElement("label");
+  label.setAttribute("class", "field-label");
+  div1.appendChild(label);
+  const span = document.createElement("span");
+  span.setAttribute("class", "pr-5");
+  div1.appendChild(span);
+  this.append(div1);
 
-    //Se anexan las opciones del componente Options
-    const divOpt = document.createElement("div");
-    divOpt.setAttribute("class", "field-control");
-    divOpt.setAttribute("data-tooltip", " ");  
-      for(var i=0; i < childrenDIV.length; i++){
-        var divChild = childrenDIV[i];
+  //Se anexan las opciones del componente Options
+  const divOpt = document.createElement("div");
+  divOpt.setAttribute("class", "field-control");
+  divOpt.setAttribute("data-tooltip", " ");
+  for (var i = 0; i < childrenDIV.length; i++) {
+    var divChild = childrenDIV[i];
 
-        //Se remueve el i-esimo div
-        $("#"+divChild.id).remove();
+    //Se remueve el i-esimo div
+    $("#" + divChild.id).remove();
 
-        const labelOpt = document.createElement("label");
-        labelOpt.setAttribute("class", "radio_button");
-          var t = document.createTextNode(divChild.innerHTML);
-        labelOpt.appendChild(t);
-          const inptOpt = document.createElement("input");
-          inptOpt.setAttribute("id", "radio_"+fieldId+"_"+i);
-          inptOpt.setAttribute("type", "radio");
-          inptOpt.setAttribute("name", fieldId);
-          inptOpt.setAttribute("value", divChild.id);
-          inptOpt.setAttribute("data-parsley-class-handler", "#field_"+fieldId);
-          inptOpt.setAttribute("data-parsley-errors-container", "#field_error_block_"+fieldId);
-          inptOpt.setAttribute("data-parsley-multiple", fieldId);
-          inptOpt.setAttribute("data-parsley-id", "22");
-        labelOpt.appendChild(inptOpt);
-          const span = document.createElement("span");
-          span.setAttribute("class", "checkmark");
-        labelOpt.appendChild(span);
+    const labelOpt = document.createElement("label");
+    labelOpt.setAttribute("class", "radio_button");
+    var t = document.createTextNode(divChild.innerHTML);
+    labelOpt.appendChild(t);
+    const inptOpt = document.createElement("input");
+    inptOpt.setAttribute("id", "radio_" + fieldId + "_" + i);
+    inptOpt.setAttribute("type", "radio");
+    inptOpt.setAttribute("name", fieldId);
+    inptOpt.setAttribute("value", divChild.id);
+    inptOpt.setAttribute("data-parsley-class-handler", "#field_" + fieldId);
+    inptOpt.setAttribute(
+      "data-parsley-errors-container",
+      "#field_error_block_" + fieldId
+    );
+    inptOpt.setAttribute("data-parsley-multiple", fieldId);
+    inptOpt.setAttribute("data-parsley-id", "22");
+    labelOpt.appendChild(inptOpt);
+    const span = document.createElement("span");
+    span.setAttribute("class", "checkmark");
+    labelOpt.appendChild(span);
 
-        divOpt.appendChild(labelOpt);
-      }
+    divOpt.appendChild(labelOpt);
+  }
 
-      //Se agrega div para errores
-      const divError = document.createElement("div");
-      divError.setAttribute("class", "field-error");
-        const divFieldError = document.createElement("div");
-        divFieldError.setAttribute("id", "field_error_block_negocio");
-      divError.appendChild(divFieldError);
-    divOpt.appendChild(divError);
+  //Se agrega div para errores
+  const divError = document.createElement("div");
+  divError.setAttribute("class", "field-error");
+  const divFieldError = document.createElement("div");
+  divFieldError.setAttribute("id", "field_error_block_negocio");
+  divError.appendChild(divFieldError);
+  divOpt.appendChild(divError);
 
   this.append(divOpt);
   this.removeAttr("data-component-type");
@@ -610,73 +623,134 @@ $.fn.fieldOptions = function() {
 $.fn.fieldCheckBox = function() {
   const fieldId = this.attr("id");
   const fieldLabel = this.attr("data-component-label");
-  const spanRequiredClass = "pr-3 " + (this.data("componentRequired") == true ? "required" : "");
-  const fieldClassOrientation = "is_" + (this.data("componentOrientation") ? this.data("componentOrientation") : "vertical");
+  const spanRequiredClass =
+    "pr-3 " + (this.data("componentRequired") == true ? "required" : "");
+  const fieldClassOrientation =
+    "is_" +
+    (this.data("componentOrientation")
+      ? this.data("componentOrientation")
+      : "vertical");
   const checkBoxOptionsDIV = this.children("div");
 
   //Se indica id y orientacion del div principal
   this.attr("id", "field_" + fieldId);
   this.attr("class", "field " + fieldClassOrientation);
 
-    //Se genera componente para la leyenda del componente.
-    const divLbl = document.createElement("div");
-    divLbl.setAttribute("class", "field-label flex");
-      const label = document.createElement("label");
-      label.setAttribute("for", "chk_"+fieldId);
-        var t = document.createTextNode(fieldLabel);
-      label.appendChild(t);
-        const spanRequired = document.createElement("span");
-        spanRequired.setAttribute("class", spanRequiredClass);
-        if (this.data("componentRequired") == true) {
-          spanRequired.innerHTML = "*";
-        }  
-      label.appendChild(spanRequired);
-    divLbl.appendChild(label);
-      const span = document.createElement("span");
-      span.setAttribute("class", "pr-5");
-    divLbl.appendChild(span);    
+  //Se genera componente para la leyenda del componente.
+  const divLbl = document.createElement("div");
+  divLbl.setAttribute("class", "field-label flex");
+  const label = document.createElement("label");
+  label.setAttribute("for", "chk_" + fieldId);
+  var t = document.createTextNode(fieldLabel);
+  label.appendChild(t);
+  const spanRequired = document.createElement("span");
+  spanRequired.setAttribute("class", spanRequiredClass);
+  if (this.data("componentRequired") == true) {
+    spanRequired.innerHTML = "*";
+  }
+  label.appendChild(spanRequired);
+  divLbl.appendChild(label);
+  const span = document.createElement("span");
+  span.setAttribute("class", "pr-5");
+  divLbl.appendChild(span);
   this.append(divLbl);
 
-    const divTT = document.createElement("div");
-    divTT.setAttribute("class", "field-control");
-      const divOptionsCheckBox = document.createElement("div");
-      if( fieldClassOrientation == "is_horizontal" ){
-        divOptionsCheckBox.setAttribute("class", "flex");
-      }
-        for(var i=0; i<checkBoxOptionsDIV.length; i++){
-          var checkOption = checkBoxOptionsDIV[i];
+  const divTT = document.createElement("div");
+  divTT.setAttribute("class", "field-control");
+  const divOptionsCheckBox = document.createElement("div");
+  if (fieldClassOrientation == "is_horizontal") {
+    divOptionsCheckBox.setAttribute("class", "flex");
+  }
+  for (var i = 0; i < checkBoxOptionsDIV.length; i++) {
+    var checkOption = checkBoxOptionsDIV[i];
 
-          //Se remueve el i-esimo div
-          $("#"+checkOption.id).remove();
+    //Se remueve el i-esimo div
+    $("#" + checkOption.id).remove();
 
-          const labelOpt = document.createElement("label");
-          labelOpt.setAttribute("class", "checkbox_input pr-5");
-            var t = document.createTextNode(checkOption.innerText);
-          labelOpt.appendChild(t);
-            const inptChckBox = document.createElement("input");
-            inptChckBox.setAttribute("type", "checkbox");
-            inptChckBox.setAttribute("name", "chk_"+fieldId);
-            inptChckBox.setAttribute("id", "chk_"+fieldId+"_"+i);
-            inptChckBox.setAttribute("value", checkOption.id);
-            inptChckBox.setAttribute("data-parsley-class-handler", "#field_"+fieldId);
-            inptChckBox.setAttribute("data-parsley-errors-container", "#field_error_block_"+fieldId);
-            inptChckBox.setAttribute("data-parsley-multiple", "chk_"+fieldId);
-          labelOpt.appendChild(inptChckBox);
-            const spanColor = document.createElement("span");
-            if( checkOption.attributes.color == null || checkOption.attributes.color.value.length == 0 ){
-              spanColor.setAttribute("class", "checkmark");
-            }else{
-              spanColor.setAttribute("class", "checkmark with_color is_" + checkOption.attributes.color.value);
-            }
-          labelOpt.appendChild(spanColor);
-          divOptionsCheckBox.appendChild(labelOpt);
-        }
-    divTT.appendChild(divOptionsCheckBox);    
+    const labelOpt = document.createElement("label");
+    labelOpt.setAttribute("class", "checkbox_input pr-5");
+    var t = document.createTextNode(checkOption.innerText);
+    labelOpt.appendChild(t);
+    const inptChckBox = document.createElement("input");
+    inptChckBox.setAttribute("type", "checkbox");
+    inptChckBox.setAttribute("name", "chk_" + fieldId);
+    inptChckBox.setAttribute("id", "chk_" + fieldId + "_" + i);
+    inptChckBox.setAttribute("value", checkOption.id);
+    inptChckBox.setAttribute("data-parsley-class-handler", "#field_" + fieldId);
+    inptChckBox.setAttribute(
+      "data-parsley-errors-container",
+      "#field_error_block_" + fieldId
+    );
+    inptChckBox.setAttribute("data-parsley-multiple", "chk_" + fieldId);
+    labelOpt.appendChild(inptChckBox);
+    const spanColor = document.createElement("span");
+    if (
+      checkOption.attributes.color == null ||
+      checkOption.attributes.color.value.length == 0
+    ) {
+      spanColor.setAttribute("class", "checkmark");
+    } else {
+      spanColor.setAttribute(
+        "class",
+        "checkmark with_color is_" + checkOption.attributes.color.value
+      );
+    }
+    labelOpt.appendChild(spanColor);
+    divOptionsCheckBox.appendChild(labelOpt);
+  }
+  divTT.appendChild(divOptionsCheckBox);
   this.append(divTT);
   this.removeAttr("data-component-type");
   this.removeAttr("data-component-label");
   this.removeAttr("data-component-required");
   this.removeAttr("data-component-orientation");
+};
 
+// --------------------   FORM   --------------------
+$.fn.form = function() {
+  const formmethod = $(this).attr("method");
+  const formparsley = $(this).attr("data-parsley-validate");
+  const formenctype = $(this).attr("enctype");
+  if (typeof formmethod === typeof undefined || formmethod === false) {
+    this.attr("method", "POST");
+  } else if (formmethod !== "POST") {
+    this.attr("method", "POST");
+  }
 
+  if (typeof formparsley === typeof undefined) {
+    this.attr("data-parsley-validate", "");
+  }
+
+  if (typeof formenctype === typeof undefined || formenctype === false) {
+    this.attr("enctype", "multipart/form-data");
+  } else if (formenctype !== "multipart/form-data") {
+    this.attr("enctype", "multipart/form-data");
+  }
+};
+
+// --------------------   ACCORDION   --------------------
+
+$.fn.customaccordion = function() {
+  if (this.data("componentType") === "accordion") {
+    this.attr("class", "accordion");
+    this.attr("data-component-type", null);
+    this.children().each(function() {
+      let item = $("#" + this.getAttribute("id"));
+      $("<h3>" + item.data("componentLabel") + "</h3>").insertBefore(
+        "#" + this.getAttribute("id")
+      );
+      $("#" + this.getAttribute("id")).attr("class", "accordion-content");
+      item.attr("id", null);
+      item.attr("data-component-type", null);
+      item.attr("data-component-label", null);
+    });
+
+    var icons = { header: "plus-icon", activeHeader: "minus-icon" };
+    var ui_accordion_settings = {
+      collapsible: true,
+      icons: icons,
+      heightStyle: "content"
+    };
+    this.accordion(ui_accordion_settings);
+  }
 };
