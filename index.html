@@ -15,13 +15,15 @@
       data-component-label="Contrato"
     ></div>
 
-    <div
-      id="contrato2"
-      data-component-type="input-plus-minus"
-      data-component-label="Contrato"
-      data-component-required="true"
-      data-component-tooltip="Contrato"
-    ></div>
+    <form id="formcontrato">
+      <div
+        id="contrato2"
+        data-component-type="input-plus-minus"
+        data-component-label="Contrato"
+        data-component-required="true"
+        data-component-tooltip="Contrato"
+      ></div>
+    </form>
 
     <div
       id="contrato3"
@@ -93,7 +95,7 @@
       id="fecha1"
       data-component-type="date"
       data-component-label="Fecha"
-      data-component-required=true
+      data-component-required="true"
       data-component-orientation="horizontal"
     ></div>
 
@@ -101,36 +103,38 @@
       id="fecha2"
       data-component-type="date"
       data-component-label="Fecha"
-      data-component-required=true
+      data-component-required="true"
       data-component-orientation="vertical"
     ></div>
 
     <div
-    id="fecha3"
-    data-component-type="date"
-    data-component-label="Fecha"
-    data-component-required=false
-    data-component-orientation="horizontal"
-  ></div>
+      id="fecha3"
+      data-component-type="date"
+      data-component-label="Fecha"
+      data-component-required="false"
+      data-component-orientation="horizontal"
+    ></div>
 
-  <div
-    id="fecha4"
-    data-component-type="date"
-    data-component-label="Fecha"
-    data-component-orientation="vertical"
-  ></div>
+    <div
+      id="fecha4"
+      data-component-type="date"
+      data-component-label="Fecha"
+      data-component-orientation="vertical"
+    ></div>
 
-  <div id="negocio"
-    data-component-type="options"
-    data-component-label="Opciones"
-    data-component-required=false
-    data-component-orientation="vertical">
-    <div id="CB">Casa de Bolsa</div>
-    <div id="B">Banco</div>
-    <div id="S">Sucursal</div>
-  </div>
+    <div
+      id="negocio"
+      data-component-type="options"
+      data-component-label="Opciones"
+      data-component-required="false"
+      data-component-orientation="vertical"
+    >
+      <div id="CB">Casa de Bolsa</div>
+      <div id="B">Banco</div>
+      <div id="S">Sucursal</div>
+    </div>
 
-  <div
+    <div
       id="buttonsearch1"
       data-component-type="button-save"
       data-component-label="Save"
@@ -159,11 +163,13 @@
       data-component-disabled="false"
     ></div>
 
-    <div id="servicio_inversion"   
+    <div
+      id="servicio_inversion"
       data-component-type="checkbox"
       data-component-label="Servicio de Inversión"
-      data-component-required=true
-      data-component-orientation="vertical">
+      data-component-required="true"
+      data-component-orientation="vertical"
+    >
       <div id="S01" color="green">Asesoría</div>
       <div id="S02" color="yellow">Gestión</div>
       <div id="S03" color="blue">Comercialización</div>
@@ -171,16 +177,37 @@
       <div id="S05" color="grey">N/A</div>
     </div>
 
+    <div id="grid1" data-component-type="grid"></div>
+
     <div
-       id="grid1"
-       data-component-type="grid"
-     ></div>
- 
-     <div
-       id="gridrecordscount1"
-       data-component-type="grid-records-count"
-       data-component-label="Registros totales : "
-     ></div>
+      id="gridrecordscount1"
+      data-component-type="grid-records-count"
+      data-component-label="Registros totales : "
+    ></div>
+
+    <div id="ejemploaccordion" data-component-type="accordion">
+      <div
+        id="ejemploaccordionpaso1"
+        data-component-type="accordion-item"
+        data-component-label="Paso 1 de 3 Ingreso en Cuenta Medio Electrónico"
+      >
+        <p>Contenido Acordeon 1</p>
+      </div>
+      <div
+        id="ejemploaccordionpaso2"
+        data-component-type="accordion-item"
+        data-component-label="Paso 2 de 3"
+      >
+        <p>Contenido Acordeon 2</p>
+      </div>
+      <div
+        id="ejemploaccordionpaso3"
+        data-component-type="accordion-item"
+        data-component-label="Paso 3 de 3"
+      >
+        <p>Contenido Acordeon 3</p>
+      </div>
+    </div>
 
     <script src="assets/scripts/jquery.min.js"></script>
     <script src="assets/scripts/libs.min.js"></script>

@@ -23,3 +23,6 @@ $("#fecha4").fielDate();
 $("#negocio").fieldOptions();
 
 $("#servicio_inversion").fieldCheckBox();
+$("#formcontrato").form();
+
+$("#ejemploaccordion").customaccordion();

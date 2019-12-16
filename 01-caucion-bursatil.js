@@ -1,0 +1,9 @@
+$("#criterios_busqueda_accordion").customaccordion();
+$("#fecha").fielDate();
+$("#contrato").fieldInputPlusMinus();
+$("#digito").fieldInputPlusMinus();
+$("#negocio").fieldOptions();
+$("#btnsearch").button();
+$("#btnclean").button();
+$("#btnpdf").button();
+$("#btnxls").button();

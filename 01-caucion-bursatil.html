@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>01.Causión Bursátil</title>
+    <link href="assets/css/libs.min.css" rel="stylesheet" />
+    <link href="assets/css/main.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="content p-4">
+      <div class="row">
+        <div id="criterios_busqueda_accordion" data-component-type="accordion">
+          <div
+            id="criterios_busqueda_accordion_item"
+            data-component-type="accordion-item"
+            data-component-label=""
+          >
+            <form id="criterios-busqueda" class="is-search-form">
+              <div
+                id="fecha"
+                data-component-type="date"
+                data-component-label="Fecha"
+                data-component-required="false"
+                data-component-orientation="vertical"
+                data-component-tooltip="DD/MM/AAAA"
+              ></div>
+              <div
+                id="contrato"
+                data-component-type="input-plus-minus"
+                data-component-label="Contrato"
+                data-component-tooltip="Contrato"
+              ></div>
+              <div
+                id="digito"
+                data-component-type="input-plus-minus"
+                data-component-label="Digito"
+                data-component-maxsize="2"
+              ></div>
+              <div
+                id="negocio"
+                data-component-type="options"
+                data-component-label=""
+                data-component-required="false"
+                data-component-orientation="vertical"
+              >
+                <div id="CB">Casa de Bolsa</div>
+                <div id="B">Banco</div>
+              </div>
+              <div class="column" id="botones-accion">
+                <div
+                  id="btnsearch"
+                  data-component-type="button-search"
+                  data-component-label="Consultar"
+                ></div>
+                <div
+                  id="btnclean"
+                  data-component-type="button-clean"
+                  data-component-label="Limpiar"
+                ></div>
+                <div
+                  id="btnpdf"
+                  data-component-type="button-pdf"
+                  data-component-label="PDF"
+                ></div>
+                <div
+                  id="btnxls"
+                  data-component-type="button-xls"
+                  data-component-label="XLS"
+                ></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="assets/scripts/jquery.min.js"></script>
+    <script src="assets/scripts/libs.min.js"></script>
+    <script src="assets/scripts/common.js"></script>
+    <script src="jqgui.js"></script>
+    <script src="01-caucion-bursatil.js"></script>
+  </body>
+</html>

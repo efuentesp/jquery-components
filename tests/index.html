@@ -13,14 +13,16 @@
     <div id="qunit-fixture"></div>
 
     <!-- Tests: Input-Plus-Minus -->
-    <div
-      id="contrato"
-      data-component-type="input-plus-minus"
-      data-component-label="Contrato"
-      data-component-required="true"
-      data-component-orientation="horizontal"
-    ></div>
 
+    <form id="form-contrato">
+      <div
+        id="contrato"
+        data-component-type="input-plus-minus"
+        data-component-label="Contrato"
+        data-component-required="true"
+        data-component-orientation="horizontal"
+      ></div>
+    </form>
     <div
       id="contrato2"
       data-component-type="input-plus-minus"
@@ -65,15 +67,42 @@
     </div>
 
     <!-- Test: CheckBox -->
-    <div id="bancos"   
+    <div
+      id="bancos"
       data-component-type="checkbox"
       data-component-label="Bancos"
-      data-component-required=true
-      data-component-orientation="vertical">
+      data-component-required="true"
+      data-component-orientation="vertical"
+    >
       <div id="B1" color="blue">BBVA</div>
       <div id="B2" color="yellow">Banamex</div>
       <div id="B3" color="red">Banorte</div>
-    </div>    
+    </div>
+
+    <!-- Test: Accordion-->
+    <div id="test_accordion" data-component-type="accordion">
+      <div
+        id="test_accordion_paso1"
+        data-component-type="accordion-item"
+        data-component-label="Paso 1 de 3 Ingreso en Cuenta Medio Electrónico"
+      >
+        <p>Contenido Acordeon 1</p>
+      </div>
+      <div
+        id="test_accordion_paso2"
+        data-component-type="accordion-item"
+        data-component-label="Paso 2 de 3"
+      >
+        <p>Contenido Acordeon 2</p>
+      </div>
+      <div
+        id="test_accordion_paso3"
+        data-component-type="accordion-item"
+        data-component-label="Paso 3 de 3"
+      >
+        <p>Contenido Acordeon 3</p>
+      </div>
+    </div>
 
     <script src="../assets/scripts/jquery.min.js"></script>
     <script src="../assets/scripts/libs.min.js"></script>
