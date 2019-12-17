@@ -14,7 +14,7 @@
 
     <!-- Tests: Input-Plus-Minus -->
 
-    <form id="form-contrato">
+    <form id="formcontrato">
       <div
         id="contrato"
         data-component-type="input-plus-minus"
@@ -23,15 +23,16 @@
         data-component-orientation="horizontal"
       ></div>
     </form>
-    <div
-      id="contrato2"
-      data-component-type="input-plus-minus"
-      data-component-label="Contrato"
-      data-component-required="true"
-      data-component-orientation="horizontal"
-      data-component-maxsize="4"
-    ></div>
-
+    <form id="formcontrato2" method="GET" enctype="text/plain">
+      <div
+        id="contrato2"
+        data-component-type="input-plus-minus"
+        data-component-label="Contrato"
+        data-component-required="true"
+        data-component-orientation="horizontal"
+        data-component-maxsize="4"
+      ></div>
+    </form>
     <div
       id="contrato3"
       data-component-type="select-plus-minus"
@@ -51,7 +52,7 @@
       data-component-label="Fecha"
       data-component-required="true"
       data-component-orientation="vartical"
-      data-component-clear=true
+      data-component-clear="false"
     ></div>
 
     <!-- Test: Options -->
@@ -81,28 +82,42 @@
     </div>
 
     <!-- Test: Accordion-->
-    <div id="test_accordion" data-component-type="accordion">
+    <div id="testaccordion" data-component-type="accordion">
       <div
-        id="test_accordion_paso1"
+        id="testaccordionpaso1"
         data-component-type="accordion-item"
         data-component-label="Paso 1 de 3 Ingreso en Cuenta Medio Electrónico"
       >
         <p>Contenido Acordeon 1</p>
       </div>
       <div
-        id="test_accordion_paso2"
+        id="testaccordionpaso2"
         data-component-type="accordion-item"
         data-component-label="Paso 2 de 3"
       >
         <p>Contenido Acordeon 2</p>
       </div>
       <div
-        id="test_accordion_paso3"
+        id="testaccordionpaso3"
         data-component-type="accordion-item"
         data-component-label="Paso 3 de 3"
       >
         <p>Contenido Acordeon 3</p>
       </div>
+    </div>
+
+    <!-- Test: Select-->
+    <div
+      id="payment2"
+      data-component-type="select"
+      data-component-label="Payment method"
+      data-component-size="12em"
+      data-component-required="false"
+      data-component-orientation="horizontal"
+      data-component-placeholder="--Selecciona--"
+    >
+      <div id="ET2" data-component-selected="true">Electronic transfer</div>
+      <div id="CHK2">Check</div>
     </div>
 
     <script src="../assets/scripts/jquery.min.js"></script>

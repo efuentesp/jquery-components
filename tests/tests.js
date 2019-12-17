@@ -631,7 +631,7 @@ QUnit.test("DATEPICKER botón clear", function(assert) {
   // act
   txtInputFecha.val(fechaIngresada);
   txtInputFecha.blur();
-  if( btnClear != null ){
+  if (btnClear != null) {
     btnClear.click();
   }
 
@@ -639,7 +639,7 @@ QUnit.test("DATEPICKER botón clear", function(assert) {
   assert.equal(txtInputFecha.val(), fechaIngresada);
 });
 
-QUnit.test("CHECKBOX Select first option", function(assert){
+QUnit.test("CHECKBOX Select first option", function(assert) {
   // arrange
   const index = 0;
   const checksBox = $("#field_bancos")
@@ -872,9 +872,9 @@ QUnit.test("1-DATEPICKER seleccionando una fecha con el calendario", function(as
 
 QUnit.test("FORM - Sin atributos", function(assert) {
   // arrange
-  const formmethod = $("#form-contrato").prop("method");
-  const formparsley = $("#form-contrato").attr("data-parsley-validate");
-  const formenctype = $("#form-contrato").attr("enctype");
+  const formmethod = $("#formcontrato").prop("method");
+  const formparsley = $("#formcontrato").attr("data-parsley-validate");
+  const formenctype = $("#formcontrato").attr("enctype");
   // act
   // assert
   assert.notEqual(formmethod, undefined);
@@ -884,8 +884,8 @@ QUnit.test("FORM - Sin atributos", function(assert) {
 
 QUnit.test("FORM - Atributos con valores no estandarizados ", function(assert) {
   // arrange
-  const formmethod = $("#form-contrato2").attr("method");
-  const formenctype = $("#form-contrato2").attr("enctype");
+  const formmethod = $("#formcontrato2").attr("method");
+  const formenctype = $("#formcontrato2").attr("enctype");
   // act
   // assert
   assert.equal(formmethod, "POST");
@@ -894,10 +894,10 @@ QUnit.test("FORM - Atributos con valores no estandarizados ", function(assert) {
 
 QUnit.test("ACCORDION - Inicializado correctamente", function(assert) {
   // arrange
-  const role = $("#test_accordion").attr("role");
-  const uiclass = $("#test_accordion").hasClass("ui-accordion");
-  const headers = $("#test_accordion").children("h3.ui-accordion-header");
-  const content = $("#test_accordion").children("div.accordion-content");
+  const role = $("#testaccordion").attr("role");
+  const uiclass = $("#testaccordion").hasClass("ui-accordion");
+  const headers = $("#testaccordion").children("h3.ui-accordion-header");
+  const content = $("#testaccordion").children("div.accordion-content");
   // act
   // assert
   assert.equal(role, "tablist");
@@ -905,4 +905,43 @@ QUnit.test("ACCORDION - Inicializado correctamente", function(assert) {
   assert.equal(headers.length === content.length, true);
 });
 
-QUnit.skip("ACCORDION - Colapsar accordion");
+QUnit.test("ACCORDION - Colapsar accordion", function(assert) {
+  //arrage
+  var active0 = $("#testaccordion").accordion("option", "active");
+  //act
+  $("#testaccordion").accordion({ active: 1 });
+  var active1 = $("#testaccordion").accordion("option", "active");
+  //assert
+  assert.equal(active0, 0);
+  assert.equal(active1, 1);
+});
+
+QUnit.test("SELECT - Inicializado correctamente", function(assert) {
+  // arrange
+  const select2 = $("#payment2").attr("class");
+  const opt2 = $('option[value ="ET2"]').text();
+  const opt3 = $('option[value ="CHK2"]').text();
+  // act
+  // assert
+  assert.equal(select2, "select2 select2-hidden-accessible");
+  assert.equal(opt2, "Electronic transfer");
+  assert.equal(opt3, "Check");
+});
+
+QUnit.test("SELECT - Primer elemento seleccionado", function(assert) {
+  // arrange
+  const selected = $("#payment2").val();
+  // act
+  // assert
+  assert.equal(selected, "ET2");
+});
+
+QUnit.test("SELECT - Segundo elemento seleccionado", function(assert) {
+  // arrange
+  // act
+  $("#payment2")
+    .val("CHK2")
+    .trigger("change");
+  // assert
+  assert.equal($("#payment2").val(), "CHK2");
+});

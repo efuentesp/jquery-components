@@ -9,3 +9,7 @@ $("#negocio").fieldOptions();
 
 $("#bancos").fieldCheckBox();
 
+$("#formcontrato").form();
+$("#formcontrato2").form();
+$("#testaccordion").customaccordion();
+$("#payment2").select();

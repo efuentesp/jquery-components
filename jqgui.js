@@ -408,11 +408,11 @@ $.fn.fieldInput = function() {
 
 $.fn.tabgroup = function() {
   if (this.data("componentType") === "tab-group") {
-    var divtabgroup=  document.createElement("div");
-    divtabgroup.setAttribute("class","tab-group");
+    var divtabgroup = document.createElement("div");
+    divtabgroup.setAttribute("class", "tab-group");
 
-    var id= this.attr("id")
-    var items = $("#"+id).children("div");
+    var id = this.attr("id");
+    var items = $("#" + id).children("div");
 
     var ul = document.createElement("ul");
 
@@ -421,25 +421,25 @@ $.fn.tabgroup = function() {
       var id = $("#" + this.getAttribute("id")).attr("id");
       var li = document.createElement("li");
       var a = document.createElement("a");
-      a.setAttribute("href","#" + id);
+      a.setAttribute("href", "#" + id);
       var span = document.createElement("span");
-      span.innerHTML =
-            $("#" + this.getAttribute("id")).attr("data-component-label");
+      span.innerHTML = $("#" + this.getAttribute("id")).attr(
+        "data-component-label"
+      );
       a.appendChild(span);
       li.appendChild(a);
       ul.appendChild(li);
     });
 
     divtabgroup.appendChild(ul);
-     for (i = 0; i < items.length; i++) {
-     divtabgroup.appendChild(items[i]);
+    for (i = 0; i < items.length; i++) {
+      divtabgroup.appendChild(items[i]);
     }
 
     this.append(divtabgroup);
     $(".tab-group").tabs();
   }
 };
-
 
 //----------------------------------------- SECCION FECHAS -----------------------------------------
 $.fn.fielDate = function() {
@@ -452,7 +452,7 @@ $.fn.fielDate = function() {
     (this.data("componentOrientation")
       ? this.data("componentOrientation")
       : "vertical");
-  const isWithBotonClear = this.data("componentClear") == true ? true : false
+  const isWithBotonClear = this.data("componentClear") == true ? true : false;
 
   this.attr("id", "field_" + fieldId);
   this.attr("class", "field " + fieldClassOrientation);
@@ -494,28 +494,28 @@ $.fn.fielDate = function() {
         image.setAttribute("title", "");
         divDate.appendChild(image);//divDate.append(image);
         */
-        if( isWithBotonClear ){
-          const inpt2 = document.createElement("input");
-          inpt2.setAttribute("class", "pl-1");
-          inpt2.setAttribute("type", "image");
-          inpt2.setAttribute("id", "clear_"+fieldId);
-          inpt2.setAttribute("src", "../../assets/images/meddelete.png");
-          inpt2.setAttribute("style", "width:15px;height:15px;");
-          inpt2.setAttribute("value", " ");
+  if (isWithBotonClear) {
+    const inpt2 = document.createElement("input");
+    inpt2.setAttribute("class", "pl-1");
+    inpt2.setAttribute("type", "image");
+    inpt2.setAttribute("id", "clear_" + fieldId);
+    inpt2.setAttribute("src", "../../assets/images/meddelete.png");
+    inpt2.setAttribute("style", "width:15px;height:15px;");
+    inpt2.setAttribute("value", " ");
 
-          divDate.appendChild(inpt2);
-        }
-        const span = document.createElement("span");
-        span.setAttribute("class", "field-error flex");
-          const divErrorTip = document.createElement("div");
-          divErrorTip.setAttribute("class", "error-tip");
-        span.appendChild(divErrorTip);
-          const divErrorMsg = document.createElement("div");
-          divErrorMsg.setAttribute("class", "error-msg");
-          divErrorMsg.setAttribute("id", "field_error_block_"+fieldId);
-        span.appendChild(divErrorMsg);
-      divDate.appendChild(span);
-    divDateTT.appendChild(divDate);
+    divDate.appendChild(inpt2);
+  }
+  const span = document.createElement("span");
+  span.setAttribute("class", "field-error flex");
+  const divErrorTip = document.createElement("div");
+  divErrorTip.setAttribute("class", "error-tip");
+  span.appendChild(divErrorTip);
+  const divErrorMsg = document.createElement("div");
+  divErrorMsg.setAttribute("class", "error-msg");
+  divErrorMsg.setAttribute("id", "field_error_block_" + fieldId);
+  span.appendChild(divErrorMsg);
+  divDate.appendChild(span);
+  divDateTT.appendChild(divDate);
 
   this.append(divDateTT);
   this.removeAttr("data-component-type");
@@ -523,9 +523,8 @@ $.fn.fielDate = function() {
   this.removeAttr("data-component-required");
   this.removeAttr("data-component-orientation");
   this.removeAttr("data-component-clear");
-//-----------------------------------------------------------------------------
+  //-----------------------------------------------------------------------------
   fieldDateClear(fieldId);
-
 
   $(".datepicker").mask("99-99-9999");
 
@@ -787,5 +786,110 @@ $.fn.customaccordion = function() {
       heightStyle: "content"
     };
     this.accordion(ui_accordion_settings);
+  }
+};
+
+// --------------------   SELECT   -------------------- //
+$.fn.select = function() {
+  if (this.data("componentType") === "select") {
+    console.log("---SELECT---");
+    const id = this.attr("id");
+    const label = this.data("componentLabel")
+      ? this.data("componentLabel")
+      : "";
+    const orientation = this.data("componentOrientation")
+      ? this.data("componentOrientation")
+      : "vertical";
+    const size = this.data("componentSize")
+      ? this.data("componentSize")
+      : "8em";
+    const tooltip = this.data("componentTooltip")
+      ? this.data("componentTooltip")
+      : "";
+    const placeholder = this.data("componentPlaceholder")
+      ? this.data("componentPlaceholder")
+      : "";
+    const required = this.data("componentRequired") ? true : false;
+    let value = "";
+    this.each(function() {
+      var attributes = this.attributes;
+      var i = attributes.length;
+      while (i--) {
+        this.removeAttributeNode(attributes[i]);
+      }
+    });
+    this.attr("class", "field is_" + orientation);
+    this.attr("id", "field_" + id);
+
+    const spanlabeltag = document.createElement("span");
+    if (required) {
+      spanlabeltag.setAttribute("class", "pr-3 required");
+      spanlabeltag.innerText = "*";
+    } else {
+      spanlabeltag.setAttribute("class", "pr-3");
+    }
+    const labeltag = document.createElement("label");
+    labeltag.setAttribute("for", id);
+    labeltag.innerText = label;
+    labeltag.append(spanlabeltag);
+
+    const labeldiv = document.createElement("div");
+    labeldiv.setAttribute("class", "field-label flex");
+    labeldiv.append(labeltag);
+
+    const selecttag = document.createElement("select");
+    selecttag.setAttribute("class", "select2");
+    selecttag.setAttribute("id", id);
+    selecttag.setAttribute("name", id);
+    selecttag.setAttribute("style", "width: " + size + ";");
+    selecttag.setAttribute("data-parsley-trigger", "change");
+    selecttag.setAttribute(
+      "data-parsley-errors-container",
+      "#field_error_block_" + id
+    );
+    if (required) {
+      selecttag.setAttribute("required", "required");
+    }
+
+    const optiontag = document.createElement("option");
+    selecttag.append(optiontag);
+    this.children().each(function() {
+      let optiontag = document.createElement("option");
+      optiontag.setAttribute("value", this.id);
+      optiontag.innerText = this.innerText;
+      if (
+        this.getAttribute("data-component-selected") &&
+        this.getAttribute("data-component-selected") === "true"
+      ) {
+        value = this.id;
+      }
+      selecttag.append(optiontag);
+    });
+    this.empty();
+
+    const diverror = document.createElement("div");
+    diverror.setAttribute("class", "field-error");
+    diverror.innerHTML = '<div id="field_error_block_' + id + '"></div>';
+
+    const tooltipdiv = document.createElement("div");
+    tooltipdiv.setAttribute("class", "field-control");
+    tooltipdiv.setAttribute("data-tooltip", tooltip);
+
+    tooltipdiv.appendChild(selecttag);
+    tooltipdiv.appendChild(diverror);
+
+    this.append(labeldiv);
+    this.append(tooltipdiv);
+
+    $("#" + id).select2({
+      language: "es",
+      placeholder: placeholder,
+      minimumResultsForSearch: Infinity
+    });
+    if (value) {
+      $("#" + id)
+        .val(value)
+        .trigger("change");
+    }
   }
 };

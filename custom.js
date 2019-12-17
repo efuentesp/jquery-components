@@ -27,3 +27,4 @@ $("#servicio_inversion").fieldCheckBox();
 $("#formcontrato").form();
 
 $("#ejemploaccordion").customaccordion();
+$("#payment").select();

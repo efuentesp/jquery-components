@@ -7,3 +7,6 @@ $("#btnsearch").button();
 $("#btnclean").button();
 $("#btnpdf").button();
 $("#btnxls").button();
+$("#products3").fieldCheckBox();
+$("#payment").select();
+$("#ejemplo").fieldInputPlusMinus();
