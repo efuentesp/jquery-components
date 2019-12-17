@@ -13,6 +13,7 @@ $("#buttonsearch21").button();
 $("#buttonsearch3").button();
 $("#grid1").grid();
 $("#gridrecordscount1").gridrecordscount();
+$("#tab1").tabgroup();
 $("[data-component-type='text']").fieldInput();
 
 $("#fecha1").fielDate();

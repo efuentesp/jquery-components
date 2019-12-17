@@ -406,6 +406,41 @@ $.fn.fieldInput = function() {
   });
 };
 
+$.fn.tabgroup = function() {
+  if (this.data("componentType") === "tab-group") {
+    var divtabgroup=  document.createElement("div");
+    divtabgroup.setAttribute("class","tab-group");
+
+    var id= this.attr("id")
+    var items = $("#"+id).children("div");
+
+    var ul = document.createElement("ul");
+
+    this.children().each(function() {
+      var item = $("#" + this.getAttribute("id"));
+      var id = $("#" + this.getAttribute("id")).attr("id");
+      var li = document.createElement("li");
+      var a = document.createElement("a");
+      a.setAttribute("href","#" + id);
+      var span = document.createElement("span");
+      span.innerHTML =
+            $("#" + this.getAttribute("id")).attr("data-component-label");
+      a.appendChild(span);
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+
+    divtabgroup.appendChild(ul);
+     for (i = 0; i < items.length; i++) {
+     divtabgroup.appendChild(items[i]);
+    }
+
+    this.append(divtabgroup);
+    $(".tab-group").tabs();
+  }
+};
+
+
 //----------------------------------------- SECCION FECHAS -----------------------------------------
 $.fn.fielDate = function() {
   const fieldId = this.attr("id");
@@ -473,14 +508,14 @@ $.fn.fielDate = function() {
         const span = document.createElement("span");
         span.setAttribute("class", "field-error flex");
           const divErrorTip = document.createElement("div");
-          divErrorTip.setAttribute("class", "error-tip");  
+          divErrorTip.setAttribute("class", "error-tip");
         span.appendChild(divErrorTip);
           const divErrorMsg = document.createElement("div");
           divErrorMsg.setAttribute("class", "error-msg");
-          divErrorMsg.setAttribute("id", "field_error_block_"+fieldId);  
+          divErrorMsg.setAttribute("id", "field_error_block_"+fieldId);
         span.appendChild(divErrorMsg);
       divDate.appendChild(span);
-    divDateTT.appendChild(divDate);  
+    divDateTT.appendChild(divDate);
 
   this.append(divDateTT);
   this.removeAttr("data-component-type");
@@ -489,7 +524,7 @@ $.fn.fielDate = function() {
   this.removeAttr("data-component-orientation");
   this.removeAttr("data-component-clear");
 //-----------------------------------------------------------------------------
-  fieldDateClear(fieldId);      
+  fieldDateClear(fieldId);
 
 
   $(".datepicker").mask("99-99-9999");
