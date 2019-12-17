@@ -12,9 +12,31 @@ $("#btnpdf").button();
 $("#btnxls").button();
 $("#products3").fieldCheckBox();
 $("#payment").select();
-$("#ejemplo").fieldInputPlusMinus();
+$("#ejemplo").fieldSelectPlusMinusAutocomplete();
 $("#gridcontratos").grid();
 $("#countcontratos").gridrecordscount();
+
+$("#button-clean_btnclean").click(function() {
+  $(".form-group")
+    .parsley()
+    .reset();
+  $(".form-group .tag-list li a").text("");
+  $("#payment")
+    .val([])
+    .trigger("change");
+  $("#payment")
+    .parsley()
+    .reset();
+  // $("#payment").parsley();
+  contratos_params = {};
+  http_findAll("contratos", contratos_params, function(payload) {
+    $("#table_gridcontratos").jqGrid("clearGridData");
+    $("#table_gridcontratos").jqGrid("setGridParam", { data: payload });
+    $("#table_gridcontratos").trigger("reloadGrid");
+    var rec_count = payload.length;
+    $("#count_countcontratos").html(rec_count);
+  });
+});
 
 var contratos_params = {};
 http_findAll("contratos", contratos_params, function(payload) {
@@ -164,11 +186,21 @@ var form = $("#criterios-busqueda")
   })
   .on("form:submit", function(e) {
     contratos_params = {};
-    var fecha = $("#inpt-fecha").val();
-    var negocio = getOptionSelected("negocio");
-    var listContrato = getList("contrato");
-    var listDigito = getList("digito");
-    var productTypes = getChecked("products3");
+    let fecha = $("#inpt-fecha").val();
+    let listContrato = getList("contrato");
+    let listDigito = getList("digito");
+    let negocio = getOptionSelected("negocio");
+    let productTypes = getChecked("products3");
+    let paymentmethod = $("#payment").val();
+    let listejemplo = getList("ejemplo");
+    console.log("---> fecha", fecha);
+    console.log("---> listContrato", listContrato);
+    console.log("---> listDigito", listDigito);
+    console.log("---> negocio", negocio);
+    console.log("---> productTypes", productTypes);
+    console.log("---> paymentmethod", paymentmethod);
+    console.log("---> listejemplo", listejemplo);
+
     if (fecha) {
       contratos_params.fecha = fecha;
     }
@@ -184,11 +216,18 @@ var form = $("#criterios-busqueda")
     if (productTypes.length > 0) {
       contratos_params.product = productTypes;
     }
+    if (paymentmethod) {
+      contratos_params.perfil2 = paymentmethod;
+    }
+    if (listejemplo.length > 0) {
+      contratos_params.contrato = listejemplo;
+    }
     http_findAll("contratos", contratos_params, function(payload) {
       $("#table_gridcontratos").jqGrid("clearGridData");
       $("#table_gridcontratos").jqGrid("setGridParam", { data: payload });
       $("#table_gridcontratos").trigger("reloadGrid");
       var rec_count = payload.length;
+      $("#count_countcontratos").html(rec_count);
     });
     return false;
   });
