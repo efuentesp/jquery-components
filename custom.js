@@ -7,6 +7,11 @@ $("#contrato4").fieldInputPlusMinus();
 $("#contrato5").fieldInputPlusMinus();
 $("#contrato6").fieldInputPlusMinus();
 
+$("#contrato7").fieldSelectPlusMinus();
+$("#contrato8").fieldSelectPlusMinus();
+$("#contrato9").fieldSelectPlusMinus();
+$("#contrato10").fieldSelectPlusMinus();
+
 $("#buttonsearch1").button();
 $("#buttonsearch2").button();
 $("#buttonsearch21").button();
