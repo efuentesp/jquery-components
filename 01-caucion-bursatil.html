@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>01.Causión Bursátil</title>
+    <title>01.Caución Bursátil</title>
     <link href="assets/css/libs.min.css" rel="stylesheet" />
     <link href="assets/css/main.css" rel="stylesheet" />
   </head>
@@ -22,7 +22,7 @@
                 id="fecha"
                 data-component-type="date"
                 data-component-label="Fecha"
-                data-component-required="false"
+                data-component-required="true"
                 data-component-orientation="vertical"
                 data-component-tooltip="DD/MM/AAAA"
               ></div>
@@ -30,19 +30,21 @@
                 id="contrato"
                 data-component-type="input-plus-minus"
                 data-component-label="Contrato"
+                data-component-required="true"
                 data-component-tooltip="Contrato"
               ></div>
               <div
                 id="digito"
                 data-component-type="input-plus-minus"
                 data-component-label="Digito"
+                data-component-required="true"
                 data-component-maxsize="2"
               ></div>
               <div
                 id="negocio"
                 data-component-type="options"
                 data-component-label=""
-                data-component-required="false"
+                data-component-required="true"
                 data-component-orientation="vertical"
               >
                 <div id="CB">Casa de Bolsa</div>
@@ -52,7 +54,7 @@
                 id="products3"
                 data-component-type="checkbox"
                 data-component-label="Product Type"
-                data-component-required="false"
+                data-component-required="true"
                 data-component-orientation="horizontal"
               >
                 <div id="P01">Product 1</div>
@@ -64,7 +66,7 @@
                 data-component-type="select"
                 data-component-label="Payment method"
                 data-component-size="12em"
-                data-component-required="false"
+                data-component-required="true"
                 data-component-tooltip="Payment method"
               >
                 <div id="ET">
@@ -76,6 +78,7 @@
                 id="ejemplo"
                 data-component-type="input-plus-minus"
                 data-component-label="Contrato"
+                data-component-required="true"
                 data-component-tooltip="Contrato"
               ></div>
               <div class="column" id="botones-accion">
@@ -102,6 +105,16 @@
               </div>
             </form>
           </div>
+        </div>
+      </div>
+      <div class="row has_border">
+        <div class="row w-full overflow-auto">
+          <div id="gridcontratos" data-component-type="grid"></div>
+          <div
+            id="countcontratos"
+            data-component-type="grid-records-count"
+            data-component-label="Total registros: "
+          ></div>
         </div>
       </div>
     </div>
