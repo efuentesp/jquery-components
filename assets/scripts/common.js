@@ -265,15 +265,21 @@ function fieldPlusMinusRepaintList(node) {
         nodelist.appendChild(tagLi);
     }
 }
-var fieldPlusMinus = function (id, params) {
-    console.log("fieldPlusMinus", id)
-    var idBtnPlus = "#btn_plus_" + id;
-    var idBtnMinus = "#btn_minus_" + id;
-    var idInput = "#" + id;
-    var list = "ul#tag_list_" + id;
-    var node = "tag_list_" + id;
-    var definedNodes = true;
-    var numNodes = 4;
+
+/**
+ * Funcionalidad para el componente +/- con un input
+ * @param {string} id - Id del componente.
+ * @param {object} params - Objeto con los parámetros para el componente:
+ *   maxsize (opcional): Si la lista solo permite un número limitado de elementos en la lista
+ */
+let fieldPlusMinus = function (id, params) {
+    let idBtnPlus = "#btn_plus_" + id;
+    let idBtnMinus = "#btn_minus_" + id;
+    let idInput = "#" + id;
+    let list = "ul#tag_list_" + id;
+    let node = "tag_list_" + id;
+    let definedNodes = true;
+    let numNodes = 4;
     if (params.nodes == undefined) {
         definedNodes = true;
     }
@@ -305,49 +311,71 @@ var fieldPlusMinus = function (id, params) {
         fieldPlusMinusRepaintList(node);
         $(idInput).val("");
     };
-    $(idBtnMinus).click(function () {
+    $(idBtnMinus).click(() => {
         $(list + " li a").each(function (index) {
-            if ($(idInput).val() != "") {
-                if ($(this).text() === $(idInput).val()) {
-                    if (!definedNodes) {
-                        $("li:has('a.delete_item'):contains(" + $(this).text() + ")").remove();
-                        $(list + " li").length = $(list + " li").length - 1;
-                    }
-                    else {
-                        if ($(list + " li").length <= 4) {
-                            $(this)
-                                .find("a")
-                                .first()
-                                .removeAttr("id");
-                            $(this).text("");
-                        }
-                        else {
-                            $("li:has('a.delete_item'):contains(" + $(this).text() + ")").remove();
-                            $(this).text("");
-                            $(list + " li").length = $(list + " li").length - 1;
-                        }
-                    }
+          if ($(idInput).val() != "") {
+            if ($(this).text() === $(idInput).val()) {
+              if (!definedNodes) {
+                $("li:has('a.delete_item'):contains("+$(this).text()+")").remove();
+                $(list + " li").length = $(list + " li").length - 1;
+              } else {
+                if ($(list + " li").length <= 4) {
+                  $(this)
+                    .find("a")
+                    .first()
+                    .removeAttr("id");
+                  $(this).text("");
+                } else {
+                  $("li:has('a.delete_item'):contains("+$(this).text()+")").remove();
+                  $(this).text("");
+                  $(list + " li").length = $(list + " li").length - 1;
                 }
+              }
             }
+          }
         });
         fieldPlusMinusRepaintList(node);
         $(idInput).val("");
-    });
-    $(list).delegate(".delete_item", "click", function () {
-        $(idInput).val($(this)
+      });
+    
+      // Set to input
+      $(list).delegate(".delete_item", "click", function() {
+        $(idInput).val(
+          $(this)
             .parent()
             .find(".delete_item")
-            .html());
-    });
+            .html()
+        );
+    
+        $(list + " li a").each(function () {
+          $(this).removeClass("selected");
+          $(this).css("background-color", "");
+        });  
+    
+        if ($(this)
+        .parent()
+        .find(".delete_item")
+        .html() != ""){
+          $(this).addClass("selected");
+          $(this).css("background-color","#79c3ed");
+        }
+      });
 };
-var fieldSelectPlusMinus = function (id, params) {
-    var idBtnPlus = "#btn_plus_" + id;
-    var idBtnMinus = "#btn_minus_" + id;
-    var idInput = "#" + id;
-    var list = "ul#tag_list_" + id;
-    var node = "tag_list_" + id;
-    var definedNodes = true;
-    var numNodes = 4;
+
+/**
+ * Funcionalidad para el componente +/- con un select
+ * @param {string} id - Id del componente.
+ * @param {object} params - Objeto con los parámetros para el componente:
+ *   maxsize (opcional): Si la lista solo permite un número limitado de elementos en la lista
+ */
+let fieldSelectPlusMinus = function (id, params) {
+    let idBtnPlus = "#btn_plus_" + id;
+    let idBtnMinus = "#btn_minus_" + id;
+    let idInput = "#" + id;
+    let list = "ul#tag_list_" + id;
+    let node = "tag_list_" + id;
+    let definedNodes = true;
+    let numNodes = 4;
     if (params.nodes == undefined) {
         definedNodes = true;
     }
@@ -399,102 +427,176 @@ var fieldSelectPlusMinus = function (id, params) {
             .val(null)
             .trigger("change");
     });
-    $(list).delegate(".delete_item", "click", function () {
+    $(list).delegate(".delete_item", "click", function() {
         $(idInput)
-            .val($(this)
-            .parent()
-            .find(".delete_item")
-            .attr("id"))
-            .trigger("change");
-    });
+          .val(
+            $(this)
+              .parent()
+              .find(".delete_item")
+              .attr("id")
+          )
+          .trigger("change");
+    
+          $(list + " li a").each(function () {
+            $(this).removeClass("selected");
+            $(this).css("background-color", "");
+          });  
+    
+          if ($(this)
+          .parent()
+          .find(".delete_item")
+          .attr("id") != undefined){
+            $(this).addClass("selected");
+            $(this).css("background-color","#79c3ed");
+          }
+      
+      });
     $(idInput).select2({
         placeholder: "",
         minimumResultsForSearch: Infinity
     });
 };
-var fieldSelectPlusAutocomplete = function (id, params) {
-    var idBtnPlus = "#btn_plus_" + id;
-    var idBtnMinus = "#btn_minus_" + id;
-    var idInput = "#" + id;
-    var list = "ul#tag_list_" + id;
-    var node = "tag_list_" + id;
-    var attrId = params.id;
-    var attrText = params.text;
-    var payload = params.payload;
-    var definedNodes = true;
-    var numNodes = 2;
+
+/**
+ * Funcionalidad para el componente +/- con Autocomplete
+ * @param {string} id - Id del componente.
+ * @param {object} params - Objeto con los parámetros para el componente:
+ *   maxsize (opcional): Si la lista solo permite un número limitado de elementos en la lista
+ */
+let fieldSelectPlusAutocomplete = function (id, params) {
+    let idBtnPlus = "#btn_plus_" + id;
+    let idBtnMinus = "#btn_minus_" + id;
+    let idInput = "#" + id;
+    let list = "ul#tag_list_" + id;
+    let node = "tag_list_" + id;
+    let attrId = params.id;
+    let attrText = params.text;
+    let payload = params.payload;
+    let definedNodes = true;
+    let numNodes = 4;
+  
     if (params.nodes == undefined) {
-        definedNodes = true;
+      definedNodes = true;
+    } else {
+      definedNodes = params.nodes;
     }
-    else {
-        definedNodes = params.nodes;
-    }
+  
     if (definedNodes) {
-        for (var i = 0; i < numNodes; i++) {
-            $(list).append("<li><a class='delete_item' href='javascript:void();'></a></li>");
-        }
+      for (let i = 0; i < numNodes; i++) {
+        $(list).append("<li><a class='delete_item' href='javascript:void();'></a></li>");
+      }
     }
-    $(idBtnPlus).click(function () {
-        var text_to_add = $(idInput + " option:selected").text();
-        var value_to_add = $(idInput + " option:selected").val();
-        if (!existText(text_to_add, list)) {
-            if (!addedText(text_to_add, value_to_add, list)) {
-                addNode(text_to_add, value_to_add, list, params.maxsize);
-            }
+  
+    $(idBtnPlus).click(() => {
+        let text_to_add = $(idInput + " option:selected").text();
+        let value_to_add = $(idInput + " option:selected").val();
+  
+      if (!existText(text_to_add, list)) {
+        if (!addedText(text_to_add, value_to_add, list)) {
+          addNode(text_to_add, value_to_add, list, params.maxsize);
         }
-        fieldPlusMinusRepaintList(node);
-        $(idInput)
-            .val(null)
-            .trigger("change");
+       }
+      fieldPlusMinusRepaintList(node);
+      $(idInput)
+        .val(null)
+        .trigger("change");
+  
+        $(idInput).removeClass("select-item");
     });
-    $(idBtnMinus).click(function () {
-        $(list + " li a").each(function (index) {
-            if ($(this).attr("id") === $(idInput).val()) {
-                if (!definedNodes) {
-                    $(this).parent().remove();
-                    $(list + " li").length = $(list + " li").length - 1;
-                }
-                else {
-                    if ($(list + " li").length <= 4) {
-                        $(this)
-                            .find("a")
-                            .first()
-                            .removeAttr("id");
-                        $(this).text("");
-                    }
-                    else {
-                        $(this).parent().remove();
-                        $(list + " li").length = $(list + " li").length - 1;
-                    }
-                }
+  
+    $(idInput).change(() => {
+  
+      if (!$(idInput).hasClass("select-item")){
+        const value_to_add = $(idInput + " option:selected").val();
+  
+        if (!(value_to_add  == "")){
+          const text_to_add = $(idInput + " option:selected").text();
+        
+          if (!existText(text_to_add, list)) {
+            if (!addedText(text_to_add, value_to_add, list)) {
+              addNode(text_to_add, value_to_add, list, params.maxsize);
             }
-        });
-        fieldPlusMinusRepaintList(node);
-        $(idInput)
-            .val(null)
-            .trigger("change");
+          }
+          fieldPlusMinusRepaintList(node);
+          $(idInput).val("");
+        }
+  
+        $(idInput).removeClass("select-item");
+      }
     });
-    $(list).delegate(".delete_item", "click", function () {
-        $(idInput)
-            .val($(this)
-            .parent()
-            .find(".delete_item")
-            .attr("id"))
-            .trigger("change");
+   
+    $(idBtnMinus).click(() => {
+      $(list + " li a").each(function (index) {
+        if ($(this).attr("id") === $(idInput).val()) {
+          if (!definedNodes) {
+            $(this).parent().remove();
+            $(list + " li").length = $(list + " li").length - 1;
+          } else {
+            if ($(list + " li").length <= 4) {
+              $(this)
+                .find("a")
+                .first()
+                .removeAttr("id");
+              $(this).text("");
+            } else {
+              $(this).parent().remove();
+              $(list + " li").length = $(list + " li").length - 1;
+            }
+          }
+        }
+      });
+      fieldPlusMinusRepaintList(node);
+      $(idInput)
+        .val(null)
+        .trigger("change");
+  
+        $(idInput).removeClass("select-item");
     });
-    var data = $.map(payload, function (item) {
-        return {
-            text: item[attrText],
-            id: item[attrId]
-        };
+  
+    $(list).delegate(".delete_item", "click", function() {
+  
+        $(idInput).val( 
+        $(this)
+          .parent()
+          .find(".delete_item")
+          .attr("id")).trigger("change");
+          
+        $(idInput).addClass("select-item");  
+  
+        $(list + " li a").each(function () {
+          $(this).removeClass("selected").css("background-color", "");
+        });  
+  
+        if ($(this)
+        .parent()
+        .find(".delete_item")
+        .attr("id") != undefined){
+          $(this).addClass("selected");
+          $(this).css("background-color","#79c3ed");
+        }
+        
     });
-    $(idInput).select2({
-        language: "es",
-        data: data,
-        placeholder: "",
-        minimumInputLength: 3
+  
+    let data = $.map(payload, function(item) {
+      return {
+        text: item[attrText],
+        id: item[attrId]
+      };
+    });
+  
+    ($(idInput)).select2({
+      language: "es",
+      data: data,
+      placeholder: "",
+      minimumInputLength: 1
     });
 };
+
+/**
+ * Obtiene los elementos de la lista seleccionados por cualquier componente +/-
+ * @param {string} id - Id del componente.
+ * @return {array} Lista de valores seleccionados
+ */
 var getList = function (id) {
     var list = [];
     $("#tag_list_" + id + " li").each(function () {

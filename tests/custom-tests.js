@@ -3,6 +3,9 @@ $("#contrato2").fieldInputPlusMinus();
 
 $("#contrato3").fieldSelectPlusMinus();
 
+$("#contrato4").fieldSelectPlusMinusAutocomplete();
+$("#contrato5").fieldSelectPlusMinusAutocomplete();
+
 $("#fecha").fielDate();
 
 $("#negocio").fieldOptions();
