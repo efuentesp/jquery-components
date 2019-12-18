@@ -252,36 +252,37 @@ QUnit.test("10 - InputPlusMinus - Solo permitir agregar 4 elementos", function(
   cleanData(4, 10);
 });
 
-QUnit.skip("1 - SelectPlusMinus - Inicializado correctamente", function(
+QUnit.test("1 - SelectPlusMinus - Inicializado correctamente", function(
   assert
 ) {
   // arrange
-  const txtInput = $("#contrato");
-  const lstTags = $("#field_contrato #tag_list_contrato li a");
+  const selectInput = $("#contrato3");
+  const lstTags = $("#field_contrato3 #tag_list_contrato3 li a");
 
   // act
 
   // assert
   assert.equal(lstTags.length, 4);
-  assert.equal(txtInput.val(), "");
+  assert.equal(selectInput.val(), "");
 });
 
-QUnit.skip("2 - SelectPlusMinus - agregar 3 elementos con botón +", function(
+QUnit.skip("2 - SelectPlusMinus - agregar 3 elementos con botón (+)", function(
   assert
 ) {
   // arrange
-  const txtInput = $("#contrato");
-  const btnPlus = $("#field_contrato #btn_plus_contrato");
-  const lstTags = $("#field_contrato #tag_list_contrato li a");
+  const selectInput = $("select#contrato3");
+  const btnPlus = $("#field_contrato3 #btn_plus_contrato3");
+  const lstTags = $("#field_contrato3 #tag_list_contrato3 li a");
 
-  // act
-  [...Array(3).keys()].forEach(element => {
-    txtInput.val("Elemento " + (element + 1));
-    btnPlus.click();
-  });
+  // // act
+  // // [...Array(3).keys()].forEach(element => {
+  // //   txtInput.val("Elemento " + (element + 1));
+  // //   btnPlus.click();
+  // // });
+  // selectInput.click();
 
   // assert
-  let contratosSeleccionados = getList("contrato");
+  let contratosSeleccionados = getList("contrato3");
   assert.equal(lstTags.length, 4);
   assert.equal(contratosSeleccionados.length, 3);
   assert.equal(txtInput.val(), "");
@@ -488,17 +489,32 @@ QUnit.skip("10 - SelectPlusMinus - Solo permitir agregar 4 elementos", function(
   cleanData(4, 10);
 });
 
-QUnit.skip(
-  "1 - SelectPlusMinusAutocomplete - inicializado correctamente",
+QUnit.test(
+  "1 - SelectPlusMinusAutocomplete - Inicializado correctamente",
   function(assert) {
     // arrange
-    const txtInput = $("#contrato");
-    const lstTags = $("#field_contrato #tag_list_contrato li a");
+    const txtInput = $("#contrato5");
+    const lstTags = $("#field_contrato5 #tag_list_contrato5 li a");
 
     // act
 
     // assert
     assert.equal(lstTags.length, 4);
+    assert.equal(txtInput.val(), "");
+  }
+);
+
+QUnit.test(
+  "1a - SelectPlusMinusAutocomplete - Inicializado correctamente sin nodos",
+  function(assert) {
+    // arrange
+    const txtInput = $("#contrato4");
+    const lstTags = $("#field_contrato4 #tag_list_contrato4 li a");
+
+    // act
+
+    // assert
+    assert.equal(lstTags.length, 0);
     assert.equal(txtInput.val(), "");
   }
 );

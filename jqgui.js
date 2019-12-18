@@ -36,7 +36,7 @@ $.fn.fieldInputPlusMinus = function() {
   const divControl = document.createElement("div");
   divControl.setAttribute("class", "field-control");
   if (this.data("componentTooltip")) {
-    divControl.setAttribute("data-tooltip", this.data("componentTooltip"));
+    divControl.setAttribute("custom-tooltip", this.data("componentTooltip"));
   }
 
   const divPlusMinus = document.createElement("div");
@@ -49,6 +49,7 @@ $.fn.fieldInputPlusMinus = function() {
   input.setAttribute("class", "input");
   input.setAttribute("type", "text");
   input.setAttribute("style", fieldWidth);
+  input.setAttribute("required", spanRequiredClass);
   input.setAttribute("data-parsley-trigger", "keyup");
   input.setAttribute("data-parsley-maxlength", "32");
   input.setAttribute(
@@ -58,7 +59,7 @@ $.fn.fieldInputPlusMinus = function() {
   input.setAttribute("data-parsley-validation-threshold", "10");
   input.setAttribute(
     "data-parsley-errors-container",
-    "field_error_block_" + fieldId
+    "#field_error_block_" + fieldId
   );
   divPlusMinus.appendChild(input);
 
@@ -146,7 +147,7 @@ $.fn.fieldSelectPlusMinus = function() {
   const divControl = document.createElement("div");
   divControl.setAttribute("class", "field-control");
   if (this.data("componentTooltip")) {
-    divControl.setAttribute("data-tooltip", this.data("componentTooltip"));
+    divControl.setAttribute("custom-tooltip", this.data("componentTooltip"));
   }
 
   const divPlusMinus = document.createElement("div");
@@ -159,6 +160,7 @@ $.fn.fieldSelectPlusMinus = function() {
   select.setAttribute("class", "select2");
   select.setAttribute("type", "text");
   select.setAttribute("style", fieldWidth);
+  select.setAttribute("required", spanRequiredClass);
   select.setAttribute("data-parsley-trigger", "keyup");
   select.setAttribute("data-parsley-maxlength", "32");
   select.setAttribute(
@@ -168,7 +170,7 @@ $.fn.fieldSelectPlusMinus = function() {
   select.setAttribute("data-parsley-validation-threshold", "10");
   select.setAttribute(
     "data-parsley-errors-container",
-    "field_error_block_" + fieldId
+    "#field_error_block_" + fieldId
   );
 
   var group = [
@@ -274,7 +276,7 @@ $.fn.fieldSelectPlusMinusAutocomplete = function() {
   const divControl = document.createElement("div");
   divControl.setAttribute("class", "field-control");
   if (this.data("componentTooltip")) {
-    divControl.setAttribute("data-tooltip", this.data("componentTooltip"));
+    divControl.setAttribute("custom-tooltip", this.data("componentTooltip"));
   }
 
   const divPlusMinus = document.createElement("div");
@@ -287,6 +289,7 @@ $.fn.fieldSelectPlusMinusAutocomplete = function() {
   select.setAttribute("class", "select2");
   select.setAttribute("type", "text");
   select.setAttribute("style", fieldWidth);
+  select.setAttribute("required", spanRequiredClass);
   select.setAttribute("data-parsley-trigger", "keyup");
   select.setAttribute("data-parsley-maxlength", "32");
   select.setAttribute(
@@ -296,7 +299,7 @@ $.fn.fieldSelectPlusMinusAutocomplete = function() {
   select.setAttribute("data-parsley-validation-threshold", "10");
   select.setAttribute(
     "data-parsley-errors-container",
-    "field_error_block_" + fieldId
+    "#field_error_block_" + fieldId
   );
 
   var group = [
@@ -962,11 +965,11 @@ $.fn.select = function() {
     const labeltag = document.createElement("label");
     labeltag.setAttribute("for", id);
     labeltag.innerText = label;
-    labeltag.appendChild(spanlabeltag);
+    labeltag.append(spanlabeltag);
 
     const labeldiv = document.createElement("div");
     labeldiv.setAttribute("class", "field-label flex");
-    labeldiv.appendChild(labeltag);
+    labeldiv.append(labeltag);
 
     const selecttag = document.createElement("select");
     selecttag.setAttribute("class", "select2");
@@ -983,7 +986,7 @@ $.fn.select = function() {
     }
 
     const optiontag = document.createElement("option");
-    selecttag.appendChild(optiontag);
+    selecttag.append(optiontag);
     this.children().each(function() {
       let optiontag = document.createElement("option");
       optiontag.setAttribute("value", this.id);
@@ -994,7 +997,7 @@ $.fn.select = function() {
       ) {
         value = this.id;
       }
-      selecttag.appendChild(optiontag);
+      selecttag.append(optiontag);
     });
     this.empty();
 
