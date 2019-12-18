@@ -7,12 +7,23 @@ $("#contrato4").fieldInputPlusMinus();
 $("#contrato5").fieldInputPlusMinus();
 $("#contrato6").fieldInputPlusMinus();
 
+$("#contrato7").fieldSelectPlusMinus();
+$("#contrato8").fieldSelectPlusMinus();
+$("#contrato9").fieldSelectPlusMinus();
+$("#contrato10").fieldSelectPlusMinus();
+
+$("#contrato11").fieldSelectPlusMinusAutocomplete();
+$("#contrato12").fieldSelectPlusMinusAutocomplete();
+$("#contrato13").fieldSelectPlusMinusAutocomplete();
+$("#contrato14").fieldSelectPlusMinusAutocomplete();
+
 $("#buttonsearch1").button();
 $("#buttonsearch2").button();
 $("#buttonsearch21").button();
 $("#buttonsearch3").button();
 $("#grid1").grid();
 $("#gridrecordscount1").gridrecordscount();
+$("#tab1").tabgroup();
 $("[data-component-type='text']").fieldInput();
 
 $("#fecha1").fielDate();
@@ -29,3 +40,4 @@ $("#ejemploaccordion").customaccordion();
 
 $("#splitter").fieldSplitter();
 
+$("#payment").select();

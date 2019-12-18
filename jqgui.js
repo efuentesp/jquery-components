@@ -1,6 +1,7 @@
 $.fn.fieldInputPlusMinus = function() {
   const fieldId = this.attr("id");
   const fieldMaxsize = this.data("componentMaxsize");
+  const fieldNodes = this.data("componentNodes");
   const fieldWidth =
     "width: " +
     (this.data("componentWidth") ? this.data("componentWidth") : "8em") +
@@ -35,7 +36,7 @@ $.fn.fieldInputPlusMinus = function() {
   const divControl = document.createElement("div");
   divControl.setAttribute("class", "field-control");
   if (this.data("componentTooltip")) {
-    divControl.setAttribute("data-tooltip", this.data("componentTooltip"));
+    divControl.setAttribute("custom-tooltip", this.data("componentTooltip"));
   }
 
   const divPlusMinus = document.createElement("div");
@@ -48,6 +49,7 @@ $.fn.fieldInputPlusMinus = function() {
   input.setAttribute("class", "input");
   input.setAttribute("type", "text");
   input.setAttribute("style", fieldWidth);
+  input.setAttribute("required", spanRequiredClass);
   input.setAttribute("data-parsley-trigger", "keyup");
   input.setAttribute("data-parsley-maxlength", "32");
   input.setAttribute(
@@ -57,7 +59,7 @@ $.fn.fieldInputPlusMinus = function() {
   input.setAttribute("data-parsley-validation-threshold", "10");
   input.setAttribute(
     "data-parsley-errors-container",
-    "field_error_block_" + fieldId
+    "#field_error_block_" + fieldId
   );
   divPlusMinus.appendChild(input);
 
@@ -102,13 +104,14 @@ $.fn.fieldInputPlusMinus = function() {
   ulTagList.setAttribute("style", fieldWidth);
   divControl.appendChild(ulTagList);
 
-  fieldPlusMinus(fieldId, { maxsize: fieldMaxsize });
+  fieldPlusMinus(fieldId, { maxsize: fieldMaxsize, nodes: fieldNodes });
 };
 
 $.fn.fieldSelectPlusMinus = function() {
   const fieldId = this.attr("id");
   const fieldMaxsize = this.data("componentMaxsize");
   const fieldItems = this.data("componentItems");
+  let fieldNodes = this.data("componentNodes");
 
   const fieldWidth =
     "width: " +
@@ -144,7 +147,7 @@ $.fn.fieldSelectPlusMinus = function() {
   const divControl = document.createElement("div");
   divControl.setAttribute("class", "field-control");
   if (this.data("componentTooltip")) {
-    divControl.setAttribute("data-tooltip", this.data("componentTooltip"));
+    divControl.setAttribute("custom-tooltip", this.data("componentTooltip"));
   }
 
   const divPlusMinus = document.createElement("div");
@@ -157,6 +160,7 @@ $.fn.fieldSelectPlusMinus = function() {
   select.setAttribute("class", "select2");
   select.setAttribute("type", "text");
   select.setAttribute("style", fieldWidth);
+  select.setAttribute("required", spanRequiredClass);
   select.setAttribute("data-parsley-trigger", "keyup");
   select.setAttribute("data-parsley-maxlength", "32");
   select.setAttribute(
@@ -166,7 +170,7 @@ $.fn.fieldSelectPlusMinus = function() {
   select.setAttribute("data-parsley-validation-threshold", "10");
   select.setAttribute(
     "data-parsley-errors-container",
-    "field_error_block_" + fieldId
+    "#field_error_block_" + fieldId
   );
 
   var group = [
@@ -229,7 +233,139 @@ $.fn.fieldSelectPlusMinus = function() {
   ulTagList.setAttribute("style", fieldWidth);
   divControl.appendChild(ulTagList);
 
-  fieldSelectPlusMinus(fieldId, { maxsize: fieldMaxsize });
+  fieldSelectPlusMinus(fieldId, { maxsize: fieldMaxsize, nodes: fieldNodes });
+};
+
+$.fn.fieldSelectPlusMinusAutocomplete = function() {
+  let fieldId = this.attr("id");
+  let fieldMaxsize = this.data("componentMaxsize");
+  let fieldItems = this.data("componentItems");
+  let fieldNodes = this.data("componentNodes");
+
+  const fieldWidth =
+    "width: " +
+    (this.data("componentWidth") ? this.data("componentWidth") : "8em") +
+    ";";
+  const fieldClass =
+    "is_" +
+    (this.data("componentOrientation")
+      ? this.data("componentOrientation")
+      : "vertical");
+  const spanRequiredClass =
+    "pr-3 " + (this.data("componentRequired") == true ? "required" : "");
+
+  this.attr("id", "field_" + fieldId);
+  this.attr("class", "field " + fieldClass);
+
+  const divLabel = document.createElement("div");
+  divLabel.setAttribute("class", "field-label flex");
+
+  const label = document.createElement("label");
+  label.setAttribute("for", fieldId);
+  label.innerHTML = this.data("componentLabel");
+  divLabel.appendChild(label);
+  this.append(divLabel);
+
+  const spanRequired = document.createElement("span");
+  spanRequired.setAttribute("class", spanRequiredClass);
+  if (this.data("componentRequired") == true) {
+    spanRequired.innerHTML = "*";
+  }
+  label.appendChild(spanRequired);
+
+  const divControl = document.createElement("div");
+  divControl.setAttribute("class", "field-control");
+  if (this.data("componentTooltip")) {
+    divControl.setAttribute("custom-tooltip", this.data("componentTooltip"));
+  }
+
+  const divPlusMinus = document.createElement("div");
+  divPlusMinus.setAttribute("class", "field-plus-minus has-addons flex");
+  divControl.appendChild(divPlusMinus);
+  this.append(divControl);
+
+  const select = document.createElement("select");
+  select.setAttribute("id", fieldId);
+  select.setAttribute("class", "select2");
+  select.setAttribute("type", "text");
+  select.setAttribute("style", fieldWidth);
+  select.setAttribute("required", spanRequiredClass);
+  select.setAttribute("data-parsley-trigger", "keyup");
+  select.setAttribute("data-parsley-maxlength", "32");
+  select.setAttribute(
+    "data-parsley-maxlength-message",
+    "Solo puede ingresar 32 caracteres."
+  );
+  select.setAttribute("data-parsley-validation-threshold", "10");
+  select.setAttribute(
+    "data-parsley-errors-container",
+    "#field_error_block_" + fieldId
+  );
+
+  var group = [
+    { key: "", value: "" },
+    { key: "001", value: "Contrato 01" },
+    { key: "002", value: "Contrato 02" },
+    { key: "003", value: "Contrato 03" },
+    { key: "004", value: "Contrato 04" }
+  ];
+
+  var people = Object.keys(group);
+
+  people.forEach(function(person) {
+    const option = document.createElement("option");
+    option.value = group[person]["key"];
+    option.text = group[person]["value"];
+    select.appendChild(option);
+  });
+
+  divPlusMinus.appendChild(select);
+
+  const plusBtn = document.createElement("button");
+  plusBtn.setAttribute("id", "btn_plus_" + fieldId);
+  plusBtn.setAttribute("type", "button");
+  plusBtn.setAttribute("class", "button-noborder");
+  divPlusMinus.appendChild(plusBtn);
+
+  const plusImg = document.createElement("img");
+  plusImg.setAttribute("class", "plus-icon");
+  plusImg.setAttribute("src", "../../assets/images/plus-icon.png");
+  plusBtn.appendChild(plusImg);
+
+  const minusBtn = document.createElement("button");
+  minusBtn.setAttribute("id", "btn_minus_" + fieldId);
+  minusBtn.setAttribute("type", "button");
+  minusBtn.setAttribute("class", "button-noborder");
+  divPlusMinus.appendChild(minusBtn);
+
+  const minusImg = document.createElement("img");
+  minusImg.setAttribute("class", "plus-icon");
+  minusImg.setAttribute("src", "../../assets/images/minus-icon.png");
+  minusBtn.appendChild(minusImg);
+
+  const spanError = document.createElement("span");
+  spanError.setAttribute("class", "field-error flex");
+  divControl.appendChild(spanError);
+
+  const divErrorTip = document.createElement("div");
+  divErrorTip.setAttribute("class", "error-tip");
+  spanError.appendChild(divErrorTip);
+
+  const divErrorMsg = document.createElement("div");
+  divErrorMsg.setAttribute("id", "field_error_block_" + fieldId);
+  divErrorMsg.setAttribute("class", "error-msg");
+  spanError.appendChild(divErrorMsg);
+
+  const ulTagList = document.createElement("ul");
+  ulTagList.setAttribute("id", "tag_list_" + fieldId);
+  ulTagList.setAttribute("class", "tag-list");
+  ulTagList.setAttribute("style", fieldWidth);
+  divControl.appendChild(ulTagList);
+
+  fieldSelectPlusAutocomplete(fieldId, {
+    maxsize: fieldMaxsize,
+    nodes: fieldNodes
+  });
 };
 
 $.fn.button = function() {
@@ -274,8 +410,6 @@ $.fn.button = function() {
     if (this.data("componentSize") === "small")
       btnclass = "button small-button";
 
-    const divbutton = document.createElement("div");
-
     const button = document.createElement("button");
     button.setAttribute(
       "id",
@@ -302,7 +436,8 @@ $.fn.button = function() {
       button.appendChild(span);
     }
 
-    this.append(divbutton.appendChild(button));
+    this.append(button);
+    $("#" + this.data("componentType") + "_" + this.attr("id")).unwrap();
   }
 };
 
@@ -406,6 +541,41 @@ $.fn.fieldInput = function() {
   });
 };
 
+$.fn.tabgroup = function() {
+  if (this.data("componentType") === "tab-group") {
+    var divtabgroup = document.createElement("div");
+    divtabgroup.setAttribute("class", "tab-group");
+
+    var id = this.attr("id");
+    var items = $("#" + id).children("div");
+
+    var ul = document.createElement("ul");
+
+    this.children().each(function() {
+      var item = $("#" + this.getAttribute("id"));
+      var id = $("#" + this.getAttribute("id")).attr("id");
+      var li = document.createElement("li");
+      var a = document.createElement("a");
+      a.setAttribute("href", "#" + id);
+      var span = document.createElement("span");
+      span.innerHTML = $("#" + this.getAttribute("id")).attr(
+        "data-component-label"
+      );
+      a.appendChild(span);
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+
+    divtabgroup.appendChild(ul);
+    for (i = 0; i < items.length; i++) {
+      divtabgroup.appendChild(items[i]);
+    }
+
+    this.append(divtabgroup);
+    $(".tab-group").tabs();
+  }
+};
+
 //----------------------------------------- SECCION FECHAS -----------------------------------------
 $.fn.fielDate = function() {
   const fieldId = this.attr("id");
@@ -419,6 +589,7 @@ $.fn.fielDate = function() {
       : "vertical");
   const isWithBotonClear = this.data("componentClear") == true ? true : false
   const toolTip = this.data("componentTooltip"); 
+
 
   this.attr("id", "field_" + fieldId);
   this.attr("class", "field " + fieldClassOrientation);
@@ -465,28 +636,28 @@ $.fn.fielDate = function() {
         image.setAttribute("title", "");
         divDate.appendChild(image);//divDate.append(image);
         */
-        if( isWithBotonClear ){
-          const inpt2 = document.createElement("input");
-          inpt2.setAttribute("class", "pl-1");
-          inpt2.setAttribute("type", "image");
-          inpt2.setAttribute("id", "clear_"+fieldId);
-          inpt2.setAttribute("src", "../../assets/images/meddelete.png");
-          inpt2.setAttribute("style", "width:15px;height:15px;");
-          inpt2.setAttribute("value", " ");
+  if (isWithBotonClear) {
+    const inpt2 = document.createElement("input");
+    inpt2.setAttribute("class", "pl-1");
+    inpt2.setAttribute("type", "image");
+    inpt2.setAttribute("id", "clear_" + fieldId);
+    inpt2.setAttribute("src", "../../assets/images/meddelete.png");
+    inpt2.setAttribute("style", "width:15px;height:15px;");
+    inpt2.setAttribute("value", " ");
 
-          divDate.appendChild(inpt2);
-        }
-        const span = document.createElement("span");
-        span.setAttribute("class", "field-error flex");
-          const divErrorTip = document.createElement("div");
-          divErrorTip.setAttribute("class", "error-tip");  
-        span.appendChild(divErrorTip);
-          const divErrorMsg = document.createElement("div");
-          divErrorMsg.setAttribute("class", "error-msg");
-          divErrorMsg.setAttribute("id", "field_error_block_"+fieldId);  
-        span.appendChild(divErrorMsg);
-      divDate.appendChild(span);
-    divDateTT.appendChild(divDate);  
+    divDate.appendChild(inpt2);
+  }
+  const span = document.createElement("span");
+  span.setAttribute("class", "field-error flex");
+  const divErrorTip = document.createElement("div");
+  divErrorTip.setAttribute("class", "error-tip");
+  span.appendChild(divErrorTip);
+  const divErrorMsg = document.createElement("div");
+  divErrorMsg.setAttribute("class", "error-msg");
+  divErrorMsg.setAttribute("id", "field_error_block_" + fieldId);
+  span.appendChild(divErrorMsg);
+  divDate.appendChild(span);
+  divDateTT.appendChild(divDate);
 
   this.append(divDateTT);
   this.removeAttr("data-component-type");
@@ -494,9 +665,8 @@ $.fn.fielDate = function() {
   this.removeAttr("data-component-required");
   this.removeAttr("data-component-orientation");
   this.removeAttr("data-component-clear");
-//-----------------------------------------------------------------------------
-  fieldDateClear(fieldId);      
-
+  //-----------------------------------------------------------------------------
+  fieldDateClear(fieldId);
 
   $(".datepicker").mask("99-99-9999");
 
@@ -980,3 +1150,108 @@ var windowResize = function (widthTable, idTable, idSplitterContainer) {
     });
 };  
 };
+
+// --------------------   SELECT   -------------------- //
+$.fn.select = function() {
+  if (this.data("componentType") === "select") {
+    const id = this.attr("id");
+    const label = this.data("componentLabel")
+      ? this.data("componentLabel")
+      : "";
+    const orientation = this.data("componentOrientation")
+      ? this.data("componentOrientation")
+      : "vertical";
+    const size = this.data("componentSize")
+      ? this.data("componentSize")
+      : "8em";
+    const tooltip = this.data("componentTooltip")
+      ? this.data("componentTooltip")
+      : "";
+    const placeholder = this.data("componentPlaceholder")
+      ? this.data("componentPlaceholder")
+      : "";
+    const required = this.data("componentRequired") ? true : false;
+    let value = "";
+    this.each(function() {
+      var attributes = this.attributes;
+      var i = attributes.length;
+      while (i--) {
+        this.removeAttributeNode(attributes[i]);
+      }
+    });
+    this.attr("class", "field is_" + orientation);
+    this.attr("id", "field_" + id);
+
+    const spanlabeltag = document.createElement("span");
+    if (required) {
+      spanlabeltag.setAttribute("class", "pr-3 required");
+      spanlabeltag.innerText = "*";
+    } else {
+      spanlabeltag.setAttribute("class", "pr-3");
+    }
+    const labeltag = document.createElement("label");
+    labeltag.setAttribute("for", id);
+    labeltag.innerText = label;
+    labeltag.append(spanlabeltag);
+
+    const labeldiv = document.createElement("div");
+    labeldiv.setAttribute("class", "field-label flex");
+    labeldiv.append(labeltag);
+
+    const selecttag = document.createElement("select");
+    selecttag.setAttribute("class", "select2");
+    selecttag.setAttribute("id", id);
+    selecttag.setAttribute("name", id);
+    selecttag.setAttribute("style", "width: " + size + ";");
+    selecttag.setAttribute("data-parsley-trigger", "change");
+    selecttag.setAttribute(
+      "data-parsley-errors-container",
+      "#field_error_block_" + id
+    );
+    if (required) {
+      selecttag.setAttribute("required", "required");
+    }
+
+    const optiontag = document.createElement("option");
+    selecttag.append(optiontag);
+    this.children().each(function() {
+      let optiontag = document.createElement("option");
+      optiontag.setAttribute("value", this.id);
+      optiontag.innerText = this.innerText;
+      if (
+        this.getAttribute("data-component-selected") &&
+        this.getAttribute("data-component-selected") === "true"
+      ) {
+        value = this.id;
+      }
+      selecttag.append(optiontag);
+    });
+    this.empty();
+
+    const diverror = document.createElement("div");
+    diverror.setAttribute("class", "field-error");
+    diverror.innerHTML = '<div id="field_error_block_' + id + '"></div>';
+
+    const tooltipdiv = document.createElement("div");
+    tooltipdiv.setAttribute("class", "field-control");
+    tooltipdiv.setAttribute("custom-tooltip", tooltip);
+
+    tooltipdiv.appendChild(selecttag);
+    tooltipdiv.appendChild(diverror);
+
+    this.append(labeldiv);
+    this.append(tooltipdiv);
+
+    $("#" + id).select2({
+      language: "es",
+      placeholder: placeholder,
+      minimumResultsForSearch: Infinity
+    });
+    if (value) {
+      $("#" + id)
+        .val(value)
+        .trigger("change");
+    }
+  }
+};
+
