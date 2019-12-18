@@ -98,6 +98,7 @@
       data-component-required="true"
       data-component-orientation="horizontal"
       data-component-clear=true
+      data-component-tooltip="date tooltip"
     ></div>
 
     <div
@@ -128,8 +129,9 @@
   <div id="negocio"
     data-component-type="options"
     data-component-label="Opciones"
-    data-component-required=false
-    data-component-orientation="vertical">
+    data-component-required=true
+    data-component-orientation="vertical"
+    data-component-tooltip="options tooltip">
     <div id="CB">Casa de Bolsa</div>
     <div id="B">Banco</div>
     <div id="S">Sucursal</div>
@@ -170,6 +172,7 @@
       data-component-label="Servicio de Inversión"
       data-component-required="true"
       data-component-orientation="vertical"
+      data-component-tooltip="checkbox tooltip"
     >
       <div id="S01" color="green">Asesoría</div>
       <div id="S02" color="yellow">Gestión</div>
@@ -187,6 +190,7 @@
     ></div>
 
     <div id="ejemploaccordion" data-component-type="accordion">
+
       <div
         id="ejemploaccordionpaso1"
         data-component-type="accordion-item"
@@ -210,9 +214,16 @@
       </div>
     </div>
 
+    <div id="splitter"
+         data-component-orientation="vertical">
+      <div id="splitterLeft"></div>
+      <div id="splitterRigth"></div>
+    </div> 
+
     <script src="assets/scripts/jquery.min.js"></script>
     <script src="assets/scripts/libs.min.js"></script>
     <script src="assets/scripts/common.js"></script>
+    <script src="assets/scripts/splitter.js"></script>
     <script src="jqgui.js"></script>
     <script src="custom.js"></script>
   </body>

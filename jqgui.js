@@ -418,6 +418,7 @@ $.fn.fielDate = function() {
       ? this.data("componentOrientation")
       : "vertical");
   const isWithBotonClear = this.data("componentClear") == true ? true : false
+  const toolTip = this.data("componentTooltip"); 
 
   this.attr("id", "field_" + fieldId);
   this.attr("class", "field " + fieldClassOrientation);
@@ -437,12 +438,17 @@ $.fn.fielDate = function() {
   this.append(divLbl);
   const divDateTT = document.createElement("div");
   divDateTT.setAttribute("class", "field-control");
+  divDateTT.setAttribute("data-tooltip", "DD/MM/AAAA");
+  divDateTT.setAttribute("custom-tooltip", "DD/MM/AAAA");  
   const divDate = document.createElement("div");
   divDate.setAttribute("class", "field-input flex items-center");
   const inpt = document.createElement("input");
   //inpt.setAttribute("class", "input datepicker hasDatepicker");
   inpt.setAttribute("class", "input datepicker");
   inpt.setAttribute("id", "inpt-" + fieldId);
+  if (this.data("componentRequired") == true) {
+    inpt.setAttribute("required", "required");
+  }
   inpt.setAttribute("style", "width: 8em;");
   inpt.setAttribute(
     "data-parsley-errors-container",
@@ -542,77 +548,219 @@ $.fn.fielDate = function() {
       }
     }
   });
+//========================================================================================================
+  var DATE_FORMAT = "dd-mm-yy";
+  var DATE_FORMAT_MONTH_YEAR = "MM yy";
+  var ui_datepicker_settings = {
+      showOn: "both",
+      buttonImage: "../../assets/images/btn-calendario.svg",
+      buttonImageOnly: true,
+      buttonText: "",
+      dateFormat: DATE_FORMAT,
+      changeMonth: true,
+      changeYear: true,
+      showButtonPanel: true,
+      currentText: "Hoy",
+      closeText: "Limpiar",
+      onClose: function (dateText, inst) {
+          if ($(window.event.srcElement).hasClass("ui-datepicker-close")) {
+              document.getElementById(this.id).value = "";
+          }
+      }
+  };
+
+  $.datepicker.regional["es"] = {
+      monthNames: [
+          "Enero",
+          "Febrero",
+          "Marzo",
+          "Abril",
+          "Mayo",
+          "Junio",
+          "Julio",
+          "Agosto",
+          "Septiembre",
+          "Octubre",
+          "Noviembre",
+          "Diciembre"
+      ],
+      monthNamesShort: [
+          "Ene",
+          "Feb",
+          "Mar",
+          "Abr",
+          "May",
+          "Jun",
+          "Jul",
+          "Ago",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dic"
+      ],
+      dayNames: [
+          "Domingo",
+          "Lunes",
+          "Martes",
+          "Miércoles",
+          "Jueves",
+          "Viernes",
+          "Sábado"
+      ],
+      dayNamesShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+      dayNamesMin: ["D", "L ", "M ", "M ", "J ", "V ", "S "]
+  };
+
+  $.datepicker.setDefaults($.datepicker.regional["es"]);
+  var ui_datepicker_month_year_settings = {
+      changeMonth: true,
+      changeYear: true,
+      showButtonPanel: false,
+      dateFormat: DATE_FORMAT_MONTH_YEAR,
+      onChangeMonthYear: function (year, month, inst) {
+          $(this).datepicker("setDate", new Date(inst.selectedYear, inst.selectedMonth, 1));
+      }
+  };
+
+  $(".monthpicker").datepicker(ui_datepicker_month_year_settings);
+
+  // Dates
+  const validateDateRage = function(id) {
+    $("#" + id + "_begin_date").datepicker({
+      ...ui_datepicker_settings,
+      onClose: function(selectedDate, instance) {
+        if (selectedDate != "") {
+          $("#" + id + "_end_date").datepicker("option", "minDate", selectedDate);
+          var date = $.datepicker.parseDate(
+            instance.settings.dateFormat,
+            selectedDate,
+            instance.settings
+          );
+          date.setMonth(date.getMonth() + 3);
+          $("#" + id + "_end_date").datepicker("option", "minDate", selectedDate);
+          $("#" + id + "_end_date").datepicker("option", "maxDate", date);
+        }
+      }
+    });
+
+    $("#" + id + "_end_date").datepicker({
+      ...ui_datepicker_settings,
+      onClose: function(selectedDate) {
+        $("#" + id + "_begin_date").datepicker("option", "maxDate", selectedDate);
+      }
+    });
+  };
+
+  // DatePicker
+  $(".datepicker")
+    .datepicker(ui_datepicker_settings)
+    .prop("readonly", false);
+
+  /*
+  var fieldDateClear = function (id) {
+    var btn_calendar_id = "#clear_" + id;
+    var input_date_id = "#inpt-" + id; 
+
+    $(btn_calendar_id).on("click", function() {
+        $(input_date_id).datepicker("setDate", null);
+    });
+  };*/
+
+  var fieldBeginDateRangeClear = function (id) {
+    var _id = $("#" + id + "_begin_date");
+    var $dates = $(_id).datepicker();
+    $("#clear_" + id + "_begin_date").on("click", function () {
+        $dates.datepicker("setDate", null);
+    });
+  };
+
+  var fieldEndDateRangeClear = function (id) {
+    var _id = $("#" + id + "_end_date");
+    var $dates = $(_id).datepicker();
+    $("#clear_" + id + "_end_date").on("click", function () {
+        $dates.datepicker("setDate", null);
+    });
+  };
+
 };
 
 $.fn.fieldOptions = function() {
   const fieldId = this.attr("id");
   const fieldLabel = this.attr("data-component-label");
   const spanRequiredClass =
-    "pr-3 " + (this.data("componentRequired") == true ? "required" : "");
+    "pr-5 " + (this.data("componentRequired") == true ? "required" : "");
   const fieldClassOrientation =
     "is_" +
     (this.data("componentOrientation")
       ? this.data("componentOrientation")
       : "vertical");
+  const toolTip = this.data("componentTooltip"); 
   const childrenDIV = this.children("div");
 
   //Se indica id y orientacion del div principal
   this.attr("id", "field_" + fieldId);
   this.attr("class", "field " + fieldClassOrientation);
+    //Se agrega div vacio
+    const div1 = document.createElement("div");
+    div1.setAttribute("class", "field-label flex");
+      const label = document.createElement("label");
+      label.setAttribute("class", "field-label");
+        var t = document.createTextNode(fieldLabel);
+      label.appendChild(t);
+        const spanRequired = document.createElement("span");
+        spanRequired.setAttribute("class", spanRequiredClass);
+        if (this.data("componentRequired") == true) {
+          spanRequired.innerHTML = "*";
+        }
+      label.appendChild(spanRequired);  
+    div1.appendChild(label);
 
-  //Se agrega div vacio
-  const div1 = document.createElement("div");
-  div1.setAttribute("class", "field-label flex");
-  const label = document.createElement("label");
-  label.setAttribute("class", "field-label");
-  div1.appendChild(label);
-  const span = document.createElement("span");
-  span.setAttribute("class", "pr-5");
-  div1.appendChild(span);
+    const span = document.createElement("span");
+    span.setAttribute("class", "pr-5");
+    div1.appendChild(span);
   this.append(div1);
 
-  //Se anexan las opciones del componente Options
-  const divOpt = document.createElement("div");
-  divOpt.setAttribute("class", "field-control");
-  divOpt.setAttribute("data-tooltip", " ");
-  for (var i = 0; i < childrenDIV.length; i++) {
-    var divChild = childrenDIV[i];
+    //Se anexan las opciones del componente Options
+    const divOpt = document.createElement("div");
+    divOpt.setAttribute("class", "field-control");
+    divOpt.setAttribute("custom-tooltip", toolTip);
+      for (var i = 0; i < childrenDIV.length; i++) {
+        var divChild = childrenDIV[i];
 
-    //Se remueve el i-esimo div
-    $("#" + divChild.id).remove();
+        const labelOpt = document.createElement("label");
+        labelOpt.setAttribute("class", "radio_button");
+          var t = document.createTextNode(divChild.innerHTML);
+        labelOpt.appendChild(t);
+          const inptOpt = document.createElement("input");
+          inptOpt.setAttribute("id", "radio_" + fieldId + "_" + i);
+          inptOpt.setAttribute("type", "radio");
+          inptOpt.setAttribute("name", fieldId);
+          inptOpt.setAttribute("value", divChild.id);
+          if (this.data("componentRequired") == true) {
+            inptOpt.setAttribute("required", "required");
+          }
+          inptOpt.setAttribute("data-parsley-class-handler", "#field_" + fieldId);
+          inptOpt.setAttribute("data-parsley-errors-" + fieldId, "#field_error_block_" + fieldId);
+          inptOpt.setAttribute("data-parsley-multiple", fieldId);
+          inptOpt.setAttribute("data-parsley-id", "22");
+        labelOpt.appendChild(inptOpt);
+          const span = document.createElement("span");
+          span.setAttribute("class", "checkmark");
+        labelOpt.appendChild(span);
 
-    const labelOpt = document.createElement("label");
-    labelOpt.setAttribute("class", "radio_button");
-    var t = document.createTextNode(divChild.innerHTML);
-    labelOpt.appendChild(t);
-    const inptOpt = document.createElement("input");
-    inptOpt.setAttribute("id", "radio_" + fieldId + "_" + i);
-    inptOpt.setAttribute("type", "radio");
-    inptOpt.setAttribute("name", fieldId);
-    inptOpt.setAttribute("value", divChild.id);
-    inptOpt.setAttribute("data-parsley-class-handler", "#field_" + fieldId);
-    inptOpt.setAttribute(
-      "data-parsley-errors-container",
-      "#field_error_block_" + fieldId
-    );
-    inptOpt.setAttribute("data-parsley-multiple", fieldId);
-    inptOpt.setAttribute("data-parsley-id", "22");
-    labelOpt.appendChild(inptOpt);
-    const span = document.createElement("span");
-    span.setAttribute("class", "checkmark");
-    labelOpt.appendChild(span);
+        divOpt.appendChild(labelOpt);
 
-    divOpt.appendChild(labelOpt);
-  }
+        //Se remueve el i-esimo div
+        $("#" + divChild.id).remove();
+      }
 
-  //Se agrega div para errores
-  const divError = document.createElement("div");
-  divError.setAttribute("class", "field-error");
-  const divFieldError = document.createElement("div");
-  divFieldError.setAttribute("id", "field_error_block_negocio");
-  divError.appendChild(divFieldError);
-  divOpt.appendChild(divError);
-
+      //Se agrega div para errores
+      const divError = document.createElement("div");
+      divError.setAttribute("class", "field-error");
+        const divFieldError = document.createElement("div");
+        divFieldError.setAttribute("id", "field_error_block_" + fieldId);
+      divError.appendChild(divFieldError);
+    divOpt.appendChild(divError);
   this.append(divOpt);
   this.removeAttr("data-component-type");
   this.removeAttr("data-component-label");
@@ -630,6 +778,7 @@ $.fn.fieldCheckBox = function() {
     (this.data("componentOrientation")
       ? this.data("componentOrientation")
       : "vertical");
+  const toolTip = this.data("componentTooltip");    
   const checkBoxOptionsDIV = this.children("div");
 
   //Se indica id y orientacion del div principal
@@ -657,15 +806,14 @@ $.fn.fieldCheckBox = function() {
 
   const divTT = document.createElement("div");
   divTT.setAttribute("class", "field-control");
+  divTT.setAttribute("custom-tooltip", toolTip);
+
   const divOptionsCheckBox = document.createElement("div");
   if (fieldClassOrientation == "is_horizontal") {
     divOptionsCheckBox.setAttribute("class", "flex");
   }
   for (var i = 0; i < checkBoxOptionsDIV.length; i++) {
     var checkOption = checkBoxOptionsDIV[i];
-
-    //Se remueve el i-esimo div
-    $("#" + checkOption.id).remove();
 
     const labelOpt = document.createElement("label");
     labelOpt.setAttribute("class", "checkbox_input pr-5");
@@ -676,6 +824,9 @@ $.fn.fieldCheckBox = function() {
     inptChckBox.setAttribute("name", "chk_" + fieldId);
     inptChckBox.setAttribute("id", "chk_" + fieldId + "_" + i);
     inptChckBox.setAttribute("value", checkOption.id);
+    if( this.data("componentRequired") == true ){
+      inptChckBox.setAttribute("required", "required");
+    }
     inptChckBox.setAttribute("data-parsley-class-handler", "#field_" + fieldId);
     inptChckBox.setAttribute(
       "data-parsley-errors-container",
@@ -697,6 +848,9 @@ $.fn.fieldCheckBox = function() {
     }
     labelOpt.appendChild(spanColor);
     divOptionsCheckBox.appendChild(labelOpt);
+
+    //Se remueve el i-esimo div
+    $("#" + checkOption.id).remove();
   }
   divTT.appendChild(divOptionsCheckBox);
   this.append(divTT);
@@ -753,4 +907,76 @@ $.fn.customaccordion = function() {
     };
     this.accordion(ui_accordion_settings);
   }
+};
+
+$.fn.fieldSplitter = function(){
+  const fieldId = this.attr("id");
+  const fieldClassOrientation = (this.data("componentOrientation") ? this.data("componentOrientation") : "vertical");
+
+  //Se indica id y orientacion del div principal
+  this.attr("id", "splitter_container");
+  this.attr("class", "div");
+    const divSimple = document.createElement("div");
+    divSimple.setAttribute("class", "splitter splitter-" + fieldClassOrientation + " ui-widget ui-widget-content");
+    divSimple.setAttribute("id", "simple");
+    divSimple.setAttribute("data-splitter-initialized", true);
+    divSimple.setAttribute("style", "position: relative;");
+      const divPanel1 = document.createElement("div");
+      divPanel1.setAttribute("class", "pane splitter-pane");
+      divPanel1.setAttribute("style", "position: absolute; z-index: 1; left: 0px; width: 856px; height: 700px; user-select: text;");
+        const labelOpt1 = document.createElement("label");
+          var t1 = document.createTextNode("Aquí va el contenido del panel");
+        labelOpt1.appendChild(t1)  
+      divPanel1.appendChild(labelOpt1);  
+    divSimple.appendChild(divPanel1);
+      const divSplitter = document.createElement("div");
+      divSplitter.setAttribute("class", "splitter-bar splitter-bar-" + fieldClassOrientation + " ui-state-default");
+      divSplitter.setAttribute("unselectable", "on");
+      divSplitter.setAttribute("style", "position: absolute; user-select: none; z-index: 100; cursor: col-resize; left: 856px; height: 700px;");
+        const a = document.createElement("a");
+        a.setAttribute("href", "javascript:void(0)");
+        a.setAttribute("accesskey", "");
+        a.setAttribute("tabindex", "0");
+      divSplitter.appendChild(a);
+    divSimple.appendChild(divSplitter);
+      const divPanel2 = document.createElement("div");
+      divPanel2.setAttribute("class", "pane splitter-pane");
+      divPanel2.setAttribute("id", "pane-right");
+      divPanel2.setAttribute("style", "position: absolute; z-index: 1; left: 868px; width: 631px; height: 700px; user-select: text;");
+        var t2 = document.createTextNode("Aquí va el contenido del panel");
+      divPanel2.appendChild(t2);
+    divSimple.appendChild(divPanel2);
+  this.append(divSimple);
+  //=================================================================================
+  $(".splitter-vertical").splitter();
+  $(".splitter-horizontal").splitter({ type: "h" });
+
+  var responsiveEffect = function (widthTable, numColumnsBase, selectedColumns, idTable, idSplitterContainer) {
+    var colModel = $("#" + idTable).jqGrid('getGridParam', 'colModel');
+    var numColumnas = selectedColumns.length + numColumnsBase;
+    var gridWidth = $("#splitter-container").parent().width();
+    if (gridWidth > widthTable) {
+        gridWidth = widthTable;
+    }
+    widthColumns = gridWidth / numColumnas;
+    $("#" + idTable).jqGrid("setGridWidth", gridWidth, true);
+    for (var j = 0; j < colModel.length; j++) {
+        $("#" + idTable).jqGrid('resizeColumn', colModel[j].name, 0);
+        if (j < 2 || isSelectedColumnn(colModel[j].name, selectedColumns)) {
+            $("#" + idTable).jqGrid('resizeColumn', colModel[j].name, widthColumns);
+        }
+    }
+    $("#gbox_" + idTable).attr("style", "width: " + gridWidth + "px;");
+    $("#gview_" + idTable).attr("style", "width: " + gridWidth + "px;");
+    windowResize(widthTable, idTable, idSplitterContainer);
+};
+var windowResize = function (widthTable, idTable, idSplitterContainer) {
+    $(window).on("resize", function () {
+        var gridWidth = $("#" + idSplitterContainer).parent().width();
+        if (gridWidth > widthTable) {
+            gridWidth = widthTable;
+        }
+        $("#" + idTable).jqGrid("setGridWidth", gridWidth, true);
+    });
+};  
 };

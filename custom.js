@@ -26,3 +26,6 @@ $("#servicio_inversion").fieldCheckBox();
 $("#formcontrato").form();
 
 $("#ejemploaccordion").customaccordion();
+
+$("#splitter").fieldSplitter();
+

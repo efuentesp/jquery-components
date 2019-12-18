@@ -10,6 +10,7 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 var REST_URL = "http://localhost:3000";
+/******
 var DATE_FORMAT = "dd-mm-yy";
 var DATE_FORMAT_MONTH_YEAR = "MM yy";
 var ui_datepicker_settings = {
@@ -79,7 +80,7 @@ var ui_datepicker_month_year_settings = {
     onChangeMonthYear: function (year, month, inst) {
         $(this).datepicker("setDate", new Date(inst.selectedYear, inst.selectedMonth, 1));
     }
-};
+};*/
 var icons = { header: "plus-icon", activeHeader: "minus-icon" };
 var ui_accordion_settings = {
     collapsible: true,
@@ -109,10 +110,9 @@ $('div[class*="field-plus-minus"]').each(function (index, item) {
 });
 $(".tab-group").tabs();
 $(".accordion").accordion(ui_accordion_settings);
-$(".datepicker")
-    .datepicker(ui_datepicker_settings)
-    .prop("readonly", false);
+/******
 $(".monthpicker").datepicker(ui_datepicker_month_year_settings);
+*/
 $(".splitter-vertical").splitter();
 $(".splitter-horizontal").splitter({ type: "h" });
 var fillJqGrid = function (grid_id, data) {
@@ -1393,20 +1393,7 @@ var pieChart = function (params) {
         }
     });
 };
-var validateDateRage = function (id) {
-    $("#" + id + "_begin_date").datepicker(__assign(__assign({}, ui_datepicker_settings), { onClose: function (selectedDate, instance) {
-            if (selectedDate != "") {
-                $("#" + id + "_end_date").datepicker("option", "minDate", selectedDate);
-                var date = $.datepicker.parseDate(instance.settings.dateFormat, selectedDate, instance.settings);
-                date.setMonth(date.getMonth() + 3);
-                $("#" + id + "_end_date").datepicker("option", "minDate", selectedDate);
-                $("#" + id + "_end_date").datepicker("option", "maxDate", date);
-            }
-        } }));
-    $("#" + id + "_end_date").datepicker(__assign(__assign({}, ui_datepicker_settings), { onClose: function (selectedDate) {
-            $("#" + id + "_begin_date").datepicker("option", "maxDate", selectedDate);
-        } }));
-};
+
 $("#btn_clean").click(function () {
     $(".form-group").parsley().reset();
     $(".form-group .tag-list li a").text("");
