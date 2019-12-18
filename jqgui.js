@@ -424,7 +424,7 @@ $.fn.button = function() {
     if (this.data("componentDisabled") === "true")
       button.setAttribute("disabled", "disabled");
 
-    if (tooltip !== "") button.setAttribute("title", tooltip);
+    if (tooltip !== "") button.setAttribute("custom-tooltip", tooltip);
 
     const img = document.createElement("img");
     img.setAttribute("src", "../../assets/images/" + imgname);
@@ -588,7 +588,7 @@ $.fn.fielDate = function() {
       ? this.data("componentOrientation")
       : "vertical");
   const isWithBotonClear = this.data("componentClear") == true ? true : false
-  const toolTip = this.data("componentTooltip"); 
+  const toolTip = this.data("componentTooltip");
 
 
   this.attr("id", "field_" + fieldId);
@@ -610,7 +610,7 @@ $.fn.fielDate = function() {
   const divDateTT = document.createElement("div");
   divDateTT.setAttribute("class", "field-control");
   divDateTT.setAttribute("data-tooltip", "DD/MM/AAAA");
-  divDateTT.setAttribute("custom-tooltip", "DD/MM/AAAA");  
+  divDateTT.setAttribute("custom-tooltip", "DD/MM/AAAA");
   const divDate = document.createElement("div");
   divDate.setAttribute("class", "field-input flex items-center");
   const inpt = document.createElement("input");
@@ -829,7 +829,7 @@ $.fn.fielDate = function() {
   /*
   var fieldDateClear = function (id) {
     var btn_calendar_id = "#clear_" + id;
-    var input_date_id = "#inpt-" + id; 
+    var input_date_id = "#inpt-" + id;
 
     $(btn_calendar_id).on("click", function() {
         $(input_date_id).datepicker("setDate", null);
@@ -864,7 +864,7 @@ $.fn.fieldOptions = function() {
     (this.data("componentOrientation")
       ? this.data("componentOrientation")
       : "vertical");
-  const toolTip = this.data("componentTooltip"); 
+  const toolTip = this.data("componentTooltip");
   const childrenDIV = this.children("div");
 
   //Se indica id y orientacion del div principal
@@ -882,7 +882,7 @@ $.fn.fieldOptions = function() {
         if (this.data("componentRequired") == true) {
           spanRequired.innerHTML = "*";
         }
-      label.appendChild(spanRequired);  
+      label.appendChild(spanRequired);
     div1.appendChild(label);
 
     const span = document.createElement("span");
@@ -948,7 +948,7 @@ $.fn.fieldCheckBox = function() {
     (this.data("componentOrientation")
       ? this.data("componentOrientation")
       : "vertical");
-  const toolTip = this.data("componentTooltip");    
+  const toolTip = this.data("componentTooltip");
   const checkBoxOptionsDIV = this.children("div");
 
   //Se indica id y orientacion del div principal
@@ -1096,8 +1096,8 @@ $.fn.fieldSplitter = function(){
       divPanel1.setAttribute("style", "position: absolute; z-index: 1; left: 0px; width: 856px; height: 700px; user-select: text;");
         const labelOpt1 = document.createElement("label");
           var t1 = document.createTextNode("Aquí va el contenido del panel");
-        labelOpt1.appendChild(t1)  
-      divPanel1.appendChild(labelOpt1);  
+        labelOpt1.appendChild(t1)
+      divPanel1.appendChild(labelOpt1);
     divSimple.appendChild(divPanel1);
       const divSplitter = document.createElement("div");
       divSplitter.setAttribute("class", "splitter-bar splitter-bar-" + fieldClassOrientation + " ui-state-default");
@@ -1148,7 +1148,7 @@ var windowResize = function (widthTable, idTable, idSplitterContainer) {
         }
         $("#" + idTable).jqGrid("setGridWidth", gridWidth, true);
     });
-};  
+};
 };
 
 // --------------------   SELECT   -------------------- //
@@ -1254,4 +1254,3 @@ $.fn.select = function() {
     }
   }
 };
-
