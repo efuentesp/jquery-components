@@ -17,6 +17,10 @@ $.fn.fieldInputPlusMinus = function() {
   this.attr("id", "field_" + fieldId);
   this.attr("class", "field " + fieldClass);
 
+  const tooltip = this.data("componentTooltip")
+    ? this.data("componentTooltip")
+    : "";
+
   const divLabel = document.createElement("div");
   divLabel.setAttribute("class", "field-label flex");
 
@@ -35,12 +39,12 @@ $.fn.fieldInputPlusMinus = function() {
 
   const divControl = document.createElement("div");
   divControl.setAttribute("class", "field-control");
-  if (this.data("componentTooltip")) {
-    divControl.setAttribute("custom-tooltip", this.data("componentTooltip"));
-  }
 
   const divPlusMinus = document.createElement("div");
   divPlusMinus.setAttribute("class", "field-plus-minus has-addons flex");
+  if (tooltip) {
+    divPlusMinus.setAttribute("custom-tooltip", tooltip);
+  }
   divControl.appendChild(divPlusMinus);
   this.append(divControl);
 
@@ -124,7 +128,9 @@ $.fn.fieldSelectPlusMinus = function() {
       : "vertical");
   const spanRequiredClass =
     "pr-3 " + (this.data("componentRequired") == true ? "required" : "");
-
+  const tooltip = this.data("componentTooltip")
+    ? this.data("componentTooltip")
+    : "";
   this.attr("id", "field_" + fieldId);
   this.attr("class", "field " + fieldClass);
 
@@ -146,13 +152,13 @@ $.fn.fieldSelectPlusMinus = function() {
 
   const divControl = document.createElement("div");
   divControl.setAttribute("class", "field-control");
-  if (this.data("componentTooltip")) {
-    divControl.setAttribute("custom-tooltip", this.data("componentTooltip"));
-  }
 
   const divPlusMinus = document.createElement("div");
   divPlusMinus.setAttribute("class", "field-plus-minus has-addons flex");
   divControl.appendChild(divPlusMinus);
+  if (tooltip) {
+    divPlusMinus.setAttribute("custom-tooltip", tooltip);
+  }
   this.append(divControl);
 
   const select = document.createElement("select");
@@ -253,6 +259,9 @@ $.fn.fieldSelectPlusMinusAutocomplete = function() {
       : "vertical");
   const spanRequiredClass =
     "pr-3 " + (this.data("componentRequired") == true ? "required" : "");
+  const tooltip = this.data("componentTooltip")
+    ? this.data("componentTooltip")
+    : "";
 
   this.attr("id", "field_" + fieldId);
   this.attr("class", "field " + fieldClass);
@@ -275,13 +284,14 @@ $.fn.fieldSelectPlusMinusAutocomplete = function() {
 
   const divControl = document.createElement("div");
   divControl.setAttribute("class", "field-control");
-  if (this.data("componentTooltip")) {
-    divControl.setAttribute("custom-tooltip", this.data("componentTooltip"));
-  }
 
   const divPlusMinus = document.createElement("div");
   divPlusMinus.setAttribute("class", "field-plus-minus has-addons flex");
+  if (tooltip) {
+    divPlusMinus.setAttribute("custom-tooltip", tooltip);
+  }
   divControl.appendChild(divPlusMinus);
+
   this.append(divControl);
 
   const select = document.createElement("select");
@@ -588,7 +598,9 @@ $.fn.fielDate = function() {
       ? this.data("componentOrientation")
       : "vertical");
   const isWithBotonClear = this.data("componentClear") == true ? true : false;
-  const toolTip = this.data("componentTooltip");
+  const toolTip = this.data("componentTooltip")
+    ? this.data("componentTooltip")
+    : "";
 
   this.attr("id", "field_" + fieldId);
   this.attr("class", "field " + fieldClassOrientation);
@@ -608,8 +620,8 @@ $.fn.fielDate = function() {
   this.append(divLbl);
   const divDateTT = document.createElement("div");
   divDateTT.setAttribute("class", "field-control");
-  divDateTT.setAttribute("data-tooltip", "DD/MM/AAAA");
-  divDateTT.setAttribute("custom-tooltip", "DD/MM/AAAA");
+  divDateTT.setAttribute("custom-tooltip", toolTip);
+
   const divDate = document.createElement("div");
   divDate.setAttribute("class", "field-input flex items-center");
   const inpt = document.createElement("input");
@@ -878,7 +890,9 @@ $.fn.fieldOptions = function() {
     (this.data("componentOrientation")
       ? this.data("componentOrientation")
       : "vertical");
-  const toolTip = this.data("componentTooltip");
+  const toolTip = this.data("componentTooltip")
+    ? this.data("componentTooltip")
+    : "";
   const childrenDIV = this.children("div");
 
   //Se indica id y orientacion del div principal
@@ -907,7 +921,10 @@ $.fn.fieldOptions = function() {
   //Se anexan las opciones del componente Options
   const divOpt = document.createElement("div");
   divOpt.setAttribute("class", "field-control");
-  divOpt.setAttribute("custom-tooltip", toolTip);
+  if (toolTip) {
+    divOpt.setAttribute("custom-tooltip", toolTip);
+  }
+
   for (var i = 0; i < childrenDIV.length; i++) {
     var divChild = childrenDIV[i];
 
@@ -965,7 +982,9 @@ $.fn.fieldCheckBox = function() {
     (this.data("componentOrientation")
       ? this.data("componentOrientation")
       : "vertical");
-  const toolTip = this.data("componentTooltip");
+  const toolTip = this.data("componentTooltip")
+    ? this.data("componentTooltip")
+    : "";
   const checkBoxOptionsDIV = this.children("div");
 
   //Se indica id y orientacion del div principal
@@ -993,7 +1012,9 @@ $.fn.fieldCheckBox = function() {
 
   const divTT = document.createElement("div");
   divTT.setAttribute("class", "field-control");
-  divTT.setAttribute("custom-tooltip", toolTip);
+  if (toolTip) {
+    divTT.setAttribute("custom-tooltip", toolTip);
+  }
 
   const divOptionsCheckBox = document.createElement("div");
   if (fieldClassOrientation == "is_horizontal") {
@@ -1280,7 +1301,9 @@ $.fn.select = function() {
 
     const tooltipdiv = document.createElement("div");
     tooltipdiv.setAttribute("class", "field-control");
-    tooltipdiv.setAttribute("custom-tooltip", tooltip);
+    if (tooltip) {
+      tooltipdiv.setAttribute("custom-tooltip", tooltip);
+    }
 
     tooltipdiv.appendChild(selecttag);
     tooltipdiv.appendChild(diverror);
