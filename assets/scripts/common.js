@@ -311,7 +311,7 @@ let fieldPlusMinus = function (id, params) {
         fieldPlusMinusRepaintList(node);
         $(idInput).val("");
     };
-    $(idBtnMinus).click(() => {
+    $(idBtnMinus).click(function () {
         $(list + " li a").each(function (index) {
           if ($(idInput).val() != "") {
             if ($(this).text() === $(idInput).val()) {
@@ -487,7 +487,7 @@ let fieldSelectPlusAutocomplete = function (id, params) {
       }
     }
   
-    $(idBtnPlus).click(() => {
+    $(idBtnPlus).click(function () {
         let text_to_add = $(idInput + " option:selected").text();
         let value_to_add = $(idInput + " option:selected").val();
   
@@ -504,7 +504,7 @@ let fieldSelectPlusAutocomplete = function (id, params) {
         $(idInput).removeClass("select-item");
     });
   
-    $(idInput).change(() => {
+    $(idInput).change(function () {
   
       if (!$(idInput).hasClass("select-item")){
         const value_to_add = $(idInput + " option:selected").val();
@@ -525,7 +525,7 @@ let fieldSelectPlusAutocomplete = function (id, params) {
       }
     });
    
-    $(idBtnMinus).click(() => {
+    $(idBtnMinus).click(function () {
       $(list + " li a").each(function (index) {
         if ($(this).attr("id") === $(idInput).val()) {
           if (!definedNodes) {
