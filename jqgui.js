@@ -962,11 +962,11 @@ $.fn.select = function() {
     const labeltag = document.createElement("label");
     labeltag.setAttribute("for", id);
     labeltag.innerText = label;
-    labeltag.append(spanlabeltag);
+    labeltag.appendChild(spanlabeltag);
 
     const labeldiv = document.createElement("div");
     labeldiv.setAttribute("class", "field-label flex");
-    labeldiv.append(labeltag);
+    labeldiv.appendChild(labeltag);
 
     const selecttag = document.createElement("select");
     selecttag.setAttribute("class", "select2");
@@ -983,7 +983,7 @@ $.fn.select = function() {
     }
 
     const optiontag = document.createElement("option");
-    selecttag.append(optiontag);
+    selecttag.appendChild(optiontag);
     this.children().each(function() {
       let optiontag = document.createElement("option");
       optiontag.setAttribute("value", this.id);
@@ -994,7 +994,7 @@ $.fn.select = function() {
       ) {
         value = this.id;
       }
-      selecttag.append(optiontag);
+      selecttag.appendChild(optiontag);
     });
     this.empty();
 
