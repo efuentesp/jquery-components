@@ -735,7 +735,7 @@ $.fn.fielDate = function() {
   var DATE_FORMAT_MONTH_YEAR = "MM yy";
   var ui_datepicker_settings = {
     showOn: "both",
-    buttonImage: "../../assets/images/btn-calendario.svg",
+    buttonImage: "../../assets/images/btn-calendario.png",
     buttonImageOnly: true,
     buttonText: "",
     dateFormat: DATE_FORMAT,
@@ -899,64 +899,66 @@ $.fn.fieldOptions = function() {
   //Se indica id y orientacion del div principal
   this.attr("id", "field_" + fieldId);
   this.attr("class", "field " + fieldClassOrientation);
-    //Se agrega div vacio
-    const div1 = document.createElement("div");
-    div1.setAttribute("class", "field-label flex");
-      const label = document.createElement("label");
-      label.setAttribute("class", "field-label");
-        var t = document.createTextNode(fieldLabel);
-      label.appendChild(t);
-    div1.appendChild(label);
-      const spanRequired = document.createElement("span");
-      spanRequired.setAttribute("class", spanRequiredClass);
-      if (this.data("componentRequired") == true) {
-        spanRequired.innerHTML = "*";
-      }
-    div1.appendChild(spanRequired);
-
+  //Se agrega div vacio
+  const div1 = document.createElement("div");
+  div1.setAttribute("class", "field-label flex");
+  const label = document.createElement("label");
+  label.setAttribute("class", "field-label");
+  var t = document.createTextNode(fieldLabel);
+  label.appendChild(t);
+  div1.appendChild(label);
+  const spanRequired = document.createElement("span");
+  spanRequired.setAttribute("class", spanRequiredClass);
+  if (this.data("componentRequired") == true) {
+    spanRequired.innerHTML = "*";
+  }
+  div1.appendChild(spanRequired);
 
   const span = document.createElement("span");
   span.setAttribute("class", "pr-5");
   div1.appendChild(span);
   this.append(div1);
 
-    //Se anexan las opciones del componente Options
-    const divOpt = document.createElement("div");
-    divOpt.setAttribute("class", "field-control");
-    if (toolTip) {
-      //divOpt.setAttribute("data-tooltip", toolTip);
-      divOpt.setAttribute("custom-tooltip", toolTip);
+  //Se anexan las opciones del componente Options
+  const divOpt = document.createElement("div");
+  divOpt.setAttribute("class", "field-control");
+  if (toolTip) {
+    //divOpt.setAttribute("data-tooltip", toolTip);
+    divOpt.setAttribute("custom-tooltip", toolTip);
+  }
+
+  for (var i = 0; i < childrenDIV.length; i++) {
+    var divChild = childrenDIV[i];
+
+    const labelOpt = document.createElement("label");
+    labelOpt.setAttribute("class", "radio_button");
+    var t = document.createTextNode(divChild.innerHTML);
+    labelOpt.appendChild(t);
+    const inptOpt = document.createElement("input");
+    inptOpt.setAttribute("id", "radio_" + fieldId + "_" + i);
+    inptOpt.setAttribute("type", "radio");
+    inptOpt.setAttribute("name", fieldId);
+    inptOpt.setAttribute("value", divChild.id);
+    if (this.data("componentRequired") == true) {
+      inptOpt.setAttribute("required", "required");
     }
+    inptOpt.setAttribute("data-parsley-class-handler", "#field_" + fieldId);
+    inptOpt.setAttribute(
+      "data-parsley-errors-container",
+      "#field_error_block_" + fieldId
+    );
+    inptOpt.setAttribute("data-parsley-multiple", fieldId);
+    //inptOpt.setAttribute("data-parsley-id", "22");
+    labelOpt.appendChild(inptOpt);
+    const span = document.createElement("span");
+    span.setAttribute("class", "checkmark");
+    labelOpt.appendChild(span);
 
-      for (var i = 0; i < childrenDIV.length; i++) {
-        var divChild = childrenDIV[i];
+    divOpt.appendChild(labelOpt);
 
-        const labelOpt = document.createElement("label");
-        labelOpt.setAttribute("class", "radio_button");
-          var t = document.createTextNode(divChild.innerHTML);
-        labelOpt.appendChild(t);
-          const inptOpt = document.createElement("input");
-          inptOpt.setAttribute("id", "radio_" + fieldId + "_" + i);
-          inptOpt.setAttribute("type", "radio");
-          inptOpt.setAttribute("name", fieldId);
-          inptOpt.setAttribute("value", divChild.id);
-          if (this.data("componentRequired") == true) {
-            inptOpt.setAttribute("required", "required");
-          }
-          inptOpt.setAttribute("data-parsley-class-handler", "#field_" + fieldId);
-          inptOpt.setAttribute("data-parsley-errors-container", "#field_error_block_" + fieldId);
-          inptOpt.setAttribute("data-parsley-multiple", fieldId);
-          //inptOpt.setAttribute("data-parsley-id", "22");
-        labelOpt.appendChild(inptOpt);
-          const span = document.createElement("span");
-          span.setAttribute("class", "checkmark");
-        labelOpt.appendChild(span);
-
-        divOpt.appendChild(labelOpt);
-
-        //Se remueve el i-esimo div
-        $("#" + divChild.id).remove();
-      }
+    //Se remueve el i-esimo div
+    $("#" + divChild.id).remove();
+  }
 
   //Se agrega div para errores
   const divError = document.createElement("div");
@@ -1059,14 +1061,13 @@ $.fn.fieldCheckBox = function() {
   }
   divTT.appendChild(divOptionsCheckBox);
 
-    const divError = document.createElement("div");
-    divError.setAttribute("class", "field-error");
-      const divErrorBlk = document.createElement("div");
-      divErrorBlk.setAttribute("id", "field_error_block_" + fieldId);
-    divError.appendChild(divErrorBlk);
+  const divError = document.createElement("div");
+  divError.setAttribute("class", "field-error");
+  const divErrorBlk = document.createElement("div");
+  divErrorBlk.setAttribute("id", "field_error_block_" + fieldId);
+  divError.appendChild(divErrorBlk);
   divTT.appendChild(divError);
 
-  
   this.append(divTT);
   this.removeAttr("data-component-type");
   this.removeAttr("data-component-label");
@@ -1125,51 +1126,70 @@ $.fn.customaccordion = function() {
 
 $.fn.fieldSplitter = function() {
   const fieldId = this.attr("id");
-  const fieldClassOrientation = (this.data("componentOrientation") ? this.data("componentOrientation") : "vertical");
+  const fieldClassOrientation = this.data("componentOrientation")
+    ? this.data("componentOrientation")
+    : "vertical";
   const splitterDIV = this.children("div");
 
   //Se indica id y orientacion del div principal
   this.attr("id", "splitter_container");
   this.attr("class", "div");
-    const divSimple = document.createElement("div");
-    divSimple.setAttribute("class", "splitter splitter-" + fieldClassOrientation + " ui-widget ui-widget-content");
-    divSimple.setAttribute("id", "simple");
-    divSimple.setAttribute("data-splitter-initialized", true);
-    divSimple.setAttribute("style", "position: relative;");
-      const divPanel1 = document.createElement("div");
-      divPanel1.setAttribute("class", "pane splitter-pane");
-      divPanel1.setAttribute("style", "position: absolute; z-index: 1; left: 0px; width: 856px; height: 700px; user-select: text;");
-        const labelOpt1 = document.createElement("label");
-          var t1 = document.createTextNode("Aquí va el contenido del panel");
-        labelOpt1.appendChild(t1)  
-      divPanel1.appendChild(labelOpt1);  
-    divSimple.appendChild(divPanel1);
-      const divSplitter = document.createElement("div");
-      divSplitter.setAttribute("class", "splitter-bar splitter-bar-" + fieldClassOrientation + " ui-state-default");
-      divSplitter.setAttribute("unselectable", "on");
-      divSplitter.setAttribute("style", "position: absolute; user-select: none; z-index: 100; cursor: col-resize; left: 856px; height: 700px;");
-        const a = document.createElement("a");
-        a.setAttribute("href", "javascript:void(0)");
-        a.setAttribute("accesskey", "");
-        a.setAttribute("tabindex", "0");
-      divSplitter.appendChild(a);
-    divSimple.appendChild(divSplitter);
-      const divPanel2 = document.createElement("div");
-      divPanel2.setAttribute("class", "pane splitter-pane");
-      divPanel2.setAttribute("id", "pane-right");
-      divPanel2.setAttribute("style", "position: absolute; z-index: 1; left: 868px; width: 631px; height: 700px; user-select: text;");
-        const labelOpt2 = document.createElement("label");
-          var t2 = document.createTextNode("Aquí va el contenido del panel");
-        labelOpt2.appendChild(t2);
-      divPanel2.appendChild(labelOpt2);
-    divSimple.appendChild(divPanel2);
+  const divSimple = document.createElement("div");
+  divSimple.setAttribute(
+    "class",
+    "splitter splitter-" +
+      fieldClassOrientation +
+      " ui-widget ui-widget-content"
+  );
+  divSimple.setAttribute("id", "simple");
+  divSimple.setAttribute("data-splitter-initialized", true);
+  divSimple.setAttribute("style", "position: relative;");
+  const divPanel1 = document.createElement("div");
+  divPanel1.setAttribute("class", "pane splitter-pane");
+  divPanel1.setAttribute(
+    "style",
+    "position: absolute; z-index: 1; left: 0px; width: 856px; height: 700px; user-select: text;"
+  );
+  const labelOpt1 = document.createElement("label");
+  var t1 = document.createTextNode("Aquí va el contenido del panel");
+  labelOpt1.appendChild(t1);
+  divPanel1.appendChild(labelOpt1);
+  divSimple.appendChild(divPanel1);
+  const divSplitter = document.createElement("div");
+  divSplitter.setAttribute(
+    "class",
+    "splitter-bar splitter-bar-" + fieldClassOrientation + " ui-state-default"
+  );
+  divSplitter.setAttribute("unselectable", "on");
+  divSplitter.setAttribute(
+    "style",
+    "position: absolute; user-select: none; z-index: 100; cursor: col-resize; left: 856px; height: 700px;"
+  );
+  const a = document.createElement("a");
+  a.setAttribute("href", "javascript:void(0)");
+  a.setAttribute("accesskey", "");
+  a.setAttribute("tabindex", "0");
+  divSplitter.appendChild(a);
+  divSimple.appendChild(divSplitter);
+  const divPanel2 = document.createElement("div");
+  divPanel2.setAttribute("class", "pane splitter-pane");
+  divPanel2.setAttribute("id", "pane-right");
+  divPanel2.setAttribute(
+    "style",
+    "position: absolute; z-index: 1; left: 868px; width: 631px; height: 700px; user-select: text;"
+  );
+  const labelOpt2 = document.createElement("label");
+  var t2 = document.createTextNode("Aquí va el contenido del panel");
+  labelOpt2.appendChild(t2);
+  divPanel2.appendChild(labelOpt2);
+  divSimple.appendChild(divPanel2);
   this.append(divSimple);
   this.removeAttr("data-component-orientation");
   for (var i = 0; i < splitterDIV.length; i++) {
     var paneSplitter = splitterDIV[i];
-  
+
     //Se remueve el i-esimo div
-    $("#" + paneSplitter.id).remove();    
+    $("#" + paneSplitter.id).remove();
   }
   //=================================================================================
   $(".splitter-vertical").splitter();
@@ -1212,7 +1232,7 @@ $.fn.fieldSplitter = function() {
           $("#" + idTable).jqGrid("setGridWidth", gridWidth, true);
       });
   };
-  */  
+  */
 };
 
 // --------------------   SELECT   -------------------- //
