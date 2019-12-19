@@ -643,7 +643,7 @@ $.fn.fielDate = function() {
     inpt2.setAttribute("id", "clear_" + fieldId);
     inpt2.setAttribute("src", "../../assets/images/meddelete.png");
     inpt2.setAttribute("style", "width:15px;height:15px;");
-    inpt2.setAttribute("value", " ");
+    //inpt2.setAttribute("value", " ");
 
     divDate.appendChild(inpt2);
   }
@@ -665,6 +665,7 @@ $.fn.fielDate = function() {
   this.removeAttr("data-component-required");
   this.removeAttr("data-component-orientation");
   this.removeAttr("data-component-clear");
+  this.removeAttr("data-component-tooltip");
   //-----------------------------------------------------------------------------
   fieldDateClear(fieldId);
 
@@ -877,13 +878,13 @@ $.fn.fieldOptions = function() {
       label.setAttribute("class", "field-label");
         var t = document.createTextNode(fieldLabel);
       label.appendChild(t);
-        const spanRequired = document.createElement("span");
-        spanRequired.setAttribute("class", spanRequiredClass);
-        if (this.data("componentRequired") == true) {
-          spanRequired.innerHTML = "*";
-        }
-      label.appendChild(spanRequired);  
     div1.appendChild(label);
+      const spanRequired = document.createElement("span");
+      spanRequired.setAttribute("class", spanRequiredClass);
+      if (this.data("componentRequired") == true) {
+        spanRequired.innerHTML = "*";
+      }
+    div1.appendChild(spanRequired);
 
     const span = document.createElement("span");
     span.setAttribute("class", "pr-5");
@@ -893,7 +894,7 @@ $.fn.fieldOptions = function() {
     //Se anexan las opciones del componente Options
     const divOpt = document.createElement("div");
     divOpt.setAttribute("class", "field-control");
-    divOpt.setAttribute("custom-tooltip", toolTip);
+    divOpt.setAttribute("data-tooltip", toolTip);
       for (var i = 0; i < childrenDIV.length; i++) {
         var divChild = childrenDIV[i];
 
@@ -910,9 +911,9 @@ $.fn.fieldOptions = function() {
             inptOpt.setAttribute("required", "required");
           }
           inptOpt.setAttribute("data-parsley-class-handler", "#field_" + fieldId);
-          inptOpt.setAttribute("data-parsley-errors-" + fieldId, "#field_error_block_" + fieldId);
+          inptOpt.setAttribute("data-parsley-errors-container", "#field_error_block_" + fieldId);
           inptOpt.setAttribute("data-parsley-multiple", fieldId);
-          inptOpt.setAttribute("data-parsley-id", "22");
+          //inptOpt.setAttribute("data-parsley-id", "22");
         labelOpt.appendChild(inptOpt);
           const span = document.createElement("span");
           span.setAttribute("class", "checkmark");
@@ -942,7 +943,7 @@ $.fn.fieldCheckBox = function() {
   const fieldId = this.attr("id");
   const fieldLabel = this.attr("data-component-label");
   const spanRequiredClass =
-    "pr-3 " + (this.data("componentRequired") == true ? "required" : "");
+    "pr-5 " + (this.data("componentRequired") == true ? "required" : "");
   const fieldClassOrientation =
     "is_" +
     (this.data("componentOrientation")
@@ -962,21 +963,18 @@ $.fn.fieldCheckBox = function() {
   label.setAttribute("for", "chk_" + fieldId);
   var t = document.createTextNode(fieldLabel);
   label.appendChild(t);
+  divLbl.appendChild(label);
   const spanRequired = document.createElement("span");
   spanRequired.setAttribute("class", spanRequiredClass);
   if (this.data("componentRequired") == true) {
     spanRequired.innerHTML = "*";
   }
-  label.appendChild(spanRequired);
-  divLbl.appendChild(label);
-  const span = document.createElement("span");
-  span.setAttribute("class", "pr-5");
-  divLbl.appendChild(span);
+  divLbl.appendChild(spanRequired);
   this.append(divLbl);
 
   const divTT = document.createElement("div");
   divTT.setAttribute("class", "field-control");
-  divTT.setAttribute("custom-tooltip", toolTip);
+  divTT.setAttribute("data-tooltip", toolTip);
 
   const divOptionsCheckBox = document.createElement("div");
   if (fieldClassOrientation == "is_horizontal") {
@@ -1023,6 +1021,15 @@ $.fn.fieldCheckBox = function() {
     $("#" + checkOption.id).remove();
   }
   divTT.appendChild(divOptionsCheckBox);
+
+    const divError = document.createElement("div");
+    divError.setAttribute("class", "field-error");
+      const divErrorBlk = document.createElement("div");
+      divErrorBlk.setAttribute("id", "field_error_block_" + fieldId);
+    divError.appendChild(divErrorBlk);
+  divTT.appendChild(divError);
+
+  
   this.append(divTT);
   this.removeAttr("data-component-type");
   this.removeAttr("data-component-label");
@@ -1082,6 +1089,7 @@ $.fn.customaccordion = function() {
 $.fn.fieldSplitter = function(){
   const fieldId = this.attr("id");
   const fieldClassOrientation = (this.data("componentOrientation") ? this.data("componentOrientation") : "vertical");
+  const splitterDIV = this.children("div");
 
   //Se indica id y orientacion del div principal
   this.attr("id", "splitter_container");
@@ -1113,14 +1121,24 @@ $.fn.fieldSplitter = function(){
       divPanel2.setAttribute("class", "pane splitter-pane");
       divPanel2.setAttribute("id", "pane-right");
       divPanel2.setAttribute("style", "position: absolute; z-index: 1; left: 868px; width: 631px; height: 700px; user-select: text;");
-        var t2 = document.createTextNode("Aquí va el contenido del panel");
-      divPanel2.appendChild(t2);
+        const labelOpt2 = document.createElement("label");
+          var t2 = document.createTextNode("Aquí va el contenido del panel");
+        labelOpt2.appendChild(t2);
+      divPanel2.appendChild(labelOpt2);
     divSimple.appendChild(divPanel2);
   this.append(divSimple);
+  this.removeAttr("data-component-orientation");
+  for (var i = 0; i < splitterDIV.length; i++) {
+    var paneSplitter = splitterDIV[i];
+  
+    //Se remueve el i-esimo div
+    $("#" + paneSplitter.id).remove();    
+  }
   //=================================================================================
   $(".splitter-vertical").splitter();
   $(".splitter-horizontal").splitter({ type: "h" });
 
+  /******
   var responsiveEffect = function (widthTable, numColumnsBase, selectedColumns, idTable, idSplitterContainer) {
     var colModel = $("#" + idTable).jqGrid('getGridParam', 'colModel');
     var numColumnas = selectedColumns.length + numColumnsBase;
@@ -1139,16 +1157,17 @@ $.fn.fieldSplitter = function(){
     $("#gbox_" + idTable).attr("style", "width: " + gridWidth + "px;");
     $("#gview_" + idTable).attr("style", "width: " + gridWidth + "px;");
     windowResize(widthTable, idTable, idSplitterContainer);
-};
-var windowResize = function (widthTable, idTable, idSplitterContainer) {
-    $(window).on("resize", function () {
-        var gridWidth = $("#" + idSplitterContainer).parent().width();
-        if (gridWidth > widthTable) {
-            gridWidth = widthTable;
-        }
-        $("#" + idTable).jqGrid("setGridWidth", gridWidth, true);
-    });
-};  
+  };
+  var windowResize = function (widthTable, idTable, idSplitterContainer) {
+      $(window).on("resize", function () {
+          var gridWidth = $("#" + idSplitterContainer).parent().width();
+          if (gridWidth > widthTable) {
+              gridWidth = widthTable;
+          }
+          $("#" + idTable).jqGrid("setGridWidth", gridWidth, true);
+      });
+  };
+  */  
 };
 
 // --------------------   SELECT   -------------------- //

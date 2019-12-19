@@ -111,10 +111,9 @@ $('div[class*="field-plus-minus"]').each(function (index, item) {
 $(".tab-group").tabs();
 $(".accordion").accordion(ui_accordion_settings);
 /******
-$(".monthpicker").datepicker(ui_datepicker_month_year_settings);
-*/
 $(".splitter-vertical").splitter();
 $(".splitter-horizontal").splitter({ type: "h" });
+*/
 var fillJqGrid = function (grid_id, data) {
     $(grid_id).jqGrid("clearGridData");
     data.forEach(function (item, i) { return $(grid_id).jqGrid("addRowData", i + 1, item); });
@@ -2040,6 +2039,7 @@ var isSelectedColumnn = function (columnName, selectedColumns) {
     }
     return isSelected;
 };
+/******
 var responsiveEffect = function (widthTable, numColumnsBase, selectedColumns, idTable, idSplitterContainer) {
     var colModel = $("#" + idTable).jqGrid('getGridParam', 'colModel');
     var numColumnas = selectedColumns.length + numColumnsBase;
@@ -2068,6 +2068,7 @@ var windowResize = function (widthTable, idTable, idSplitterContainer) {
         $("#" + idTable).jqGrid("setGridWidth", gridWidth, true);
     });
 };
+*/
 var colorSet = function (rMin, rMax, gMin, gMax, bMin, bMax, min, max) {
     var c = "";
     var colorArray = [];
