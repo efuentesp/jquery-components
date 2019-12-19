@@ -193,34 +193,44 @@ var form = $("#criterios-busqueda")
     let productTypes = getChecked("products3");
     let paymentmethod = $("#payment").val();
     let listejemplo = getList("ejemplo");
-    console.log("---> fecha", fecha);
-    console.log("---> listContrato", listContrato);
-    console.log("---> listDigito", listDigito);
-    console.log("---> negocio", negocio);
-    console.log("---> productTypes", productTypes);
-    console.log("---> paymentmethod", paymentmethod);
-    console.log("---> listejemplo", listejemplo);
+    console.log("---> fecha: ", fecha);
+    console.log("---> listContrato: ", listContrato);
+    console.log("---> listDigito: ", listDigito);
+    console.log("---> negocio: ", negocio);
+    console.log("---> productTypes: ", productTypes);
+    console.log("---> paymentmethod: ", paymentmethod);
+    console.log("---> listejemplo: ", listejemplo);
 
     if (fecha) {
       contratos_params.fecha = fecha;
+      console.log("--> contratos_params.fecha ", contratos_params.fecha);
     }
     if (listContrato.length > 0) {
       contratos_params.contrato = listContrato;
+      console.log("--> contratos_params.contrato ", contratos_params.contrato);
     }
     if (listDigito.length > 0) {
       contratos_params.digito = listDigito;
+      console.log("--> contratos_params.digito ", contratos_params.digito);
     }
     if (negocio) {
       contratos_params.negocio = negocio;
+      console.log("--> contratos_params.negocio ", contratos_params.negocio);
     }
     if (productTypes.length > 0) {
-      contratos_params.product = productTypes;
+      contratos_params.estatus = productTypes;
+      console.log("--> contratos_params.estatus ", contratos_params.estatus);
     }
     if (paymentmethod) {
       contratos_params.perfil2 = paymentmethod;
+      console.log(
+        "--> contratos_params.perfil2 (paymentmethod)",
+        contratos_params.perfil2
+      );
     }
     if (listejemplo.length > 0) {
       contratos_params.contrato = listejemplo;
+      console.log("--> contratos_params.contrato ", contratos_params.contrato);
     }
     http_findAll("contratos", contratos_params, function(payload) {
       $("#table_gridcontratos").jqGrid("clearGridData");

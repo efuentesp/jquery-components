@@ -17,6 +17,10 @@ $.fn.fieldInputPlusMinus = function() {
   this.attr("id", "field_" + fieldId);
   this.attr("class", "field " + fieldClass);
 
+  const tooltip = this.data("componentTooltip")
+    ? this.data("componentTooltip")
+    : "";
+
   const divLabel = document.createElement("div");
   divLabel.setAttribute("class", "field-label flex");
 
@@ -35,12 +39,12 @@ $.fn.fieldInputPlusMinus = function() {
 
   const divControl = document.createElement("div");
   divControl.setAttribute("class", "field-control");
-  if (this.data("componentTooltip")) {
-    divControl.setAttribute("custom-tooltip", this.data("componentTooltip"));
-  }
 
   const divPlusMinus = document.createElement("div");
   divPlusMinus.setAttribute("class", "field-plus-minus has-addons flex");
+  if (tooltip) {
+    divPlusMinus.setAttribute("custom-tooltip", tooltip);
+  }
   divControl.appendChild(divPlusMinus);
   this.append(divControl);
 
@@ -124,7 +128,9 @@ $.fn.fieldSelectPlusMinus = function() {
       : "vertical");
   const spanRequiredClass =
     "pr-3 " + (this.data("componentRequired") == true ? "required" : "");
-
+  const tooltip = this.data("componentTooltip")
+    ? this.data("componentTooltip")
+    : "";
   this.attr("id", "field_" + fieldId);
   this.attr("class", "field " + fieldClass);
 
@@ -146,13 +152,13 @@ $.fn.fieldSelectPlusMinus = function() {
 
   const divControl = document.createElement("div");
   divControl.setAttribute("class", "field-control");
-  if (this.data("componentTooltip")) {
-    divControl.setAttribute("custom-tooltip", this.data("componentTooltip"));
-  }
 
   const divPlusMinus = document.createElement("div");
   divPlusMinus.setAttribute("class", "field-plus-minus has-addons flex");
   divControl.appendChild(divPlusMinus);
+  if (tooltip) {
+    divPlusMinus.setAttribute("custom-tooltip", tooltip);
+  }
   this.append(divControl);
 
   const select = document.createElement("select");
@@ -253,6 +259,9 @@ $.fn.fieldSelectPlusMinusAutocomplete = function() {
       : "vertical");
   const spanRequiredClass =
     "pr-3 " + (this.data("componentRequired") == true ? "required" : "");
+  const tooltip = this.data("componentTooltip")
+    ? this.data("componentTooltip")
+    : "";
 
   this.attr("id", "field_" + fieldId);
   this.attr("class", "field " + fieldClass);
@@ -275,13 +284,14 @@ $.fn.fieldSelectPlusMinusAutocomplete = function() {
 
   const divControl = document.createElement("div");
   divControl.setAttribute("class", "field-control");
-  if (this.data("componentTooltip")) {
-    divControl.setAttribute("custom-tooltip", this.data("componentTooltip"));
-  }
 
   const divPlusMinus = document.createElement("div");
   divPlusMinus.setAttribute("class", "field-plus-minus has-addons flex");
+  if (tooltip) {
+    divPlusMinus.setAttribute("custom-tooltip", tooltip);
+  }
   divControl.appendChild(divPlusMinus);
+
   this.append(divControl);
 
   const select = document.createElement("select");
@@ -424,7 +434,7 @@ $.fn.button = function() {
     if (this.data("componentDisabled") === "true")
       button.setAttribute("disabled", "disabled");
 
-    if (tooltip !== "") button.setAttribute("title", tooltip);
+    if (tooltip !== "") button.setAttribute("custom-tooltip", tooltip);
 
     const img = document.createElement("img");
     img.setAttribute("src", "../../assets/images/" + imgname);
@@ -587,9 +597,10 @@ $.fn.fielDate = function() {
     (this.data("componentOrientation")
       ? this.data("componentOrientation")
       : "vertical");
-  const isWithBotonClear = this.data("componentClear") == true ? true : false
-  const toolTip = this.data("componentTooltip"); 
-
+  const isWithBotonClear = this.data("componentClear") == true ? true : false;
+  const toolTip = this.data("componentTooltip")
+    ? this.data("componentTooltip")
+    : "";
 
   this.attr("id", "field_" + fieldId);
   this.attr("class", "field " + fieldClassOrientation);
@@ -609,8 +620,8 @@ $.fn.fielDate = function() {
   this.append(divLbl);
   const divDateTT = document.createElement("div");
   divDateTT.setAttribute("class", "field-control");
-  divDateTT.setAttribute("data-tooltip", "DD/MM/AAAA");
-  divDateTT.setAttribute("custom-tooltip", "DD/MM/AAAA");  
+  divDateTT.setAttribute("custom-tooltip", toolTip);
+
   const divDate = document.createElement("div");
   divDate.setAttribute("class", "field-input flex items-center");
   const inpt = document.createElement("input");
@@ -719,107 +730,123 @@ $.fn.fielDate = function() {
       }
     }
   });
-//========================================================================================================
+  //========================================================================================================
   var DATE_FORMAT = "dd-mm-yy";
   var DATE_FORMAT_MONTH_YEAR = "MM yy";
   var ui_datepicker_settings = {
-      showOn: "both",
-      buttonImage: "../../assets/images/btn-calendario.svg",
-      buttonImageOnly: true,
-      buttonText: "",
-      dateFormat: DATE_FORMAT,
-      changeMonth: true,
-      changeYear: true,
-      showButtonPanel: true,
-      currentText: "Hoy",
-      closeText: "Limpiar",
-      onClose: function (dateText, inst) {
-          if ($(window.event.srcElement).hasClass("ui-datepicker-close")) {
-              document.getElementById(this.id).value = "";
-          }
+    showOn: "both",
+    buttonImage: "../../assets/images/btn-calendario.svg",
+    buttonImageOnly: true,
+    buttonText: "",
+    dateFormat: DATE_FORMAT,
+    changeMonth: true,
+    changeYear: true,
+    showButtonPanel: true,
+    currentText: "Hoy",
+    closeText: "Limpiar",
+    onClose: function(dateText, inst) {
+      if ($(window.event.srcElement).hasClass("ui-datepicker-close")) {
+        document.getElementById(this.id).value = "";
       }
+    }
   };
 
   $.datepicker.regional["es"] = {
-      monthNames: [
-          "Enero",
-          "Febrero",
-          "Marzo",
-          "Abril",
-          "Mayo",
-          "Junio",
-          "Julio",
-          "Agosto",
-          "Septiembre",
-          "Octubre",
-          "Noviembre",
-          "Diciembre"
-      ],
-      monthNamesShort: [
-          "Ene",
-          "Feb",
-          "Mar",
-          "Abr",
-          "May",
-          "Jun",
-          "Jul",
-          "Ago",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dic"
-      ],
-      dayNames: [
-          "Domingo",
-          "Lunes",
-          "Martes",
-          "Miércoles",
-          "Jueves",
-          "Viernes",
-          "Sábado"
-      ],
-      dayNamesShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
-      dayNamesMin: ["D", "L ", "M ", "M ", "J ", "V ", "S "]
+    monthNames: [
+      "Enero",
+      "Febrero",
+      "Marzo",
+      "Abril",
+      "Mayo",
+      "Junio",
+      "Julio",
+      "Agosto",
+      "Septiembre",
+      "Octubre",
+      "Noviembre",
+      "Diciembre"
+    ],
+    monthNamesShort: [
+      "Ene",
+      "Feb",
+      "Mar",
+      "Abr",
+      "May",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dic"
+    ],
+    dayNames: [
+      "Domingo",
+      "Lunes",
+      "Martes",
+      "Miércoles",
+      "Jueves",
+      "Viernes",
+      "Sábado"
+    ],
+    dayNamesShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+    dayNamesMin: ["D", "L ", "M ", "M ", "J ", "V ", "S "]
   };
 
   $.datepicker.setDefaults($.datepicker.regional["es"]);
   var ui_datepicker_month_year_settings = {
-      changeMonth: true,
-      changeYear: true,
-      showButtonPanel: false,
-      dateFormat: DATE_FORMAT_MONTH_YEAR,
-      onChangeMonthYear: function (year, month, inst) {
-          $(this).datepicker("setDate", new Date(inst.selectedYear, inst.selectedMonth, 1));
-      }
+    changeMonth: true,
+    changeYear: true,
+    showButtonPanel: false,
+    dateFormat: DATE_FORMAT_MONTH_YEAR,
+    onChangeMonthYear: function(year, month, inst) {
+      $(this).datepicker(
+        "setDate",
+        new Date(inst.selectedYear, inst.selectedMonth, 1)
+      );
+    }
   };
 
   $(".monthpicker").datepicker(ui_datepicker_month_year_settings);
 
   // Dates
-  const validateDateRage = function(id) {
-    $("#" + id + "_begin_date").datepicker({
-      ...ui_datepicker_settings,
-      onClose: function(selectedDate, instance) {
-        if (selectedDate != "") {
-          $("#" + id + "_end_date").datepicker("option", "minDate", selectedDate);
-          var date = $.datepicker.parseDate(
-            instance.settings.dateFormat,
-            selectedDate,
-            instance.settings
-          );
-          date.setMonth(date.getMonth() + 3);
-          $("#" + id + "_end_date").datepicker("option", "minDate", selectedDate);
-          $("#" + id + "_end_date").datepicker("option", "maxDate", date);
+  var validateDateRage = function(id) {
+    $("#" + id + "_begin_date").datepicker(
+      __assign(__assign({}, ui_datepicker_settings), {
+        onClose: function(selectedDate, instance) {
+          if (selectedDate != "") {
+            $("#" + id + "_end_date").datepicker(
+              "option",
+              "minDate",
+              selectedDate
+            );
+            var date = $.datepicker.parseDate(
+              instance.settings.dateFormat,
+              selectedDate,
+              instance.settings
+            );
+            date.setMonth(date.getMonth() + 3);
+            $("#" + id + "_end_date").datepicker(
+              "option",
+              "minDate",
+              selectedDate
+            );
+            $("#" + id + "_end_date").datepicker("option", "maxDate", date);
+          }
         }
-      }
-    });
-
-    $("#" + id + "_end_date").datepicker({
-      ...ui_datepicker_settings,
-      onClose: function(selectedDate) {
-        $("#" + id + "_begin_date").datepicker("option", "maxDate", selectedDate);
-      }
-    });
+      })
+    );
+    $("#" + id + "_end_date").datepicker(
+      __assign(__assign({}, ui_datepicker_settings), {
+        onClose: function(selectedDate) {
+          $("#" + id + "_begin_date").datepicker(
+            "option",
+            "maxDate",
+            selectedDate
+          );
+        }
+      })
+    );
   };
 
   // DatePicker
@@ -830,29 +857,28 @@ $.fn.fielDate = function() {
   /*
   var fieldDateClear = function (id) {
     var btn_calendar_id = "#clear_" + id;
-    var input_date_id = "#inpt-" + id; 
+    var input_date_id = "#inpt-" + id;
 
     $(btn_calendar_id).on("click", function() {
         $(input_date_id).datepicker("setDate", null);
     });
   };*/
 
-  var fieldBeginDateRangeClear = function (id) {
+  var fieldBeginDateRangeClear = function(id) {
     var _id = $("#" + id + "_begin_date");
     var $dates = $(_id).datepicker();
-    $("#clear_" + id + "_begin_date").on("click", function () {
-        $dates.datepicker("setDate", null);
+    $("#clear_" + id + "_begin_date").on("click", function() {
+      $dates.datepicker("setDate", null);
     });
   };
 
-  var fieldEndDateRangeClear = function (id) {
+  var fieldEndDateRangeClear = function(id) {
     var _id = $("#" + id + "_end_date");
     var $dates = $(_id).datepicker();
-    $("#clear_" + id + "_end_date").on("click", function () {
-        $dates.datepicker("setDate", null);
+    $("#clear_" + id + "_end_date").on("click", function() {
+      $dates.datepicker("setDate", null);
     });
   };
-
 };
 
 $.fn.fieldOptions = function() {
@@ -865,7 +891,9 @@ $.fn.fieldOptions = function() {
     (this.data("componentOrientation")
       ? this.data("componentOrientation")
       : "vertical");
-  const toolTip = this.data("componentTooltip"); 
+  const toolTip = this.data("componentTooltip")
+    ? this.data("componentTooltip")
+    : "";
   const childrenDIV = this.children("div");
 
   //Se indica id y orientacion del div principal
@@ -886,15 +914,20 @@ $.fn.fieldOptions = function() {
       }
     div1.appendChild(spanRequired);
 
-    const span = document.createElement("span");
-    span.setAttribute("class", "pr-5");
-    div1.appendChild(span);
+
+  const span = document.createElement("span");
+  span.setAttribute("class", "pr-5");
+  div1.appendChild(span);
   this.append(div1);
 
     //Se anexan las opciones del componente Options
     const divOpt = document.createElement("div");
     divOpt.setAttribute("class", "field-control");
-    divOpt.setAttribute("data-tooltip", toolTip);
+    if (toolTip) {
+      //divOpt.setAttribute("data-tooltip", toolTip);
+      divOpt.setAttribute("custom-tooltip", toolTip);
+    }
+
       for (var i = 0; i < childrenDIV.length; i++) {
         var divChild = childrenDIV[i];
 
@@ -925,13 +958,13 @@ $.fn.fieldOptions = function() {
         $("#" + divChild.id).remove();
       }
 
-      //Se agrega div para errores
-      const divError = document.createElement("div");
-      divError.setAttribute("class", "field-error");
-        const divFieldError = document.createElement("div");
-        divFieldError.setAttribute("id", "field_error_block_" + fieldId);
-      divError.appendChild(divFieldError);
-    divOpt.appendChild(divError);
+  //Se agrega div para errores
+  const divError = document.createElement("div");
+  divError.setAttribute("class", "field-error");
+  const divFieldError = document.createElement("div");
+  divFieldError.setAttribute("id", "field_error_block_" + fieldId);
+  divError.appendChild(divFieldError);
+  divOpt.appendChild(divError);
   this.append(divOpt);
   this.removeAttr("data-component-type");
   this.removeAttr("data-component-label");
@@ -949,7 +982,9 @@ $.fn.fieldCheckBox = function() {
     (this.data("componentOrientation")
       ? this.data("componentOrientation")
       : "vertical");
-  const toolTip = this.data("componentTooltip");    
+  const toolTip = this.data("componentTooltip")
+    ? this.data("componentTooltip")
+    : "";
   const checkBoxOptionsDIV = this.children("div");
 
   //Se indica id y orientacion del div principal
@@ -974,8 +1009,10 @@ $.fn.fieldCheckBox = function() {
 
   const divTT = document.createElement("div");
   divTT.setAttribute("class", "field-control");
-  divTT.setAttribute("data-tooltip", toolTip);
-
+  if (toolTip) {
+    //divTT.setAttribute("data-tooltip", toolTip);
+    divTT.setAttribute("custom-tooltip", toolTip);
+  }
   const divOptionsCheckBox = document.createElement("div");
   if (fieldClassOrientation == "is_horizontal") {
     divOptionsCheckBox.setAttribute("class", "flex");
@@ -992,7 +1029,7 @@ $.fn.fieldCheckBox = function() {
     inptChckBox.setAttribute("name", "chk_" + fieldId);
     inptChckBox.setAttribute("id", "chk_" + fieldId + "_" + i);
     inptChckBox.setAttribute("value", checkOption.id);
-    if( this.data("componentRequired") == true ){
+    if (this.data("componentRequired") == true) {
       inptChckBox.setAttribute("required", "required");
     }
     inptChckBox.setAttribute("data-parsley-class-handler", "#field_" + fieldId);
@@ -1086,7 +1123,7 @@ $.fn.customaccordion = function() {
   }
 };
 
-$.fn.fieldSplitter = function(){
+$.fn.fieldSplitter = function() {
   const fieldId = this.attr("id");
   const fieldClassOrientation = (this.data("componentOrientation") ? this.data("componentOrientation") : "vertical");
   const splitterDIV = this.children("div");
@@ -1139,20 +1176,28 @@ $.fn.fieldSplitter = function(){
   $(".splitter-horizontal").splitter({ type: "h" });
 
   /******
-  var responsiveEffect = function (widthTable, numColumnsBase, selectedColumns, idTable, idSplitterContainer) {
-    var colModel = $("#" + idTable).jqGrid('getGridParam', 'colModel');
+  var responsiveEffect = function(
+    widthTable,
+    numColumnsBase,
+    selectedColumns,
+    idTable,
+    idSplitterContainer
+  ) {
+    var colModel = $("#" + idTable).jqGrid("getGridParam", "colModel");
     var numColumnas = selectedColumns.length + numColumnsBase;
-    var gridWidth = $("#splitter-container").parent().width();
+    var gridWidth = $("#splitter-container")
+      .parent()
+      .width();
     if (gridWidth > widthTable) {
-        gridWidth = widthTable;
+      gridWidth = widthTable;
     }
     widthColumns = gridWidth / numColumnas;
     $("#" + idTable).jqGrid("setGridWidth", gridWidth, true);
     for (var j = 0; j < colModel.length; j++) {
-        $("#" + idTable).jqGrid('resizeColumn', colModel[j].name, 0);
-        if (j < 2 || isSelectedColumnn(colModel[j].name, selectedColumns)) {
-            $("#" + idTable).jqGrid('resizeColumn', colModel[j].name, widthColumns);
-        }
+      $("#" + idTable).jqGrid("resizeColumn", colModel[j].name, 0);
+      if (j < 2 || isSelectedColumnn(colModel[j].name, selectedColumns)) {
+        $("#" + idTable).jqGrid("resizeColumn", colModel[j].name, widthColumns);
+      }
     }
     $("#gbox_" + idTable).attr("style", "width: " + gridWidth + "px;");
     $("#gview_" + idTable).attr("style", "width: " + gridWidth + "px;");
@@ -1211,11 +1256,11 @@ $.fn.select = function() {
     const labeltag = document.createElement("label");
     labeltag.setAttribute("for", id);
     labeltag.innerText = label;
-    labeltag.append(spanlabeltag);
+    labeltag.appendChild(spanlabeltag);
 
     const labeldiv = document.createElement("div");
     labeldiv.setAttribute("class", "field-label flex");
-    labeldiv.append(labeltag);
+    labeldiv.appendChild(labeltag);
 
     const selecttag = document.createElement("select");
     selecttag.setAttribute("class", "select2");
@@ -1232,7 +1277,7 @@ $.fn.select = function() {
     }
 
     const optiontag = document.createElement("option");
-    selecttag.append(optiontag);
+    selecttag.appendChild(optiontag);
     this.children().each(function() {
       let optiontag = document.createElement("option");
       optiontag.setAttribute("value", this.id);
@@ -1243,7 +1288,7 @@ $.fn.select = function() {
       ) {
         value = this.id;
       }
-      selecttag.append(optiontag);
+      selecttag.appendChild(optiontag);
     });
     this.empty();
 
@@ -1253,7 +1298,9 @@ $.fn.select = function() {
 
     const tooltipdiv = document.createElement("div");
     tooltipdiv.setAttribute("class", "field-control");
-    tooltipdiv.setAttribute("custom-tooltip", tooltip);
+    if (tooltip) {
+      tooltipdiv.setAttribute("custom-tooltip", tooltip);
+    }
 
     tooltipdiv.appendChild(selecttag);
     tooltipdiv.appendChild(diverror);
@@ -1273,4 +1320,3 @@ $.fn.select = function() {
     }
   }
 };
-
