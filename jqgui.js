@@ -452,36 +452,36 @@ $.fn.button = function() {
 };
 
 $.fn.grid = function() {
-  if (this.data("componentType") === "grid") {
-    const divgrid = document.createElement("div");
-    const table = document.createElement("table");
-    table.setAttribute("id", "table_" + this.attr("id"));
-    const tr = document.createElement("tr");
-    table.appendChild(tr);
-    const td = document.createElement("td");
-    tr.appendChild(td);
-    const pager = document.createElement("div");
-    pager.setAttribute("id", "pager_" + this.attr("id"));
-    divgrid.appendChild(table);
-    divgrid.appendChild(pager);
-    this.append(divgrid);
-  }
+  // if (this.data("componentType") === "grid") {
+  const divgrid = document.createElement("div");
+  const table = document.createElement("table");
+  table.setAttribute("id", "table_" + this.attr("id"));
+  const tr = document.createElement("tr");
+  table.appendChild(tr);
+  const td = document.createElement("td");
+  tr.appendChild(td);
+  const pager = document.createElement("div");
+  pager.setAttribute("id", "pager_" + this.attr("id"));
+  divgrid.appendChild(table);
+  divgrid.appendChild(pager);
+  this.append(divgrid);
+  // }
 };
 
 $.fn.gridrecordscount = function() {
-  if (this.data("componentType") === "grid-records-count") {
-    const divgrid = document.createElement("div");
-    divgrid.setAttribute("class", "ui-jqgrid-count-rec");
-    const span = document.createElement("span");
-    span.innerHTML = this.data("componentLabel")
-      ? this.data("componentLabel")
-      : "Total registros:";
-    const spancount = document.createElement("span");
-    spancount.setAttribute("id", "count_" + this.attr("id"));
-    span.appendChild(spancount);
-    divgrid.appendChild(span);
-    this.append(divgrid);
-  }
+  // if (this.data("componentType") === "grid-records-count") {
+  const divgrid = document.createElement("div");
+  divgrid.setAttribute("class", "ui-jqgrid-count-rec");
+  const span = document.createElement("span");
+  span.innerHTML = this.data("componentLabel")
+    ? this.data("componentLabel")
+    : "Total registros:";
+  const spancount = document.createElement("span");
+  spancount.setAttribute("id", "count_" + this.attr("id"));
+  span.appendChild(spancount);
+  divgrid.appendChild(span);
+  this.append(divgrid);
+  // }
 };
 
 $.fn.fieldInput = function() {
@@ -552,50 +552,67 @@ $.fn.fieldInput = function() {
 };
 
 $.fn.tabgroup = function() {
-  if (this.data("componentType") === "tab-group") {
-    var divtabgroup = document.createElement("div");
-    divtabgroup.setAttribute("class", "tab-group");
+  // if (this.data("componentType") === "tab-group") {
+  var divtabgroup = document.createElement("div");
+  divtabgroup.setAttribute("class", "tab-group");
 
-    var id = this.attr("id");
-    var items = $("#" + id).children("div");
+  var id = this.attr("id");
+  var items = $("#" + id).children("div");
 
-    var ul = document.createElement("ul");
+  var ul = document.createElement("ul");
 
-    this.children().each(function() {
-      var item = $("#" + this.getAttribute("id"));
-      var id = $("#" + this.getAttribute("id")).attr("id");
-      var li = document.createElement("li");
-      var a = document.createElement("a");
-      a.setAttribute("href", "#" + id);
-      var span = document.createElement("span");
-      span.innerHTML = $("#" + this.getAttribute("id")).attr(
-        "data-component-label"
-      );
-      a.appendChild(span);
-      li.appendChild(a);
-      ul.appendChild(li);
-    });
+  this.children().each(function() {
+    var item = $("#" + this.getAttribute("id"));
+    var id = $("#" + this.getAttribute("id")).attr("id");
+    var li = document.createElement("li");
+    var a = document.createElement("a");
+    a.setAttribute("href", "#" + id);
+    var span = document.createElement("span");
+    span.innerHTML = $("#" + this.getAttribute("id")).attr(
+      "data-component-label"
+    );
+    a.appendChild(span);
+    li.appendChild(a);
+    ul.appendChild(li);
+  });
 
-    divtabgroup.appendChild(ul);
-    for (i = 0; i < items.length; i++) {
-      divtabgroup.appendChild(items[i]);
-    }
-
-    this.append(divtabgroup);
-    $(".tab-group").tabs();
+  divtabgroup.appendChild(ul);
+  for (i = 0; i < items.length; i++) {
+    divtabgroup.appendChild(items[i]);
   }
+
+  this.append(divtabgroup);
+  $(".tab-group").tabs();
+  // }
 };
 
 $.fn.sidebarwrapper = function() {
-  if (this.data("componentType") === "sidebar-wrapper") {
-    var id = this.attr("id");
-    $("[data-component-type=sidebar-wrapper]").attr('class', 'sidebar-wrapper')
-    $("[data-component-type=sidebar]").attr('class', 'sidebar')
-    $("[data-component-type=sidebar-content]").attr('class', 'sidebar-content')
-    $("[data-component-type=sidebar-collapsible-button]").attr('class', 'sidebar-collapsible-button')
+  // if (this.data("componentType") === "sidebar-wrapper") {
+  var id = this.attr("id");
+  $("[data-component-type=sidebar-wrapper]").attr("class", "sidebar-wrapper");
+  $("[data-component-type=sidebar]").attr("class", "sidebar");
+  $("[data-component-type=sidebar-content]").attr("class", "sidebar-content");
+  $("[data-component-type=sidebar-collapsible-button]").attr(
+    "class",
+    "sidebar-collapsible-button"
+  );
 
-    $("#" + id + ' *').removeAttr('data-component-type');
-    $("#" + id).removeAttr('data-component-type');
+  $("#" + id + " *").removeAttr("data-component-type");
+  $("#" + id).removeAttr("data-component-type");
+  // }
+
+  $(".sidebar-collapsible-button").on("click", function() {
+    $("#" + id + " .sidebar").toggleClass("isClosed");
+  });
+
+  var expandSideBar = $(".sidebar").attr("expand") == "true";
+  if (expandSideBar) {
+    $(".sidebar_content")
+      .parent()
+      .attr("style", "width: 250px !important;");
+    $(".sidebar_content").addClass("is_open");
+    $(".sidebar_button").addClass("is_open");
+    $(".content").addClass("is_sidebar_open");
   }
 };
 
@@ -1113,28 +1130,28 @@ $.fn.form = function() {
 // --------------------   ACCORDION   --------------------
 
 $.fn.customaccordion = function() {
-  if (this.data("componentType") === "accordion") {
-    this.attr("class", "accordion");
-    this.attr("data-component-type", null);
-    this.children().each(function() {
-      let item = $("#" + this.getAttribute("id"));
-      $("<h3>" + item.data("componentLabel") + "</h3>").insertBefore(
-        "#" + this.getAttribute("id")
-      );
-      $("#" + this.getAttribute("id")).attr("class", "accordion-content");
-      item.attr("id", null);
-      item.attr("data-component-type", null);
-      item.attr("data-component-label", null);
-    });
+  // if (this.data("componentType") === "accordion") {
+  this.attr("class", "accordion");
+  this.attr("data-component-type", null);
+  this.children().each(function() {
+    let item = $("#" + this.getAttribute("id"));
+    $("<h3>" + item.data("componentLabel") + "</h3>").insertBefore(
+      "#" + this.getAttribute("id")
+    );
+    $("#" + this.getAttribute("id")).attr("class", "accordion-content");
+    item.attr("id", null);
+    item.attr("data-component-type", null);
+    item.attr("data-component-label", null);
+  });
 
-    var icons = { header: "plus-icon", activeHeader: "minus-icon" };
-    var ui_accordion_settings = {
-      collapsible: true,
-      icons: icons,
-      heightStyle: "content"
-    };
-    this.accordion(ui_accordion_settings);
-  }
+  var icons = { header: "plus-icon", activeHeader: "minus-icon" };
+  var ui_accordion_settings = {
+    collapsible: true,
+    icons: icons,
+    heightStyle: "content"
+  };
+  this.accordion(ui_accordion_settings);
+  // }
 };
 
 $.fn.fieldSplitter = function() {
@@ -1250,106 +1267,102 @@ $.fn.fieldSplitter = function() {
 
 // --------------------   SELECT   -------------------- //
 $.fn.select = function() {
-  if (this.data("componentType") === "select") {
-    const id = this.attr("id");
-    const label = this.data("componentLabel")
-      ? this.data("componentLabel")
-      : "";
-    const orientation = this.data("componentOrientation")
-      ? this.data("componentOrientation")
-      : "vertical";
-    const size = this.data("componentSize")
-      ? this.data("componentSize")
-      : "8em";
-    const tooltip = this.data("componentTooltip")
-      ? this.data("componentTooltip")
-      : "";
-    const placeholder = this.data("componentPlaceholder")
-      ? this.data("componentPlaceholder")
-      : "";
-    const required = this.data("componentRequired") ? true : false;
-    let value = "";
-    this.each(function() {
-      var attributes = this.attributes;
-      var i = attributes.length;
-      while (i--) {
-        this.removeAttributeNode(attributes[i]);
-      }
-    });
-    this.attr("class", "field is_" + orientation);
-    this.attr("id", "field_" + id);
-
-    const spanlabeltag = document.createElement("span");
-    if (required) {
-      spanlabeltag.setAttribute("class", "pr-3 required");
-      spanlabeltag.innerText = "*";
-    } else {
-      spanlabeltag.setAttribute("class", "pr-3");
+  // if (this.data("componentType") === "select") {
+  const id = this.attr("id");
+  const label = this.data("componentLabel") ? this.data("componentLabel") : "";
+  const orientation = this.data("componentOrientation")
+    ? this.data("componentOrientation")
+    : "vertical";
+  const size = this.data("componentSize") ? this.data("componentSize") : "8em";
+  const tooltip = this.data("componentTooltip")
+    ? this.data("componentTooltip")
+    : "";
+  const placeholder = this.data("componentPlaceholder")
+    ? this.data("componentPlaceholder")
+    : "";
+  const required = this.data("componentRequired") ? true : false;
+  let value = "";
+  this.each(function() {
+    var attributes = this.attributes;
+    var i = attributes.length;
+    while (i--) {
+      this.removeAttributeNode(attributes[i]);
     }
-    const labeltag = document.createElement("label");
-    labeltag.setAttribute("for", id);
-    labeltag.innerText = label;
-    labeltag.appendChild(spanlabeltag);
+  });
+  this.attr("class", "field is_" + orientation);
+  this.attr("id", "field_" + id);
 
-    const labeldiv = document.createElement("div");
-    labeldiv.setAttribute("class", "field-label flex");
-    labeldiv.appendChild(labeltag);
-
-    const selecttag = document.createElement("select");
-    selecttag.setAttribute("class", "select2");
-    selecttag.setAttribute("id", id);
-    selecttag.setAttribute("name", id);
-    selecttag.setAttribute("style", "width: " + size + ";");
-    selecttag.setAttribute("data-parsley-trigger", "change");
-    selecttag.setAttribute(
-      "data-parsley-errors-container",
-      "#field_error_block_" + id
-    );
-    if (required) {
-      selecttag.setAttribute("required", "required");
-    }
-
-    const optiontag = document.createElement("option");
-    selecttag.appendChild(optiontag);
-    this.children().each(function() {
-      let optiontag = document.createElement("option");
-      optiontag.setAttribute("value", this.id);
-      optiontag.innerText = this.innerText;
-      if (
-        this.getAttribute("data-component-selected") &&
-        this.getAttribute("data-component-selected") === "true"
-      ) {
-        value = this.id;
-      }
-      selecttag.appendChild(optiontag);
-    });
-    this.empty();
-
-    const diverror = document.createElement("div");
-    diverror.setAttribute("class", "field-error");
-    diverror.innerHTML = '<div id="field_error_block_' + id + '"></div>';
-
-    const tooltipdiv = document.createElement("div");
-    tooltipdiv.setAttribute("class", "field-control");
-    if (tooltip) {
-      tooltipdiv.setAttribute("custom-tooltip", tooltip);
-    }
-
-    tooltipdiv.appendChild(selecttag);
-    tooltipdiv.appendChild(diverror);
-
-    this.append(labeldiv);
-    this.append(tooltipdiv);
-
-    $("#" + id).select2({
-      language: "es",
-      placeholder: placeholder,
-      minimumResultsForSearch: Infinity
-    });
-    if (value) {
-      $("#" + id)
-        .val(value)
-        .trigger("change");
-    }
+  const spanlabeltag = document.createElement("span");
+  if (required) {
+    spanlabeltag.setAttribute("class", "pr-3 required");
+    spanlabeltag.innerText = "*";
+  } else {
+    spanlabeltag.setAttribute("class", "pr-3");
   }
+  const labeltag = document.createElement("label");
+  labeltag.setAttribute("for", id);
+  labeltag.innerText = label;
+  labeltag.appendChild(spanlabeltag);
+
+  const labeldiv = document.createElement("div");
+  labeldiv.setAttribute("class", "field-label flex");
+  labeldiv.appendChild(labeltag);
+
+  const selecttag = document.createElement("select");
+  selecttag.setAttribute("class", "select2");
+  selecttag.setAttribute("id", id);
+  selecttag.setAttribute("name", id);
+  selecttag.setAttribute("style", "width: " + size + ";");
+  selecttag.setAttribute("data-parsley-trigger", "change");
+  selecttag.setAttribute(
+    "data-parsley-errors-container",
+    "#field_error_block_" + id
+  );
+  if (required) {
+    selecttag.setAttribute("required", "required");
+  }
+
+  const optiontag = document.createElement("option");
+  selecttag.appendChild(optiontag);
+  this.children().each(function() {
+    let optiontag = document.createElement("option");
+    optiontag.setAttribute("value", this.id);
+    optiontag.innerText = this.innerText;
+    if (
+      this.getAttribute("data-component-selected") &&
+      this.getAttribute("data-component-selected") === "true"
+    ) {
+      value = this.id;
+    }
+    selecttag.appendChild(optiontag);
+  });
+  this.empty();
+
+  const diverror = document.createElement("div");
+  diverror.setAttribute("class", "field-error");
+  diverror.innerHTML = '<div id="field_error_block_' + id + '"></div>';
+
+  const tooltipdiv = document.createElement("div");
+  tooltipdiv.setAttribute("class", "field-control");
+  if (tooltip) {
+    tooltipdiv.setAttribute("custom-tooltip", tooltip);
+  }
+
+  tooltipdiv.appendChild(selecttag);
+  tooltipdiv.appendChild(diverror);
+
+  this.append(labeldiv);
+  this.append(tooltipdiv);
+
+  $("#" + id).select2({
+    language: "es",
+    placeholder: placeholder,
+    minimumResultsForSearch: Infinity
+  });
+  if (value) {
+    $("#" + id)
+      .val(value)
+      .trigger("change");
+  }
+  // }
 };
