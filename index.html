@@ -269,32 +269,52 @@
       >
         <p>
           <div
-            id="container"
+            id="container" 
+            data-component-type="piechart" 
+            data-component-title="Promedios Pie Chart"
+            data-component-label="Dato"
+            data-component-format="{series.name}: <b>{point.percentage:.1f}</b>"
+            data-component-plot-format="<b>{point.name}</b>: {point.percentage:.1f}"
             style="min-width: 200px;max-width: 800px;height: 400px;  margin: 0 auto;"
           ></div>
           <div
-            id="containerBorder"
+            id="containerBorder" 
+            data-component-type="pieborderchart" 
+            data-component-title="Promedios Border Pie Chart"
+            data-component-label="Promedios"
+            data-component-format="{series.name}: <b>{point.percentage:.1f}</b>"
+            data-component-plot-format="<b>{point.name}</b>: {point.percentage:.1f}"
             style="min-width: 200px;max-width: 800px;height: 400px;  margin: 0 auto;"
           ></div>
           <div
-            id="containerBar"
+            id="containerBar" 
+            data-component-type="barhorizontalchart" 
+            data-component-title="Bar Horizontal Chart"
+            data-component-rounded-size-left-one=""
+            data-component-rounded-size-right-one=""
+            data-component-rounded-size-left-two="30px"
+            data-component-rounded-size-right-two=""
+            data-component-rounded-size-left-three=""
+            data-component-rounded-size-right-three="30px"
+            data-component-rounded-size-left-four=""
+            data-component-rounded-size-right-four=""
             style="min-width: 200px;max-width: 800px;height: 150px;  margin: 0 auto;"
           ></div>
       
           <div style="max-width: 800px;max-height: 800px; padding: 30px;">
-            <canvas id="stackChart"></canvas>
+            <canvas id="stackChart" data-component-type="stackchart"></canvas>
           </div>
           <div style="max-width: 800px;max-height: 800px; padding: 30px;">
-            <canvas id="barChart"></canvas>
+            <canvas id="barChart" data-component-type="barchart"></canvas>
           </div>
           <div style="max-width: 800px;max-height: 800px; padding: 30px;">
-            <canvas id="barChartNBar"></canvas>
+            <canvas id="barChartNBar" data-component-type="barNchart"></canvas>
           </div>
           <div style="max-width: 800px;max-height: 800px; padding: 30px;">
-            <canvas id="lineChart"></canvas>
+            <canvas id="lineChart" data-component-type="linechart"></canvas>
           </div>
           <div style="max-width: 800px;max-height: 800px; padding: 30px;">
-            <canvas id="multiChart"></canvas>
+            <canvas id="multiChart" data-component-type="multilinechart"></canvas>
           </div>
 
         </p>

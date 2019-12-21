@@ -46,10 +46,12 @@ $("#payment").select();
 
 $("#graficasaccordion").customaccordion();
 
+// HighChart
 $("#container").fieldChart();
 $("#containerBorder").fieldChart();
 $("#containerBar").fieldChart();
 
+// ChartJs
 $("#stackChart").canvas();
 $("#barChart").canvas();
 $("#barChartNBar").canvas();
