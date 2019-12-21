@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>200.cotizacion-reportos</title>
+    <link href="/assets/css/libs.min.css" rel="stylesheet" />
+    <link href="/assets/css/main.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header>
+      <div></div>
+    </header>
+
+    <div id="aside" data-component-type="sidebar-wrapper">
+      <div data-component-type="sidebar">
+        <div data-component-type="sidebar-content">
+          <div class="block overflow-y-auto">
+            <span class="bg-gray-300 block p-3 font-bold text-lg mb-3"
+              >DATOS PARA LA COTIZACION</span
+            >
+            <div id="filtros">
+              <form class="form-group" id="criterios-busqueda">
+                <div
+                  id="grupo"
+                  data-component-type="select"
+                  data-component-label="Grupo"
+                  data-component-size="12em"
+                ></div>
+                <div
+                  id="instrumento"
+                  data-component-type="select"
+                  data-component-label="Instrumento"
+                  data-component-size="12em"
+                ></div>
+
+                <div
+                  id="monto_invertir"
+                  data-component-type="text"
+                  data-component-label="Monto a invertir"
+                  data-component-size="12em"
+                ></div>
+
+                <div
+                  id="plazo"
+                  data-component-type="text"
+                  data-component-label="Plazo"
+                  data-component-size="12em"
+                ></div>
+
+                <div
+                  id="fecha_banda"
+                  data-component-type="date"
+                  data-component-label="Fecha"
+                  data-component-required="true"
+                  data-component-orientation="horizontal"
+                  data-component-clear="false"
+                  data-component-size="10em"
+                  data-component-tooltip="DD/MM/AAAA"
+                ></div>
+
+                <div
+                  id="button"
+                  data-component-label="Reset"
+                  data-component-type="button-reset"
+                  data-component-size="large"
+                  data-component-disabled="false"
+                ></div>
+                <div
+                  id="btnsearch"
+                  data-component-type="button-search"
+                  data-component-label="Consultar"
+                  data-component-size="large"
+                  data-component-disabled="false"
+                ></div>
+
+                <div
+                  id="btnclean"
+                  data-component-type="button-clean"
+                  data-component-label="Limpiar"
+                  data-component-size="large"
+                  data-component-disabled="false"
+                ></div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div data-component-type="sidebar-collapsible-button"></div>
+      </div>
+      <div data-component-type="sidebar-content">
+        <div class="row">
+          <span class="bg-gray-300 block p-3 font-bold text-lg">
+            Datos de la cotización
+          </span>
+          <div class="w-full overflow-auto">
+            <div data-component-type="tab-group" id="tabs_resultados_busqueda">
+              <div
+                id="tab_detalle"
+                data-component-type="tab-item"
+                data-component-label="Detalle"
+              >
+                <div
+                  class="row w-full overflow-auto text-black"
+                  id="div-cotizacion-reportos-grid"
+                >
+                  <div id="gridCotizacion" data-component-type="grid"></div>
+                </div>
+                <div
+                  id="gridCountCotizacion"
+                  data-component-type="grid-records-count"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/assets/scripts/jquery.min.js"></script>
+    <script src="/assets/scripts/libs.min.js"></script>
+    <script src="/assets/scripts/common.js"></script>
+    <script src="/jqgui.js"></script>
+    <script src="scripts.js"></script>
+  </body>
+</html>
