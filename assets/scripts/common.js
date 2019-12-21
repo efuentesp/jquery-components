@@ -622,6 +622,7 @@ var getOptionSelected = function (id) {
     var query_select = "input[name='" + id + "']:checked";
     return $(query_select).val();
 };
+
 var backgroundSet = function (elements) {
     var backgroundColorSet = [
         "#4299E1",
@@ -2069,6 +2070,7 @@ var windowResize = function (widthTable, idTable, idSplitterContainer) {
     });
 };
 */
+
 var colorSet = function (rMin, rMax, gMin, gMax, bMin, bMax, min, max) {
     var c = "";
     var colorArray = [];
@@ -2108,6 +2110,7 @@ var colorSet = function (rMin, rMax, gMin, gMax, bMin, bMax, min, max) {
     }
     return colorArray;
 };
+
 var getColorPieArray = function () {
     var colorArray = [];
     var colorBase = [];
@@ -2235,6 +2238,124 @@ var pieBorderHighchart = function (params) {
     });
 };
 var barHighchart = function (params) {
+    var arrayData = [];
+    if (params.dataSet[0]['value']['x'] != "") {
+        arrayData.push({
+            color: '#53565a',
+            name: params.dataSet[0]['value']['x'],
+            borderRadiusBottomLeft: params.dataSet[0]['radiusLeftTop'],
+            borderRadiusBottomRight: params.dataSet[0]['radiusLeftBottom'],
+            borderRadiusTopLeft: params.dataSet[0]['radiousRightTop'],
+            borderRadiusTopRight: params.dataSet[0]['radiousRightBottom'],
+            data: [
+                {
+                    y: params.dataSet[0]['value']['y'],
+                    color: '#53565a'
+                },
+                {
+                    y: params.dataSet[0]['value']['y'],
+                    color: {
+                        linearGradient: { x1: 0, x2: 1, y1: 0, y2: 0 },
+                        stops: [
+                            [0, '#ffffff'],
+                            [0.2, '#ffffff'],
+                            [1, '#c9cacc']
+                        ]
+                    }
+                },
+            ],
+            pointPadding: -0.15,
+            type: undefined,
+        });
+    }
+    if (params.dataSet[1]['value']['x'] != "") {
+        arrayData.push({
+            color: '#a6a6a6',
+            name: params.dataSet[1]['value']['x'],
+            borderRadiusBottomLeft: params.dataSet[1]['radiusLeftTop'],
+            borderRadiusBottomRight: params.dataSet[1]['radiusLeftBottom'],
+            borderRadiusTopLeft: params.dataSet[1]['radiousRightTop'],
+            borderRadiusTopRight: params.dataSet[1]['radiousRightBottom'],
+            data: [
+                {
+                    y: params.dataSet[1]['value']['y'],
+                    color: '#a6a6a6'
+                },
+                {
+                    y: params.dataSet[1]['value']['y'],
+                    color: {
+                        linearGradient: { x1: 0, x2: 1, y1: 0, y2: 0 },
+                        stops: [
+                            [0, '#ffffff'],
+                            [0.2, '#ffffff'],
+                            [1, '#d9d9d9']
+                        ]
+                    }
+                },
+            ],
+            pointPadding: -0.15,
+            type: undefined
+        });
+    }
+    if (params.dataSet[2]['value']['x'] != "") {
+        arrayData.push({
+            color: '#5d87a1',
+            name: params.dataSet[2]['value']['x'],
+            borderRadiusBottomLeft: params.dataSet[2]['radiusLeftTop'],
+            borderRadiusBottomRight: params.dataSet[2]['radiusLeftBottom'],
+            borderRadiusTopLeft: params.dataSet[2]['radiousRightTop'],
+            borderRadiusTopRight: params.dataSet[2]['radiousRightBottom'],
+            data: [
+                {
+                    y: params.dataSet[2]['value']['y'],
+                    color: '#5d87a1'
+                },
+                {
+                    y: params.dataSet[2]['value']['y'],
+                    color: {
+                        linearGradient: { x1: 0, x2: 1, y1: 0, y2: 0 },
+                        stops: [
+                            [0, '#ffffff'],
+                            [0.2, '#ffffff'],
+                            [1, '#aec3d0']
+                        ]
+                    }
+                },
+            ],
+            pointPadding: -0.15,
+            type: undefined
+        });
+    }
+    if (params.dataSet[3]['value']['x'] != "") {
+        arrayData.push({
+            color: '#87d1d9',
+            name: params.dataSet[3]['value']['x'],
+            borderRadiusBottomLeft: params.dataSet[3]['radiusLeftTop'],
+            borderRadiusBottomRight: params.dataSet[3]['radiusLeftBottom'],
+            borderRadiusTopLeft: params.dataSet[3]['radiousRightTop'],
+            borderRadiusTopRight: params.dataSet[3]['radiousRightBottom'],
+            data: [
+                {
+                    y: params.dataSet[3]['value']['y'],
+                    color: '#87d1d9',
+                    borderRadiusTopLeft: 10
+                },
+                {
+                    y: params.dataSet[3]['value']['y'],
+                    color: {
+                        linearGradient: { x1: 0, x2: 1, y1: 0, y2: 0 },
+                        stops: [
+                            [0, '#ffffff'],
+                            [0.2, '#ffffff'],
+                            [1, '#c3e8ec']
+                        ]
+                    }
+                },
+            ],
+            pointPadding: -0.15,
+            type: undefined
+        });
+    }
     Highcharts.chart(params.id, {
         chart: {
             type: 'bar',
@@ -2281,103 +2402,9 @@ var barHighchart = function (params) {
                 shadow: false
             }
         },
-        series: [
-            {
-                color: '#53565a',
-                name: params.dataSet[0]['value']['x'],
-                data: [
-                    {
-                        y: params.dataSet[0]['value']['y'],
-                        color: '#53565a'
-                    },
-                    {
-                        y: params.dataSet[0]['value']['y'],
-                        color: {
-                            linearGradient: { x1: 0, x2: 1, y1: 0, y2: 0 },
-                            stops: [
-                                [0, '#ffffff'],
-                                [0.2, '#ffffff'],
-                                [1, '#c9cacc']
-                            ]
-                        }
-                    },
-                ],
-                pointPadding: -0.15,
-                type: undefined,
-            },
-            {
-                color: '#a6a6a6',
-                name: params.dataSet[1]['value']['x'],
-                data: [
-                    {
-                        y: params.dataSet[1]['value']['y'],
-                        color: '#a6a6a6'
-                    },
-                    {
-                        y: params.dataSet[1]['value']['y'],
-                        color: {
-                            linearGradient: { x1: 0, x2: 1, y1: 0, y2: 0 },
-                            stops: [
-                                [0, '#ffffff'],
-                                [0.2, '#ffffff'],
-                                [1, '#d9d9d9']
-                            ]
-                        }
-                    },
-                ],
-                pointPadding: -0.15,
-                type: undefined
-            }, {
-                color: '#5d87a1',
-                name: params.dataSet[2]['value']['x'],
-                data: [
-                    {
-                        y: params.dataSet[2]['value']['y'],
-                        color: '#5d87a1'
-                    },
-                    {
-                        y: params.dataSet[2]['value']['y'],
-                        color: {
-                            linearGradient: { x1: 0, x2: 1, y1: 0, y2: 0 },
-                            stops: [
-                                [0, '#ffffff'],
-                                [0.2, '#ffffff'],
-                                [1, '#aec3d0']
-                            ]
-                        }
-                    },
-                ],
-                pointPadding: -0.15,
-                type: undefined
-            },
-            {
-                color: '#87d1d9',
-                name: params.dataSet[3]['value']['x'],
-                data: [
-                    {
-                        y: params.dataSet[3]['value']['y'],
-                        color: '#87d1d9',
-                        borderRadiusTopLeft: 10
-                    },
-                    {
-                        y: params.dataSet[3]['value']['y'],
-                        color: {
-                            linearGradient: { x1: 0, x2: 1, y1: 0, y2: 0 },
-                            stops: [
-                                [0, '#ffffff'],
-                                [0.2, '#ffffff'],
-                                [1, '#c3e8ec']
-                            ]
-                        }
-                    },
-                ],
-                pointPadding: -0.15,
-                type: undefined
-            }
-        ]
+        series: arrayData
     });
 };
-
 //# sourceMappingURL=../maps/common.js.map
 
 function pad(n, width, z) {
