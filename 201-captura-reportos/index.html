@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>201. Captura de reportos</title>
+    <link href="/assets/css/libs.min.css" rel="stylesheet" />
+    <link href="/assets/css/main.css" rel="stylesheet" />
+    <link href="styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="aside" data-component-type="sidebar-wrapper">
+      <div data-component-type="sidebar">
+        <div data-component-type="sidebar-content">
+          <div id="baraLateral">
+            <div class="block overflow-y-auto">
+              <span class="bg-gray-300 block p-3 font-bold text-lg mb-3">
+                CONSULTA DE BANDAS
+              </span>
+              <div id="divConsulta">
+                <form class="form-group" id="criterios-busqueda">
+                  <div
+                    id="fBanda"
+                    data-component-type="date"
+                    data-component-label="Fecha Banda"
+                    data-component-required="false"
+                    data-component-orientation="horizontal"
+                    data-component-clear="false"
+                    data-component-size="10em"
+                    data-component-tooltip="DD/MM/AAAA"
+                  ></div>
+                  <div
+                    id="cboGrupo"
+                    data-component-type="select"
+                    data-component-label="Grupo"
+                    data-component-size="12em"
+                    data-component-required="false"
+                    data-component-orientation="horizontal"
+                  >
+                    <div id="ET1">Electronic transfer</div>
+                    <div id="CHK1">Check</div>
+                  </div>
+                  <div
+                    id="cboInstrumento"
+                    data-component-type="select"
+                    data-component-label="Instrumento"
+                    data-component-size="12em"
+                    data-component-required="false"
+                    data-component-orientation="horizontal"
+                  >
+                    <div id="ET2">Electronic transfer</div>
+                    <div id="CHK2">Check</div>
+                  </div>
+                  <div class="row mt-6 flex justify-center mb-4">
+                    <div
+                      id="btnsearchbandas"
+                      data-component-type="button-search"
+                      data-component-label="Consultar"
+                    ></div>
+                  </div>
+                </form>
+              </div>
+              <span class="bg-gray-300 block p-3 font-bold text-lg mb-3">
+                CONSULTA DE BANDAS
+              </span>
+              <div id="filtros">
+                <form class="form-group" id="criterios-Filtros">
+                  <div
+                    id="contrato"
+                    data-component-type="input-plus-minus"
+                    data-component-label="Contrato"
+                    data-component-required="false"
+                    data-component-tooltip="Contrato"
+                    data-component-width="14em"
+                  ></div>
+                  <div
+                    id="digito"
+                    data-component-type="input-plus-minus"
+                    data-component-label="Digito"
+                    data-component-required="false"
+                    data-component-tooltip="Digito"
+                    data-component-width="14em"
+                  ></div>
+                  <div class="row mt-6 flex justify-center mb-4">
+                    <div
+                      id="btnsearchbandas2"
+                      data-component-type="button-search"
+                      data-component-label="Consultar"
+                    ></div>
+                  </div>
+                </form>
+              </div>
+              <span class="bg-gray-300 block p-3 font-bold text-lg mb-3">
+                DATOS POR APLICAR
+              </span>
+              <div id="DatosAplicar">
+                <form class="form-group" id="Criterios-Datos">
+                  <div
+                    id="tazaPactada"
+                    data-component-type="text"
+                    data-component-label="Taza Pactada"
+                    data-component-required="true"
+                    data-component-orientation="horizontal"
+                    data-component-width="10em"
+                  ></div>
+                  <div
+                    id="plazo"
+                    data-component-type="text"
+                    data-component-label="Plazo"
+                    data-component-required="true"
+                    data-component-orientation="horizontal"
+                    data-component-width="10em"
+                  ></div>
+                  <div
+                    id="montoInvertir"
+                    data-component-type="text"
+                    data-component-label="Monto a Invertir"
+                    data-component-required="true"
+                    data-component-orientation="horizontal"
+                    data-component-width="10em"
+                  ></div>
+                  <div class="row mt-6 flex justify-center mb-4">
+                    <div
+                      id="btnadd"
+                      data-component-type="button-add"
+                      data-component-label="Agregar"
+                    ></div>
+                    <div
+                      id="btnclean"
+                      data-component-type="button-clean"
+                      data-component-label="Limpiar"
+                    ></div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div data-component-type="sidebar-collapsible-button"></div>
+      </div>
+      <div data-component-type="sidebar-content">
+        <div id="mainDiv">
+          <span class="bg-gray-300 block p-3 font-bold text-lg"
+            >Listado de Órdenes</span
+          >
+          <div id="grupo_grids" data-component-type="tab-group">
+            <div
+              id="tab_uno"
+              data-component-type="tab-item"
+              data-component-label="Movimientos por Contrato"
+            >
+              <div class="px-0 mb-1" id="buscadorTabla">
+                <div
+                  id="buscaBandasInput"
+                  data-component-type="text"
+                  data-component-label="Bandas: "
+                  data-component-disabled="true"
+                  data-component-orientation="horizontal"
+                  data-component-size="8em"
+                ></div>
+              </div>
+              <div class="justify-center mx-32">
+                <div class="field-group flex items-center" id="botones-group">
+                  <div
+                    class="row w-full overflow-auto"
+                    id="div-bandas-reportos-grid"
+                  >
+                    <div class="text-black">
+                      <div id="gridBandas" data-component-type="grid"></div>
+                    </div>
+                  </div>
+                  <div class="row mt-6 mx-16 flex justify-center">
+                    <div
+                      id="btnreset"
+                      data-component-type="button-reset"
+                      data-component-label="Reiniciar"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <div class="px-0 mt-32 mb-1" id="buscadorTabla">
+                <div
+                  id="buscaContratosInput"
+                  data-component-type="text"
+                  data-component-label="Contratos: "
+                  data-component-disabled="true"
+                  data-component-orientation="horizontal"
+                  data-component-size="8em"
+                ></div>
+              </div>
+              <div
+                class="row w-full overflow-auto text-black"
+                id="div-contratos-reportos-grid"
+              >
+                <div id="gridContratos" data-component-type="grid"></div>
+              </div>
+              <div class="row mt-6 flex"></div>
+              <div class="field-group flex items-center" id="botones-group">
+                <div
+                  id="btnsend"
+                  data-component-type="button-send"
+                  data-component-label="Enviar"
+                ></div>
+                <div
+                  id="btnvalidate"
+                  data-component-type="button-validate"
+                  data-component-label="Validar"
+                ></div>
+                <div
+                  id="btnclean"
+                  data-component-type="button-clean"
+                  data-component-label="Limpiar"
+                ></div>
+                <div
+                  id="totales"
+                  data-component-type="text"
+                  data-component-label="$Total: "
+                  data-component-orientation="horizontal"
+                  data-component-size="8em"
+                ></div>
+              </div>
+            </div>
+            <div
+              id="tab_dos"
+              data-component-label="Reportes"
+              data-component-type="tab-item"
+            >
+              <div class="px-0 mb-1" id="buscadorTabla">
+                <div
+                  id="buscaEnviosInput"
+                  data-component-type="text"
+                  data-component-label="Envios: "
+                  data-component-size="8em"
+                  data-component-orientation="horizontal"
+                  data-component-disabled="true"
+                ></div>
+              </div>
+              <div
+                class="row w-full overflow-auto text-black"
+                id="div-envios-reportos-grid"
+              >
+                <div id="gridEnviados" data-component-type="grid"></div>
+              </div>
+              <row class="mt-6 flex justify-center">
+                <div
+                  id="btnresetenviados"
+                  data-component-type="button-reset"
+                  data-component-label="Reiniciar"
+                ></div>
+              </row>
+              <div class="px-0 mt-32 mb-1" id="buscadorTabla">
+                <div
+                  id="buscaErroresInput"
+                  data-component-type="text"
+                  data-component-label="Errores: "
+                  data-component-disabled="true"
+                  data-component-orientation="horizontal"
+                  data-component-size="8em"
+                ></div>
+              </div>
+              <div
+                class="row w-full overflow-auto text-black"
+                id="div-errores-reportos-grid"
+              >
+                <div id="gridErrores" data-component-type="grid"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/assets/scripts/jquery.min.js"></script>
+    <script src="/assets/scripts/libs.min.js"></script>
+    <script src="/assets/scripts/common.js"></script>
+    <script src="/jqgui.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

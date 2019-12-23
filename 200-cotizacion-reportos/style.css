@@ -1,0 +1,53 @@
+#filtros label {
+    width: 80px
+}
+
+#filtros #field_fecha_banda label {
+    width: 72px
+}
+
+#wilsonDiv {
+    display: none
+}
+
+.sidebar {
+    width: 230px
+}
+
+.sidebar.isClosed {
+    width: 1.5em
+}
+
+.sidebar-wrapper {
+    height: 100vh
+}
+
+#div-cotizacion-reportos-grid {
+    border: 1px solid #919eab
+}
+
+#gbox_table_gridCotizacion,
+#gview_table_gridCotizacion,
+#gview_table_gridCotizacion div:nth-child(2),
+#gview_table_gridCotizacion div:nth-child(3),
+#gview_table_gridCotizacion div:nth-child(3) div,
+#gview_table_gridCotizacion div:nth-child(4),
+#gview_table_gridCotizacion div:nth-child(4) div,
+#table_gridCotizacion_toppager {
+    width: 100% !important
+}
+
+input,
+select {
+    border-radius: 6px
+}
+
+html {
+    color: #000
+}
+
+.ui-th-div {
+    color: #000
+}
+
+# sourceMappingURL=../../../maps/accimarket/200-cotizacion-reportos/styles.css.map

@@ -1,0 +1,87 @@
+#DatosAplicar label,
+#divConsulta label {
+  width: 80px;
+}
+button,
+select {
+  border-radius: 6px !important;
+}
+#wilsonDiv {
+  display: none;
+}
+.content.is_sidebar_open {
+  padding-left: 233px !important;
+}
+#div-bandas-reportos-grid,
+#div-contratos-reportos-grid,
+#div-envios-reportos-grid,
+#div-errores-reportos-grid {
+  border: 1px solid #919eab;
+}
+#div-bandas-reportos-grid {
+  width: 700px;
+}
+html {
+  color: #000;
+}
+.ui-th-div {
+  color: #000;
+}
+.sidebar {
+  width: 500px;
+}
+.sidebar.isClosed {
+  width: 1.5em;
+}
+.sidebar-wrapper {
+  height: 100vh;
+}
+.sidebar-content {
+  overflow-y: scroll;
+}
+.currency-prefix {
+  margin-right: 4px;
+}
+#wilsonDiv {
+  display: none;
+}
+#gbox_table_gridBandas,
+#gview_table_gridBandas,
+#gview_table_gridBandas div:nth-child(2),
+#gview_table_gridBandas div:nth-child(3),
+#gview_table_gridBandas div:nth-child(3) div,
+#gview_table_gridBandas div:nth-child(4),
+#gview_table_gridBandas div:nth-child(4) div,
+#table_gridBandas_toppager {
+  width: 100% !important;
+}
+#gbox_table_gridContratos,
+#gbox_table_gridEnviados,
+#gbox_table_gridErrores,
+#gview_table_gridContratos,
+#gview_table_gridEnviados,
+#gview_table_gridEnviados div:nth-child(2),
+#gview_table_gridErrores,
+#gview_table_gridErrores div:nth-child(2),
+#table_gridContratos_toppager,
+#table_gridEnviados_toppager,
+#table_gridErrores_toppager {
+  width: 100% !important;
+}
+#pg_table_gridBandas_toppager,
+#pg_table_gridContratos_toppager,
+#pg_table_gridEnviados_toppager,
+#pg_table_gridErrores_toppager {
+  text-align: -webkit-center;
+}
+#tab_dos,
+#tab_uno {
+  padding: 0;
+}
+#buscadorTabla {
+  background: #e2e8f0;
+}
+#buscadorTabla input {
+  height: 18px;
+}
+/*# sourceMappingURL=../../../maps/accimarket/201-captura-reportos/styles.css.map */

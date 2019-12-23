@@ -24,6 +24,8 @@ $("#buttonsearch3").button();
 $("#grid1").grid();
 $("#gridrecordscount1").gridrecordscount();
 $("#tab1").tabgroup();
+$("#sidebar1").sidebarwrapper();
+
 $("[data-component-type='text']").fieldInput();
 
 $("#fecha1").fielDate();
@@ -41,3 +43,17 @@ $("#ejemploaccordion").customaccordion();
 $("#splitter").fieldSplitter();
 
 $("#payment").select();
+
+$("#graficasaccordion").customaccordion();
+
+// HighChart
+$("#container").fieldChart();
+$("#containerBorder").fieldChart();
+$("#containerBar").fieldChart();
+
+// ChartJs
+$("#stackChart").canvas();
+$("#barChart").canvas();
+$("#barChartNBar").canvas();
+$("#lineChart").canvas();
+$("#multiChart").canvas();
