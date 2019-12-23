@@ -21,16 +21,22 @@
  * @author Dave Methvin (dave.methvin@gmail.com)
  */
 
-(function($) {
+(function ($) {
   var splitterCounter = 0;
   var splitterPosition = "";
   var splitterExpand = 0;// 1 --> arriba o derecha, 0 --> abajo o izquierda.
 
-  $.fn.splitter = function(args) {
+  $.fn.splitter = function (args) {
+    console.log("Iniciando splitter.js");
     args = args || {};
-    return this.each(function() {
-      //if ( $(this).is(".splitter") ) return;	// already a splitter
-      if ($(this).attr("data-splitter-initialized")) return;
+    return this.each(function () {
+      //if ($(this).is(".splitter")) return;	// already a splitter
+      /**
+       * 
+       * Comentando esta linea funciona en la version html normal 
+         if ($(this).attr("data-splitter-initialized")) return;
+      *
+      */
       var zombie; // left-behind splitbar for outline resizes
       function resize_auto_fired() {
         // Returns true when the browser natively fires the resize
@@ -41,9 +47,9 @@
       }
 
       // Define position de los paneles
-      if( args.type == 'h' ){
+      if (args.type == 'h') {
         splitterPosition = 'relative';
-      }else{
+      } else {
         splitterPosition = 'absolute';
       }
 
@@ -72,31 +78,21 @@
       function dblclickDoSplitMouse() {
         var pos = 0;//A._posSplit + evt[opts.eventPos],
 
-        if( splitterExpand == 0 ){
-          console.log("pos: " + pos);
+        if (splitterExpand == 0) {
           pos = 9999;
           splitterExpand = 1;
-        }else{
-          console.log("pos: " + pos);
+        } else {
           pos = 0;
           splitterExpand = 0;
         }
 
         range = Math.max(0, Math.min(pos, splitter._DA - bar._DA)),
-        limit = Math.max(
-          A._min,
-          splitter._DA - B._max,
-          Math.min(pos, A._max, splitter._DA - bar._DA - B._min)
-        );
-       
-       console.log("opts.origin: " + opts.origin);  
-       console.log("pos: " + pos);  
-       console.log("range: " + range);
-       console.log("limit: " + limit);        
-       console.log("dblclickDoSplitMouse --> B._max: " + B._max);
-       console.log("dblclickDoSplitMouse --> A._max: " + A._max);
+          limit = Math.max(
+            A._min,
+            splitter._DA - B._max,
+            Math.min(pos, A._max, splitter._DA - bar._DA - B._min)
+          );
 
-        /**/
         if (opts.outline) {
           // Let docking splitbar be dragged to the dock position, even if min width applies
           if (
@@ -111,7 +107,6 @@
           bar._DA = bar[0][opts.pxSplit];
         } else resplit(pos);
         setBarState(pos == limit ? opts.barActiveClass : opts.barLimitClass);
-        /**/
       }
 
       function doSplitMouse(evt) {
@@ -123,10 +118,6 @@
             Math.min(pos, A._max, splitter._DA - bar._DA - B._min)
           );
 
-        console.log("opts.origin: " + opts.origin);  
-        console.log("pos: " + pos);  
-        console.log("range: " + range);
-        console.log("limit: " + limit);
         if (opts.outline) {
           // Let docking splitbar be dragged to the dock position, even if min width applies
           if (
@@ -181,32 +172,37 @@
             Math.min(pos, A._max, splitter._DA - bar._DA - B._min)
           );
         }
+        /*
+                if( opts.fixed isUndefined ) {
+                  opts.fixed = splitter._DF;
+                }
+        */
+
         // Resize/position the two panes
         A.css(opts.origin, 0)
           .css(opts.split, pos)
           .css(opts.fixed, splitter._DF);
 
-        if( args.type == 'h' ){
+        if (args.type == 'h') {
           bar.css(opts.origin, 0).css(opts.fixed, splitter._DF);
 
           B.css(opts.origin, 0)
-          .css(opts.split, splitter._DA - bar._DA - pos)
-          .css(opts.fixed, splitter._DF);          
-        }else{
+            .css(opts.split, splitter._DA - bar._DA - pos)
+            .css(opts.fixed, splitter._DF);
+        } else {
           bar.css(opts.origin, pos).css(opts.fixed, splitter._DF);
 
           B.css(opts.origin, pos + bar._DA)
-          .css(opts.split, splitter._DA - bar._DA - pos)
-          .css(opts.fixed, splitter._DF);          
+            .css(opts.split, splitter._DA - bar._DA - pos)
+            .css(opts.fixed, splitter._DF/* + 100*/);
         }
-        //JPB bar.css(opts.origin, pos).css(opts.fixed, splitter._DF);
-        //JPB B.css(opts.origin, pos + bar._DA)
 
         // IE fires resize for us; all others pay cash
         if (!resize_auto_fired()) panes.trigger("resize");
 
         console.log("generando resize...", pos, splitter._DF, bar._DA, splitter._DA, opts.fixed);
       }
+
       function dimSum(jq, dims) {
         // Opera returns -1 for missing min/max width, turn into 0
         var sum = 0;
@@ -234,7 +230,7 @@
           return; // nothing changed
         splitter._oldW = splitter.width();
         splitter._oldH = splitter.height();
-        
+
         console.log("splitter._oldW: " + splitter._oldW + "\t" + "splitter._oldH: " + splitter._oldH);
 
         // Re-divvy the adjustable dimension; maintain size of the preferred pane
@@ -242,8 +238,8 @@
           !isNaN(size)
             ? size
             : !(opts.sizeRight || opts.sizeBottom)
-            ? A[0][opts.pxSplit]
-            : splitter._DA - B[0][opts.pxSplit] - bar._DA
+              ? A[0][opts.pxSplit]
+              : splitter._DA - B[0][opts.pxSplit] - bar._DA
         );
         setBarState(opts.barNormalClass);
       }
@@ -329,7 +325,7 @@
 
       // Create jQuery object closures for splitter and both panes
       var splitter = $(this)
-        .css({ position: "relative"})
+        .css({ position: "relative" })
         //JPB.css({ position: "relative", overflow: "auto" })
         .addClass(opts.splitterClass)
         .attr("data-splitter-initialized", true);
@@ -354,23 +350,23 @@
         })
         .bind(
           ($.browser && "opera" in $.browser ? "click" : "focus") +
-            opts.eventNamespace,
-          function() {
+          opts.eventNamespace,
+          function () {
             this.focus();
             bar.addClass(opts.barActiveClass);
           }
         )
-        .bind("keydown" + opts.eventNamespace, function(e) {
+        .bind("keydown" + opts.eventNamespace, function (e) {
           var key = e.which || e.keyCode;
           var dir =
             key == opts["key" + opts.side1]
               ? 1
               : key == opts["key" + opts.side2]
-              ? -1
-              : 0;
+                ? -1
+                : 0;
           if (dir) resplit(A[0][opts.pxSplit] + dir * opts.pxPerKey, false);
         })
-        .bind("blur" + opts.eventNamespace, function() {
+        .bind("blur" + opts.eventNamespace, function () {
           bar.removeClass(opts.barActiveClass);
         });
 
@@ -390,20 +386,20 @@
           "-moz-user-select": "none",
           "z-index": "100"
         })
-        .dblclick("dblclick", function(){
+        .dblclick("dblclick", function () {
           console.log("En el evento doble click del spliter bar...");
           console.log("opts.side1: " + opts.side1);
           console.log("opts.side2: " + opts.side2);
           console.log("opts.split: " + opts.split);
           console.log("A._init: " + A._init);
-          
+
           dblclickDoSplitMouse();
         })
         .bind("mousedown" + opts.eventNamespace, startSplitMouse)
-        .bind("mouseover" + opts.eventNamespace, function() {
+        .bind("mouseover" + opts.eventNamespace, function () {
           $(this).addClass(opts.barHoverClass);
         })
-        .bind("mouseout" + opts.eventNamespace, function() {
+        .bind("mouseout" + opts.eventNamespace, function () {
           $(this).removeClass(opts.barHoverClass);
         });
       // Use our cursor unless the style specifies a non-default cursor
@@ -426,7 +422,7 @@
       );
       A._pane = opts.side1;
       B._pane = opts.side2;
-      $.each([A, B], function() {
+      $.each([A, B], function () {
         this._splitter_style = this.style;
         this._min =
           opts["min" + this._pane] || dimSum(this, "min-" + opts.split);
@@ -448,7 +444,7 @@
           alert("jQuery.splitter(): jQuery cookie plugin required");
         if ($.cookie(opts.cookie) != null)
           initPos = parseInt($.cookie(opts.cookie), 10);
-        $(window).bind("unload" + opts.eventNamespace, function() {
+        $(window).bind("unload" + opts.eventNamespace, function () {
           var state = String(bar.css(opts.origin)); // current location of splitbar
           $.cookie(opts.cookie, state, {
             expires: opts.cookieExpires || 365,
@@ -473,11 +469,11 @@
         );
         splitter._hmin = Math.max(dimSum(splitter, "minHeight"), 20);
         $(window)
-          .bind("resize" + opts.eventNamespace, function() {
+          .bind("resize" + opts.eventNamespace, function () {
             var top = splitter.offset().top;
             var eh = $(opts.resizeTo).height();
 
-            console.log("JPB --> top: " + top + "\t splitter-top: " + (eh - top - splitter._hadjust)); 
+            console.log("JPB --> top: " + top + "\t splitter-top: " + (eh - top - splitter._hadjust));
 
             splitter.css(
               "height",
@@ -487,7 +483,7 @@
           })
           .triggerHandler("resize" + opts.eventNamespace);
       } else if (opts.resizeToWidth && !resize_auto_fired()) {
-        $(window).bind("resize" + opts.eventNamespace, function() {
+        $(window).bind("resize" + opts.eventNamespace, function () {
           // splitter.triggerHandler("resize");
           resize();
         });
@@ -496,11 +492,11 @@
       // Docking support
       if (opts.dock) {
         splitter
-          .bind("toggleDock" + opts.eventNamespace, function() {
+          .bind("toggleDock" + opts.eventNamespace, function () {
             var pw = opts.dockPane[0][opts.pxSplit];
             splitter.triggerHandler(pw ? "dock" : "undock");
           })
-          .bind("dock" + opts.eventNamespace, function() {
+          .bind("dock" + opts.eventNamespace, function () {
             var pw = A[0][opts.pxSplit];
             if (!pw) return;
             bar._pos = pw;
@@ -509,14 +505,14 @@
               opts.dockPane == A
                 ? 0
                 : splitter[0][opts.pxSplit] -
-                  splitter._PBA -
-                  bar[0][opts.pxSplit];
-            bar.animate(x, opts.dockSpeed || 1, opts.dockEasing, function() {
+                splitter._PBA -
+                bar[0][opts.pxSplit];
+            bar.animate(x, opts.dockSpeed || 1, opts.dockEasing, function () {
               bar.addClass(opts.barDockedClass);
               resplit(x[opts.origin]);
             });
           })
-          .bind("undock" + opts.eventNamespace, function() {
+          .bind("undock" + opts.eventNamespace, function () {
             var pw = opts.dockPane[0][opts.pxSplit];
             if (pw) return;
             var x = {};
@@ -527,7 +523,7 @@
                 x,
                 opts.undockSpeed || opts.dockSpeed || 1,
                 opts.undockEasing || opts.dockEasing,
-                function() {
+                function () {
                   resplit(bar._pos);
                   bar._pos = null;
                 }
@@ -536,23 +532,23 @@
         if (opts.dockKey)
           $(
             '<a title="' +
-              opts.splitbarClass +
-              ' toggle dock" href="javascript:void(0)"></a>'
+            opts.splitbarClass +
+            ' toggle dock" href="javascript:void(0)"></a>'
           )
             .attr({ accessKey: opts.dockKey, tabIndex: -1 })
             .appendTo(bar)
-            .bind($.browser.opera ? "click" : "focus", function() {
+            .bind($.browser.opera ? "click" : "focus", function () {
               splitter.triggerHandler("toggleDock");
               this.blur();
             });
-        bar.bind("dblclick", function() {
+        bar.bind("dblclick", function () {
           splitter.triggerHandler("toggleDock");
         });
       }
 
       // Resize event handler; triggered immediately to set initial position
       splitter
-        .bind("destroy" + opts.eventNamespace, function() {
+        .bind("destroy" + opts.eventNamespace, function () {
           $([window, document]).unbind(opts.eventNamespace);
           bar.unbind().remove();
           panes.removeClass(opts.paneClass);
@@ -560,15 +556,16 @@
             .removeClass(opts.splitterClass)
             .add(panes)
             .unbind(opts.eventNamespace)
-            .attr("style", function(el) {
+            .attr("style", function (el) {
               return this._splitter_style || ""; //TODO: save style
             });
           splitter = bar = focuser = panes = A = B = opts = args = null;
         })
-        .bind("resize" + opts.eventNamespace, function(e, size) {
+        .bind("resize" + opts.eventNamespace, function (e, size) {
           resize(size);
         })
         .trigger("resize", [initPos]);
     });
+
   };
 })(jQuery);
