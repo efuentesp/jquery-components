@@ -16,9 +16,9 @@
 
     <form id="formcontrato">
       <div
-        id="contrato"
+        id="contrato1"
         data-component-type="input-plus-minus"
-        data-component-label="Contrato"
+        data-component-label="Contrato 1"
         data-component-required="true"
         data-component-orientation="horizontal"
       ></div>
@@ -27,12 +27,20 @@
       <div
         id="contrato2"
         data-component-type="input-plus-minus"
-        data-component-label="Contrato"
+        data-component-label="Contrato 2"
         data-component-required="true"
         data-component-orientation="horizontal"
         data-component-maxsize="4"
       ></div>
     </form>
+    <div
+      id="contrato2a"
+      data-component-type="input-plus-minus"
+      data-component-label="Contrato 2A"
+      data-component-required="true"
+      data-component-orientation="horizontal"
+      data-component-maxsize="2"
+    ></div>
     <div
       id="contrato3"
       data-component-type="select-plus-minus"
@@ -134,6 +142,42 @@
       <div id="ET2" data-component-selected="true">Electronic transfer</div>
       <div id="CHK2">Check</div>
     </div>
+
+    <!--Test: Pie Chart-->
+    <!-- <div
+      id="containerTest"
+      data-component-type="piechart"
+      data-component-title="Pie Chart Test"
+      data-component-label="Dato"
+      data-component-format="{series.name}: <b>{point.percentage:.1f}</b>"
+      data-component-plot-format="<b>{point.name}</b>: {point.percentage:.1f}"
+      style="min-width: 200px;max-width: 800px;height: 400px;  margin: 0 auto;"
+    ></div>
+
+    <div
+      id="containerPieBorderTest"
+      data-component-type="pieborderchart"
+      data-component-title="Pie Chart Test"
+      data-component-label="Dato"
+      data-component-format="{series.name}: <b>{point.percentage:.1f}</b>"
+      data-component-plot-format="<b>{point.name}</b>: {point.percentage:.1f}"
+      style="min-width: 200px;max-width: 800px;height: 400px;  margin: 0 auto;"
+    ></div>
+
+    <div
+      id="containerBarTest"
+      data-component-type="barhorizontalchart"
+      data-component-title="Horizontal Bar Test"
+      data-component-rounded-size-left-one=""
+      data-component-rounded-size-right-one=""
+      data-component-rounded-size-left-two="30px"
+      data-component-rounded-size-right-two=""
+      data-component-rounded-size-left-three=""
+      data-component-rounded-size-right-three="30px"
+      data-component-rounded-size-left-four=""
+      data-component-rounded-size-right-four=""
+      style="min-width: 200px;max-width: 800px;height: 400px;  margin: 0 auto;"
+    ></div> -->
 
     <script src="../assets/scripts/jquery.min.js"></script>
     <script src="../assets/scripts/libs.min.js"></script>

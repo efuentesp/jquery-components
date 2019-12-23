@@ -1,5 +1,6 @@
-$("#contrato").fieldInputPlusMinus();
+$("#contrato1").fieldInputPlusMinus();
 $("#contrato2").fieldInputPlusMinus();
+$("#contrato2a").fieldInputPlusMinus();
 
 $("#contrato3").fieldSelectPlusMinus();
 
@@ -16,3 +17,7 @@ $("#formcontrato").form();
 $("#formcontrato2").form();
 $("#testaccordion").customaccordion();
 $("#payment2").select();
+
+$("#containerTest").fieldChart();
+$("#containerPieBorderTest").fieldChart();
+$("#containerBarTest").fieldChart();
