@@ -204,22 +204,44 @@ var existText = function (text_to_add, list) {
     });
     return exist;
 };
-var addedText = function (text_to_add, value_to_add, list) {
-    var added = false;
-    var count = 1;
-    $.each($(list + " li a"), function () {
-        if ($(list + " li:nth-child(" + count + ") a").text() === "") {
-            $(list + " li:nth-child(" + count + ") a").attr("id", value_to_add);
-            $(list + " li:nth-child(" + count + ") a").append(text_to_add);
-            added = true;
-            return false;
+
+// Add text in empty field
+var addedText = function (id, text_to_add, value_to_add, list, maxsize) {
+    let added = false;
+    let count = 1;
+    let sizeList = getList(id).length;
+    
+    if (maxsize != null && maxsize != undefined) {
+        if (sizeList < maxsize){
+            $.each($(list + " li a"), function () {
+                if ($(list + " li:nth-child(" + count + ") a").text() === "") {
+                    $(list + " li:nth-child(" + count + ") a").attr("id", value_to_add);
+                    $(list + " li:nth-child(" + count + ") a").append(text_to_add);
+                    added = true;
+                    return false;
+                }
+                count++;
+            });
+        }else{
+            added= true;
         }
-        count++;
-    });
+    }else if (maxsize == undefined || maxsize == null){
+        $.each($(list + " li a"), function () {
+            if ($(list + " li:nth-child(" + count + ") a").text() === "") {
+                $(list + " li:nth-child(" + count + ") a").attr("id", value_to_add);
+                $(list + " li:nth-child(" + count + ") a").append(text_to_add);
+                added = true;
+                return false;
+            }
+            count++;
+        });
+    }else{
+        added= true;
+    }
     return added;
 };
 var addNode = function (text_to_add, value_to_add, list, maxsize) {
-    if (maxsize != null) {
+    if (maxsize != null && maxsize != undefined) {
         if ($(list + " li").length < maxsize) {
             $(list).append("<li><a id=" +
                 value_to_add +
@@ -279,6 +301,8 @@ let fieldPlusMinus = function (id, params) {
     let node = "tag_list_" + id;
     let definedNodes = true;
     let numNodes = 4;
+    let maxsize = params.maxsize;
+
     if (params.nodes == undefined) {
         definedNodes = true;
     }
@@ -303,8 +327,8 @@ let fieldPlusMinus = function (id, params) {
         var text_to_add = $(idInput).val();
         var value_to_add = $(idInput).val();
         if (!existText(text_to_add, list)) {
-            if (!addedText(text_to_add, value_to_add, list)) {
-                addNode(text_to_add, value_to_add, list, params.maxsize);
+            if (!addedText(id, text_to_add, value_to_add, list, maxsize)) {
+                addNode(text_to_add, value_to_add, list, maxsize);
             }
         }
         fieldPlusMinusRepaintList(node);
