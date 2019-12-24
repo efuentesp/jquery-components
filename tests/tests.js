@@ -1,4 +1,4 @@
-function simulateKeydown(selector) {
+function simulateKeyDown(selector) {
   let e = jQuery.Event("keydown");
   e.which = 13;
   e.keyCode = 13;
@@ -6,7 +6,7 @@ function simulateKeydown(selector) {
 }
 
 function cleanData(nelements, prueba, id) {
-  console.log("Inicializando prueba... " + prueba);
+  console.log("Inicializando ..." + prueba + " - Input Plus Minus");
   const txtInput = $("#" + id + "");
   const btnMinus = $("#field_" + id + " #btn_minus_" + id + "");
 
@@ -17,6 +17,19 @@ function cleanData(nelements, prueba, id) {
     );
     btnMinus.click();
     count--;
+  });
+}
+
+function cleanDataSelect(nelements, prueba, id) {
+  console.log("Inicializando ..." + prueba + " - Select Plus Minus");
+  // arrange
+  const selectInput = $("#" + id + "").select2();
+  const btnMinus = $("#field_" + id + " #btn_minus_" + id + "");
+
+  // act
+  [...Array(nelements).keys()].forEach(element => {
+    selectInput.val("00" + (element + 1)).trigger("change");
+    btnMinus.click();
   });
 }
 
@@ -270,7 +283,6 @@ QUnit.test("11 - InputPlusMinus - Solo permitir agregar 2 elementos", function(
   assert
 ) {
   // arrange
-  console.log("Prueba 11");
   const id = "contrato2a";
   const txtInput = $("#" + id + "");
   const btnPlus = $("#field_" + id + " #btn_plus_" + id + "");
@@ -284,21 +296,19 @@ QUnit.test("11 - InputPlusMinus - Solo permitir agregar 2 elementos", function(
 
   // assert
   let contratosSeleccionados = getList(id);
-  console.log("Tamaño: " + contratosSeleccionados.length);
   assert.equal(lstTags.length, 4);
   assert.equal(contratosSeleccionados.length, 2);
   assert.equal(txtInput.val(), "");
   cleanData(4, 11, id);
 });
 
-// Select--------------------------------------------------------------------------------
-QUnit.skip("1 - SelectPlusMinus - Inicializado correctamente", function(
+QUnit.test("1 - SelectPlusMinus - Inicializado correctamente", function(
   assert
 ) {
   // arrange
   const id = "contrato3";
-  const selectInput = $("#contrato3");
-  const lstTags = $("#field_contrato3 #tag_list_contrato3 li a");
+  const selectInput = $("#contrato3").select2();
+  const lstTags = $("#field_" + id + " #tag_list_" + id + " li a");
 
   // act
 
@@ -307,279 +317,268 @@ QUnit.skip("1 - SelectPlusMinus - Inicializado correctamente", function(
   assert.equal(selectInput.val(), "");
 });
 
-QUnit.skip("2 - SelectPlusMinus - agregar 3 elementos con botón (+)", function(
+QUnit.test("2 - SelectPlusMinus - agregar 3 elementos con botón (+)", function(
   assert
 ) {
   // arrange
-  const selectInput = $("#contrato3");
-  const btnPlus = $("#field_contrato3 #btn_plus_contrato3");
-  const lstTags = $("#field_contrato3 #tag_list_contrato3 li a");
-
-  console.log("Select: " + selectInput.val());
+  const id = "contrato3";
+  const selectInput = $("#" + id + "").select2();
+  const btnPlus = $("#field_" + id + " #btn_plus_" + id + "");
+  const lstTags = $("#field_" + id + " #tag_list_" + id + " li a");
 
   // act
   [...Array(3).keys()].forEach(element => {
-    selectInput.val("Elemento " + (element + 1));
+    selectInput.val("00" + (element + 1)).trigger("change");
     btnPlus.click();
   });
 
   // assert
-  let contratosSeleccionados = getList("contrato3");
+  let contratosSeleccionados = getList(id);
   assert.equal(lstTags.length, 4);
   assert.equal(contratosSeleccionados.length, 3);
   assert.equal(selectInput.val(), "");
 });
 
-QUnit.skip(
-  "3 - SelectPlusMinus - limpiar todos los elementos del componente +",
+QUnit.test(
+  "3 - SelectPlusMinus - limpiar todos los elementos del componente",
   function(assert) {
     // arrange
-    const txtInput = $("#contrato");
-    const btnPlus = $("#field_contrato #btn_plus_contrato");
-    const lstTags = $("#field_contrato #tag_list_contrato li a");
+    const id = "contrato3";
+    const selectInput = $("#" + id + "").select2();
+    const btnPlus = $("#field_" + id + " #btn_plus_" + id + "");
+    const lstTags = $("#field_" + id + " #tag_list_" + id + " li a");
 
     // act
     [...Array(3).keys()].forEach(element => {
-      txtInput.val("Elemento " + (element + 1));
+      selectInput.val("00" + (element + 1)).trigger("change");
       btnPlus.click();
     });
 
-    cleanData(3, 3);
+    cleanDataSelect(3, 3, id);
 
     // assert
-    let contratosSeleccionados = getList("contrato");
+    let contratosSeleccionados = getList(id);
     assert.equal(lstTags.length, 4);
     assert.equal(contratosSeleccionados.length, 0);
-    assert.equal(txtInput.val(), "");
+    assert.equal(selectInput.val(), "");
   }
 );
 
-QUnit.skip("4 - SelectPlusMinus - agregar 30 elementos con botón +", function(
+QUnit.test("4 - SelectPlusMinus - agregar 9 elementos con botón +", function(
   assert
 ) {
   // arrange
-  const txtInput = $("#contrato");
-  const btnPlus = $("#field_contrato #btn_plus_contrato");
-  const lstTags = $("#field_contrato #tag_list_contrato li a");
+  const id = "contrato3";
+  const selectInput = $("#" + id + "").select2();
+  const btnPlus = $("#field_" + id + " #btn_plus_" + id + "");
+  const lstTags = $("#field_" + id + " #tag_list_" + id + " li a");
 
   // act
-  [...Array(30).keys()].forEach(element => {
-    txtInput.val("Elemento " + (element + 1));
+  [...Array(9).keys()].forEach(element => {
+    selectInput.val("00" + (element + 1)).trigger("change");
     btnPlus.click();
   });
 
   // assert
-  let contratosSeleccionados = getList("contrato");
+  let contratosSeleccionados = getList(id);
   assert.equal(lstTags.length, 4);
-  assert.equal(contratosSeleccionados.length, 30);
-  assert.equal(txtInput.val(), "");
-  cleanData(30, 4);
+  assert.equal(contratosSeleccionados.length, 9);
+  assert.equal(selectInput.val(), "");
+  cleanDataSelect(9, 4, id);
 });
 
-QUnit.skip("5 - SelectPlusMinus - agregar 3 elementos con Enter", function(
+QUnit.test("5 - SelectPlusMinus - agregar 3 elementos con Enter", function(
   assert
 ) {
   // arrange
-  const txtInput = $("#contrato");
-  const lstTags = $("#field_contrato #tag_list_contrato li a");
+  const id = "contrato3";
+  const selectInput = $("#" + id + "").select2();
+  const btnPlus = $("#field_" + id + " #btn_plus_" + id + "");
+  const lstTags = $("#field_" + id + " #tag_list_" + id + " li a");
 
   // act
   [...Array(3).keys()].forEach(element => {
-    txtInput.val("Elemento " + (element + 1));
-    simulateKeydown(txtInput);
+    selectInput.val("00" + (element + 1)).trigger("change");
+    // simulateKeydown(txtInput);
+    btnPlus.click();
   });
 
   // assert
-  let contratosSeleccionados = getList("contrato");
+  let contratosSeleccionados = getList(id);
   assert.equal(lstTags.length, 4);
   assert.equal(contratosSeleccionados.length, 3);
-  assert.equal(txtInput.val(), "");
-  cleanData(3, 5);
+  assert.equal(selectInput.val(), "");
+  cleanDataSelect(3, 5, id);
 });
 
-QUnit.skip("6 - SelectPlusMinus - agregar 30 elementos con Enter", function(
+QUnit.test("6 - SelectPlusMinus - agregar 9 elementos con Enter", function(
   assert
 ) {
   // arrange
-  const txtInput = $("#contrato");
-  const lstTags = $("#field_contrato #tag_list_contrato li a");
+  const id = "contrato3";
+  const selectInput = $("#" + id + "").select2();
+  const btnPlus = $("#field_" + id + " #btn_plus_" + id + "");
+  const lstTags = $("#field_" + id + " #tag_list_" + id + " li a");
 
   // act
-  [...Array(30).keys()].forEach(element => {
-    txtInput.val("Elemento " + (element + 1));
-    simulateKeydown(txtInput);
+  [...Array(9).keys()].forEach(element => {
+    selectInput.val("00" + (element + 1)).trigger("change");
+    // simulateKeydown(txtInput);
+    btnPlus.click();
   });
 
   // assert
-  let contratosSeleccionados = getList("contrato");
+  let contratosSeleccionados = getList(id);
   assert.equal(lstTags.length, 4);
-  assert.equal(contratosSeleccionados.length, 30);
-  assert.equal(txtInput.val(), "");
-  cleanData(30, 6);
+  assert.equal(contratosSeleccionados.length, 9);
+  assert.equal(selectInput.val(), "");
+  cleanDataSelect(9, 6, id);
 });
 
-QUnit.skip(
+QUnit.test(
   "7 - SelectPlusMinus - seleccionar elemento 1 de la lista de 5 elementos",
   function(assert) {
     // arrange
-    const txtInput = $("#contrato");
-    const lstTags = $("#field_contrato #tag_list_contrato li a");
+    const id = "contrato3";
+    const selectInput = $("#" + id + "").select2();
+    const btnPlus = $("#field_" + id + " #btn_plus_" + id + "");
+    const lstTags = $("#field_" + id + " #tag_list_" + id + " li a");
 
     // act
-    [...Array(5).keys()].forEach(element => {
-      txtInput.val("Elemento " + (element + 1));
-      simulateKeydown(txtInput);
+    [...Array(1).keys()].forEach(element => {
+      selectInput.val("00" + (element + 1)).trigger("change");
     });
 
-    txtInput.val($("ul#tag_list_contrato li:nth-child(1)").text());
-
     // assert
-    let contratosSeleccionados = getList("contrato");
+    let contratosSeleccionados = getList(id);
     assert.equal(lstTags.length, 4);
-    assert.equal(contratosSeleccionados.length, 5);
-    assert.equal(txtInput.val(), "Elemento 1");
-    cleanData(5, 7);
+    assert.equal(contratosSeleccionados.length, 0);
+    assert.equal(selectInput.val(), "001");
+    cleanData(0, 7, id);
   }
 );
 
-QUnit.skip(
+QUnit.test(
   "8 - SelectPlusMinus - Eliminar 5 elementos con botón - y ya no queden elementos en la lista",
   function(assert) {
     // arrange
-    const txtInput = $("#contrato");
-    const btnPlus = $("#field_contrato #btn_plus_contrato");
-    const btnMinus = $("#field_contrato #btn_minus_contrato");
-    const lstTags = $("#field_contrato #tag_list_contrato li a");
+    const id = "contrato3";
+    const selectInput = $("#" + id + "").select2();
+    const btnPlus = $("#field_" + id + " #btn_plus_" + id + "");
+    const btnMinus = $("#field_" + id + " #btn_minus_" + id + "");
+    const lstTags = $("#field_" + id + " #tag_list_" + id + " li a");
 
     // act
     [...Array(5).keys()].forEach(element => {
-      txtInput.val("Elemento " + (element + 1));
+      selectInput.val("00" + (element + 1)).trigger("change");
       btnPlus.click();
     });
 
-    let count = 5;
-    $.each($("ul#tag_list_contrato li a"), function() {
-      txtInput.val(
-        $("ul#tag_list_contrato li:nth-child(" + count + ")").text()
-      );
+    // act
+    [...Array(5).keys()].forEach(element => {
+      selectInput.val("00" + (element + 1)).trigger("change");
       btnMinus.click();
-      count--;
     });
 
     // assert
     let contratosSeleccionados = getList("contrato");
     assert.equal(lstTags.length, 4);
     assert.equal(contratosSeleccionados.length, 0);
-    assert.equal(txtInput.val(), "");
-    cleanData(5, 8);
+    assert.equal(selectInput.val(), "");
+    cleanData(5, 8, id);
   }
 );
 
-QUnit.skip(
+QUnit.test(
   "9 - SelectPlusMinus - Eliminar 7 elementos con botón - y que queden elementos en la lista",
   function(assert) {
     // arrange
-    const txtInput = $("#contrato");
-    const btnPlus = $("#field_contrato #btn_plus_contrato");
-    const lstTags = $("#field_contrato #tag_list_contrato li a");
-    const btnMinus = $("#field_contrato #btn_minus_contrato");
+    const id = "contrato3";
+    const selectInput = $("#" + id + "").select2();
+    const btnPlus = $("#field_" + id + " #btn_plus_" + id + "");
+    const btnMinus = $("#field_" + id + " #btn_minus_" + id + "");
+    const lstTags = $("#field_" + id + " #tag_list_" + id + " li a");
 
     // act
-    [...Array(10).keys()].forEach(element => {
-      txtInput.val("Elemento " + (element + 1));
+    [...Array(9).keys()].forEach(element => {
+      selectInput.val("00" + (element + 1)).trigger("change");
       btnPlus.click();
     });
 
-    let count = 7;
-    $.each($("ul#tag_list_contrato li a"), function() {
-      txtInput.val(
-        $("ul#tag_list_contrato li:nth-child(" + count + ")").text()
-      );
-
+    // act
+    [...Array(7).keys()].forEach(element => {
+      selectInput.val("00" + (element + 1)).trigger("change");
       btnMinus.click();
-      count--;
     });
 
     // assert
-    let contratosSeleccionados = getList("contrato");
+    let contratosSeleccionados = getList(id);
     assert.equal(lstTags.length, 4);
-    assert.equal(contratosSeleccionados.length, 3);
-    assert.equal(txtInput.val(), "");
-    cleanData(10, 9);
+    assert.equal(contratosSeleccionados.length, 2);
+    assert.equal(selectInput.val(), "");
+    cleanData(10, 9, id);
   }
 );
 
-QUnit.skip("10 - SelectPlusMinus - Solo permitir agregar 4 elementos", function(
+QUnit.test("10 - SelectPlusMinus - Solo permitir agregar 3 elementos", function(
   assert
 ) {
   // arrange
-  const txtInput = $("#contrato2");
-  const btnPlus = $("#field_contrato2 #btn_plus_contrato2");
-  const lstTags = $("#field_contrato2 #tag_list_contrato2 li a");
+  const id = "contrato3a";
+  const selectInput = $("#" + id + "").select2();
+  const btnPlus = $("#field_" + id + " #btn_plus_" + id + "");
+  const lstTags = $("#field_" + id + " #tag_list_" + id + " li a");
 
   // act
   [...Array(5).keys()].forEach(element => {
-    txtInput.val("Elemento " + (element + 1));
+    selectInput.val("00" + (element + 1)).trigger("change");
     btnPlus.click();
   });
 
   // assert
-  let contratosSeleccionados = getList("contrato2");
+  let contratosSeleccionados = getList(id);
   assert.equal(lstTags.length, 4);
-  assert.equal(contratosSeleccionados.length, 4);
-  assert.equal(txtInput.val(), "");
-  cleanData(4, 10);
+  assert.equal(contratosSeleccionados.length, 3);
+  assert.equal(selectInput.val(), "");
+  cleanData(10, 9, id);
 });
 
 QUnit.test(
-  "1 - SelectPlusMinusAutocomplete - Inicializado correctamente",
+  "1 - SelectPlusMinusAutocomplete - Inicializado correctamente sin nodos",
   function(assert) {
     // arrange
-    const txtInput = $("#contrato5");
-    const lstTags = $("#field_contrato5 #tag_list_contrato5 li a");
-
-    // act
-
-    // assert
-    assert.equal(lstTags.length, 4);
-    assert.equal(txtInput.val(), "");
-  }
-);
-
-QUnit.test(
-  "1a - SelectPlusMinusAutocomplete - Inicializado correctamente sin nodos",
-  function(assert) {
-    // arrange
-    const txtInput = $("#contrato4");
-    const lstTags = $("#field_contrato4 #tag_list_contrato4 li a");
+    const id = "contrato4";
+    const selectInput = $("#" + id + "").select2();
+    const lstTags = $("#field_" + id + " #tag_list_" + id + " li a");
 
     // act
 
     // assert
     assert.equal(lstTags.length, 0);
-    assert.equal(txtInput.val(), "");
+    assert.equal(selectInput.val(), "");
   }
 );
 
-QUnit.skip(
+QUnit.test(
   "2 - SelectPlusMinusAutocomplete - agregar 3 elementos con botón +",
   function(assert) {
     // arrange
-    const txtInput = $("#contrato");
-    const btnPlus = $("#field_contrato #btn_plus_contrato");
-    const lstTags = $("#field_contrato #tag_list_contrato li a");
+    const id = "contrato5";
+    const selectInput = $("#" + id + "").select2();
+    const btnPlus = $("#field_" + id + " #btn_plus_" + id + "");
+    const lstTags = $("#field_" + id + " #tag_list_" + id + " li a");
 
     // act
     [...Array(3).keys()].forEach(element => {
-      txtInput.val("Elemento " + (element + 1));
+      selectInput.val("00" + (element + 1)).trigger("change");
       btnPlus.click();
     });
 
     // assert
-    let contratosSeleccionados = getList("contrato");
+    let contratosSeleccionados = getList(id);
     assert.equal(lstTags.length, 4);
     assert.equal(contratosSeleccionados.length, 3);
-    assert.equal(txtInput.val(), "");
+    assert.equal(selectInput.val(), "");
   }
 );
 
@@ -587,46 +586,48 @@ QUnit.skip(
   "3 - SelectPlusMinusAutocomplete - limpiar todos los elementos del componente +",
   function(assert) {
     // arrange
-    const txtInput = $("#contrato");
-    const btnPlus = $("#field_contrato #btn_plus_contrato");
-    const lstTags = $("#field_contrato #tag_list_contrato li a");
+    const id = "contrato5";
+    const selectInput = $("#" + id + "").select2();
+    const btnPlus = $("#field_" + id + " #btn_plus_" + id + "");
+    const lstTags = $("#field_" + id + " #tag_list_" + id + " li a");
 
     // act
     [...Array(3).keys()].forEach(element => {
-      txtInput.val("Elemento " + (element + 1));
+      selectInput.val("00" + (element + 1)).trigger("change");
       btnPlus.click();
     });
 
-    cleanData(3, 3);
+    cleanDataSelect(3, 3, id);
 
     // assert
-    let contratosSeleccionados = getList("contrato");
+    let contratosSeleccionados = getList(id);
     assert.equal(lstTags.length, 4);
     assert.equal(contratosSeleccionados.length, 0);
-    assert.equal(txtInput.val(), "");
+    assert.equal(selectInput.val(), "");
   }
 );
 
 QUnit.skip(
-  "4 - SelectPlusMinusAutocomplete - agregar 30 elementos con botón +",
+  "4 - SelectPlusMinusAutocomplete - agregar 9 elementos con botón +",
   function(assert) {
     // arrange
-    const txtInput = $("#contrato");
-    const btnPlus = $("#field_contrato #btn_plus_contrato");
-    const lstTags = $("#field_contrato #tag_list_contrato li a");
+    const id = "contrato5";
+    const selectInput = $("#" + id + "").select2();
+    const btnPlus = $("#field_" + id + " #btn_plus_" + id + "");
+    const lstTags = $("#field_" + id + " #tag_list_" + id + " li a");
 
     // act
-    [...Array(30).keys()].forEach(element => {
-      txtInput.val("Elemento " + (element + 1));
+    [...Array(9).keys()].forEach(element => {
+      selectInput.val("00" + (element + 1)).trigger("change");
       btnPlus.click();
     });
 
     // assert
-    let contratosSeleccionados = getList("contrato");
+    let contratosSeleccionados = getList(id);
     assert.equal(lstTags.length, 4);
-    assert.equal(contratosSeleccionados.length, 30);
-    assert.equal(txtInput.val(), "");
-    cleanData(30, 4);
+    assert.equal(contratosSeleccionados.length, 9);
+    assert.equal(selectInput.val(), "");
+    cleanDataSelect(9, 4, id);
   }
 );
 

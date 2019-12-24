@@ -184,7 +184,12 @@ $.fn.fieldSelectPlusMinus = function() {
     { key: "001", value: "Contrato 01" },
     { key: "002", value: "Contrato 02" },
     { key: "003", value: "Contrato 03" },
-    { key: "004", value: "Contrato 04" }
+    { key: "004", value: "Contrato 04" },
+    { key: "005", value: "Contrato 05" },
+    { key: "006", value: "Contrato 06" },
+    { key: "007", value: "Contrato 07" },
+    { key: "008", value: "Contrato 08" },
+    { key: "009", value: "Contrato 09" }
   ];
 
   var people = Object.keys(group);
@@ -317,7 +322,12 @@ $.fn.fieldSelectPlusMinusAutocomplete = function() {
     { key: "001", value: "Contrato 01" },
     { key: "002", value: "Contrato 02" },
     { key: "003", value: "Contrato 03" },
-    { key: "004", value: "Contrato 04" }
+    { key: "004", value: "Contrato 04" },
+    { key: "005", value: "Contrato 05" },
+    { key: "006", value: "Contrato 06" },
+    { key: "007", value: "Contrato 07" },
+    { key: "008", value: "Contrato 08" },
+    { key: "009", value: "Contrato 09" }
   ];
 
   var people = Object.keys(group);
@@ -1019,8 +1029,8 @@ $.fn.fieldOptions = function() {
 $.fn.fieldCheckBox = function() {
   const fieldId = this.attr("id");
   const fieldLabel = this.data("componentLabel")
-  ? this.data("componentLabel")
-  : "";
+    ? this.data("componentLabel")
+    : "";
   const spanRequiredClass =
     "pr-5 " + (this.data("componentRequired") == true ? "required" : "");
   const fieldClassOrientation =

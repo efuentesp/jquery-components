@@ -3,6 +3,7 @@ $("#contrato2").fieldInputPlusMinus();
 $("#contrato2a").fieldInputPlusMinus();
 
 $("#contrato3").fieldSelectPlusMinus();
+$("#contrato3a").fieldSelectPlusMinus();
 
 $("#contrato4").fieldSelectPlusMinusAutocomplete();
 $("#contrato5").fieldSelectPlusMinusAutocomplete();
