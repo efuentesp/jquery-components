@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>202.ordenes</title>
+    <link href="/assets/css/libs.min.css" rel="stylesheet" />
+    <link href="/assets/css/main.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div id="aside" data-component-type="sidebar-wrapper">
+      <div data-component-type="sidebar">
+        <div data-component-type="sidebar-content">
+          <div class="block overflow-y-auto">
+            <span class="bg-gray-300 block p-3 font-bold text-lg mb-3"
+              >CONSULTA DE BANDA</span
+            >
+            <div id="filtros">
+              <form class="form-group" id="criterios-busqueda">
+                <div
+                  id="fBanda"
+                  data-component-type="date"
+                  data-component-label="Fecha Banda"
+                  data-component-required="true"
+                  data-component-orientation="horizontal"
+                  data-component-size="10em"
+                  data-component-tooltip="DD/MM/AAAA"
+                ></div>
+
+                <div
+                  id="operacion"
+                  data-component-type="select"
+                  data-component-label="Operación"
+                  data-component-size="12em"
+                  data-component-required="true"
+                  data-component-orientation="horizontal"
+                >
+                  <div id="ALL">Todos</div>
+                </div>
+
+                <div class="row flex items-center">
+                  <div
+                    id="emisora"
+                    data-component-type="select"
+                    data-component-label="Emisora/Serie"
+                    data-component-size="12em"
+                    data-component-required="true"
+                    data-component-orientation="horizontal"
+                  >
+                    <div id="ALL">Todos</div>
+                  </div>
+                </div>
+                <div
+                  id="tipo_valor"
+                  data-component-type="select"
+                  data-component-label="Tipo Valor"
+                  data-component-size="12em"
+                  data-component-required="true"
+                  data-component-orientation="horizontal"
+                >
+                  <div id="ALL">Todos</div>
+                </div>
+
+                <div
+                  id="precio_banda"
+                  data-component-type="text"
+                  data-component-label="Precio Banda"
+                  data-component-orientation="horizontal"
+                  data-component-size="14em"
+                ></div>
+
+                <!-- <div class="row mt-8 flex justify-center"> -->
+                <div
+                  id="btn_consultar_banda"
+                  data-component-type="button-search"
+                  data-component-label="Consultar"
+                ></div>
+                <!-- </div> -->
+              </form>
+            </div>
+
+            <span class="bg-gray-300 block p-3 font-bold text-lg mb-3">
+              Filtros
+            </span>
+
+            <div id="filtros">
+              <form class="form-group" id="criterios-Filtros">
+                <div
+                  id="contrato"
+                  data-component-type="input-plus-minus"
+                  data-component-label="Contrato"
+                  data-component-size="14em"
+                  data-component-tooltip="Contrato"
+                ></div>
+
+                <div
+                  id="digito"
+                  data-component-type="input-plus-minus"
+                  data-component-label="Digito"
+                  data-component-size="14em"
+                  data-component-tooltip="Digito"
+                ></div>
+
+                <!-- <div class="row mt-6 flex justify-center"> -->
+                <div
+                  id="btn_consultar_filtros"
+                  data-component-type="button-search"
+                  data-component-label="Consultar"
+                ></div>
+                <!-- </div> -->
+              </form>
+            </div>
+            <span class="bg-gray-300 block p-3 font-bold text-lg mb-3">
+              Datos por aplicar
+            </span>
+
+            <div class="filtros">
+              <form class="form-group" id="Criterios-Datos">
+                <div
+                  id="titulos"
+                  data-component-type="text"
+                  data-component-label="Titulos"
+                  data-component-required="true"
+                  data-component-orientation="horizontal"
+                  data-component-size="14em"
+                ></div>
+
+                <div
+                  id="precio_pactado"
+                  data-component-type="text"
+                  data-component-label="Precio Pactado"
+                  data-component-required="true"
+                  data-component-orientation="horizontal"
+                  data-component-size="14em"
+                ></div>
+
+                <div
+                  id="monto"
+                  data-component-type="text"
+                  data-component-label="Monto"
+                  data-component-orientation="horizontal"
+                  data-component-size="14em"
+                ></div>
+
+                <!-- <div class="row mt-6 flex justify-center mb-4"> -->
+                <div
+                  id="btn_add"
+                  data-component-type="button-add"
+                  data-component-label="Agregar"
+                ></div>
+                <div
+                  id="btn_clean"
+                  data-component-type="button-clean"
+                  data-component-label="Limpiar"
+                ></div>
+                <!-- </div> -->
+              </form>
+            </div>
+          </div>
+        </div>
+        <div data-component-type="sidebar-collapsible-button"></div>
+      </div>
+
+      <div data-component-type="sidebar-content">
+        <div id="row">
+          <span class="bg-gray-300 block p-3 font-bold text-lg"
+            >Listado de Órdenes</span
+          >
+
+          <div id="grupo_grids" data-component-type="tab-group">
+            <div
+              id="tab_ordenes"
+              data-component-type="tab-item"
+              data-component-label="Ordenes"
+            >
+
+            <div class="px-0 mb-1" id="buscadorTabla">
+                <div
+                  id="captura"
+                  data-component-type="text"
+                  data-component-label="Captura: "
+                  data-component-disabled="true"
+                  data-component-orientation="horizontal"
+                  data-component-size="8em"
+                ></div>
+              </div>
+              
+                <div
+                  class="row w-full overflow-auto"
+                  id="div-contratos-reportos-grid"
+                >
+               
+                <div class="text-black">
+                    <div id="contratos_directos" data-component-type="grid"></div>
+                  </div>
+                </div>
+                
+                <div
+                id="count_contratos_directos"
+                data-component-type="grid-records-count"
+              ></div>
+
+              <div class="row mt-6 flex pb-64 pt-64">
+                <div class="field-group flex items-center" id="field_captura">
+                    <div
+                      id="btn_send"
+                      data-component-type="button-send"
+                      data-component-label="Enviar"
+                  ></div>
+                    <div
+                      id="btn_validate"
+                      data-component-type="button-validate"
+                      data-component-label="Validar"
+                  ></div>
+                    <div
+                      id="btn_clean"
+                      data-component-type="button-clean"
+                      data-component-label="Limpiar"
+                  ></div>
+                    <div
+                      id="captura"
+                      data-component-type="text"
+                      data-component-label="Total de Órdenes: "
+                      data-component-orientation="horizontal"
+                      data-component-size="8em"
+                  ></div>
+              </div>
+            </div>
+
+          </div>
+          <div
+              id="tab_envios_errores"
+              data-component-label="Envios y Errores"
+              data-component-type="tab-item"
+            >
+              <div class="px-0 mb-1" id="buscadorTabla">
+                <div
+                  id="envio"
+                  data-component-type="text"
+                  data-component-label="Envios: "
+                  data-component-size="8em"
+                  data-component-orientation="horizontal"
+                  data-component-disabled="true"
+                ></div>
+              </div>
+
+              <div
+                  class="row w-full overflow-auto"
+                  id="div-bandas-reportos-grid"
+                >
+               
+                <div class="text-black">
+                    <div id="envios_directos" data-component-type="grid"></div>
+                  </div>
+                </div>
+                <div
+                id="count_envios_directos"
+                data-component-type="grid-records-count"
+              ></div>
+              <row class="mt-6 flex justify-center">
+                <div
+                  id="boton_resert"
+                  data-component-type="button-reset"
+                  data-component-label="Reiniciar"
+                ></div>
+              </row>
+              <div class="px-0 mt-32 mb-1" id="buscadorTabla">
+                <div
+                  id="buscaErroresInput"
+                  data-component-type="text"
+                  data-component-label="Errores: "
+                  data-component-disabled="true"
+                  data-component-orientation="horizontal"
+                  data-component-size="8em"
+                ></div>
+              </div>
+              <div
+                class="row w-full overflow-auto text-black"
+                id="div-errores-reportos-grid"
+              >
+                <div id="errores_directos" data-component-type="grid"></div>
+             </div>
+             <div
+                id="count_errores_directos"
+                data-component-type="grid-records-count"
+              ></div>
+          </div> 
+    </div>
+    <script src="/assets/scripts/jquery.min.js"></script>
+    <script src="/assets/scripts/libs.min.js"></script>
+    <script src="/assets/scripts/common.js"></script>
+    <script src="/jqgui.js"></script>
+    <script src="scripts.js"></script>
+  </body>
+</html>

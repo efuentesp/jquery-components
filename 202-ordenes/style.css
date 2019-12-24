@@ -1,0 +1,111 @@
+#filtros label {
+    width: 80px
+}
+
+#filtros #field_fecha_valor label {
+    width: 72px
+}
+
+#table_grid_orden_toppager {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+#boton_resert {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+#input_errores {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+#titulo {
+    margin-top: 5em
+}
+
+#field_serie span.required {
+    display: none
+}
+
+#field_serie .field-label {
+    display: none
+}
+
+#field_serie .field-control {
+    margin-left: 0
+}
+
+#btn_reset span.button.big-button {
+    margin-top: 100em
+}
+
+.sidebar {
+    width: 650px
+}
+
+.sidebar.isClosed {
+    width: 1.5em
+}
+
+.sidebar-wrapper {
+    height: 100vh
+}
+
+.sidebar-content {
+    overflow-y: scroll
+}
+
+#wilsonDiv {
+    display: none
+}
+
+input,
+select {
+    border-radius: 0;
+    height: 15px
+}
+
+#tab_envios_errores,
+#tab_ordenes {
+    padding: 0 0 6px 0 !important
+}
+
+.currency-prefix {
+    margin-right: 4px
+}
+
+#buscadorTabla {
+    background: #e2e8f0
+}
+
+#buscadorTabla input {
+    height: 18px
+}
+
+#div-bandas-reportos-grid,
+#div-contratos-reportos-grid,
+#div-envios-reportos-grid,
+#div-errores-reportos-grid {
+    border: 1px solid #919eab
+}
+
+html {
+    color: #000
+}
+
+.ui-th-div {
+    color: #000
+}
+
+/*# sourceMappingURL=../../../maps/accimarket/202-ordenes/styles.css.map */
