@@ -690,6 +690,10 @@ $.fn.fielDate = function() {
     "#field_error_block_" + fieldId
   );
   inpt.setAttribute("maxlength", "10");
+  if (this.data("componentDisabled") === true) {
+    inpt.setAttribute("disabled", "disabled");
+  }
+
   divDate.appendChild(inpt);
   /*
 
