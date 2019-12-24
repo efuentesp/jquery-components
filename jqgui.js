@@ -1,3 +1,189 @@
+$.fn.fieldSwaplist = function() {
+  const fieldId = this.attr("id");
+  const fieldTitleSource = this.data("componentTitleSource");
+  const fieldTitleDestination = this.data("componentTitleDestination");
+  const idSource = fieldId + "_source";
+  const idDestination = fieldId + "_destination"
+
+  const divListSwapWrapper = document.createElement("div");
+  divListSwapWrapper.setAttribute("class", "listswap_wrapper");
+  divListSwapWrapper.setAttribute("id", fieldId);
+
+  const divRow = document.createElement("div");
+  divRow.setAttribute("class", "row");
+  divListSwapWrapper.appendChild(divRow);
+
+  const divSwapList = document.createElement("div");
+  divSwapList.setAttribute("id", "swaplist");
+  divRow.appendChild(divSwapList);
+
+  const divSwapListSource = document.createElement("div");
+  divSwapListSource.setAttribute("id", "swaplist-source");
+  divSwapList.appendChild(divSwapListSource);
+
+  const divSwapListControl = document.createElement("div");
+  divSwapListControl.setAttribute("class", "source_control");
+  divSwapList.appendChild(divSwapListControl);
+
+  const divUp = document.createElement("div");
+  divUp.setAttribute("class", "up");
+  divUp.setAttribute("style", "margin-top:3px;");
+  divSwapListControl.appendChild(divUp);
+
+  const buttonUp = document.createElement("button");
+  buttonUp.setAttribute("class", "up-button");
+  divUp.appendChild(buttonUp);
+
+  const imgUp = document.createElement("img");
+  imgUp.setAttribute("src", "../../assets/images/flecha-arriba.png");
+  imgUp.setAttribute("style", "width:18px;");
+  buttonUp.appendChild(imgUp);
+
+  const divAdd = document.createElement("div");
+  divAdd.setAttribute("class", "add");
+  divAdd.setAttribute("style", "margin-top:3px;");
+  divSwapListControl.appendChild(divAdd);
+
+  const buttonAdd = document.createElement("button");
+  buttonAdd.setAttribute("class", "right-button");
+  divAdd.appendChild(buttonAdd);
+
+  const imgAdd = document.createElement("img");
+  imgAdd.setAttribute("src", "../../assets/images/flecha-derecha.png");
+  imgAdd.setAttribute("style", "width:18px;");
+  buttonAdd.appendChild(imgAdd);
+
+  const divRemove = document.createElement("div");
+  divRemove.setAttribute("class", "remove");
+  divRemove.setAttribute("style", "margin-top:3px;");
+  divSwapListControl.appendChild(divRemove);
+
+  const buttonRemove = document.createElement("button");
+  buttonRemove.setAttribute("class", "left-button");
+  divRemove.appendChild(buttonRemove);
+
+  const imgRemove = document.createElement("img");
+  imgRemove.setAttribute("src", "../../assets/images/flecha-izquierda.png");
+  imgRemove.setAttribute("style", "width:18px;");
+  buttonRemove.appendChild(imgRemove);
+
+  const divDown = document.createElement("div");
+  divDown.setAttribute("class", "down");
+  divDown.setAttribute("style", "margin-top:3px;");
+  divSwapListControl.appendChild(divDown);
+
+  const buttonDown = document.createElement("button");
+  buttonDown.setAttribute("class", "down-button");
+  divDown.appendChild(buttonDown);
+
+  const imgDown = document.createElement("img");
+  imgDown.setAttribute("src", "../../assets/images/flecha-abajo.png");
+  imgDown.setAttribute("style", "width:18px;");
+  buttonDown.appendChild(imgDown);
+
+  const divSwapListDestination = document.createElement("div");
+  divSwapListDestination.setAttribute("id", "swaplist-destination");
+  divSwapList.appendChild(divSwapListDestination);
+
+  const sourceTitle = document.createElement("p");
+  sourceTitle.setAttribute("class", "title");
+  sourceTitle.innerHTML = fieldTitleSource;
+  divSwapListSource.appendChild(sourceTitle);
+
+  const destinationTitle = document.createElement("p");
+  destinationTitle.setAttribute("class", "title");
+  destinationTitle.innerHTML = fieldTitleDestination;
+  divSwapListDestination.appendChild(destinationTitle);
+
+  const listSource = document.createElement("ul");
+  listSource.setAttribute("class", "column source");
+  listSource.setAttribute("id", idSource);
+  divSwapListSource.appendChild(listSource);
+
+  const listDestination = document.createElement("ul");
+  listDestination.setAttribute("class", "column destination");
+  listDestination.setAttribute("id", idDestination);
+  divSwapListDestination.appendChild(listDestination);
+
+  this.append(divListSwapWrapper);
+
+  var sourceList = [
+    {id: "1", value: "option_1_1", label: "Valor 1"},
+    {id: "2", value: "option_1_2", label: "Valor 2"},
+    {id: "3", value: "option_1_3", label: "Valor 3"},
+    {id: "4", value: "option_1_4", label: "Valor 4"},
+    {id: "5", value: "option_1_5", label: "Valor 5"}
+  ]
+
+  var destinationList = [
+    {id: "6", value: "option_1_6", label: "Valor 6"},
+    {id: "7", value: "option_1_7", label: "Valor 7"},
+    {id: "8", value: "option_1_8", label: "Valor 8"}
+  ]
+
+  fillSwapList(idSource, sourceList)
+  fillSwapList(idDestination, destinationList)
+
+  $("ul.column").on("click", "li", function () {
+    if (! $(this).hasClass("selected")) {
+      console.log("selected")
+      clearList();
+      $(this).addClass("selected");
+    }
+  });
+
+  const clearList = function () {
+    $("ul.column li").removeClass("selected");
+  };
+
+  $(".up").click(function () {
+    var currents = $(".portlet.selected");
+    currents.prev().before(currents);
+  });
+
+  $(".down").click(function () {
+    var currents = $(".portlet.selected");
+    currents.next().after(currents);
+  });
+
+  $(".add").click(function () {
+    var currents = $(".portlet.selected");
+    $(".column.destination").append(currents);
+    clearList();
+  });
+
+  $(".remove").click(function () {
+    var currents = $(".portlet.selected");
+    $(".column.source").append(currents);
+    clearList();
+  });
+
+  $(".column").sortable({
+    connectWith: ".column",
+    handle: ".portlet-content",
+    cancel: ".portlet-toggle",
+    placeholder: "portlet-placeholder ui-corner-all"
+  });
+
+  $(".portlet")
+  .addClass("ui-widget ui-widget-content ui-helper-clearfix ui-corner-all")
+  .find(".portlet-content")
+  .addClass("ui-corner-all");
+};
+
+var fillSwapList = function (list_id, params) {
+  var list = $("#" + list_id);
+
+  for (var i = 0; i < params.length; i++) {
+      var data = params[i];
+      list.append("<li class='portlet' value=" +
+        data.value +
+        "><div class='portlet-content'>" +
+        data.label +
+        "</div></li>");
+  }
+};
+
 $.fn.fieldInputPlusMinus = function() {
   const fieldId = this.attr("id");
   const fieldMaxsize = this.data("componentMaxsize");

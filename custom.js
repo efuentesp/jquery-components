@@ -1,5 +1,3 @@
-// $("[data-component-type='input-plus-minus']").fieldInputPlusMinus();
-
 $("#contrato1").fieldInputPlusMinus();
 $("#contrato2").fieldInputPlusMinus();
 $("#contrato3").fieldInputPlusMinus();
@@ -57,3 +55,6 @@ $("#barChart").canvas();
 $("#barChartNBar").canvas();
 $("#lineChart").canvas();
 $("#multiChart").canvas();
+
+// Swap List
+$("#listado").fieldSwaplist();

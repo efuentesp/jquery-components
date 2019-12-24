@@ -1933,58 +1933,58 @@ var xml2json = function (xml, tab) {
         (tab ? json.replace(/\t/g, tab) : json.replace(/\t|\n/g, "")) +
         "\n}");
 };
-var fillSwapList = function (id, list_id, params) {
-    var _id = "#" + id;
-    var list = $("#listado_" + list_id);
-    for (var i = 0; i < params.length; i++) {
-        var data = params[i];
-        list.append("<li class='portlet' value=" +
-            data.value +
-            "><div class='portlet-content'>" +
-            data.label +
-            "</div></li>");
-    }
-};
-$("ul.column").on("click", "li", function () {
-    if ($(this).hasClass("selected")) {
-        $(this).removeClass("selected");
-    }
-    else {
-        clearList();
-        $(this).addClass("selected");
-    }
-});
-$(".up").click(function () {
-    var currents = $(".portlet.selected");
-    currents.prev().before(currents);
-});
-$(".down").click(function () {
-    var currents = $(".portlet.selected");
-    currents.next().after(currents);
-});
-$(".add").click(function () {
-    var currents = $(".portlet.selected");
-    $(".column.destination").append(currents);
-    clearList();
-});
-$(".remove").click(function () {
-    var currents = $(".portlet.selected");
-    $(".column.source").append(currents);
-    clearList();
-});
-$(".column").sortable({
-    connectWith: ".column",
-    handle: ".portlet-content",
-    cancel: ".portlet-toggle",
-    placeholder: "portlet-placeholder ui-corner-all"
-});
-$(".portlet")
-    .addClass("ui-widget ui-widget-content ui-helper-clearfix ui-corner-all")
-    .find(".portlet-content")
-    .addClass("ui-corner-all");
-var clearList = function () {
-    $("ul.column li").removeClass("selected");
-};
+// var fillSwapList = function (id, list_id, params) {
+//     var _id = "#" + id;
+//     var list = $("#listado_" + list_id);
+//     for (var i = 0; i < params.length; i++) {
+//         var data = params[i];
+//         list.append("<li class='portlet' value=" +
+//             data.value +
+//             "><div class='portlet-content'>" +
+//             data.label +
+//             "</div></li>");
+//     }
+// };
+// $("ul.column").on("click", "li", function () {
+//     if ($(this).hasClass("selected")) {
+//         $(this).removeClass("selected");
+//     }
+//     else {
+//         clearList();
+//         $(this).addClass("selected");
+//     }
+// });
+// $(".up").click(function () {
+//     var currents = $(".portlet.selected");
+//     currents.prev().before(currents);
+// });
+// $(".down").click(function () {
+//     var currents = $(".portlet.selected");
+//     currents.next().after(currents);
+// });
+// $(".add").click(function () {
+//     var currents = $(".portlet.selected");
+//     $(".column.destination").append(currents);
+//     clearList();
+// });
+// $(".remove").click(function () {
+//     var currents = $(".portlet.selected");
+//     $(".column.source").append(currents);
+//     clearList();
+// });
+// $(".column").sortable({
+//     connectWith: ".column",
+//     handle: ".portlet-content",
+//     cancel: ".portlet-toggle",
+//     placeholder: "portlet-placeholder ui-corner-all"
+// });
+// $(".portlet")
+//     .addClass("ui-widget ui-widget-content ui-helper-clearfix ui-corner-all")
+//     .find(".portlet-content")
+//     .addClass("ui-corner-all");
+// var clearList = function () {
+//     $("ul.column li").removeClass("selected");
+// };
 var formatNumber = {
     separador: ",",
     sepDecimal: ".",
