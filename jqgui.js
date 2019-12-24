@@ -651,6 +651,9 @@ $.fn.fielDate = function() {
   const toolTip = this.data("componentTooltip")
     ? this.data("componentTooltip")
     : "";
+  const fieldSize = this.data("componentSize")
+    ? this.data("componentSize")
+    : "8em";
 
   this.attr("id", "field_" + fieldId);
   this.attr("class", "field " + fieldClassOrientation);
@@ -681,7 +684,7 @@ $.fn.fielDate = function() {
   if (this.data("componentRequired") == true) {
     inpt.setAttribute("required", "required");
   }
-  inpt.setAttribute("style", "width: 8em;");
+  inpt.setAttribute("style", "width: " + fieldSize + ";");
   inpt.setAttribute(
     "data-parsley-errors-container",
     "#field_error_block_" + fieldId
@@ -727,6 +730,7 @@ $.fn.fielDate = function() {
   this.removeAttr("data-component-orientation");
   this.removeAttr("data-component-clear");
   this.removeAttr("data-component-tooltip");
+  this.removeAttr("data-component-size");
   //-----------------------------------------------------------------------------
   fieldDateClear(fieldId);
 
