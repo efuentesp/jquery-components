@@ -1018,7 +1018,9 @@ $.fn.fieldOptions = function() {
 
 $.fn.fieldCheckBox = function() {
   const fieldId = this.attr("id");
-  const fieldLabel = this.attr("data-component-label");
+  const fieldLabel = this.data("componentLabel")
+  ? this.data("componentLabel")
+  : "";
   const spanRequiredClass =
     "pr-5 " + (this.data("componentRequired") == true ? "required" : "");
   const fieldClassOrientation =
