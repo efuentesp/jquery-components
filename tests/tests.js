@@ -6,7 +6,7 @@ function simulateKeyDown(selector) {
 }
 
 function cleanData(nelements, prueba, id) {
-  console.log("Inicializando ..." + prueba + " - Input Plus Minus");
+  // console.log("Inicializando ..." + prueba + " - Input Plus Minus");
   const txtInput = $("#" + id + "");
   const btnMinus = $("#field_" + id + " #btn_minus_" + id + "");
 
@@ -21,7 +21,7 @@ function cleanData(nelements, prueba, id) {
 }
 
 function cleanDataSelect(nelements, prueba, id) {
-  console.log("Inicializando ..." + prueba + " - Select Plus Minus");
+  // console.log("Inicializando ..." + prueba + " - Select Plus Minus");
   // arrange
   const selectInput = $("#" + id + "").select2();
   const btnMinus = $("#field_" + id + " #btn_minus_" + id + "");
@@ -33,7 +33,7 @@ function cleanDataSelect(nelements, prueba, id) {
   });
 }
 
-QUnit.skip("1 - InputPlusMinus - Inicializado correctamente", function(assert) {
+QUnit.test("1 - InputPlusMinus - Inicializado correctamente", function(assert) {
   // arrange
   const id = "contrato1";
   const txtInput = $("#" + id + "");
@@ -47,7 +47,7 @@ QUnit.skip("1 - InputPlusMinus - Inicializado correctamente", function(assert) {
   cleanData(0, 1, id);
 });
 
-QUnit.skip("2 - InputPlusMinus - Agregar 3 elementos con botón +", function(
+QUnit.test("2 - InputPlusMinus - Agregar 3 elementos con botón +", function(
   assert
 ) {
   // arrange
@@ -70,7 +70,7 @@ QUnit.skip("2 - InputPlusMinus - Agregar 3 elementos con botón +", function(
   cleanData(3, 2, id);
 });
 
-QUnit.skip(
+QUnit.test(
   "3 - InputPlusMinus - Limpiar todos los elementos del componente +",
   function(assert) {
     // arrange
@@ -95,7 +95,7 @@ QUnit.skip(
   }
 );
 
-QUnit.skip("4 - InputPlusMinus - Agregar 30 elementos con botón +", function(
+QUnit.test("4 - InputPlusMinus - Agregar 30 elementos con botón +", function(
   assert
 ) {
   // arrange
@@ -118,7 +118,7 @@ QUnit.skip("4 - InputPlusMinus - Agregar 30 elementos con botón +", function(
   cleanData(30, 4, id);
 });
 
-QUnit.skip("5 - InputPlusMinus - Agregar 3 elementos con Enter", function(
+QUnit.test("5 - InputPlusMinus - Agregar 3 elementos con Enter", function(
   assert
 ) {
   // arrange
@@ -129,7 +129,7 @@ QUnit.skip("5 - InputPlusMinus - Agregar 3 elementos con Enter", function(
   // act
   [...Array(3).keys()].forEach(element => {
     txtInput.val("Elemento " + (element + 1));
-    simulateKeydown(txtInput);
+    simulateKeyDown(txtInput);
   });
 
   // assert
@@ -140,7 +140,7 @@ QUnit.skip("5 - InputPlusMinus - Agregar 3 elementos con Enter", function(
   cleanData(3, 5, id);
 });
 
-QUnit.skip("6 - InputPlusMinus - Agregar 30 elementos con Enter", function(
+QUnit.test("6 - InputPlusMinus - Agregar 30 elementos con Enter", function(
   assert
 ) {
   // arrange
@@ -151,7 +151,7 @@ QUnit.skip("6 - InputPlusMinus - Agregar 30 elementos con Enter", function(
   // act
   [...Array(30).keys()].forEach(element => {
     txtInput.val("Elemento " + (element + 1));
-    simulateKeydown(txtInput);
+    simulateKeyDown(txtInput);
   });
 
   // assert
@@ -162,7 +162,7 @@ QUnit.skip("6 - InputPlusMinus - Agregar 30 elementos con Enter", function(
   cleanData(30, 6, id);
 });
 
-QUnit.skip(
+QUnit.test(
   "7 - InputPlusMinus - Seleccionar elemento 1 de la lista de 5 elementos",
   function(assert) {
     // arrange
@@ -173,7 +173,7 @@ QUnit.skip(
     // act
     [...Array(5).keys()].forEach(element => {
       txtInput.val("Elemento " + (element + 1));
-      simulateKeydown(txtInput);
+      simulateKeyDown(txtInput);
     });
 
     txtInput.val($("ul#tag_list_" + id + " li:nth-child(1)").text());
@@ -187,7 +187,7 @@ QUnit.skip(
   }
 );
 
-QUnit.skip(
+QUnit.test(
   "8 - InputPlusMinus - Eliminar 5 elementos con botón (-) y ya no queden elementos en la lista",
   function(assert) {
     // arrange
@@ -399,7 +399,6 @@ QUnit.test("5 - SelectPlusMinus - agregar 3 elementos con Enter", function(
   // act
   [...Array(3).keys()].forEach(element => {
     selectInput.val("00" + (element + 1)).trigger("change");
-    // simulateKeydown(txtInput);
     btnPlus.click();
   });
 
@@ -423,7 +422,6 @@ QUnit.test("6 - SelectPlusMinus - agregar 9 elementos con Enter", function(
   // act
   [...Array(9).keys()].forEach(element => {
     selectInput.val("00" + (element + 1)).trigger("change");
-    // simulateKeydown(txtInput);
     btnPlus.click();
   });
 
@@ -560,6 +558,22 @@ QUnit.test(
 );
 
 QUnit.test(
+  "1a - SelectPlusMinusAutocomplete - Inicializado correctamente con nodos",
+  function(assert) {
+    // arrange
+    const id = "contrato5";
+    const selectInput = $("#" + id + "").select2();
+    const lstTags = $("#field_" + id + " #tag_list_" + id + " li a");
+
+    // act
+
+    // assert
+    assert.equal(lstTags.length, 4);
+    assert.equal(selectInput.val(), "");
+  }
+);
+
+QUnit.test(
   "2 - SelectPlusMinusAutocomplete - agregar 3 elementos con botón +",
   function(assert) {
     // arrange
@@ -579,6 +593,7 @@ QUnit.test(
     assert.equal(lstTags.length, 4);
     assert.equal(contratosSeleccionados.length, 3);
     assert.equal(selectInput.val(), "");
+    cleanDataSelect(3, 2, id);
   }
 );
 
