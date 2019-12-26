@@ -3,7 +3,7 @@ $.fn.fieldSwaplist = function() {
   const fieldTitleSource = this.data("componentTitleSource");
   const fieldTitleDestination = this.data("componentTitleDestination");
   const idSource = fieldId + "_source";
-  const idDestination = fieldId + "_destination"
+  const idDestination = fieldId + "_destination";
 
   const divListSwapWrapper = document.createElement("div");
   divListSwapWrapper.setAttribute("class", "listswap_wrapper");
@@ -108,51 +108,51 @@ $.fn.fieldSwaplist = function() {
   this.append(divListSwapWrapper);
 
   var sourceList = [
-    {id: "1", value: "option_1_1", label: "Valor 1"},
-    {id: "2", value: "option_1_2", label: "Valor 2"},
-    {id: "3", value: "option_1_3", label: "Valor 3"},
-    {id: "4", value: "option_1_4", label: "Valor 4"},
-    {id: "5", value: "option_1_5", label: "Valor 5"}
-  ]
+    { id: "1", value: "option_1_1", label: "Valor 1" },
+    { id: "2", value: "option_1_2", label: "Valor 2" },
+    { id: "3", value: "option_1_3", label: "Valor 3" },
+    { id: "4", value: "option_1_4", label: "Valor 4" },
+    { id: "5", value: "option_1_5", label: "Valor 5" }
+  ];
 
   var destinationList = [
-    {id: "6", value: "option_1_6", label: "Valor 6"},
-    {id: "7", value: "option_1_7", label: "Valor 7"},
-    {id: "8", value: "option_1_8", label: "Valor 8"}
-  ]
+    { id: "6", value: "option_1_6", label: "Valor 6" },
+    { id: "7", value: "option_1_7", label: "Valor 7" },
+    { id: "8", value: "option_1_8", label: "Valor 8" }
+  ];
 
-  fillSwapList(idSource, sourceList)
-  fillSwapList(idDestination, destinationList)
+  fillSwapList(idSource, sourceList);
+  fillSwapList(idDestination, destinationList);
 
-  $("ul.column").on("click", "li", function () {
-    if (! $(this).hasClass("selected")) {
-      console.log("selected")
+  $("ul.column").on("click", "li", function() {
+    if (!$(this).hasClass("selected")) {
+      console.log("selected");
       clearList();
       $(this).addClass("selected");
     }
   });
 
-  const clearList = function () {
+  const clearList = function() {
     $("ul.column li").removeClass("selected");
   };
 
-  $(".up").click(function () {
+  $(".up").click(function() {
     var currents = $(".portlet.selected");
     currents.prev().before(currents);
   });
 
-  $(".down").click(function () {
+  $(".down").click(function() {
     var currents = $(".portlet.selected");
     currents.next().after(currents);
   });
 
-  $(".add").click(function () {
+  $(".add").click(function() {
     var currents = $(".portlet.selected");
     $(".column.destination").append(currents);
     clearList();
   });
 
-  $(".remove").click(function () {
+  $(".remove").click(function() {
     var currents = $(".portlet.selected");
     $(".column.source").append(currents);
     clearList();
@@ -166,21 +166,23 @@ $.fn.fieldSwaplist = function() {
   });
 
   $(".portlet")
-  .addClass("ui-widget ui-widget-content ui-helper-clearfix ui-corner-all")
-  .find(".portlet-content")
-  .addClass("ui-corner-all");
+    .addClass("ui-widget ui-widget-content ui-helper-clearfix ui-corner-all")
+    .find(".portlet-content")
+    .addClass("ui-corner-all");
 };
 
-var fillSwapList = function (list_id, params) {
+var fillSwapList = function(list_id, params) {
   var list = $("#" + list_id);
 
   for (var i = 0; i < params.length; i++) {
-      var data = params[i];
-      list.append("<li class='portlet' value=" +
+    var data = params[i];
+    list.append(
+      "<li class='portlet' value=" +
         data.value +
         "><div class='portlet-content'>" +
         data.label +
-        "</div></li>");
+        "</div></li>"
+    );
   }
 };
 
@@ -681,70 +683,101 @@ $.fn.gridrecordscount = function() {
 };
 
 $.fn.fieldInput = function() {
-  this.filter("[data-component-type='text']").each(function() {
-    const c = $(this);
-    const fieldId = c.attr("id");
-    console.log("Id", fieldId);
-    const fieldWidth =
-      "width: " +
-      (c.data("componentWidth") ? c.data("componentWidth") : "8em") +
-      ";";
-    const fieldClass =
-      "is_" +
-      (c.data("componentOrientation")
-        ? c.data("componentOrientation")
-        : "vertical");
-    const spanRequiredClass =
-      "pr-3 " + (c.data("componentRequired") == true ? "required" : "");
+  // this.filter("[data-component-type='text']").each(function() {
+  const c = $(this);
+  const fieldId = c.attr("id");
+  // console.log("Id", fieldId);
+  let fieldType = "";
+  if (c.data("componentInputType") === "integer") {
+    fieldType = "integer";
+  } else if (c.data("componentInputType") === "number") {
+    fieldType = "number";
+  } else if (c.data("componentInputType") === "currency") {
+    fieldType = "currency";
+  } else {
+    fieldType = "alphanum";
+  }
+  const fieldMaxLength = c.data("componentMaxLength")
+    ? c.data("componentMaxLength")
+    : "32";
+  const fieldWidth =
+    "width: " +
+    (c.data("componentWidth") ? c.data("componentWidth") : "8em") +
+    ";";
+  const fieldClass =
+    "is_" +
+    (c.data("componentOrientation")
+      ? c.data("componentOrientation")
+      : "vertical");
+  const spanRequiredClass =
+    "pr-3 " + (c.data("componentRequired") == true ? "required" : "");
 
-    c.attr("id", "field_" + fieldId);
-    c.attr("class", "field " + fieldClass);
+  c.attr("id", "field_" + fieldId);
+  c.attr("class", "field " + fieldClass);
 
-    const divLabel = document.createElement("div");
-    divLabel.setAttribute("class", "field-label flex");
+  const divLabel = document.createElement("div");
+  divLabel.setAttribute("class", "field-label flex");
 
-    const label = document.createElement("label");
-    label.setAttribute("for", fieldId);
-    label.innerHTML = c.data("componentLabel");
-    divLabel.appendChild(label);
-    c.append(divLabel);
+  const label = document.createElement("label");
+  label.setAttribute("for", fieldId);
+  label.innerHTML = c.data("componentLabel");
+  divLabel.appendChild(label);
+  c.append(divLabel);
 
-    const spanRequired = document.createElement("span");
-    spanRequired.setAttribute("class", spanRequiredClass);
-    if (c.data("componentRequired") == true) {
-      spanRequired.innerHTML = "*";
-    }
-    label.appendChild(spanRequired);
+  const spanRequired = document.createElement("span");
+  spanRequired.setAttribute("class", spanRequiredClass);
+  if (c.data("componentRequired") == true) {
+    spanRequired.innerHTML = "*";
+  }
+  label.appendChild(spanRequired);
 
-    const divControl = document.createElement("div");
-    divControl.setAttribute("class", "field-control");
+  const divControl = document.createElement("div");
+  divControl.setAttribute("class", "field-control");
 
-    const divFieldInput = document.createElement("div");
-    divFieldInput.setAttribute("class", "field-input has-addons flex");
-    if (c.data("componentTooltip")) {
-      divFieldInput.setAttribute("data-tooltip", c.data("componentTooltip"));
-    }
-    divControl.appendChild(divFieldInput);
-    c.append(divControl);
+  const divFieldInput = document.createElement("div");
+  divFieldInput.setAttribute("class", "field-input has-addons flex");
+  if (c.data("componentTooltip")) {
+    divFieldInput.setAttribute("data-tooltip", c.data("componentTooltip"));
+  }
+  divControl.appendChild(divFieldInput);
+  c.append(divControl);
 
-    const input = document.createElement("input");
-    input.setAttribute("id", fieldId);
-    input.setAttribute("class", "input");
-    input.setAttribute("type", "text");
-    input.setAttribute("style", fieldWidth);
-    input.setAttribute("data-parsley-trigger", "keyup");
-    input.setAttribute("data-parsley-maxlength", "32");
-    input.setAttribute(
-      "data-parsley-maxlength-message",
-      "Solo puede ingresar 32 caracteres."
-    );
-    input.setAttribute("data-parsley-validation-threshold", "10");
-    input.setAttribute(
-      "data-parsley-errors-container",
-      "field_error_block_" + fieldId
-    );
-    divFieldInput.appendChild(input);
-  });
+  const input = document.createElement("input");
+  input.setAttribute("id", fieldId);
+  input.setAttribute("class", "input " + fieldType);
+  input.setAttribute("type", "text");
+  input.setAttribute("style", fieldWidth);
+  input.setAttribute("data-parsley-trigger", "keyup");
+  input.setAttribute("data-parsley-maxlength", fieldMaxLength);
+  input.setAttribute(
+    "data-parsley-maxlength-message",
+    "Solo puede ingresar " + fieldMaxLength + " caracteres."
+  );
+  input.setAttribute("data-parsley-validation-threshold", "10");
+  input.setAttribute(
+    "data-parsley-errors-container",
+    "field_error_block_" + fieldId
+  );
+
+  if (c.data("componentDisabled") === true) {
+    input.setAttribute("disabled", "disabled");
+  }
+
+  if (fieldType === "currency") {
+    const spanCurrency = document.createElement("span");
+    spanCurrency.setAttribute("class", "currency-prefix");
+    spanCurrency.innerText = "$";
+    divFieldInput.appendChild(spanCurrency);
+  }
+  divFieldInput.appendChild(input);
+
+  c.removeAttr("data-component-type");
+  c.removeAttr("data-component-label");
+  c.removeAttr("data-component-required");
+  c.removeAttr("data-component-orientation");
+  c.removeAttr("data-component-type-input");
+  c.removeAttr("data-component-max-length");
+  // });
 };
 
 $.fn.tabgroup = function() {

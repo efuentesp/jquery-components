@@ -24,7 +24,11 @@ $("#gridrecordscount1").gridrecordscount();
 $("#tab1").tabgroup();
 $("#sidebar1").sidebarwrapper();
 
-$("[data-component-type='text']").fieldInput();
+// $("[data-component-type='text']").fieldInput();
+$("#contratoTxt").fieldInput();
+$("#contratoTxtFalse").fieldInput();
+$("#contratoTxtVertical").fieldInput();
+$("#contratoTxtFalseVertical").fieldInput();
 
 $("#fecha1").fielDate();
 $("#fecha2").fielDate();
