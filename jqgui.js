@@ -1227,6 +1227,10 @@ $.fn.fieldOptions = function () {
     if (this.data("componentRequired") == true) {
       inptOpt.setAttribute("required", "required");
     }
+    if (divChild.attributes.checked && divChild.attributes.checked.value == "true") {
+      inptOpt.setAttribute("checked", "checked");
+    }
+
     inptOpt.setAttribute("data-parsley-class-handler", "#field_" + fieldId);
 
     inptOpt.setAttribute(
