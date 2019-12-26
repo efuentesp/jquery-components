@@ -1,5 +1,3 @@
-// $("[data-component-type='input-plus-minus']").fieldInputPlusMinus();
-
 $("#contrato1").fieldInputPlusMinus();
 $("#contrato2").fieldInputPlusMinus();
 $("#contrato3").fieldInputPlusMinus();
@@ -26,7 +24,11 @@ $("#gridrecordscount1").gridrecordscount();
 $("#tab1").tabgroup();
 $("#sidebar1").sidebarwrapper();
 
-$("[data-component-type='text']").fieldInput();
+// $("[data-component-type='text']").fieldInput();
+$("#contratoTxt").fieldInput();
+$("#contratoTxtFalse").fieldInput();
+$("#contratoTxtVertical").fieldInput();
+$("#contratoTxtFalseVertical").fieldInput();
 
 $("#fecha1").fielDate();
 $("#fecha2").fielDate();
@@ -57,3 +59,6 @@ $("#barChart").canvas();
 $("#barChartNBar").canvas();
 $("#lineChart").canvas();
 $("#multiChart").canvas();
+
+// Swap List
+$("#listado").fieldSwaplist();

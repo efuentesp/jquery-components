@@ -1,3 +1,191 @@
+$.fn.fieldSwaplist = function () {
+  const fieldId = this.attr("id");
+  const fieldTitleSource = this.data("componentTitleSource");
+  const fieldTitleDestination = this.data("componentTitleDestination");
+  const idSource = fieldId + "_source";
+  const idDestination = fieldId + "_destination";
+
+  const divListSwapWrapper = document.createElement("div");
+  divListSwapWrapper.setAttribute("class", "listswap_wrapper");
+  divListSwapWrapper.setAttribute("id", fieldId);
+
+  const divRow = document.createElement("div");
+  divRow.setAttribute("class", "row");
+  divListSwapWrapper.appendChild(divRow);
+
+  const divSwapList = document.createElement("div");
+  divSwapList.setAttribute("id", "swaplist");
+  divRow.appendChild(divSwapList);
+
+  const divSwapListSource = document.createElement("div");
+  divSwapListSource.setAttribute("id", "swaplist-source");
+  divSwapList.appendChild(divSwapListSource);
+
+  const divSwapListControl = document.createElement("div");
+  divSwapListControl.setAttribute("class", "source_control");
+  divSwapList.appendChild(divSwapListControl);
+
+  const divUp = document.createElement("div");
+  divUp.setAttribute("class", "up");
+  divUp.setAttribute("style", "margin-top:3px;");
+  divSwapListControl.appendChild(divUp);
+
+  const buttonUp = document.createElement("button");
+  buttonUp.setAttribute("class", "up-button");
+  divUp.appendChild(buttonUp);
+
+  const imgUp = document.createElement("img");
+  imgUp.setAttribute("src", "../../assets/images/flecha-arriba.png");
+  imgUp.setAttribute("style", "width:18px;");
+  buttonUp.appendChild(imgUp);
+
+  const divAdd = document.createElement("div");
+  divAdd.setAttribute("class", "add");
+  divAdd.setAttribute("style", "margin-top:3px;");
+  divSwapListControl.appendChild(divAdd);
+
+  const buttonAdd = document.createElement("button");
+  buttonAdd.setAttribute("class", "right-button");
+  divAdd.appendChild(buttonAdd);
+
+  const imgAdd = document.createElement("img");
+  imgAdd.setAttribute("src", "../../assets/images/flecha-derecha.png");
+  imgAdd.setAttribute("style", "width:18px;");
+  buttonAdd.appendChild(imgAdd);
+
+  const divRemove = document.createElement("div");
+  divRemove.setAttribute("class", "remove");
+  divRemove.setAttribute("style", "margin-top:3px;");
+  divSwapListControl.appendChild(divRemove);
+
+  const buttonRemove = document.createElement("button");
+  buttonRemove.setAttribute("class", "left-button");
+  divRemove.appendChild(buttonRemove);
+
+  const imgRemove = document.createElement("img");
+  imgRemove.setAttribute("src", "../../assets/images/flecha-izquierda.png");
+  imgRemove.setAttribute("style", "width:18px;");
+  buttonRemove.appendChild(imgRemove);
+
+  const divDown = document.createElement("div");
+  divDown.setAttribute("class", "down");
+  divDown.setAttribute("style", "margin-top:3px;");
+  divSwapListControl.appendChild(divDown);
+
+  const buttonDown = document.createElement("button");
+  buttonDown.setAttribute("class", "down-button");
+  divDown.appendChild(buttonDown);
+
+  const imgDown = document.createElement("img");
+  imgDown.setAttribute("src", "../../assets/images/flecha-abajo.png");
+  imgDown.setAttribute("style", "width:18px;");
+  buttonDown.appendChild(imgDown);
+
+  const divSwapListDestination = document.createElement("div");
+  divSwapListDestination.setAttribute("id", "swaplist-destination");
+  divSwapList.appendChild(divSwapListDestination);
+
+  const sourceTitle = document.createElement("p");
+  sourceTitle.setAttribute("class", "title");
+  sourceTitle.innerHTML = fieldTitleSource;
+  divSwapListSource.appendChild(sourceTitle);
+
+  const destinationTitle = document.createElement("p");
+  destinationTitle.setAttribute("class", "title");
+  destinationTitle.innerHTML = fieldTitleDestination;
+  divSwapListDestination.appendChild(destinationTitle);
+
+  const listSource = document.createElement("ul");
+  listSource.setAttribute("class", "column source");
+  listSource.setAttribute("id", idSource);
+  divSwapListSource.appendChild(listSource);
+
+  const listDestination = document.createElement("ul");
+  listDestination.setAttribute("class", "column destination");
+  listDestination.setAttribute("id", idDestination);
+  divSwapListDestination.appendChild(listDestination);
+
+  this.append(divListSwapWrapper);
+
+  var sourceList = [
+    { id: "1", value: "option_1_1", label: "Valor 1" },
+    { id: "2", value: "option_1_2", label: "Valor 2" },
+    { id: "3", value: "option_1_3", label: "Valor 3" },
+    { id: "4", value: "option_1_4", label: "Valor 4" },
+    { id: "5", value: "option_1_5", label: "Valor 5" }
+  ];
+
+  var destinationList = [
+    { id: "6", value: "option_1_6", label: "Valor 6" },
+    { id: "7", value: "option_1_7", label: "Valor 7" },
+    { id: "8", value: "option_1_8", label: "Valor 8" }
+  ];
+
+  fillSwapList(idSource, sourceList);
+  fillSwapList(idDestination, destinationList);
+
+  $("ul.column").on("click", "li", function () {
+    if (!$(this).hasClass("selected")) {
+      console.log("selected");
+      clearList();
+      $(this).addClass("selected");
+    }
+  });
+
+  const clearList = function () {
+    $("ul.column li").removeClass("selected");
+  };
+
+  $(".up").click(function () {
+    var currents = $(".portlet.selected");
+    currents.prev().before(currents);
+  });
+
+  $(".down").click(function () {
+    var currents = $(".portlet.selected");
+    currents.next().after(currents);
+  });
+
+  $(".add").click(function () {
+    var currents = $(".portlet.selected");
+    $(".column.destination").append(currents);
+    clearList();
+  });
+
+  $(".remove").click(function () {
+    var currents = $(".portlet.selected");
+    $(".column.source").append(currents);
+    clearList();
+  });
+
+  $(".column").sortable({
+    connectWith: ".column",
+    handle: ".portlet-content",
+    cancel: ".portlet-toggle",
+    placeholder: "portlet-placeholder ui-corner-all"
+  });
+
+  $(".portlet")
+    .addClass("ui-widget ui-widget-content ui-helper-clearfix ui-corner-all")
+    .find(".portlet-content")
+    .addClass("ui-corner-all");
+};
+
+var fillSwapList = function (list_id, params) {
+  var list = $("#" + list_id);
+
+  for (var i = 0; i < params.length; i++) {
+    var data = params[i];
+    list.append(
+      "<li class='portlet' value=" +
+      data.value +
+      "><div class='portlet-content'>" +
+      data.label +
+      "</div></li>"
+    );
+  }
+};
+
 $.fn.fieldInputPlusMinus = function () {
   const fieldId = this.attr("id");
   const fieldMaxsize = this.data("componentMaxsize");
@@ -184,7 +372,12 @@ $.fn.fieldSelectPlusMinus = function () {
     { key: "001", value: "Contrato 01" },
     { key: "002", value: "Contrato 02" },
     { key: "003", value: "Contrato 03" },
-    { key: "004", value: "Contrato 04" }
+    { key: "004", value: "Contrato 04" },
+    { key: "005", value: "Contrato 05" },
+    { key: "006", value: "Contrato 06" },
+    { key: "007", value: "Contrato 07" },
+    { key: "008", value: "Contrato 08" },
+    { key: "009", value: "Contrato 09" }
   ];
 
   var people = Object.keys(group);
@@ -317,7 +510,12 @@ $.fn.fieldSelectPlusMinusAutocomplete = function () {
     { key: "001", value: "Contrato 01" },
     { key: "002", value: "Contrato 02" },
     { key: "003", value: "Contrato 03" },
-    { key: "004", value: "Contrato 04" }
+    { key: "004", value: "Contrato 04" },
+    { key: "005", value: "Contrato 05" },
+    { key: "006", value: "Contrato 06" },
+    { key: "007", value: "Contrato 07" },
+    { key: "008", value: "Contrato 08" },
+    { key: "009", value: "Contrato 09" }
   ];
 
   var people = Object.keys(group);
@@ -431,7 +629,7 @@ $.fn.button = function () {
     if (type !== "" && btnclass === "button big-button")
       button.setAttribute("type", type);
 
-    if (this.data("componentDisabled") === "true")
+    if (this.data("componentDisabled") === true)
       button.setAttribute("disabled", "disabled");
 
     if (tooltip !== "") button.setAttribute("custom-tooltip", tooltip);
@@ -485,70 +683,109 @@ $.fn.gridrecordscount = function () {
 };
 
 $.fn.fieldInput = function () {
-  this.filter("[data-component-type='text']").each(function () {
-    const c = $(this);
-    const fieldId = c.attr("id");
-    console.log("Id", fieldId);
-    const fieldWidth =
-      "width: " +
-      (c.data("componentWidth") ? c.data("componentWidth") : "8em") +
-      ";";
-    const fieldClass =
-      "is_" +
-      (c.data("componentOrientation")
-        ? c.data("componentOrientation")
-        : "vertical");
-    const spanRequiredClass =
-      "pr-3 " + (c.data("componentRequired") == true ? "required" : "");
+  // this.filter("[data-component-type='text']").each(function() {
+  const c = $(this);
+  const fieldId = c.attr("id");
+  // console.log("Id", fieldId);
+  let fieldType = "";
+  if (c.data("componentInputType") === "integer") {
+    fieldType = "integer";
+  } else if (c.data("componentInputType") === "number") {
+    fieldType = "number";
+  } else if (c.data("componentInputType") === "currency") {
+    fieldType = "currency";
+  } else {
+    fieldType = "alphanum";
+  }
+  const fieldMaxLength = c.data("componentMaxLength")
+    ? c.data("componentMaxLength")
+    : "32";
+  const fieldWidth =
+    "width: " +
+    (c.data("componentWidth") ? c.data("componentWidth") : "8em") +
+    ";";
+  const fieldClass =
+    "is_" +
+    (c.data("componentOrientation")
+      ? c.data("componentOrientation")
+      : "vertical");
+  const spanRequiredClass =
+    "pr-3 " + (c.data("componentRequired") == true ? "required" : "");
 
-    c.attr("id", "field_" + fieldId);
-    c.attr("class", "field " + fieldClass);
+  c.attr("id", "field_" + fieldId);
+  c.attr("class", "field " + fieldClass);
 
-    const divLabel = document.createElement("div");
-    divLabel.setAttribute("class", "field-label flex");
+  const divLabel = document.createElement("div");
+  divLabel.setAttribute("class", "field-label flex");
 
-    const label = document.createElement("label");
-    label.setAttribute("for", fieldId);
-    label.innerHTML = c.data("componentLabel");
-    divLabel.appendChild(label);
-    c.append(divLabel);
+  const label = document.createElement("label");
+  label.setAttribute("for", fieldId);
+  label.innerHTML = c.data("componentLabel");
+  divLabel.appendChild(label);
+  c.append(divLabel);
 
-    const spanRequired = document.createElement("span");
-    spanRequired.setAttribute("class", spanRequiredClass);
-    if (c.data("componentRequired") == true) {
-      spanRequired.innerHTML = "*";
-    }
-    label.appendChild(spanRequired);
+  const spanRequired = document.createElement("span");
+  spanRequired.setAttribute("class", spanRequiredClass);
+  if (c.data("componentRequired") == true) {
+    spanRequired.innerHTML = "*";
+  }
+  label.appendChild(spanRequired);
 
-    const divControl = document.createElement("div");
-    divControl.setAttribute("class", "field-control");
+  const divControl = document.createElement("div");
+  divControl.setAttribute("class", "field-control");
+  if (c.data("componentTooltip")) {
+    divControl.setAttribute("custom-tooltip", c.data("componentTooltip"));
+  }
 
-    const divFieldInput = document.createElement("div");
-    divFieldInput.setAttribute("class", "field-input has-addons flex");
-    if (c.data("componentTooltip")) {
-      divFieldInput.setAttribute("data-tooltip", c.data("componentTooltip"));
-    }
-    divControl.appendChild(divFieldInput);
-    c.append(divControl);
+  const divFieldInput = document.createElement("div");
+  divFieldInput.setAttribute("class", "field-input has-addons flex");
 
-    const input = document.createElement("input");
-    input.setAttribute("id", fieldId);
-    input.setAttribute("class", "input");
-    input.setAttribute("type", "text");
-    input.setAttribute("style", fieldWidth);
-    input.setAttribute("data-parsley-trigger", "keyup");
-    input.setAttribute("data-parsley-maxlength", "32");
-    input.setAttribute(
-      "data-parsley-maxlength-message",
-      "Solo puede ingresar 32 caracteres."
-    );
-    input.setAttribute("data-parsley-validation-threshold", "10");
-    input.setAttribute(
-      "data-parsley-errors-container",
-      "field_error_block_" + fieldId
-    );
-    divFieldInput.appendChild(input);
-  });
+  divControl.appendChild(divFieldInput);
+  c.append(divControl);
+
+  const input = document.createElement("input");
+  input.setAttribute("id", fieldId);
+  input.setAttribute("class", "input " + fieldType);
+  input.setAttribute("type", "text");
+  input.setAttribute("style", fieldWidth);
+  input.setAttribute("data-parsley-trigger", "keyup");
+  input.setAttribute("data-parsley-maxlength", fieldMaxLength);
+  input.setAttribute(
+    "data-parsley-maxlength-message",
+    "Solo puede ingresar " + fieldMaxLength + " caracteres."
+  );
+  input.setAttribute("data-parsley-validation-threshold", "10");
+  input.setAttribute(
+    "data-parsley-errors-container",
+    "field_error_block_" + fieldId
+  );
+
+  if (c.data("componentDisabled") === true) {
+    input.setAttribute("disabled", "disabled");
+  }
+  3;
+  if (c.data("componentDefaultValue")) {
+    input.value = c.data("componentDefaultValue");
+  }
+
+  if (fieldType === "currency") {
+    const spanCurrency = document.createElement("span");
+    spanCurrency.setAttribute("class", "currency-prefix");
+    spanCurrency.innerText = "$";
+    divFieldInput.appendChild(spanCurrency);
+  }
+  divFieldInput.appendChild(input);
+
+  c.removeAttr("data-component-type");
+  c.removeAttr("data-component-label");
+  c.removeAttr("data-component-required");
+  c.removeAttr("data-component-orientation");
+  c.removeAttr("data-component-type-input");
+  c.removeAttr("data-component-max-length");
+  c.removeAttr("data-component-disabled");
+  c.removeAttr("data-component-tooltip");
+  c.removeAttr("data-component-default-value");
+  // });
 };
 
 $.fn.tabgroup = function () {
@@ -641,6 +878,9 @@ $.fn.fielDate = function () {
   const toolTip = this.data("componentTooltip")
     ? this.data("componentTooltip")
     : "";
+  const fieldSize = this.data("componentSize")
+    ? this.data("componentSize")
+    : "8em";
 
   this.attr("id", "field_" + fieldId);
   this.attr("class", "field " + fieldClassOrientation);
@@ -671,12 +911,16 @@ $.fn.fielDate = function () {
   if (this.data("componentRequired") == true) {
     inpt.setAttribute("required", "required");
   }
-  inpt.setAttribute("style", "width: 8em;");
+  inpt.setAttribute("style", "width: " + fieldSize + ";");
   inpt.setAttribute(
     "data-parsley-errors-container",
     "#field_error_block_" + fieldId
   );
   inpt.setAttribute("maxlength", "10");
+  if (this.data("componentDisabled") === true) {
+    inpt.setAttribute("disabled", "disabled");
+  }
+
   divDate.appendChild(inpt);
   /*
 
@@ -717,6 +961,7 @@ $.fn.fielDate = function () {
   this.removeAttr("data-component-orientation");
   this.removeAttr("data-component-clear");
   this.removeAttr("data-component-tooltip");
+  this.removeAttr("data-component-size");
   //-----------------------------------------------------------------------------
   fieldDateClear(fieldId);
 
@@ -1018,7 +1263,9 @@ $.fn.fieldOptions = function () {
 
 $.fn.fieldCheckBox = function () {
   const fieldId = this.attr("id");
-  const fieldLabel = this.attr("data-component-label");
+  const fieldLabel = this.data("componentLabel")
+    ? this.data("componentLabel")
+    : "";
   const spanRequiredClass =
     "pr-5 " + (this.data("componentRequired") == true ? "required" : "");
   const fieldClassOrientation =
@@ -1200,9 +1447,10 @@ $.fn.fieldSplitter = function () {
   } else {
     divPanel1.setAttribute("style", "position: relative; z-index: 1; top: 0px; height: 183px; width: 1439px; user-select: text;");
   }
+
   const labelOpt1 = document.createElement("label");
   var t1 = document.createTextNode("Aquí va el contenido del panel 1");
-  labelOpt1.appendChild(t1)
+  labelOpt1.appendChild(t1);
   divPanel1.appendChild(labelOpt1);
   divSimple.appendChild(divPanel1);
   /*
@@ -1290,7 +1538,6 @@ $.fn.fieldSplitter = function () {
       });
   };
   */
-
 };
 
 // --------------------   SELECT   -------------------- //

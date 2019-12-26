@@ -287,13 +287,21 @@ function fieldPlusMinusRepaintList(node) {
     }
 }
 
+var removeHoverStyle = function (list) {
+    $(list + " li a").each(function () {
+        if ($(this).text() == "") {
+            $(this).css("pointer-events", "none");
+        }
+    });
+};
+
 /**
  * Funcionalidad para el componente +/- con un input
  * @param {string} id - Id del componente.
  * @param {object} params - Objeto con los parámetros para el componente:
  *   maxsize (opcional): Si la lista solo permite un número limitado de elementos en la lista
  */
-let fieldPlusMinus = function (id, params) {
+var fieldPlusMinus = function (id, params) {
     let idBtnPlus = "#btn_plus_" + id;
     let idBtnMinus = "#btn_minus_" + id;
     let idInput = "#" + id;
@@ -333,7 +341,9 @@ let fieldPlusMinus = function (id, params) {
         }
         fieldPlusMinusRepaintList(node);
         $(idInput).val("");
+        removeHoverStyle(list);
     };
+    removeHoverStyle(list);
     $(idBtnMinus).click(function () {
         $(list + " li a").each(function (index) {
           if ($(idInput).val() != "") {
@@ -359,6 +369,7 @@ let fieldPlusMinus = function (id, params) {
         });
         fieldPlusMinusRepaintList(node);
         $(idInput).val("");
+        removeHoverStyle(list);
       });
     
       // Set to input
@@ -399,6 +410,8 @@ let fieldSelectPlusMinus = function (id, params) {
     let node = "tag_list_" + id;
     let definedNodes = true;
     let numNodes = 4;
+    let maxsize = params.maxsize;
+
     if (params.nodes == undefined) {
         definedNodes = true;
     }
@@ -410,18 +423,20 @@ let fieldSelectPlusMinus = function (id, params) {
             $(list).append("<li><a class='delete_item' href='javascript:void();'></a></li>");
         }
     }
+    removeHoverStyle(list);
     $(idBtnPlus).click(function () {
         var text_to_add = $(idInput + " option:selected").text();
         var value_to_add = $(idInput + " option:selected").val();
         if (!existText(text_to_add, list)) {
-            if (!addedText(text_to_add, value_to_add, list)) {
-                addNode(text_to_add, value_to_add, list, params.maxsize);
+            if (!addedText(id,text_to_add, value_to_add, list, maxsize)) {
+                addNode(text_to_add, value_to_add, list, maxsize);
             }
         }
         fieldPlusMinusRepaintList(node);
         $(idInput)
             .val(null)
             .trigger("change");
+        removeHoverStyle(list);    
     });
     $(idBtnMinus).click(function () {
         $(list + " li a").each(function (index) {
@@ -449,6 +464,7 @@ let fieldSelectPlusMinus = function (id, params) {
         $(idInput)
             .val(null)
             .trigger("change");
+        removeHoverStyle(list);
     });
     $(list).delegate(".delete_item", "click", function() {
         $(idInput)
@@ -509,7 +525,7 @@ let fieldSelectPlusAutocomplete = function (id, params) {
         $(list).append("<li><a class='delete_item' href='javascript:void();'></a></li>");
       }
     }
-  
+    removeHoverStyle(list);
     $(idBtnPlus).click(function () {
         let text_to_add = $(idInput + " option:selected").text();
         let value_to_add = $(idInput + " option:selected").val();
@@ -525,6 +541,7 @@ let fieldSelectPlusAutocomplete = function (id, params) {
         .trigger("change");
   
         $(idInput).removeClass("select-item");
+        removeHoverStyle(list);
     });
   
     $(idInput).change(function () {
@@ -545,6 +562,7 @@ let fieldSelectPlusAutocomplete = function (id, params) {
         }
   
         $(idInput).removeClass("select-item");
+        removeHoverStyle(list);
       }
     });
    
@@ -574,6 +592,7 @@ let fieldSelectPlusAutocomplete = function (id, params) {
         .trigger("change");
   
         $(idInput).removeClass("select-item");
+        removeHoverStyle(list);
     });
   
     $(list).delegate(".delete_item", "click", function() {
@@ -1931,58 +1950,58 @@ var xml2json = function (xml, tab) {
         (tab ? json.replace(/\t/g, tab) : json.replace(/\t|\n/g, "")) +
         "\n}");
 };
-var fillSwapList = function (id, list_id, params) {
-    var _id = "#" + id;
-    var list = $("#listado_" + list_id);
-    for (var i = 0; i < params.length; i++) {
-        var data = params[i];
-        list.append("<li class='portlet' value=" +
-            data.value +
-            "><div class='portlet-content'>" +
-            data.label +
-            "</div></li>");
-    }
-};
-$("ul.column").on("click", "li", function () {
-    if ($(this).hasClass("selected")) {
-        $(this).removeClass("selected");
-    }
-    else {
-        clearList();
-        $(this).addClass("selected");
-    }
-});
-$(".up").click(function () {
-    var currents = $(".portlet.selected");
-    currents.prev().before(currents);
-});
-$(".down").click(function () {
-    var currents = $(".portlet.selected");
-    currents.next().after(currents);
-});
-$(".add").click(function () {
-    var currents = $(".portlet.selected");
-    $(".column.destination").append(currents);
-    clearList();
-});
-$(".remove").click(function () {
-    var currents = $(".portlet.selected");
-    $(".column.source").append(currents);
-    clearList();
-});
-$(".column").sortable({
-    connectWith: ".column",
-    handle: ".portlet-content",
-    cancel: ".portlet-toggle",
-    placeholder: "portlet-placeholder ui-corner-all"
-});
-$(".portlet")
-    .addClass("ui-widget ui-widget-content ui-helper-clearfix ui-corner-all")
-    .find(".portlet-content")
-    .addClass("ui-corner-all");
-var clearList = function () {
-    $("ul.column li").removeClass("selected");
-};
+// var fillSwapList = function (id, list_id, params) {
+//     var _id = "#" + id;
+//     var list = $("#listado_" + list_id);
+//     for (var i = 0; i < params.length; i++) {
+//         var data = params[i];
+//         list.append("<li class='portlet' value=" +
+//             data.value +
+//             "><div class='portlet-content'>" +
+//             data.label +
+//             "</div></li>");
+//     }
+// };
+// $("ul.column").on("click", "li", function () {
+//     if ($(this).hasClass("selected")) {
+//         $(this).removeClass("selected");
+//     }
+//     else {
+//         clearList();
+//         $(this).addClass("selected");
+//     }
+// });
+// $(".up").click(function () {
+//     var currents = $(".portlet.selected");
+//     currents.prev().before(currents);
+// });
+// $(".down").click(function () {
+//     var currents = $(".portlet.selected");
+//     currents.next().after(currents);
+// });
+// $(".add").click(function () {
+//     var currents = $(".portlet.selected");
+//     $(".column.destination").append(currents);
+//     clearList();
+// });
+// $(".remove").click(function () {
+//     var currents = $(".portlet.selected");
+//     $(".column.source").append(currents);
+//     clearList();
+// });
+// $(".column").sortable({
+//     connectWith: ".column",
+//     handle: ".portlet-content",
+//     cancel: ".portlet-toggle",
+//     placeholder: "portlet-placeholder ui-corner-all"
+// });
+// $(".portlet")
+//     .addClass("ui-widget ui-widget-content ui-helper-clearfix ui-corner-all")
+//     .find(".portlet-content")
+//     .addClass("ui-corner-all");
+// var clearList = function () {
+//     $("ul.column li").removeClass("selected");
+// };
 var formatNumber = {
     separador: ",",
     sepDecimal: ".",
@@ -2431,126 +2450,174 @@ var barHighchart = function (params) {
 };
 //# sourceMappingURL=../maps/common.js.map
 
+var verifyYear = function (day, month, year) {
+    var countMonthYear = 0;
+    var countMonth = 0;
+    var monthNum = 0;
+    var monthL = 0;
+    var monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    var indexMonth = 0;
+    var d = new Date();
+    var yPlus = d.getFullYear() + 100;
+    var yMinus = d.getFullYear() - 100;
+    if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
+        monthLength[1] = 29;
+    }
+    if (year > yPlus) {
+        year = d.getFullYear();
+    }
+    if (year < yMinus) {
+        year = d.getFullYear();
+    }
+    if (month > 0) {
+        monthNum = month - 1;
+        if (monthNum > 11) {
+            while (monthNum > 11) {
+                monthNum = monthNum - 12;
+            }
+        }
+        if (day > monthLength[monthNum]) {
+            while (day > monthLength[monthNum]) {
+                indexMonth = monthNum + countMonth;
+                if (indexMonth < 12) {
+                    monthL = monthLength[indexMonth];
+                }
+                else {
+                    monthL = monthLength[indexMonth - 12];
+                }
+                day = day - monthL;
+                countMonth++;
+            }
+        }
+        month = month + countMonth;
+        if (month > 12) {
+            while (month > 12) {
+                month = month - 12;
+                countMonthYear++;
+            }
+        }
+        year = year + countMonthYear;
+    }
+    return year;
+};
+var verifyMonth = function (day, month, year) {
+    var countMonth = 0;
+    var monthNum = 0;
+    var monthL = 0;
+    var monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    var indexMonth = 0;
+    if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
+        monthLength[1] = 29;
+    }
+    monthNum = month - 1;
+    if (monthNum > 11) {
+        while (monthNum > 11) {
+            monthNum = monthNum - 12;
+        }
+    }
+    if (day > monthLength[monthNum]) {
+        while (day > monthLength[monthNum]) {
+            indexMonth = monthNum + countMonth;
+            if (indexMonth < 12) {
+                monthL = monthLength[indexMonth];
+            }
+            else {
+                monthL = monthLength[indexMonth - 12];
+            }
+            day = day - monthL;
+            countMonth++;
+        }
+    }
+    month = month + countMonth;
+    if (month > 12) {
+        while (month > 12) {
+            month = month - 12;
+        }
+    }
+    return month;
+};
+var verifyDay = function (day, month, year) {
+    var countMonth = 0;
+    var monthNum = 0;
+    var monthL = 0;
+    var monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    var indexMonth = 0;
+    if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
+        monthLength[1] = 29;
+    }
+    monthNum = month - 1;
+    if (monthNum > 11) {
+        while (monthNum > 11) {
+            monthNum = monthNum - 12;
+        }
+    }
+    if (day > monthLength[monthNum]) {
+        while (day > monthLength[monthNum]) {
+            indexMonth = monthNum + countMonth;
+            if (indexMonth < 12) {
+                monthL = monthLength[indexMonth];
+            }
+            else {
+                monthL = monthLength[indexMonth - 12];
+            }
+            day = day - monthL;
+            countMonth++;
+        }
+    }
+    return day;
+};
+var verifyDate = function (data, obj) {
+    var array = [];
+    array = data.split("-");
+    var d = new Date();
+    var dd = d.getDate();
+    var dm = d.getMonth();
+    var dy = d.getFullYear();
+    var day = parseInt(array[0]);
+    var month = parseInt(array[1]);
+    var year = parseInt(array[2]);
+    var dayA = array[0];
+    if (dayA.length != 2 || dayA == "00" || dayA == undefined) {
+        day = dd;
+    }
+    var monthA = array[1];
+    if (monthA.length != 2 || monthA == "00" || monthA == undefined) {
+        month = dm + 1;
+    }
+    var yearA = array[2];
+    if (yearA.length != 4 || yearA == "0000" || yearA == undefined) {
+        year = dy;
+    }
+    var nMonth = 0;
+    var nDay = 0;
+    var nYear = 0;
+    nDay = verifyDay(day, month, year);
+    nMonth = verifyMonth(day, month, year);
+    nYear = verifyYear(day, month, year);
+    $(obj).val("" + pad(nDay, 2, "") + "-" + pad(nMonth, 2, "") + "-" + nYear);
+};
+$(".datepicker").focusout(function () {
+    var date = $(this)
+        .val()
+        .toString();
+    if (date != "") {
+        verifyDate(date, $(this));
+    }
+});
 function pad(n, width, z) {
     z = z || "0";
     n = n + "";
     return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 }
-
- const verifyDay = function(day, month, year) {
-    let countMonth = 0;
-    let monthNum = 0;
-    let monthL = 0;
-    let monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];  // Day of month
-    var indexMonth = 0;
-  
-    if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
-      monthLength[1] = 29;
+$(".datepicker").on("keydown", function (e) {
+    var date = $(this)
+        .val()
+        .toString();
+    if (e.which == 13) {
+        e.preventDefault();
+        if (date != "") {
+            verifyDate(date, $(this));
+        }
     }
-    
-    monthNum = 0;
-  
-    if (day > monthLength[monthNum]) {
-        while (day > monthLength[monthNum]) {
-          indexMonth = monthNum + countMonth;
-          if (indexMonth < 12) {
-            monthL = monthLength[monthNum];
-          } else {
-            // monthL = monthLength[(monthNum - 1 + countMonth - 12)];
-          }
-          day = day - monthL;
-        }  
-    }
-  
-    return day;
-  };
-
- const verifyMonth = function(day, month, year) {
-  
-    // Day
-    let countMonth = 0;
-    let monthNum = 0;
-    let monthL = 0;
-    let monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];  // Day of month
-    var indexMonth = 0;
-    
-    if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
-      monthLength[1] = 29;
-    }
-  
-    monthNum = 0;
-   
-    if (day > monthLength[monthNum]) {
-        while (day > monthLength[monthNum]) {
-          
-          indexMonth = monthNum + countMonth;
-  
-          if (indexMonth < 12) {
-            monthL = monthLength[monthNum];
-          } else {
-            // monthL = monthLength[(monthNum - 1 + countMonth - 12)];
-          }
-  
-          day = day - monthL;
-          monthNum++;
-          countMonth++;
-        }  
-    }
-  
-   if (month > 11) {
-      while (month > 11) {
-        month = month - 12;
-      }
-    }
-   
-    month = month + countMonth;
-    return month;
-  };
-
-  
- const verifyYear = function(day, month, year) {
-    // Day
-    let countMonth = 0;
-    let monthNum = 0;
-    let monthL = 0;
-    let monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];  // Day of month
-    var indexMonth = 0;
-  
-    // Month
-    let countMonthYear = 0;
-    
-    if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
-      monthLength[1] = 29;
-    }
-  
-    monthNum = 0;
-  
-    if (day > monthLength[monthNum]) {
-        while (day > monthLength[monthNum]) {
-          indexMonth = monthNum + countMonth;
-  
-          if (indexMonth < 12) {
-            monthL = monthLength[monthNum];
-          } else {
-            // monthL = monthLength[(monthNum - 1 + countMonth - 12)];
-          }
-  
-          day = day - monthL;
-          monthNum++;
-          countMonth++;
-        }  
-    }
-  
-    month = month + countMonth;
-  
-    if (month > 11) {
-      while (month > 11) {
-        month = month - 12;
-        countMonthYear++;
-      }
-    }
-  
-    year = year + countMonthYear;
-    return year;
-  };
+});
   

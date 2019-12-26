@@ -11,6 +11,10 @@
 </head>
 
 <body>
+
+  <div id="listado" data-component-type="field-swaplist" data-component-title-source="Columnas Disponibles"
+    data-component-title-destination="Columnas Seleccionadas"></div>
+
   <div id="contrato1" data-component-type="input-plus-minus" data-component-label="Contrato"></div>
 
   <form id="formcontrato">
@@ -56,20 +60,24 @@
     data-component-required="false" data-component-orientation="vertical" data-component-width="12em"
     data-component-nodes="false"></div>
 
-  <div id="contratoTxt" data-component-type="text" data-component-label="Contrato Texto" data-component-required="true"
-    data-component-orientation="horizontal"></div>
+  <div id="contratoTxt" data-component-type="input" data-component-label="Contrato Texto" data-component-required="true"
+    data-component-orientation="horizontal" data-component-input-type="currency" data-component-max-length="6"
+    data-component-tooltip="Contrato"></div>
 
-  <div id="contratoTxtFalse" data-component-type="text" data-component-label="Contrato Texto False"
-    data-component-required="false" data-component-orientation="horizontal"></div>
+  <div id="contratoTxtFalse" data-component-type="input" data-component-label="Contrato Texto False"
+    data-component-width="20em" data-component-required="false" data-component-orientation="horizontal"
+    data-component-input-type="number"></div>
 
-  <div id="contratoTxtVertical" data-component-type="text" data-component-label="Contrato Texto"
-    data-component-required="true" data-component-orientation="vartical"></div>
+  <div id="contratoTxtVertical" data-component-type="input" data-component-label="Contrato Texto"
+    data-component-required="true" data-component-orientation="vertical" data-component-input-type="integer"></div>
 
-  <div id="contratoTxtFalseVertical" data-component-type="text" data-component-label="Contrato Texto False"
-    data-component-required="false" data-component-orientation="vertical"></div>
+  <div id="contratoTxtFalseVertical" data-component-type="input" data-component-label="Contrato Texto False"
+    data-component-required="false" data-component-orientation="vertical"
+    data-component-default-value="test default value"></div>
 
   <div id="fecha1" data-component-type="date" data-component-label="Fecha" data-component-required="true"
-    data-component-orientation="horizontal" data-component-clear=true data-component-tooltip="date tooltip"></div>
+    data-component-orientation="horizontal" data-component-clear=true data-component-tooltip="date tooltip"
+    data-component-disabled="true"></div>
 
   <div id="fecha2" data-component-type="date" data-component-label="Fecha" data-component-required="true"
     data-component-orientation="vertical" data-component-clear=false></div>
@@ -163,32 +171,6 @@
       <p>Contenido Acordeon 3</p>
     </div>
   </div>
-
-
-  <div id="ejemploaccordionpaso1" data-component-type="accordion-item"
-    data-component-label="Paso 1 de 3 Ingreso en Cuenta Medio Electrónico">
-    <p>Contenido Acordeon 1</p>
-  </div>
-  <div id="ejemploaccordionpaso2" data-component-type="accordion-item" data-component-label="Paso 2 de 3">
-    <p>Contenido Acordeon 2</p>
-  </div>
-  <div id="ejemploaccordionpaso3" data-component-type="accordion-item" data-component-label="Paso 3 de 3">
-    <p>Contenido Acordeon 3</p>
-  </div>
-  </div>
-
-  <div id="tab1" data-component-type="tab-group">
-    <div id="tab_movimientos" data-component-type="tab-item" data-component-label="Movimientos por Contrato">
-      <p>Elementos dentro del Tab 1</p>
-    </div>
-    <div id="tab_reportes" data-component-label="Reportes" data-component-type="tab-item">
-      <p>Elementos dentro del Tab 2</p>
-    </div>
-    <div id="tab_cartas_masivas" data-component-label="Cartas Masivas" data-component-type="tab-item">
-      <p>Elementos dentro del Tab 3</p>
-    </div>
-  </div>
-
 
   <div id="tab1" data-component-type="tab-group">
     <div id="tab_movimientos" data-component-type="tab-item" data-component-label="Movimientos por Contrato">
