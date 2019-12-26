@@ -1233,7 +1233,10 @@ $.fn.fieldOptions = function() {
     if (this.data("componentRequired") == true) {
       inptOpt.setAttribute("required", "required");
     }
-    if (divChild.attributes.checked && divChild.attributes.checked.value == "true") {
+    if (
+      divChild.attributes.checked &&
+      divChild.attributes.checked.value == "true"
+    ) {
       inptOpt.setAttribute("checked", "checked");
     }
 
@@ -1582,6 +1585,9 @@ $.fn.select = function() {
       ? this.data("componentPlaceholder")
       : "";
     const required = this.data("componentRequired") ? true : false;
+    const disabled = this.data("componentDisabled")
+      ? this.data("componentDisabled")
+      : false;
     let value = "";
     this.each(function() {
       var attributes = this.attributes;
@@ -1660,6 +1666,9 @@ $.fn.select = function() {
       placeholder: placeholder,
       minimumResultsForSearch: Infinity
     });
+    if (disabled) {
+      $("#" + id).prop("disabled", true);
+    }
     if (value) {
       $("#" + id)
         .val(value)
