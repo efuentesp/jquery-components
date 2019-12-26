@@ -763,6 +763,10 @@ $.fn.fieldInput = function() {
   if (c.data("componentDisabled") === true) {
     input.setAttribute("disabled", "disabled");
   }
+  3;
+  if (c.data("componentDefaultValue")) {
+    input.value = c.data("componentDefaultValue");
+  }
 
   if (fieldType === "currency") {
     const spanCurrency = document.createElement("span");
@@ -778,6 +782,9 @@ $.fn.fieldInput = function() {
   c.removeAttr("data-component-orientation");
   c.removeAttr("data-component-type-input");
   c.removeAttr("data-component-max-length");
+  c.removeAttr("data-component-disabled");
+  c.removeAttr("data-component-tooltip");
+  c.removeAttr("data-component-default-value");
   // });
 };
 
