@@ -1185,12 +1185,21 @@ $.fn.fieldSplitter = function () {
     " ui-widget ui-widget-content"
   );
 
-  divSimple.setAttribute("id", "simple");
+  if (fieldClassOrientation == "vertical") {
+    divSimple.setAttribute("id", "simple");
+  } else {
+    divSimple.setAttribute("id", fieldClassOrientation + "-splitter");
+  }
+
   divSimple.setAttribute("data-splitter-initialized", true);
   divSimple.setAttribute("style", "position: relative;");
   const divPanel1 = document.createElement("div");
   divPanel1.setAttribute("class", "pane splitter-pane");
-  divPanel1.setAttribute("style", "position: absolute; z-index: 1; left: 0px; width: 856px; height: 400px;");
+  if (fieldClassOrientation == "vertical") {
+    divPanel1.setAttribute("style", "position: absolute; z-index: 1; left: 0px; width: 856px; height: 400px;");
+  } else {
+    divPanel1.setAttribute("style", "position: relative; z-index: 1; top: 0px; height: 183px; width: 1439px; user-select: text;");
+  }
   const labelOpt1 = document.createElement("label");
   var t1 = document.createTextNode("Aquí va el contenido del panel 1");
   labelOpt1.appendChild(t1)
@@ -1209,10 +1218,15 @@ $.fn.fieldSplitter = function () {
   divSplitter.appendChild(a);
   divSimple.appendChild(divSplitter);
   */
+
   const divPanel2 = document.createElement("div");
   divPanel2.setAttribute("class", "pane splitter-pane");
-  divPanel2.setAttribute("id", "pane-right");
-  divPanel2.setAttribute("style", "position: absolute; z-index: 1; left: 868px; width: 631px; height: 400px;");
+  if (fieldClassOrientation == "vertical") {
+    divPanel2.setAttribute("id", "pane-right");
+    divPanel2.setAttribute("style", "position: absolute; z-index: 1; left: 868px; width: 631px; height: 400px;");
+  } else {
+    divPanel2.setAttribute("style", "position: relative; z-index: 1; top: 0px; width: 1439px; height: 207px; user-select: text;");
+  }
   const labelOpt2 = document.createElement("label");
   var t2 = document.createTextNode("Aquí va el contenido del panel 2");
 
@@ -1221,10 +1235,12 @@ $.fn.fieldSplitter = function () {
   divSimple.appendChild(divPanel2);
   this.append(divSimple);
   this.removeAttr("data-component-orientation");
+  this.removeAttr("data-component-type");
   for (var i = 0; i < splitterDIV.length; i++) {
     var paneSplitter = splitterDIV[i];
 
     //Se remueve el i-esimo div
+    $("#" + paneSplitter.id).remove();
     $("#" + paneSplitter.id).remove();
   }
   //=================================================================================
@@ -1234,7 +1250,7 @@ $.fn.fieldSplitter = function () {
   //});
 
   $(".splitter-vertical").splitter();
-  //$(".splitter-horizontal").splitter({ type: "h" });
+  $(".splitter-horizontal").splitter({ type: "h" });
 
   /******
   var responsiveEffect = function(

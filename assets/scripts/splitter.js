@@ -76,6 +76,7 @@
       }
 
       function dblclickDoSplitMouse() {
+        console.log("Iniciando dblclickDoSplitMouse(...)");
         var pos = 0;//A._posSplit + evt[opts.eventPos],
 
         if (splitterExpand == 0) {
