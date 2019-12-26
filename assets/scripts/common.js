@@ -287,13 +287,21 @@ function fieldPlusMinusRepaintList(node) {
     }
 }
 
+var removeHoverStyle = function (list) {
+    $(list + " li a").each(function () {
+        if ($(this).text() == "") {
+            $(this).css("pointer-events", "none");
+        }
+    });
+};
+
 /**
  * Funcionalidad para el componente +/- con un input
  * @param {string} id - Id del componente.
  * @param {object} params - Objeto con los parámetros para el componente:
  *   maxsize (opcional): Si la lista solo permite un número limitado de elementos en la lista
  */
-let fieldPlusMinus = function (id, params) {
+var fieldPlusMinus = function (id, params) {
     let idBtnPlus = "#btn_plus_" + id;
     let idBtnMinus = "#btn_minus_" + id;
     let idInput = "#" + id;
@@ -333,7 +341,9 @@ let fieldPlusMinus = function (id, params) {
         }
         fieldPlusMinusRepaintList(node);
         $(idInput).val("");
+        removeHoverStyle(list);
     };
+    removeHoverStyle(list);
     $(idBtnMinus).click(function () {
         $(list + " li a").each(function (index) {
           if ($(idInput).val() != "") {
@@ -359,6 +369,7 @@ let fieldPlusMinus = function (id, params) {
         });
         fieldPlusMinusRepaintList(node);
         $(idInput).val("");
+        removeHoverStyle(list);
       });
     
       // Set to input
@@ -412,6 +423,7 @@ let fieldSelectPlusMinus = function (id, params) {
             $(list).append("<li><a class='delete_item' href='javascript:void();'></a></li>");
         }
     }
+    removeHoverStyle(list);
     $(idBtnPlus).click(function () {
         var text_to_add = $(idInput + " option:selected").text();
         var value_to_add = $(idInput + " option:selected").val();
@@ -424,6 +436,7 @@ let fieldSelectPlusMinus = function (id, params) {
         $(idInput)
             .val(null)
             .trigger("change");
+        removeHoverStyle(list);    
     });
     $(idBtnMinus).click(function () {
         $(list + " li a").each(function (index) {
@@ -451,6 +464,7 @@ let fieldSelectPlusMinus = function (id, params) {
         $(idInput)
             .val(null)
             .trigger("change");
+        removeHoverStyle(list);
     });
     $(list).delegate(".delete_item", "click", function() {
         $(idInput)
@@ -511,7 +525,7 @@ let fieldSelectPlusAutocomplete = function (id, params) {
         $(list).append("<li><a class='delete_item' href='javascript:void();'></a></li>");
       }
     }
-  
+    removeHoverStyle(list);
     $(idBtnPlus).click(function () {
         let text_to_add = $(idInput + " option:selected").text();
         let value_to_add = $(idInput + " option:selected").val();
@@ -527,6 +541,7 @@ let fieldSelectPlusAutocomplete = function (id, params) {
         .trigger("change");
   
         $(idInput).removeClass("select-item");
+        removeHoverStyle(list);
     });
   
     $(idInput).change(function () {
@@ -547,6 +562,7 @@ let fieldSelectPlusAutocomplete = function (id, params) {
         }
   
         $(idInput).removeClass("select-item");
+        removeHoverStyle(list);
       }
     });
    
@@ -576,6 +592,7 @@ let fieldSelectPlusAutocomplete = function (id, params) {
         .trigger("change");
   
         $(idInput).removeClass("select-item");
+        removeHoverStyle(list);
     });
   
     $(list).delegate(".delete_item", "click", function() {
