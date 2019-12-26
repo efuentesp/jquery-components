@@ -733,12 +733,13 @@ $.fn.fieldInput = function() {
 
   const divControl = document.createElement("div");
   divControl.setAttribute("class", "field-control");
+  if (c.data("componentTooltip")) {
+    divControl.setAttribute("custom-tooltip", c.data("componentTooltip"));
+  }
 
   const divFieldInput = document.createElement("div");
   divFieldInput.setAttribute("class", "field-input has-addons flex");
-  if (c.data("componentTooltip")) {
-    divFieldInput.setAttribute("data-tooltip", c.data("componentTooltip"));
-  }
+
   divControl.appendChild(divFieldInput);
   c.append(divControl);
 
