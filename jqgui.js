@@ -193,7 +193,7 @@ $.fn.fieldInputPlusMinus = function () {
   const fieldDisabled = this.data("componentDisabled");
   const fieldWidth =
     "width: " +
-    (this.data("componentWidth") ? this.data("componentWidth") : "8em") +
+    (this.data("componentSize") ? this.data("componentSize") : "8em") +
     ";";
   const fieldClass =
     "is_" +
@@ -257,6 +257,11 @@ $.fn.fieldInputPlusMinus = function () {
   input.disabled = fieldDisabled;
   divPlusMinus.appendChild(input);
 
+  const inputHidden = document.createElement("input");
+  inputHidden.setAttribute("id", fieldId + "_hidden");
+  inputHidden.setAttribute("type", "hidden");
+  divPlusMinus.appendChild(inputHidden);
+
   const plusBtn = document.createElement("button");
   plusBtn.setAttribute("id", "btn_plus_" + fieldId);
   plusBtn.setAttribute("type", "button");
@@ -310,7 +315,7 @@ $.fn.fieldSelectPlusMinus = function () {
 
   const fieldWidth =
     "width: " +
-    (this.data("componentWidth") ? this.data("componentWidth") : "8em") +
+    (this.data("componentSize") ? this.data("componentSize") : "8em") +
     ";";
   const fieldClass =
     "is_" +
@@ -394,6 +399,11 @@ $.fn.fieldSelectPlusMinus = function () {
 
   select.disabled = fieldDisabled;
   divPlusMinus.appendChild(select);
+
+  const inputHidden = document.createElement("input");
+  inputHidden.setAttribute("id", fieldId + "_hidden");
+  inputHidden.setAttribute("type", "hidden");
+  divPlusMinus.appendChild(inputHidden);
 
   const plusBtn = document.createElement("button");
   plusBtn.setAttribute("id", "btn_plus_" + fieldId);
@@ -448,7 +458,7 @@ $.fn.fieldSelectPlusMinusAutocomplete = function () {
 
   const fieldWidth =
     "width: " +
-    (this.data("componentWidth") ? this.data("componentWidth") : "8em") +
+    (this.data("componentSize") ? this.data("componentSize") : "8em") +
     ";";
   const fieldClass =
     "is_" +
@@ -534,6 +544,11 @@ $.fn.fieldSelectPlusMinusAutocomplete = function () {
 
   select.disabled = fieldDisabled;
   divPlusMinus.appendChild(select);
+
+  const inputHidden = document.createElement("input");
+  inputHidden.setAttribute("id", fieldId + "_hidden");
+  inputHidden.setAttribute("type", "hidden");
+  divPlusMinus.appendChild(inputHidden);
 
   const plusBtn = document.createElement("button");
   plusBtn.setAttribute("id", "btn_plus_" + fieldId);
@@ -832,11 +847,17 @@ $.fn.tabgroup = function () {
 $.fn.sidebarwrapper = function () {
   if (this.data("componentType") === "sidebar-wrapper") {
     var id = this.attr("id");
+
     $("[data-component-type=sidebar-wrapper]").attr("class", "sidebar-wrapper");
     $("[data-component-type=sidebar-wrapper]").removeAttr(
       "data-component-type"
     );
-    $("[data-component-type=sidebar]").attr("class", "sidebar");
+    let expanded = "";
+
+    if ($("[data-component-type=sidebar]").data("componentExpanded") === false)
+      expanded = " isClosed";
+
+    $("[data-component-type=sidebar]").attr("class", "sidebar" + expanded);
     $("[data-component-type=sidebar]").removeAttr("data-component-type");
     $("[data-component-type=sidebar-content]").attr("class", "sidebar-content");
     $("[data-component-type=sidebar-content]").removeAttr(
@@ -1233,8 +1254,10 @@ $.fn.fieldOptions = function () {
     if (this.data("componentRequired") == true) {
       inptOpt.setAttribute("required", "required");
     }
+
     //if (divChild.attributes.checked && divChild.attributes.checked.value == "true") {
     if (divChild.getAttribute("data-component-checked") != null && divChild.getAttribute("data-component-checked") == "true") {
+
       inptOpt.setAttribute("checked", "checked");
     }
 
@@ -1583,6 +1606,9 @@ $.fn.select = function () {
       ? this.data("componentPlaceholder")
       : "";
     const required = this.data("componentRequired") ? true : false;
+    const disabled = this.data("componentDisabled")
+      ? this.data("componentDisabled")
+      : false;
     let value = "";
     this.each(function () {
       var attributes = this.attributes;
@@ -1661,6 +1687,9 @@ $.fn.select = function () {
       placeholder: placeholder,
       minimumResultsForSearch: Infinity
     });
+    if (disabled) {
+      $("#" + id).prop("disabled", true);
+    }
     if (value) {
       $("#" + id)
         .val(value)

@@ -1,0 +1,84 @@
+/* .row {
+    display: flex;
+    align-content: space-between;
+} */
+
+#field_option_grupo_contrato .field-control {
+  display: flex;
+  justify-content: space-around;
+}
+
+#field_option_titulos_monto .field-control {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* #field_reset {
+    display: flex;
+    justify-content: space-between;
+} */
+
+#form_datos_orden {
+  height: 530px;
+  overflow-y: scroll;
+}
+
+#botones_lista_ordenes {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#botones_datos_ordenes {
+  display: flex;
+  justify-content: center;
+}
+
+#contenido {
+  width: 72%;
+}
+
+#contenido .card {
+  height: 550px;
+}
+
+#field_fecha_liquidacion label,
+#field_inputOperacion label,
+#field_inputEmisora label,
+#field_inputCantidad label,
+#field_inputPrecio label,
+#field_inputTipoCambio label,
+#field_inputPosicion label,
+#field_inputEfectivoDisponible label {
+  width: 15em;
+  text-align: left;
+}
+
+#field_fecha_liquidacion input,
+#field_inputOperacion input,
+#field_inputEmisora input,
+#field_inputCantidad input,
+#field_inputPrecio input,
+#field_inputTipoCambio input,
+#field_inputPosicion input,
+#field_inputEfectivoDisponible input {
+  text-align: right;
+}
+
+.row label {
+  width: 5em;
+  text-align: left;
+}
+
+#field_reset {
+  padding: 0px;
+  padding-bottom: 1rem;
+  flex-direction: row-reverse;
+}
+
+#field_reset .field-control {
+  width: 20px;
+}
+
+#field_reset label {
+  width: 15px;
+}

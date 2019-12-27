@@ -23,7 +23,7 @@
   </form>
 
   <div id="contrato3" data-component-type="input-plus-minus" data-component-label="Contrato 3"
-    data-component-required="false" data-component-orientation="vertical" data-component-width="12em"
+    data-component-required="false" data-component-orientation="vertical" data-component-size="12em"
     data-component-tooltip="Contrato 3"></div>
 
   <div id="contrato4" data-component-type="input-plus-minus" data-component-label="Contrato"
@@ -33,10 +33,10 @@
     data-component-required="true" data-component-orientation="horizontal" data-component-tooltip="Contrato"></div>
 
   <div id="contrato6" data-component-type="input-plus-minus" data-component-label="Contrato"
-    data-component-required="false" data-component-orientation="horizontal" data-component-width="12em"></div>
+    data-component-required="false" data-component-orientation="horizontal" data-component-size="12em"></div>
 
   <div id="contrato7" data-component-type="select-plus-minus" data-component-label="Contrato 7"
-    data-component-required="false" data-component-orientation="vertical" data-component-width="12em"></div>
+    data-component-required="false" data-component-orientation="vertical" data-component-size="12em"></div>
 
   <div id="contrato8" data-component-type="select-plus-minus" data-component-label="Contrato 8"
     data-component-orientation="horizontal"></div>
@@ -45,10 +45,10 @@
     data-component-required="true" data-component-orientation="vertical" data-component-tooltip="Contrato"></div>
 
   <div id="contrato10" data-component-type="select-plus-minus" data-component-label="Contrato 10"
-    data-component-required="false" data-component-orientation="horizontal" data-component-width="12em"></div>
+    data-component-required="false" data-component-orientation="horizontal" data-component-size="12em"></div>
 
   <div id="contrato11" data-component-type="select-plus-minus-autocomplete" data-component-label="Contrato 11"
-    data-component-required="false" data-component-orientation="horizontal" data-component-width="12em"></div>
+    data-component-required="false" data-component-orientation="horizontal" data-component-size="12em"></div>
 
   <div id="contrato12" data-component-type="select-plus-minus" data-component-label="Contrato 12"
     data-component-orientation="horizontal" data-component-required="true"></div>
@@ -57,7 +57,7 @@
     data-component-required="true" data-component-orientation="vertical" data-component-tooltip="Contrato"></div>
 
   <div id="contrato14" data-component-type="select-plus-minus" data-component-label="Contrato 14"
-    data-component-required="false" data-component-orientation="vertical" data-component-width="12em"
+    data-component-required="false" data-component-orientation="vertical" data-component-size="12em"
     data-component-nodes="false"></div>
 
   <div id="contratoTxt" data-component-type="input" data-component-label="Contrato Texto" data-component-required="true"
@@ -65,7 +65,7 @@
     data-component-tooltip="Contrato"></div>
 
   <div id="contratoTxtFalse" data-component-type="input" data-component-label="Contrato Texto False"
-    data-component-width="20em" data-component-required="false" data-component-orientation="horizontal"
+    data-component-size="20em" data-component-required="false" data-component-orientation="horizontal"
     data-component-input-type="number"></div>
 
   <div id="contratoTxtVertical" data-component-type="input" data-component-label="Contrato Texto"
@@ -87,6 +87,12 @@
 
   <div id="fecha4" data-component-type="date" data-component-label="Fecha" data-component-orientation="vertical"
     data-component-clear=true></div>
+
+  <div id="rango" 
+    data-component-orientation="vertical" 
+    data-component-tooltip="DateRage tooltip" 
+    data-component-begin-label="Fecha Inicial" 
+    data-component-required="true"></div>
 
   <div id="negocio" data-component-type="options" data-component-label="Opciones" data-component-required=true
     data-component-orientation="vertical" data-component-tooltip="options tooltip">
@@ -159,7 +165,6 @@
   </div>
 
   <div id="ejemploaccordion" data-component-type="accordion">
-
     <div id="ejemploaccordionpaso1" data-component-type="accordion-item"
       data-component-label="Paso 1 de 3 Ingreso en Cuenta Medio Electrónico">
       <p>Contenido Acordeon 1</p>
@@ -185,7 +190,7 @@
   </div>
 
   <div id="sidebar1" data-component-type="sidebar-wrapper">
-    <div data-component-type="sidebar">
+    <div data-component-type="sidebar" data-component-expanded="false">
       <div data-component-type="sidebar-content">
         <p> content left</p>
       </div>
@@ -198,15 +203,9 @@
   </div>
 
   <div id="payment" data-component-type="select" data-component-label="Payment method" data-component-size="12em"
-    data-component-required="true" data-component-placeholder="--Selecciona--" data-component-tooltip="Payment method">
-    <div id="ET" data-component-selected="false">Electronic transfer</div>
-    <div id="CHK">Check</div>
-  </div>
-
-  <div id="payment" data-component-type="select" data-component-label="Payment method" data-component-size="12em"
-    data-component-required="true" data-component-placeholder="--Selecciona--" data-component-tooltip="Payment method">
-    <div id="ET" data-component-selected="false">Electronic transfer</div>
-    <div id="CHK">Check</div>
+    data-component-required="true" data-component-placeholder="--Selecciona--" data-component-tooltip="Payment method" data-component-disabled="false">
+    <div id="ET" >Electronic transfer</div>
+    <div id="CHK" data-component-selected="true">Check</div>
   </div>
 
   <div id="splitter" data-component-type="splitter" data-component-orientation="horizontal">
