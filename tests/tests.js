@@ -7,12 +7,12 @@ function simulateKeyDown(selector) {
 
 function cleanData(nelements, prueba, id) {
   // console.log("Inicializando ..." + prueba + " - Input Plus Minus");
-  const txtInput = $("#" + id + "");
+  const txtInputHidden = $("#" + id + "_hidden");
   const btnMinus = $("#field_" + id + " #btn_minus_" + id + "");
 
   let count = nelements;
   $.each($("ul#tag_list_" + id + " li a"), function() {
-    txtInput.val(
+    txtInputHidden.val(
       $("ul#tag_list_" + id + " li:nth-child(" + count + ")").text()
     );
     btnMinus.click();
@@ -24,11 +24,12 @@ function cleanDataSelect(nelements, prueba, id) {
   // console.log("Inicializando ..." + prueba + " - Select Plus Minus");
   // arrange
   const selectInput = $("#" + id + "").select2();
+  const txtInputHidden = $("#" + id + "_hidden");
   const btnMinus = $("#field_" + id + " #btn_minus_" + id + "");
 
   // act
   [...Array(nelements).keys()].forEach(element => {
-    selectInput.val("00" + (element + 1)).trigger("change");
+    txtInputHidden.val("00" + (element + 1)).trigger("change");
     btnMinus.click();
   });
 }
@@ -193,6 +194,7 @@ QUnit.test(
     // arrange
     const id = "contrato1";
     const txtInput = $("#" + id + "");
+    const txtInputHidden = $("#" + id + "_hidden");
     const btnPlus = $("#field_" + id + " #btn_plus_" + id + "");
     const btnMinus = $("#field_" + id + " #btn_minus_" + id + "");
     const lstTags = $("#field_" + id + " #tag_list_" + id + " li a");
@@ -205,7 +207,7 @@ QUnit.test(
 
     let count = 5;
     $.each($("ul#tag_list_" + id + " li a"), function() {
-      txtInput.val(
+      txtInputHidden.val(
         $("ul#tag_list_" + id + " li:nth-child(" + count + ")").text()
       );
       btnMinus.click();
@@ -227,19 +229,20 @@ QUnit.test(
     // arrange
     const id = "contrato1";
     const txtInput = $("#" + id + "");
+    const txtInputHidden = $("#" + id + "_hidden");
     const btnPlus = $("#field_" + id + " #btn_plus_" + id + "");
     const lstTags = $("#field_" + id + " #tag_list_" + id + " li a");
     const btnMinus = $("#field_" + id + " #btn_minus_" + id + "");
 
     // act
-    [...Array(10).keys()].forEach(element => {
+    [...Array(9).keys()].forEach(element => {
       txtInput.val("Elemento " + (element + 1));
       btnPlus.click();
     });
 
     let count = 7;
     $.each($("ul#tag_list_" + id + " li a"), function() {
-      txtInput.val(
+      txtInputHidden.val(
         $("ul#tag_list_" + id + " li:nth-child(" + count + ")").text()
       );
 
@@ -250,9 +253,9 @@ QUnit.test(
     // assert
     let contratosSeleccionados = getList(id);
     assert.equal(lstTags.length, 4);
-    assert.equal(contratosSeleccionados.length, 3);
+    assert.equal(contratosSeleccionados.length, 2);
     assert.equal(txtInput.val(), "");
-    cleanData(10, 9, id);
+    cleanData(9, 9, id);
   }
 );
 
@@ -462,6 +465,7 @@ QUnit.test(
     // arrange
     const id = "contrato3";
     const selectInput = $("#" + id + "").select2();
+    const txtInputHidden = $("#" + id + "_hidden");
     const btnPlus = $("#field_" + id + " #btn_plus_" + id + "");
     const btnMinus = $("#field_" + id + " #btn_minus_" + id + "");
     const lstTags = $("#field_" + id + " #tag_list_" + id + " li a");
@@ -474,7 +478,7 @@ QUnit.test(
 
     // act
     [...Array(5).keys()].forEach(element => {
-      selectInput.val("00" + (element + 1)).trigger("change");
+      txtInputHidden.val("00" + (element + 1)).trigger("change");
       btnMinus.click();
     });
 
@@ -493,6 +497,7 @@ QUnit.test(
     // arrange
     const id = "contrato3";
     const selectInput = $("#" + id + "").select2();
+    const txtInputHidden = $("#" + id + "_hidden");
     const btnPlus = $("#field_" + id + " #btn_plus_" + id + "");
     const btnMinus = $("#field_" + id + " #btn_minus_" + id + "");
     const lstTags = $("#field_" + id + " #tag_list_" + id + " li a");
@@ -505,7 +510,7 @@ QUnit.test(
 
     // act
     [...Array(7).keys()].forEach(element => {
-      selectInput.val("00" + (element + 1)).trigger("change");
+      txtInputHidden.val("00" + (element + 1)).trigger("change");
       btnMinus.click();
     });
 

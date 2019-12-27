@@ -257,6 +257,11 @@ $.fn.fieldInputPlusMinus = function() {
   input.disabled = fieldDisabled;
   divPlusMinus.appendChild(input);
 
+  const inputHidden = document.createElement("input");
+  inputHidden.setAttribute("id", fieldId + "_hidden");
+  inputHidden.setAttribute("type", "hidden");
+  divPlusMinus.appendChild(inputHidden);
+
   const plusBtn = document.createElement("button");
   plusBtn.setAttribute("id", "btn_plus_" + fieldId);
   plusBtn.setAttribute("type", "button");
@@ -394,6 +399,11 @@ $.fn.fieldSelectPlusMinus = function() {
 
   select.disabled = fieldDisabled;
   divPlusMinus.appendChild(select);
+
+  const inputHidden = document.createElement("input");
+  inputHidden.setAttribute("id", fieldId + "_hidden");
+  inputHidden.setAttribute("type", "hidden");
+  divPlusMinus.appendChild(inputHidden);
 
   const plusBtn = document.createElement("button");
   plusBtn.setAttribute("id", "btn_plus_" + fieldId);
@@ -534,6 +544,11 @@ $.fn.fieldSelectPlusMinusAutocomplete = function() {
 
   select.disabled = fieldDisabled;
   divPlusMinus.appendChild(select);
+
+  const inputHidden = document.createElement("input");
+  inputHidden.setAttribute("id", fieldId + "_hidden");
+  inputHidden.setAttribute("type", "hidden");
+  divPlusMinus.appendChild(inputHidden);
 
   const plusBtn = document.createElement("button");
   plusBtn.setAttribute("id", "btn_plus_" + fieldId);
