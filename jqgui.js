@@ -832,11 +832,17 @@ $.fn.tabgroup = function() {
 $.fn.sidebarwrapper = function() {
   if (this.data("componentType") === "sidebar-wrapper") {
     var id = this.attr("id");
+
     $("[data-component-type=sidebar-wrapper]").attr("class", "sidebar-wrapper");
     $("[data-component-type=sidebar-wrapper]").removeAttr(
       "data-component-type"
     );
-    $("[data-component-type=sidebar]").attr("class", "sidebar");
+    let expanded = "";
+
+    if ($("[data-component-type=sidebar]").data("componentExpanded") === false)
+      expanded = " isClosed";
+
+    $("[data-component-type=sidebar]").attr("class", "sidebar" + expanded);
     $("[data-component-type=sidebar]").removeAttr("data-component-type");
     $("[data-component-type=sidebar-content]").attr("class", "sidebar-content");
     $("[data-component-type=sidebar-content]").removeAttr(
