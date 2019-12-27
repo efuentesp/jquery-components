@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Capturas de Mercado de Dinero</title>
+    <link href="/assets/css/libs.min.css" rel="stylesheet" />
+    <link href="/assets/css/main.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div id="consultas_tab_group" data-component-type="tab-group">
+      <div
+        id="reinversion"
+        data-component-type="tab-item"
+        data-component-label="Reinversión"
+      ></div>
+
+      <div
+        id="ordenesEnDirecto"
+        data-component-type="tab-item"
+        data-component-label="Órdenes en Directo"
+      >
+        <div class="row flex">
+          <div
+            class="row bg-gray-100 p-4 border border-solid border-gray-300 rounded mr-4"
+          >
+            <div class="row flex flex-wrap justify-between">
+              <p class="pb-4 font-bold">Datos de la Órden</p>
+              <div
+                id="reset"
+                data-component-type="checkbox"
+                data-component-label="reset"
+                data-component-orientation="horizontal"
+                data-component-tooltip="checkbox tooltip"
+              >
+                <div id="SO1" color="white"></div>
+              </div>
+            </div>
+            <div
+              id="div_datos_ordenes"
+              class="card bg-white border border-solid border-gray-300 rounded p-4"
+            >
+              <form id="form_datos_orden">
+                <div
+                  id="option_grupo_contrato"
+                  data-component-label=""
+                  data-component-type="options"
+                  data-component-orientation="vertical"
+                >
+                  <div id="G">Grupo</div>
+                  <div id="C">Contrato</div>
+                </div>
+
+                <div class="row flex flex-wrap justify-between">
+                  <div
+                    id="inputGrupo"
+                    data-component-type="input"
+                    data-component-label="Grupo"
+                    data-component-required="true"
+                    data-component-orientation="horizontal"
+                    data-component-width="7em"
+                  ></div>
+
+                  <div
+                    id="inputContrato"
+                    data-component-type="select"
+                    data-component-label="Contrato"
+                    data-component-required="true"
+                    data-component-orientation="horizontal"
+                    data-component-size="7em"
+                  ></div>
+                </div>
+
+                <div
+                  id="fecha_liquidacion"
+                  data-component-type="date"
+                  data-component-label="Fecha de Liquidación"
+                  data-component-required="false"
+                  data-component-orientation="horizontal"
+                  data-component-clear="false"
+                  data-component-size="10em"
+                ></div>
+                <div
+                  id="inputOperacion"
+                  data-component-type="input"
+                  data-component-label="Operación"
+                  data-component-required="true"
+                  data-component-width="12em"
+                  data-component-orientation="horizontal"
+                ></div>
+
+                <div
+                  id="inputEmisora"
+                  data-component-type="input"
+                  data-component-label="Emisora"
+                  data-component-required="true"
+                  data-component-width="12em"
+                  data-component-orientation="horizontal"
+                ></div>
+
+                <div class="row flex flex-wrap justify-between">
+                  <div
+                    id="inputTv"
+                    data-component-type="input"
+                    data-component-label="TV"
+                    data-component-required="false"
+                    data-component-orientation="horizontal"
+                    data-component-width="7em"
+                    data-component-disabled="true"
+                  ></div>
+
+                  <div
+                    id="inputPlazo"
+                    data-component-type="input"
+                    data-component-label="Plazo"
+                    data-component-required="false"
+                    data-component-orientation="horizontal"
+                    data-component-width="7em"
+                    data-component-disabled="true"
+                  ></div>
+                </div>
+                <div class="row flex flex-wrap justify-between">
+                  <div
+                    id="inputTasa"
+                    data-component-type="input"
+                    data-component-label="Tasa"
+                    data-component-required="true"
+                    data-component-orientation="horizontal"
+                    data-component-width="7em"
+                  ></div>
+
+                  <div
+                    id="inputSobretasa"
+                    data-component-type="input"
+                    data-component-label="Sobretasa"
+                    data-component-required="false"
+                    data-component-orientation="horizontal"
+                    data-component-width="7em"
+                  ></div>
+                </div>
+
+                <div
+                  id="inputSpread"
+                  data-component-type="input"
+                  data-component-label="Spread"
+                  data-component-required="true"
+                  data-component-orientation="horizontal"
+                ></div>
+                <div
+                  id="option_titulos_monto"
+                  data-component-label=""
+                  data-component-type="options"
+                  data-component-orientation="vertical"
+                >
+                  <div id="T">Títulos</div>
+                  <div id="M">Monto</div>
+                </div>
+
+                <div
+                  id="inputCantidad"
+                  data-component-type="input"
+                  data-component-label="Cantidad"
+                  data-component-required="true"
+                  data-component-orientation="horizontal"
+                  data-component-width="12em"
+                ></div>
+
+                <div
+                  id="inputPrecio"
+                  data-component-type="input"
+                  data-component-label="Precio"
+                  data-component-required="true"
+                  data-component-orientation="horizontal"
+                  data-component-width="12em"
+                ></div>
+
+                <div
+                  id="inputTipoCambio"
+                  data-component-type="input"
+                  data-component-label="Tipo de Cambio/UDIS"
+                  data-component-required="false"
+                  data-component-orientation="horizontal"
+                  data-component-width="12em"
+                ></div>
+
+                <div
+                  id="inputPosicion"
+                  data-component-type="input"
+                  data-component-label="Posición"
+                  data-component-required="true"
+                  data-component-orientation="horizontal"
+                  data-component-width="12em"
+                  data-component-disabled="true"
+                ></div>
+
+                <div
+                  id="inputEfectivoDisponible"
+                  data-component-type="input"
+                  data-component-label="Efectivo Disponible"
+                  data-component-required="false"
+                  data-component-orientation="horizontal"
+                  data-component-width="12em"
+                  data-component-disabled="true"
+                ></div>
+              </form>
+            </div>
+            <div class="row pt-5 ">
+              <div class="field-group flex" id="botones_datos_ordenes">
+                <div
+                  id="btnadd"
+                  data-component-type="button-add"
+                  data-component-label="Agregar"
+                ></div>
+                <div
+                  id="btnclean"
+                  data-component-type="button-clean"
+                  data-component-label="Limpiar"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="row bg-gray-100 p-4 border border-solid border-gray-300 rounded"
+            id="contenido"
+          >
+            <div class="row">
+              <p class="pb-4 font-bold ">Lista de órdenes</p>
+            </div>
+            <div
+              class="card bg-white border border-solid border-gray-300 rounded p-4"
+            >
+              <div
+                id="tabgroup_ordenes_envios_ordenes"
+                data-component-type="tab-group"
+              >
+                <div
+                  id="tab_ordenes"
+                  data-component-type="tab-item"
+                  data-component-label=" Órdenes"
+                >
+                  <div class="row w-full overflow-auto">
+                    <div id="grid_ordenes" data-component-type="grid"></div>
+                  </div>
+                </div>
+                <div
+                  id="tab_envios_ordenes"
+                  data-component-type="tab-item"
+                  data-component-label=" Envíos y órdenes"
+                ></div>
+              </div>
+            </div>
+            <div class="row pt-5">
+              <div class="field-group flex" id="botones_lista_ordenes">
+                <div
+                  id="btnvalidate"
+                  data-component-type="button-validate"
+                  data-component-label="Validar"
+                ></div>
+                <div
+                  id="btnsend"
+                  data-component-type="button-send"
+                  data-component-label="Enviartodas"
+                ></div>
+                <div
+                  id="btndelete"
+                  data-component-type="button-delete"
+                  data-component-label="Borrar"
+                ></div>
+                <div
+                  id="btnreset"
+                  data-component-type="button-reset"
+                  data-component-label="Reiniciar"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="validacionDeInstrucciones"
+        data-component-type="tab-item"
+        data-component-label="Validación de Instrucciones"
+      ></div>
+    </div>
+
+    <script src="/assets/scripts/jquery.min.js"></script>
+    <script src="/assets/scripts/libs.min.js"></script>
+    <script src="/assets/scripts/common.js"></script>
+    <script src="/jqgui.js"></script>
+    <script src="scripts.js"></script>
+  </body>
+</html>
