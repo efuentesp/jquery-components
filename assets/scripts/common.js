@@ -774,8 +774,7 @@ let fieldSelectPlusAutocomplete = function(id, params) {
   $(idInput).select2({
     language: "es",
     data: data,
-    placeholder: "",
-    minimumInputLength: 1
+    placeholder: ""
   });
 };
 
