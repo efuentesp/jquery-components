@@ -1,4 +1,4 @@
-$.fn.fieldSwaplist = function() {
+$.fn.fieldSwaplist = function () {
   const fieldId = this.attr("id");
   const fieldTitleSource = this.data("componentTitleSource");
   const fieldTitleDestination = this.data("componentTitleDestination");
@@ -124,7 +124,7 @@ $.fn.fieldSwaplist = function() {
   fillSwapList(idSource, sourceList);
   fillSwapList(idDestination, destinationList);
 
-  $("ul.column").on("click", "li", function() {
+  $("ul.column").on("click", "li", function () {
     if (!$(this).hasClass("selected")) {
       console.log("selected");
       clearList();
@@ -132,27 +132,27 @@ $.fn.fieldSwaplist = function() {
     }
   });
 
-  const clearList = function() {
+  const clearList = function () {
     $("ul.column li").removeClass("selected");
   };
 
-  $(".up").click(function() {
+  $(".up").click(function () {
     var currents = $(".portlet.selected");
     currents.prev().before(currents);
   });
 
-  $(".down").click(function() {
+  $(".down").click(function () {
     var currents = $(".portlet.selected");
     currents.next().after(currents);
   });
 
-  $(".add").click(function() {
+  $(".add").click(function () {
     var currents = $(".portlet.selected");
     $(".column.destination").append(currents);
     clearList();
   });
 
-  $(".remove").click(function() {
+  $(".remove").click(function () {
     var currents = $(".portlet.selected");
     $(".column.source").append(currents);
     clearList();
@@ -171,22 +171,22 @@ $.fn.fieldSwaplist = function() {
     .addClass("ui-corner-all");
 };
 
-var fillSwapList = function(list_id, params) {
+var fillSwapList = function (list_id, params) {
   var list = $("#" + list_id);
 
   for (var i = 0; i < params.length; i++) {
     var data = params[i];
     list.append(
       "<li class='portlet' value=" +
-        data.value +
-        "><div class='portlet-content'>" +
-        data.label +
-        "</div></li>"
+      data.value +
+      "><div class='portlet-content'>" +
+      data.label +
+      "</div></li>"
     );
   }
 };
 
-$.fn.fieldInputPlusMinus = function() {
+$.fn.fieldInputPlusMinus = function () {
   const fieldId = this.attr("id");
   const fieldMaxsize = this.data("componentMaxsize");
   const fieldNodes = this.data("componentNodes");
@@ -301,7 +301,7 @@ $.fn.fieldInputPlusMinus = function() {
   fieldPlusMinus(fieldId, { maxsize: fieldMaxsize, nodes: fieldNodes });
 };
 
-$.fn.fieldSelectPlusMinus = function() {
+$.fn.fieldSelectPlusMinus = function () {
   const fieldId = this.attr("id");
   const fieldMaxsize = this.data("componentMaxsize");
   const fieldItems = this.data("componentItems");
@@ -385,7 +385,7 @@ $.fn.fieldSelectPlusMinus = function() {
 
   var people = Object.keys(group);
 
-  people.forEach(function(person) {
+  people.forEach(function (person) {
     const option = document.createElement("option");
     option.value = group[person]["key"];
     option.text = group[person]["value"];
@@ -439,7 +439,7 @@ $.fn.fieldSelectPlusMinus = function() {
   fieldSelectPlusMinus(fieldId, { maxsize: fieldMaxsize, nodes: fieldNodes });
 };
 
-$.fn.fieldSelectPlusMinusAutocomplete = function() {
+$.fn.fieldSelectPlusMinusAutocomplete = function () {
   let fieldId = this.attr("id");
   let fieldMaxsize = this.data("componentMaxsize");
   let fieldItems = this.data("componentItems");
@@ -525,7 +525,7 @@ $.fn.fieldSelectPlusMinusAutocomplete = function() {
 
   var people = Object.keys(group);
 
-  people.forEach(function(person) {
+  people.forEach(function (person) {
     const option = document.createElement("option");
     option.value = group[person]["key"];
     option.text = group[person]["value"];
@@ -582,7 +582,7 @@ $.fn.fieldSelectPlusMinusAutocomplete = function() {
   });
 };
 
-$.fn.button = function() {
+$.fn.button = function () {
   const imagenames = [
     ["button-accept", "btn-aceptar.png", "reset"],
     ["button-search", "btn-consultar_32x32.png", "submit"],
@@ -655,7 +655,7 @@ $.fn.button = function() {
   }
 };
 
-$.fn.grid = function() {
+$.fn.grid = function () {
   if (this.data("componentType") === "grid") {
     const divgrid = document.createElement("div");
     const table = document.createElement("table");
@@ -672,7 +672,7 @@ $.fn.grid = function() {
   }
 };
 
-$.fn.gridrecordscount = function() {
+$.fn.gridrecordscount = function () {
   if (this.data("componentType") === "grid-records-count") {
     const divgrid = document.createElement("div");
     divgrid.setAttribute("class", "ui-jqgrid-count-rec");
@@ -688,7 +688,7 @@ $.fn.gridrecordscount = function() {
   }
 };
 
-$.fn.fieldInput = function() {
+$.fn.fieldInput = function () {
   // this.filter("[data-component-type='text']").each(function() {
   const c = $(this);
   const fieldId = c.attr("id");
@@ -794,7 +794,7 @@ $.fn.fieldInput = function() {
   // });
 };
 
-$.fn.tabgroup = function() {
+$.fn.tabgroup = function () {
   if (this.data("componentType") === "tab-group") {
     var divtabgroup = document.createElement("div");
     divtabgroup.setAttribute("class", "tab-group");
@@ -804,7 +804,7 @@ $.fn.tabgroup = function() {
 
     var ul = document.createElement("ul");
 
-    this.children().each(function() {
+    this.children().each(function () {
       var item = $("#" + this.getAttribute("id"));
       var id = $("#" + this.getAttribute("id")).attr("id");
       var li = document.createElement("li");
@@ -829,7 +829,7 @@ $.fn.tabgroup = function() {
   }
 };
 
-$.fn.sidebarwrapper = function() {
+$.fn.sidebarwrapper = function () {
   if (this.data("componentType") === "sidebar-wrapper") {
     var id = this.attr("id");
     $("[data-component-type=sidebar-wrapper]").attr("class", "sidebar-wrapper");
@@ -854,7 +854,7 @@ $.fn.sidebarwrapper = function() {
     $("#" + id).removeAttr("data-component-type");
   }
 
-  $(".sidebar-collapsible-button").on("click", function() {
+  $(".sidebar-collapsible-button").on("click", function () {
     $("#" + id + " .sidebar").toggleClass("isClosed");
   });
 
@@ -870,7 +870,7 @@ $.fn.sidebarwrapper = function() {
 };
 
 //----------------------------------------- SECCION FECHAS -----------------------------------------
-$.fn.fielDate = function() {
+$.fn.fielDate = function () {
   const fieldId = this.attr("id");
   const fieldLabel = this.attr("data-component-label");
   const spanRequiredClass =
@@ -973,7 +973,7 @@ $.fn.fielDate = function() {
 
   $(".datepicker").mask("99-99-9999");
 
-  $(function() {
+  $(function () {
     $("#inpt-" + fieldId).datepicker({
       showOn: "button",
       buttonImage: "../../assets/images/btn-calendario.svg",
@@ -982,7 +982,7 @@ $.fn.fielDate = function() {
     });
   });
   //-----------------------------------------------------------------------------
-  $(".datepicker").focusout(function() {
+  $(".datepicker").focusout(function () {
     let date = $(this)
       .val()
       .toString();
@@ -991,7 +991,7 @@ $.fn.fielDate = function() {
     }
   });
 
-  const verifyDate = function(data, obj) {
+  const verifyDate = function (data, obj) {
     let array = [];
     array = data.split("-");
     let day = parseInt(array[0]);
@@ -1009,7 +1009,7 @@ $.fn.fielDate = function() {
     $(obj).val("" + pad(nDay, 2, "") + "-" + pad(nMonth, 2, "") + "-" + nYear);
   };
 
-  $(".datepicker").on("keydown", function(e) {
+  $(".datepicker").on("keydown", function (e) {
     let date = $(this)
       .val()
       .toString();
@@ -1035,7 +1035,7 @@ $.fn.fielDate = function() {
     showButtonPanel: true,
     currentText: "Hoy",
     closeText: "Limpiar",
-    onClose: function(dateText, inst) {
+    onClose: function (dateText, inst) {
       if ($(window.event.srcElement).hasClass("ui-datepicker-close")) {
         document.getElementById(this.id).value = "";
       }
@@ -1090,7 +1090,7 @@ $.fn.fielDate = function() {
     changeYear: true,
     showButtonPanel: false,
     dateFormat: DATE_FORMAT_MONTH_YEAR,
-    onChangeMonthYear: function(year, month, inst) {
+    onChangeMonthYear: function (year, month, inst) {
       $(this).datepicker(
         "setDate",
         new Date(inst.selectedYear, inst.selectedMonth, 1)
@@ -1101,10 +1101,10 @@ $.fn.fielDate = function() {
   $(".monthpicker").datepicker(ui_datepicker_month_year_settings);
 
   // Dates
-  var validateDateRage = function(id) {
+  var validateDateRage = function (id) {
     $("#" + id + "_begin_date").datepicker(
       __assign(__assign({}, ui_datepicker_settings), {
-        onClose: function(selectedDate, instance) {
+        onClose: function (selectedDate, instance) {
           if (selectedDate != "") {
             $("#" + id + "_end_date").datepicker(
               "option",
@@ -1129,7 +1129,7 @@ $.fn.fielDate = function() {
     );
     $("#" + id + "_end_date").datepicker(
       __assign(__assign({}, ui_datepicker_settings), {
-        onClose: function(selectedDate) {
+        onClose: function (selectedDate) {
           $("#" + id + "_begin_date").datepicker(
             "option",
             "maxDate",
@@ -1155,24 +1155,24 @@ $.fn.fielDate = function() {
     });
   };*/
 
-  var fieldBeginDateRangeClear = function(id) {
+  var fieldBeginDateRangeClear = function (id) {
     var _id = $("#" + id + "_begin_date");
     var $dates = $(_id).datepicker();
-    $("#clear_" + id + "_begin_date").on("click", function() {
+    $("#clear_" + id + "_begin_date").on("click", function () {
       $dates.datepicker("setDate", null);
     });
   };
 
-  var fieldEndDateRangeClear = function(id) {
+  var fieldEndDateRangeClear = function (id) {
     var _id = $("#" + id + "_end_date");
     var $dates = $(_id).datepicker();
-    $("#clear_" + id + "_end_date").on("click", function() {
+    $("#clear_" + id + "_end_date").on("click", function () {
       $dates.datepicker("setDate", null);
     });
   };
 };
 
-$.fn.fieldOptions = function() {
+$.fn.fieldOptions = function () {
   const fieldId = this.attr("id");
   const fieldLabel = this.attr("data-component-label");
   const spanRequiredClass =
@@ -1233,7 +1233,8 @@ $.fn.fieldOptions = function() {
     if (this.data("componentRequired") == true) {
       inptOpt.setAttribute("required", "required");
     }
-    if (divChild.attributes.checked && divChild.attributes.checked.value == "true") {
+    //if (divChild.attributes.checked && divChild.attributes.checked.value == "true") {
+    if (divChild.getAttribute("data-component-checked") != null && divChild.getAttribute("data-component-checked") == "true") {
       inptOpt.setAttribute("checked", "checked");
     }
 
@@ -1271,7 +1272,7 @@ $.fn.fieldOptions = function() {
   this.removeAttr("data-component-orientation");
 };
 
-$.fn.fieldCheckBox = function() {
+$.fn.fieldCheckBox = function () {
   const fieldId = this.attr("id");
   const fieldLabel = this.data("componentLabel")
     ? this.data("componentLabel")
@@ -1375,7 +1376,7 @@ $.fn.fieldCheckBox = function() {
 };
 
 // --------------------   FORM   --------------------
-$.fn.form = function() {
+$.fn.form = function () {
   const formmethod = $(this).attr("method");
   const formparsley = $(this).attr("data-parsley-validate");
   const formenctype = $(this).attr("enctype");
@@ -1398,11 +1399,11 @@ $.fn.form = function() {
 
 // --------------------   ACCORDION   --------------------
 
-$.fn.customaccordion = function() {
+$.fn.customaccordion = function () {
   if (this.data("componentType") === "accordion") {
     this.attr("class", "accordion");
     this.attr("data-component-type", null);
-    this.children().each(function() {
+    this.children().each(function () {
       let item = $("#" + this.getAttribute("id"));
       $("<h3>" + item.data("componentLabel") + "</h3>").insertBefore(
         "#" + this.getAttribute("id")
@@ -1423,7 +1424,7 @@ $.fn.customaccordion = function() {
   }
 };
 
-$.fn.fieldSplitter = function() {
+$.fn.fieldSplitter = function () {
   const fieldId = this.attr("id");
   const fieldClassOrientation = this.data("componentOrientation")
     ? this.data("componentOrientation")
@@ -1438,8 +1439,8 @@ $.fn.fieldSplitter = function() {
   divSimple.setAttribute(
     "class",
     "splitter splitter-" +
-      fieldClassOrientation +
-      " ui-widget ui-widget-content"
+    fieldClassOrientation +
+    " ui-widget ui-widget-content"
   );
 
   if (fieldClassOrientation == "vertical") {
@@ -1563,7 +1564,7 @@ $.fn.fieldSplitter = function() {
 };
 
 // --------------------   SELECT   -------------------- //
-$.fn.select = function() {
+$.fn.select = function () {
   if (this.data("componentType") === "select") {
     const id = this.attr("id");
     const label = this.data("componentLabel")
@@ -1583,7 +1584,7 @@ $.fn.select = function() {
       : "";
     const required = this.data("componentRequired") ? true : false;
     let value = "";
-    this.each(function() {
+    this.each(function () {
       var attributes = this.attributes;
       var i = attributes.length;
       while (i--) {
@@ -1625,7 +1626,7 @@ $.fn.select = function() {
 
     const optiontag = document.createElement("option");
     selecttag.appendChild(optiontag);
-    this.children().each(function() {
+    this.children().each(function () {
       let optiontag = document.createElement("option");
       optiontag.setAttribute("value", this.id);
       optiontag.innerText = this.innerText;
@@ -1669,7 +1670,7 @@ $.fn.select = function() {
 };
 
 // FieldChart function
-$.fn.fieldChart = function() {
+$.fn.fieldChart = function () {
   const id = this.attr("id");
   const typeChart = this.data("componentType");
   const titleChart = this.data("componentTitle");
@@ -1819,7 +1820,7 @@ $.fn.fieldChart = function() {
 };
 
 // Canvas function
-$.fn.canvas = function() {
+$.fn.canvas = function () {
   const id = this.attr("id");
   const typeChart = this.data("componentType");
 
@@ -5613,8 +5614,8 @@ for (let i = 0; i < rates.length; i++) {
   let priceDate = new Date(data.updatedDate.replace(" ", "T") + "Z");
   dataSetlcX.push(
     ("0" + priceDate.getHours()).slice(-2) +
-      ":" +
-      ("0" + priceDate.getMinutes()).slice(-2)
+    ":" +
+    ("0" + priceDate.getMinutes()).slice(-2)
   );
   dataSetlcY.push(data.askClose);
 }
@@ -5629,8 +5630,8 @@ for (let i = 0; i < rates.length; i++) {
   var priceDate = new Date(data.updatedDate.replace(" ", "T") + "Z");
   dataSetmlX.push(
     ("0" + priceDate.getHours()).slice(-2) +
-      ":" +
-      ("0" + priceDate.getMinutes()).slice(-2)
+    ":" +
+    ("0" + priceDate.getMinutes()).slice(-2)
   );
   dataSetmlY1.push(data.askClose);
   dataSetmlY2.push(data.askLow);
