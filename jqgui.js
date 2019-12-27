@@ -193,7 +193,7 @@ $.fn.fieldInputPlusMinus = function() {
   const fieldDisabled = this.data("componentDisabled");
   const fieldWidth =
     "width: " +
-    (this.data("componentWidth") ? this.data("componentWidth") : "8em") +
+    (this.data("componentSize") ? this.data("componentSize") : "8em") +
     ";";
   const fieldClass =
     "is_" +
@@ -315,7 +315,7 @@ $.fn.fieldSelectPlusMinus = function() {
 
   const fieldWidth =
     "width: " +
-    (this.data("componentWidth") ? this.data("componentWidth") : "8em") +
+    (this.data("componentSize") ? this.data("componentSize") : "8em") +
     ";";
   const fieldClass =
     "is_" +
@@ -458,7 +458,7 @@ $.fn.fieldSelectPlusMinusAutocomplete = function() {
 
   const fieldWidth =
     "width: " +
-    (this.data("componentWidth") ? this.data("componentWidth") : "8em") +
+    (this.data("componentSize") ? this.data("componentSize") : "8em") +
     ";";
   const fieldClass =
     "is_" +
