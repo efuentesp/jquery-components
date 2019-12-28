@@ -62,3 +62,6 @@ $("#multiChart").canvas();
 
 // Swap List
 $("#listado").fieldSwaplist();
+
+// Date Range
+$("#rango").fieldDateRange();
