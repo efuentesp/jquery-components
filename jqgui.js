@@ -375,18 +375,14 @@ $.fn.fieldSelectPlusMinus = function() {
     "#field_error_block_" + fieldId
   );
 
-  var group = [
-    { key: "", value: "" },
-    { key: "001", value: "Contrato 01" },
-    { key: "002", value: "Contrato 02" },
-    { key: "003", value: "Contrato 03" },
-    { key: "004", value: "Contrato 04" },
-    { key: "005", value: "Contrato 05" },
-    { key: "006", value: "Contrato 06" },
-    { key: "007", value: "Contrato 07" },
-    { key: "008", value: "Contrato 08" },
-    { key: "009", value: "Contrato 09" }
-  ];
+  let group = [{ key: "", value: "" }];
+  this.children().each(function() {
+    let id = $("#" + this.getAttribute("id")).attr("id");
+    if (id) {
+      group.push({ key: id, value: this.innerText });
+      document.getElementById("field_" + fieldId).removeChild(this);
+    }
+  });
 
   var people = Object.keys(group);
 
