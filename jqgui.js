@@ -811,25 +811,44 @@ $.fn.fieldInput = function() {
 
 $.fn.tabgroup = function() {
   if (this.data("componentType") === "tab-group") {
-    var divtabgroup = document.createElement("div");
+    let id = this.attr("id");
+    let divtabgroup = document.createElement("div");
     divtabgroup.setAttribute("class", "tab-group");
-
-    var id = this.attr("id");
-    var items = $("#" + id).children("div");
-
-    var ul = document.createElement("ul");
+    divtabgroup.setAttribute("id", id + "_tabgroup");
+    let items = $("#" + id).children("div");
+    let ul = document.createElement("ul");
 
     this.children().each(function() {
-      var item = $("#" + this.getAttribute("id"));
-      var id = $("#" + this.getAttribute("id")).attr("id");
-      var li = document.createElement("li");
-      var a = document.createElement("a");
+      let id = $("#" + this.getAttribute("id")).attr("id");
+      let li = document.createElement("li");
+      let a = document.createElement("a");
       a.setAttribute("href", "#" + id);
-      var span = document.createElement("span");
-      span.innerHTML = $("#" + this.getAttribute("id")).attr(
-        "data-component-label"
-      );
-      a.appendChild(span);
+      if ($("#" + this.getAttribute("id")).attr("data-component-img")) {
+        let containerimage = document.createElement("div");
+        containerimage.setAttribute("class", "container-imgtxt");
+        let image = document.createElement("img");
+        image.setAttribute("class", "container-img_image");
+        image.setAttribute(
+          "src",
+          "../../assets/images/" +
+            $("#" + this.getAttribute("id")).attr("data-component-img")
+        );
+        image.setAttribute("align", "middle");
+        let containertext = document.createElement("div");
+        containertext.setAttribute("class", "container-img_text");
+        containertext.innerHTML = $("#" + this.getAttribute("id")).attr(
+          "data-component-label"
+        );
+        containerimage.appendChild(image);
+        containerimage.appendChild(containertext);
+        a.appendChild(containerimage);
+      } else {
+        let span = document.createElement("span");
+        span.innerHTML = $("#" + this.getAttribute("id")).attr(
+          "data-component-label"
+        );
+        a.appendChild(span);
+      }
       li.appendChild(a);
       ul.appendChild(li);
     });
@@ -840,7 +859,17 @@ $.fn.tabgroup = function() {
     }
 
     this.append(divtabgroup);
-    $(".tab-group").tabs();
+
+    if (this.data("componentOrientation") === "horizontal") {
+      $("#" + id + "_tabgroup")
+        .tabs()
+        .addClass("ui-tabs-vertical ui-helper-clearfix");
+      $("#" + id + "_tabgroup > ul > li")
+        .removeClass("ui-corner-top")
+        .addClass("ui-corner-left");
+    } else {
+      $("#" + id + "_tabgroup").tabs();
+    }
   }
 };
 

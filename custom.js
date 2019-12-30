@@ -22,6 +22,7 @@ $("#buttonsearch3").button();
 $("#grid1").grid();
 $("#gridrecordscount1").gridrecordscount();
 $("#tab1").tabgroup();
+$("#tab2").tabgroup();
 $("#sidebar1").sidebarwrapper();
 
 // $("[data-component-type='text']").fieldInput();
