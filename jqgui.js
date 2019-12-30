@@ -719,7 +719,7 @@ $.fn.fieldInput = function() {
     : "32";
   const fieldWidth =
     "width: " +
-    (c.data("componentWidth") ? c.data("componentWidth") : "8em") +
+    (c.data("componentSize") ? c.data("componentSize") : "8em") +
     ";";
   let fieldClass =
     "is_" +
