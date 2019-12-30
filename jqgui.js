@@ -725,7 +725,7 @@ $.fn.fieldInput = function() {
     "width: " +
     (c.data("componentWidth") ? c.data("componentWidth") : "8em") +
     ";";
-  const fieldClass =
+  let fieldClass =
     "is_" +
     (c.data("componentOrientation")
       ? c.data("componentOrientation")
@@ -734,6 +734,9 @@ $.fn.fieldInput = function() {
     "pr-3 " + (c.data("componentRequired") == true ? "required" : "");
 
   c.attr("id", "field_" + fieldId);
+  if (fieldClass === "is_horizontal") {
+    fieldClass += " items-center";
+  }
   c.attr("class", "field " + fieldClass);
 
   const divLabel = document.createElement("div");
@@ -758,11 +761,9 @@ $.fn.fieldInput = function() {
     divControl.setAttribute("custom-tooltip", c.data("componentTooltip"));
   }
 
-  const divFieldInput = document.createElement("div");
-  divFieldInput.setAttribute("class", "field-input has-addons flex");
-
-  divControl.appendChild(divFieldInput);
-  c.append(divControl);
+  // const divFieldInput = document.createElement("div");
+  // divFieldInput.setAttribute("class", "field-input has-addons flex");
+  // divControl.appendChild(divFieldInput);
 
   const input = document.createElement("input");
   input.setAttribute("id", fieldId);
@@ -793,9 +794,10 @@ $.fn.fieldInput = function() {
     const spanCurrency = document.createElement("span");
     spanCurrency.setAttribute("class", "currency-prefix");
     spanCurrency.innerText = "$";
-    divFieldInput.appendChild(spanCurrency);
+    divControl.appendChild(spanCurrency);
   }
-  divFieldInput.appendChild(input);
+  divControl.appendChild(input);
+  c.append(divControl);
 
   c.removeAttr("data-component-type");
   c.removeAttr("data-component-label");
@@ -806,6 +808,7 @@ $.fn.fieldInput = function() {
   c.removeAttr("data-component-disabled");
   c.removeAttr("data-component-tooltip");
   c.removeAttr("data-component-default-value");
+  c.removeAttr("data-component-input-type");
   // });
 };
 
@@ -1639,9 +1642,10 @@ $.fn.customaccordion = function() {
     this.attr("data-component-type", null);
     this.children().each(function() {
       let item = $("#" + this.getAttribute("id"));
-      $("<h3>" + item.data("componentLabel") + "</h3>").insertBefore(
-        "#" + this.getAttribute("id")
-      );
+      let label = item.data("componentLabel")
+        ? item.data("componentLabel")
+        : "";
+      $("<h3>" + label + "</h3>").insertBefore("#" + this.getAttribute("id"));
       $("#" + this.getAttribute("id")).attr("class", "accordion-content");
       item.attr("id", null);
       item.attr("data-component-type", null);
