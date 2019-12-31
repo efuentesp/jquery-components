@@ -66,3 +66,12 @@ $("#listado").fieldSwaplist();
 
 // Date Range
 $("#rango").fieldDateRange();
+
+// Quiz group 3
+let encuesta_params = {};
+// Name of json
+http_findAll("encuesta", encuesta_params, payload => {
+  // Parameters: field name group, id of quiz, data
+  fillQuiz("ejemploQuiz", "encuesta", payload);
+  console.log("-------+> ", payload);
+});
