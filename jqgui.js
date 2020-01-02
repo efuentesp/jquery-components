@@ -704,6 +704,7 @@ $.fn.fieldInput = function() {
   const c = $(this);
   const fieldId = c.attr("id");
   // console.log("Id", fieldId);
+  const fieldLabel = c.data("componentLabel") ? c.data("componentLabel") : ""
   let fieldType = "";
   if (c.data("componentInputType") === "integer") {
     fieldType = "integer";
@@ -740,7 +741,7 @@ $.fn.fieldInput = function() {
 
   const label = document.createElement("label");
   label.setAttribute("for", fieldId);
-  label.innerHTML = c.data("componentLabel");
+  label.innerHTML = fieldLabel;
   divLabel.appendChild(label);
   c.append(divLabel);
 
