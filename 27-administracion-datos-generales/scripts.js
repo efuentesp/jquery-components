@@ -273,6 +273,39 @@ $("#table_cotitular2_firmas_autorizadas").jqGrid({
     caption: ""
 });
 
+// documentacion
+$("#cotitular2_documentacion_contrato").grid();
+$("#table_cotitular2_documentacion_contrato").jqGrid({
+    datatype: "local",
+    height: "auto",
+    colNames: ["Sts", "Documentación", "Tipo", "Observaciones"],
+    colModel: [{
+            name: "sts",
+            width: 50,
+            // formatter: valores
+        },
+        {
+            name: "documentacion",
+            width: 400
+        },
+        {
+            name: "tipo",
+            width: 400
+        },
+        {
+            name: "observaciones",
+            width: 200
+        }
+    ],
+    rowNum: 10,
+    rowList: [10, 20, 30],
+    sortname: "tipo",
+    sortorder: "desc",
+    viewrecords: true,
+    gridview: true,
+    autoencode: true,
+    caption: ""
+});
 
 // formatos fiscales
 
