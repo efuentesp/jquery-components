@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>27. Administración de Datos Generales</title>
+    <link href="/assets/css/libs.min.css" rel="stylesheet" />
+    <link href="/assets/css/main.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <div class="content p-4">
+    <div id="criterios_busqueda_accordion" data-component-type="accordion">
+      <div
+        id="criterios_busqueda_accordion_item"
+        data-component-type="accordion-item"
+      >
+        <form class="flex flex-wrap justify-between" id="criterios-busqueda">
+          <div class="campos-filtrado">
+            <div class="row flex flex-wrap">
+              <div
+                id="contrato"
+                data-component-type="input"
+                data-component-label="Contrato"
+                data-component-orientation="horizontal"
+                data-component-width="8em"
+              ></div>
+
+              <div
+                id="digito"
+                data-component-type="input"
+                data-component-label="Digito"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-width="4em"
+              ></div>
+
+              <div
+                id="dv"
+                data-component-type="input"
+                data-component-label="DV"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-width="4em"
+              ></div>
+
+              <div
+                id="estatus"
+                data-component-type="input"
+                data-component-label="Estatus"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-width="4em"
+              ></div>
+
+              <div
+                id="perfil"
+                data-component-type="input"
+                data-component-label="Perfil"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-width="12em"
+              ></div>
+
+              <div
+                id="perfil2"
+                data-component-type="input"
+                data-component-label=""
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-width="12em"
+              ></div>
+
+              <div
+                id="portafolio"
+                data-component-type="input"
+                data-component-label="Portafolio"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-width="12em"
+              ></div>
+            </div>
+
+            <div class="row flex flex-wrap">
+              <div
+                id="portafolio_uuid"
+                data-component-type="input"
+                data-component-label=""
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-width="37.5em"
+              ></div>
+
+              <div
+                id="clabe"
+                data-component-type="input"
+                data-component-label="Perfil"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-width="12em"
+              ></div>
+
+              <div
+                id="clabe2"
+                data-component-type="input"
+                data-component-label=""
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-width="12em"
+              ></div>
+
+              <div
+                id="stipo_port"
+                data-component-type="input"
+                data-component-label="STipo Port"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-width="12em"
+              ></div>
+            </div>
+
+            <div class="row flex flex-wrap">
+              <div
+                id="libro"
+                data-component-type="input"
+                data-component-label="Libro"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-width="12em"
+              ></div>
+            </div>
+          </div>
+
+          <div class="botones">
+            <div
+              id="btn_search"
+              data-component-type="button-search"
+              data-component-label="Consultar"
+            ></div>
+            <div
+              id="btn_pdf"
+              data-component-type="button-pdf"
+              data-component-label="PDF"
+            ></div>
+            <div
+              id="btn_xls"
+              data-component-type="button-xls"
+              data-component-label="XLS"
+            ></div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="row">
+      <div id="titular_cotitular_tabgroup" data-component-type="tab-group">
+        <div
+          id="tab_titular_contrato"
+          data-component-type="tab-item"
+          data-component-label="TITULAR DEL CONTRATO"
+          >
+          <div id="tab2" data-component-type="tab-group" data-component-orientation="horizontal">
+            <div id="tab_persona_fisica_nacional" data-component-type="tab-item" data-component-label="Persona Física Nacional" data-component-img="male_user.png">
+              <p>Elementos dentro del Tab Persona Física Nacional</p>
+            </div>
+            <div id="tab_persona_fisica_internacional" data-component-type="tab-item" data-component-label="Persona Fïsica Internacional" data-component-img="male_user.png">
+              <p>Elementos dentro del Tab Persona Fïsica Internacional</p>
+            </div>
+            <div id="tab_persona_moral_nacional"  data-component-type="tab-item" data-component-label="Persona Moral Nacional" data-component-img="male_user.png">
+              <p>Elementos dentro del Tab Persona Moral Nacional</p>
+            </div>
+            <div id="tab_persona_moral_extranjera" data-component-type="tab-item" data-component-label="Persona Moral Extranjera" data-component-img="male_user.png">
+              <p>Elementos dentro del Tab Persona Moral Extranjera</p>
+            </div>
+            <div id="tab_clasificacion_contrato" data-component-type="tab-item" data-component-label="Clasificación Contrato" data-component-img="formatos.png">
+              <div
+                id="cotitular2_clasificacion_contrato_tab_group"
+                data-component-type="tab-group"
+                
+              >
+                <div
+                  id="clasificacion_contrato"
+                  data-component-type="tab-item"
+                  data-component-label=" Clasificación Contrato"
+              >
+                  <div class="row flex flex-wrap">
+                    <div
+                      id="asesor_inversion"
+                      data-component-type="input"
+                      data-component-label="Asesor de Inversión:" 
+                      data-component-orientation="horizontal"
+                      data-component-width="60em"
+                      data-component-disabled="true"
+                     
+                  ></div>
+                  </div>
+
+
+                  <div class="row flex flex-wrap">
+
+                    <div
+                      id="tipo_manifiesto"
+                      data-component-type="input"
+                      data-component-label="Tipo de Manifiesto:" 
+                      data-component-orientation="horizontal"
+                      data-component-width="29em"
+                      data-component-disabled="true"
+                     
+                  ></div>
+
+                  </div>
+
+
+                  <div class="row flex flex-wrap">
+
+                    <div
+                      id="servicio_inversion"
+                      data-component-type="input"
+                      data-component-label="Servicio de Inversión:" 
+                      data-component-orientation="horizontal"
+                      data-component-width="60em"
+                      data-component-disabled="true"
+                     
+                  ></div>
+
+                  </div>
+
+
+                  <div class="row flex inline-flex">
+
+                    <div
+                      id="carta_ejecucion"
+                      data-component-type="input"
+                      data-component-label="Carta Ejecución:" 
+                      data-component-orientation="horizontal"
+                      data-component-width="45em"
+                      data-component-disabled="true"
+                     
+                  ></div>
+
+                    <div
+                      id="fecha_carta_ejecucion"
+                      data-component-type="input"
+                      data-component-label="Fecha:" 
+                      data-component-orientation="horizontal"
+                      data-component-width="10em"
+                      data-component-disabled="true"
+                 
+                   ></div>
+
+                  </div>
+
+
+
+                  <div class="row flex inline-flex">
+
+                    <div
+                      id="carta_ejecucion_2"
+                      data-component-type="input"
+                      data-component-label="Carta Ejecución:" 
+                      data-component-orientation="horizontal"
+                      data-component-width="45em"
+                      data-component-disabled="true"
+                     
+                  ></div>
+
+                    <div
+                      id="fecha_carta_ejecucion_2"
+                      data-component-type="input"
+                      data-component-label="Fecha:" 
+                      data-component-orientation="horizontal"
+                      data-component-width="10em"
+                      data-component-disabled="true"
+                 
+                   ></div>
+
+                  </div>
+                  <div class="row flex inline-flex">
+
+                    <div
+                      id="institucional_pract_vta"
+                      data-component-type="input"
+                      data-component-label="Institucional/Institucional Pract. Vta.:" 
+                      data-component-orientation="horizontal"
+                      data-component-width="17em"
+                      data-component-disabled="true"
+                     
+                  ></div>
+
+                    <div
+                      id="justificacion_institucional_pract_vta"
+                      data-component-type="input"
+                      data-component-label="Justificación:" 
+                      data-component-orientation="horizontal"
+                      data-component-width="20em"
+                      data-component-disabled="true"
+                 
+                   ></div>
+                   <div
+                     id="fecha_institucional_pract_vta"
+                     data-component-type="input"
+                     data-component-label="Fecha:" 
+                     data-component-orientation="horizontal"
+                     data-component-width="10em"
+                     data-component-disabled="true"
+              
+                   ></div>
+
+                  </div>
+
+                  <div class="row flex inline-flex">
+
+                    <div
+                      id="sofisticado_nosofisticado"
+                      data-component-type="input"
+                      data-component-label="Sofisticado/No Sofisticado:" 
+                      data-component-orientation="horizontal"
+                      data-component-width="17em"
+                      data-component-disabled="true"
+                     
+                  ></div>
+
+                    <div
+                      id="justificacion_sofisticado_nosofisticado"
+                      data-component-type="input"
+                      data-component-label="Justificación:" 
+                      data-component-orientation="horizontal"
+                      data-component-width="20em"
+                      data-component-disabled="true"
+                 
+                   ></div>
+                   <div
+                     id="fecha_sofisticado_nosofisticado"
+                     data-component-type="input"
+                     data-component-label="Fecha:" 
+                     data-component-orientation="horizontal"
+                     data-component-width="10em"
+                     data-component-disabled="true"
+              
+                   ></div>
+
+                  </div>
+
+                  <div class="row flex inline-flex">
+
+                    <div
+                      id="elegible_noelegible"
+                      data-component-type="input"
+                      data-component-label="Elegible/No Elegible:" 
+                      data-component-orientation="horizontal"
+                      data-component-width="17em"
+                      data-component-disabled="true"
+                     
+                  ></div>
+
+                    <div
+                      id="justificacion_elegible_noelegible"
+                      data-component-type="input"
+                      data-component-label="Justificación:" 
+                      data-component-orientation="horizontal"
+                      data-component-width="20em"
+                      data-component-disabled="true"
+                 
+                   ></div>
+                    <div
+                      id="fecha_elegible_noelegible"
+                      data-component-type="input"
+                      data-component-label="Fecha:" 
+                      data-component-orientation="horizontal"
+                      data-component-width="10em"
+                      data-component-disabled="true"
+                
+                   ></div>
+
+                  </div>
+
+
+                  <div class="row flex inline-flex">
+
+                    <div
+                      id="calificado_nocalificado"
+                      data-component-type="input"
+                      data-component-label="Calificado/No Calificado:" 
+                      data-component-orientation="horizontal"
+                      data-component-width="17em"
+                      data-component-disabled="true"
+                     
+                  ></div>
+
+                    <div
+                      id="justificacion_calificado_nocalificado"
+                      data-component-type="input"
+                      data-component-label="Justificación:" 
+                      data-component-orientation="horizontal"
+                      data-component-width="20em"
+                      data-component-disabled="true"
+                 
+                   ></div>
+                    <div
+                      id="fecha_calificado_nocalificado"
+                      data-component-type="input"
+                      data-component-label="Fecha:" 
+                      data-component-orientation="horizontal"
+                      data-component-width="10em"
+                      data-component-disabled="true"
+                
+                   ></div>
+
+                  </div>
+
+
+                  <div class="row flex inline-flex">
+
+                    <div
+                      id="discrecional_nodiscrecional"
+                      data-component-type="input"
+                      data-component-label="Discrecional/No Discrecional:" 
+                      data-component-orientation="horizontal"
+                      data-component-width="17em"
+                      data-component-disabled="true"
+                     
+                  ></div>
+
+                    <div
+                      id="justificacion_discrecional_nodiscrecional"
+                      data-component-type="input"
+                      data-component-label="Justificación:" 
+                      data-component-orientation="horizontal"
+                      data-component-width="20em"
+                      data-component-disabled="true"
+                 
+                   ></div>
+                    <div
+                      id="fecha_discrecional_nodiscrecional"
+                      data-component-type="input"
+                      data-component-label="Fecha:" 
+                      data-component-orientation="horizontal"
+                      data-component-width="10em"
+                      data-component-disabled="true"
+                
+                   ></div>
+
+                  </div>
+
+
+                   <div class="row flex flex-wrap">
+                    <div
+                      id="anexo_descriptivo"
+                      data-component-type="input"
+                      data-component-label="Anexo Descriptivo:" 
+                      data-component-orientation="horizontal"
+                      data-component-width="60em"
+                      data-component-disabled="true"
+              
+                 ></div>
+                   </div>
+                </div>
+                <div
+                  id="conocimiento_experiencia"
+                  data-component-type="tab-item"
+                  data-component-label="Conocimiento y Experiencia"
+              >
+                  <div class="row flex inline-flex">
+                    <p>conocimiento experiencia</p>
+                  </div>
+             </div>
+
+                <div
+                  id="limitantes_invertir"
+                  data-component-type="tab-item"
+                  data-component-label="Limitantes a Invertir"
+              >
+                  <div class="row w-full overflow-auto heigthTablaM">
+                    <div id="cotitular2_clasificacion_contrato_limitantes_intervenir" data-component-type="grid"></div>
+                  </div>
+              </div>
+
+                <div
+                  id="relacion_emisor"
+                  data-component-type="tab-item"
+                  data-component-label="Relación Emisor"
+               >
+                  <div class="row w-full overflow-auto heigthTablaM">
+                    <div id="cotitular2_clasificacion_contrato_relacion_emisor" data-component-type="grid"></div>
+                  </div>
+              </div>
+                 
+                  
+            </div>
+            </div>
+            <div id="tab_comisiones"  data-component-type="tab-item" data-component-label="Comisiones" data-component-img="calculator.png">
+              <div class="row w-full overflow-auto">
+                <div id="cotitular2_comisiones" data-component-type="grid"></div>
+
+              </div>
+            </div>
+            <div id="tab_documentacion" data-component-type="tab-item" data-component-label="Documentación" data-component-img="attachment.png">
+              <div class="row flex justify-end">
+                
+                <div id="documentacion_flags" data-component-type="checkbox" 
+                 data-component-orientation="horizontal" data-component-tooltip="checkbox tooltip">
+                <div id="S01" color="green">Entregada</div>
+                <div id="S02" color="yellow">Pendiente</div>
+                <div id="S03" color="red">Vencido</div>
+                <div id="S05" color="black">No Aplica</div>
+              </div>
+            </div>
+            <p> Contrato</p>
+
+            <div class="row w-full overflow-auto heigthTablaC">
+            </div>
+
+            <p>Cliente</p>
+
+            <div class="row w-full overflow-auto heigthTablaC">
+            </div>
+
+            <br>
+            <p>Ejemplo de Panel Horizontal (arrastrar la linea que divide a los 2 paneles)</p>
+            <div class="row">
+              <!-- <div id="horizontal-splitter" data-component-type="splitter" data-component-orientation="horizontal">
+                <div id="splitterLeft"></div>
+                <div id="splitterRigth"></div>
+              </div> -->
+            </div>
+            </div>
+            <div id="tab_domicilio" data-component-type="tab-item" data-component-label="Domicilio" data-component-img="home.png">
+               <div class="row w-full overflow-auto heigtTabla">
+                <div id="cotitular2_domicilio" data-component-type="grid"></div>
+
+              </div>
+            </div>
+            <div id="tab_firmas_autorizadas"  data-component-type="tab-item" data-component-label="Firmas Autorizadas" data-component-img="edit_page.png">
+              <div class="row w-full overflow-auto heigtTabla">
+                 <div id="cotitular2_firmas_autorizadas" data-component-type="grid"></div>
+
+              </div>
+            </div>
+            <div id="tab_formatos_fiscales" data-component-type="tab-item" data-component-label="Formatos Fiscales" data-component-img="documentacion.png">
+              <div class="row flex justify-end">
+               
+                <div id="formatos_fiscales_flags" data-component-type="checkbox" 
+                 data-component-orientation="horizontal" data-component-tooltip="checkbox tooltip">
+                <div id="S01" color="green">Entregada</div>
+                <div id="S02" color="yellow">Pendiente</div>
+                <div id="S03" color="red">Vencido</div>
+                <div id="S05" color="black">No Aplica</div>
+              </div>
+                
+              </div>
+
+              <div class="row w-full overflow-auto heigthTablaM">
+                <div id="cotitular2_formatos_fiscales" data-component-type="grid"></div>
+              </div>
+            </div>
+            <div id="tab_medio_comunicacion" data-component-type="tab-item" data-component-label="Medio de Comunicación" data-component-img="correo.png">
+              <div class="row w-full overflow-auto heigtTabla"> 
+                 <div id="cotitular2_medio_comunicacion" data-component-type="grid"></div>
+              </div>
+            </div>
+            <div id="tab_medio_liquidacion"  data-component-type="tab-item" data-component-label="Medio de Liquidación" data-component-img="credit_cart.png">
+              <div class="row w-full overflow-auto heigtTabla">
+                 <div id="cotitular2_medio_liquidacion" data-component-type="grid"></div>
+
+              </div>
+            </div>
+            <div id="tab_observaciones"  data-component-type="tab-item" data-component-label="Observaciones" data-component-img="search_page.png">
+               <div class="campos-observaciones">
+                 <div class=" row flex flex-wrap">
+                  <div
+                    id="text_area_observaciones"
+                    data-component-type="input"
+                    data-component-orientation="horizontal"
+                    data-component-width="69em"
+                    data-component-disabled="true"
+                  ></div>
+                 </div>
+
+                 <div class="row flex inline-flex">
+                  <div
+                    id="fecha_apertura"
+                    data-component-type="input"
+                    data-component-label="Fecha Apertura"
+                    data-component-orientation="horizontal"
+                    data-component-width="18em"
+                    data-component-disabled="true"
+                  ></div>
+
+                  <div
+                    id="monto_inicial"
+                    data-component-type="input"
+                    data-component-label="Monto Inicial"
+                    data-component-orientation="horizontal"
+                    data-component-width="18em"
+                    data-component-disabled="true"
+                ></div>
+
+
+                 </div>
+
+                 <div class="row flex inline-flex">
+                  <div
+                    id="sector"
+                    data-component-type="input"
+                    data-component-label="Sector"
+                    data-component-orientation="horizontal"
+                    data-component-width="18em"
+                    data-component-disabled="true"
+                  ></div>
+
+                  <div
+                    id="residencia"
+                    data-component-type="input"
+                    data-component-label="Residencia"
+                    data-component-orientation="horizontal"
+                    data-component-width="18em"
+                    data-component-disabled="true"
+                ></div>
+
+
+                 </div>
+
+
+                 <div class="row flex inline-flex">
+                  <div
+                    id="envio_correspondencia"
+                    data-component-type="input"
+                    data-component-label="Envio Correspondencia"
+                    data-component-orientation="horizontal"
+                    data-component-width="18em"
+                    data-component-disabled="true"
+                  ></div>
+
+                  <div
+                    id="tipo_cuenta"
+                    data-component-type="input"
+                    data-component-label="Tipo Cuenta"
+                    data-component-orientation="horizontal"
+                    data-component-width="18em"
+                    data-component-disabled="true"
+                ></div>
+
+
+                 </div>
+                  
+                  
+                 <div class="row flex inline-flex">
+                 <p id="comisiones-impuestos-span">Comisiones/Impuestos*</p>
+                  <div
+                    id="manejo_cuenta"
+                    data-component-type="input"
+                    data-component-label="Manejo Cuenta"
+                    data-component-orientation="horizontal"
+                    data-component-width="18em"
+                    data-component-disabled="true"
+                  ></div>
+                </div>
+
+                <div class="row flex inline-flex">
+                  <div
+                    id="custodia_admon"
+                    data-component-type="input"
+                    data-component-label="Custodia y Admon*"
+                    data-component-orientation="horizontal"
+                    data-component-width="18em"
+                    data-component-disabled="true"
+                  ></div>
+
+                  <div
+                    id="lim_max_operacion"
+                    data-component-type="input"
+                    data-component-label="Lim.Máx. de Operación"
+                    data-component-orientation="horizontal"
+                    data-component-width="18em"
+                    data-component-disabled="true"
+                ></div>
+
+
+                 </div>
+
+                 <div class="row flex inline-flex">
+                  <div
+                    id="isr_mdo_din"
+                    data-component-type="input"
+                    data-component-label="ISR Mdo Din*"
+                    data-component-orientation="horizontal"
+                    data-component-width="18em"
+                    data-component-disabled="true"
+                  ></div>
+
+                  <div
+                    id="fecha_ult_mov"
+                    data-component-type="input"
+                    data-component-label="Fecha últ Mov"
+                    data-component-orientation="horizontal"
+                    data-component-width="18em"
+                    data-component-disabled="true"
+                ></div>
+
+
+                 </div>
+
+                 <div class="row flex inline-flex">
+                  <div
+                    id="porcentaje_acum_isr"
+                    data-component-type="input"
+                    data-component-label="Porcentaje Acum. ISR"
+                    data-component-orientation="horizontal"
+                    data-component-width="18em"
+                    data-component-disabled="true"
+                  ></div>
+
+                  <div
+                    id="porcentaje_acum_ide"
+                    data-component-type="input"
+                    data-component-label="Porcentaje de Acum. IDE"
+                    data-component-orientation="horizontal"
+                    data-component-width="18em"
+                    data-component-disabled="true"
+                ></div>
+
+
+                 </div>
+
+                 <div class="row flex flex-wrap">
+                  <div
+                    id="imprime_estado_cuenta"
+                    data-component-type="input"
+                    data-component-label="Imprime Estado de Cuenta"
+                    data-component-orientation="horizontal"
+                    data-component-width="18em"
+                    data-component-disabled="true"
+               ></div>
+                 </div>
+
+
+
+
+
+
+               </div>
+            </div>
+          </div>
+       
+        </div>
+            
+
+         
+      
+    </div>
+  </div>
+  <body>
+    <script src="/assets/scripts/jquery.min.js"></script>
+    <script src="/assets/scripts/libs.min.js"></script>
+    <script src="/assets/scripts/common.js"></script>
+    <script src="/jqgui.js"></script>
+    <script src="scripts.js"></script>
+  </body>
+</html>
