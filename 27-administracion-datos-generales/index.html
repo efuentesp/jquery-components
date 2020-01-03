@@ -179,7 +179,15 @@
                 data-component-disabled="true"
                 data-component-size="14em"
              ></div>
-
+                
+             <div
+                id="rfc"
+                data-component-type="input"
+                data-component-label="RFC:"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-size="10em"
+             ></div>
               
               </div>
 
@@ -262,7 +270,7 @@
               <div
                 id="pfi_actividad"
                 data-component-type="input"
-                data-component-label="ACT"
+                data-component-label="act"
                 data-component-orientation="horizontal"
                 data-component-disabled="true"
                 data-component-size="14em"
@@ -382,7 +390,7 @@
              ></div>
 
                 <div
-                  id="rfc"
+                  id="RFC"
                   data-component-type="input"
                   data-component-label="RFC:"
                   data-component-orientation="horizontal"
@@ -443,14 +451,24 @@
              ></div>
 
                 <div
-                  id="recompra"
+                  id="fechaRegPubComer"
                   data-component-type="input"
-                  data-component-label="Recompra:"
+                  data-component-label="Fecha Reg Pub Comer:"
                   data-component-orientation="horizontal"
                   data-component-disabled="true"
                   data-component-size="10em"
              ></div>
                </div>
+               <div class="row">
+                <div
+                  id="recompra"
+                  data-component-type="input"
+                  data-component-label="Recompra:"
+                  data-component-orientation="horizontal"
+                  data-component-disabled="true"
+                  data-component-size="15em"
+              ></div>
+              </div>
 
                <div class="row" id="rowBnmx">
                 <div
@@ -954,15 +972,16 @@
             <div class="row">
    
               <div class="row w-full overflow-auto heigtTabla"> 
-                <div id="horizontal-splitter" data-component-type="splitter" data-component-orientation="horizontal">
+                <!-- <div id="horizontal-splitter" data-component-type="splitter" data-component-orientation="horizontal">
                  
-                  <div id="cotitular2_documentacion_contrato" data-component-type="grid"></div>
                   <div id="splitterRigth"></div>
+                </div> -->
                   
+                  <div id="cotitular2_documentacion_contrato" data-component-type="grid"></div>
+                  
+                  
+                  <div id="cotitular2_documentacion_cliente" data-component-type="grid"></div>
                 </div>
-
-
-              </div>
             </div>
             </div>
             <div id="tab_domicilio" data-component-type="tab-item" data-component-label="Domicilio" data-component-img="home.png">

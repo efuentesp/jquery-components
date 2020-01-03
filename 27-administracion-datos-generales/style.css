@@ -265,7 +265,8 @@
 #field_cteBnmx label,
 #field_obsEscritura label,
 #field_clasificacion label,
-#field_rfc label,
+#field_RFC label,
+#field_fechaRegPubComer label,
 #field_clasificacionBanxico label {
     width: 10em;
     text-align: left;
@@ -283,7 +284,8 @@
 #field_cteBnmx input,
 #field_obsEscritura input,
 #field_clasificacion input,
-#field_rfc input,
+#field_RFC input,
+#field_fechaRegPubComer input,
 #field_clasificacionBanxico input {
     text-align: right;
 }
