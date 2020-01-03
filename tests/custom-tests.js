@@ -2,11 +2,12 @@ $("#contrato1").fieldInputPlusMinus();
 $("#contrato2").fieldInputPlusMinus();
 $("#contrato2a").fieldInputPlusMinus();
 
-$("#contrato3").fieldSelectPlusMinus();
-$("#contrato3a").fieldSelectPlusMinus();
+$("#contrato7").fieldSelectPlusMinus();
+$("#contrato8").fieldSelectPlusMinus();
 
 $("#contrato4").fieldSelectPlusMinusAutocomplete();
 $("#contrato5").fieldSelectPlusMinusAutocomplete();
+$("#contrato6").fieldSelectPlusMinusAutocomplete();
 
 $("#fecha").fielDate();
 

@@ -518,15 +518,15 @@ $.fn.fieldSelectPlusMinusAutocomplete = function() {
 
   var group = [
     { key: "", value: "" },
-    { key: "001", value: "Contrato 01" },
-    { key: "002", value: "Contrato 02" },
-    { key: "003", value: "Contrato 03" },
-    { key: "004", value: "Contrato 04" },
-    { key: "005", value: "Contrato 05" },
-    { key: "006", value: "Contrato 06" },
-    { key: "007", value: "Contrato 07" },
-    { key: "008", value: "Contrato 08" },
-    { key: "009", value: "Contrato 09" }
+    { key: "CONTRATO01", value: "Contrato 01" },
+    { key: "CONTRATO02", value: "Contrato 02" },
+    { key: "CONTRATO03", value: "Contrato 03" },
+    { key: "CONTRATO04", value: "Contrato 04" },
+    { key: "CONTRATO05", value: "Contrato 05" },
+    { key: "CONTRATO06", value: "Contrato 06" },
+    { key: "CONTRATO07", value: "Contrato 07" },
+    { key: "CONTRATO08", value: "Contrato 08" },
+    { key: "CONTRATO09", value: "Contrato 09" }
   ];
 
   var people = Object.keys(group);

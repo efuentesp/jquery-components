@@ -618,6 +618,7 @@ let fieldSelectPlusAutocomplete = function(id, params) {
   let payload = params.payload;
   let definedNodes = true;
   let numNodes = 4;
+  let maxsize = params.maxsize;
 
   if (params.nodes == undefined) {
     definedNodes = true;
@@ -671,8 +672,8 @@ let fieldSelectPlusAutocomplete = function(id, params) {
     let value_to_add = $(idInput + " option:selected").val();
 
     if (!existText(text_to_add, list)) {
-      if (!addedText(text_to_add, value_to_add, list)) {
-        addNode(text_to_add, value_to_add, list, params.maxsize);
+      if (!addedText(id, text_to_add, value_to_add, list, maxsize)) {
+        addNode(text_to_add, value_to_add, list, maxsize);
       }
     }
     fieldPlusMinusRepaintList(node);
@@ -690,8 +691,8 @@ let fieldSelectPlusAutocomplete = function(id, params) {
       if (!(value_to_add == "")) {
         var text_to_add = $(idInput + " option:selected").text();
         if (!existText(text_to_add, list)) {
-          if (!addedText(text_to_add, value_to_add, list)) {
-            addNode(text_to_add, value_to_add, list, params.maxsize);
+          if (!addedText(id, text_to_add, value_to_add, list, maxsize)) {
+            addNode(text_to_add, value_to_add, list, maxsize);
           }
         }
         fieldPlusMinusRepaintList(node);
