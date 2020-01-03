@@ -704,7 +704,7 @@ $.fn.fieldInput = function() {
   const c = $(this);
   const fieldId = c.attr("id");
   // console.log("Id", fieldId);
-  const fieldLabel = c.data("componentLabel") ? c.data("componentLabel") : ""
+  const fieldLabel = c.data("componentLabel") ? c.data("componentLabel") : "";
   let fieldType = "";
   if (c.data("componentInputType") === "integer") {
     fieldType = "integer";
@@ -939,16 +939,9 @@ $.fn.fieldDateRange = function() {
     "width: " +
     (this.data("componentSize") ? this.data("componentSize") : "8em") +
     ";";
-  // console.log("Begin:" + fieldBeginLabel);
-  // console.log("End:" + fieldEndLabel);
-  // const dateAElement = $("#" + fieldId + "_begin_date").fielDate();
-  // const dateBElement = $("#" + fieldId + "_end_date").fielDate();
 
-  // $("#" + fieldId + "_end_date").fielDate();
   this.attr("id", "field_" + fieldId);
   this.attr("class", "field " + fieldClass);
-
-  // const divDateRage = document.createElement("div");
 
   const divControl = document.createElement("div");
   divControl.setAttribute("class", "field-control flex");
@@ -957,6 +950,7 @@ $.fn.fieldDateRange = function() {
   }
   this.append(divControl);
 
+  // Begin
   const divBeginDate = document.createElement("div");
   divBeginDate.setAttribute("id", "field_" + fieldId + "_begin_date");
 
@@ -1026,6 +1020,7 @@ $.fn.fieldDateRange = function() {
 
   this.append(divBeginDate);
 
+  // End
   const divEndDate = document.createElement("div");
   divEndDate.setAttribute("id", "field_" + fieldId + "_end_date");
 
@@ -1061,20 +1056,20 @@ $.fn.fieldDateRange = function() {
 
   const inputEnd = document.createElement("input");
   inputEnd.setAttribute("class", "input datepicker_range");
-  inputEnd.setAttribute("id", fieldId + "_begin_date");
+  inputEnd.setAttribute("id", fieldId + "_end_date");
   inputEnd.setAttribute("required", fieldRequired);
   inputEnd.setAttribute("style", fieldWidth);
   inputEnd.setAttribute("readonly", "readonly");
   inputEnd.setAttribute(
     "data-parsley-errors-container",
-    "#field_error_block_" + fieldId + "_begin_date"
+    "#field_error_block_" + fieldId + "_end_date"
   );
   divControlFieldEndInput.append(inputEnd);
 
   const inputEndImage = document.createElement("input");
   inputEndImage.setAttribute("class", "pl-1");
   inputEndImage.setAttribute("type", "image");
-  inputEndImage.setAttribute("id", "clear_" + fieldId + "_begin_date");
+  inputEndImage.setAttribute("id", "clear_" + fieldId + "_end_date");
   inputEndImage.setAttribute("src", "../../assets/images/meddelete.png");
   inputEndImage.setAttribute("style", "width:15px;height:15px;");
   divControlFieldEndInput.append(inputEndImage);
@@ -1090,13 +1085,95 @@ $.fn.fieldDateRange = function() {
   divSpanMsgEndError.setAttribute("class", "error-msg");
   divSpanMsgEndError.setAttribute(
     "id",
-    "field_error_block_" + fieldId + "_begin_date"
+    "field_error_block_" + fieldId + "_end_date"
   );
   spanEnd.append(divSpanMsgEndError);
   divControlFieldEndInput.append(spanEnd);
   divControlEndInput.append(divControlFieldEndInput);
 
   this.append(divEndDate);
+};
+
+var fieldBeginDateRangeClear = function(id) {
+  var _id = $("#" + id + "_begin_date");
+  var $dates = $(_id).datepicker();
+  $("#clear_" + id + "_begin_date").on("click", function() {
+    $dates.datepicker("setDate", null);
+  });
+};
+
+var fieldEndDateRangeClear = function(id) {
+  var _id = $("#" + id + "_end_date");
+  var $dates = $(_id).datepicker();
+  $("#clear_" + id + "_end_date").on("click", function() {
+    $dates.datepicker("setDate", null);
+  });
+};
+
+// Dates
+var validateDateRage = function(id) {
+  $("#" + id + "_begin_date").datepicker(
+    __assign(__assign({}, ui_datepicker_settings), {
+      onClose: function(selectedDate, instance) {
+        if (selectedDate != "") {
+          $("#" + id + "_end_date").datepicker(
+            "option",
+            "minDate",
+            selectedDate
+          );
+          var date = $.datepicker.parseDate(
+            instance.settings.dateFormat,
+            selectedDate,
+            instance.settings
+          );
+          date.setMonth(date.getMonth() + 3);
+          $("#" + id + "_end_date").datepicker(
+            "option",
+            "minDate",
+            selectedDate
+          );
+          $("#" + id + "_end_date").datepicker("option", "maxDate", date);
+        }
+      }
+    })
+  );
+  $("#" + id + "_end_date").datepicker(
+    __assign(__assign({}, ui_datepicker_settings), {
+      onClose: function(selectedDate) {
+        $("#" + id + "_begin_date").datepicker(
+          "option",
+          "maxDate",
+          selectedDate
+        );
+      }
+    })
+  );
+};
+
+var DATE_FORMAT = "dd-mm-yy";
+
+$(".datepicker").mask("99-99-9999");
+
+$(".datepicker")
+  .datepicker(ui_datepicker_settings)
+  .prop("readonly", false);
+
+var ui_datepicker_settings = {
+  showOn: "both",
+  buttonImage: "../../assets/images/btn-calendario.png",
+  buttonImageOnly: true,
+  buttonText: "",
+  dateFormat: DATE_FORMAT,
+  changeMonth: true,
+  changeYear: true,
+  showButtonPanel: true,
+  currentText: "Hoy",
+  closeText: "Limpiar",
+  onClose: function(dateText, inst) {
+    if ($(window.event.srcElement).hasClass("ui-datepicker-close")) {
+      document.getElementById(this.id).value = "";
+    }
+  }
 };
 
 //----------------------------------------- SECCION FECHAS -----------------------------------------
@@ -1330,46 +1407,6 @@ $.fn.fielDate = function() {
 
   $(".monthpicker").datepicker(ui_datepicker_month_year_settings);
 
-  // Dates
-  var validateDateRage = function(id) {
-    $("#" + id + "_begin_date").datepicker(
-      __assign(__assign({}, ui_datepicker_settings), {
-        onClose: function(selectedDate, instance) {
-          if (selectedDate != "") {
-            $("#" + id + "_end_date").datepicker(
-              "option",
-              "minDate",
-              selectedDate
-            );
-            var date = $.datepicker.parseDate(
-              instance.settings.dateFormat,
-              selectedDate,
-              instance.settings
-            );
-            date.setMonth(date.getMonth() + 3);
-            $("#" + id + "_end_date").datepicker(
-              "option",
-              "minDate",
-              selectedDate
-            );
-            $("#" + id + "_end_date").datepicker("option", "maxDate", date);
-          }
-        }
-      })
-    );
-    $("#" + id + "_end_date").datepicker(
-      __assign(__assign({}, ui_datepicker_settings), {
-        onClose: function(selectedDate) {
-          $("#" + id + "_begin_date").datepicker(
-            "option",
-            "maxDate",
-            selectedDate
-          );
-        }
-      })
-    );
-  };
-
   // DatePicker
   $(".datepicker")
     .datepicker(ui_datepicker_settings)
@@ -1384,22 +1421,6 @@ $.fn.fielDate = function() {
         $(input_date_id).datepicker("setDate", null);
     });
   };*/
-
-  var fieldBeginDateRangeClear = function(id) {
-    var _id = $("#" + id + "_begin_date");
-    var $dates = $(_id).datepicker();
-    $("#clear_" + id + "_begin_date").on("click", function() {
-      $dates.datepicker("setDate", null);
-    });
-  };
-
-  var fieldEndDateRangeClear = function(id) {
-    var _id = $("#" + id + "_end_date");
-    var $dates = $(_id).datepicker();
-    $("#clear_" + id + "_end_date").on("click", function() {
-      $dates.datepicker("setDate", null);
-    });
-  };
 };
 
 $.fn.fieldOptions = function() {
