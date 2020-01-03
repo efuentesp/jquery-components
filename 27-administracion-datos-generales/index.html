@@ -161,16 +161,435 @@
           >
           <div id="tab2" data-component-type="tab-group" data-component-orientation="horizontal">
             <div id="tab_persona_fisica_nacional" data-component-type="tab-item" data-component-label="Persona Física Nacional" data-component-img="male_user.png">
-              <p>Elementos dentro del Tab Persona Física Nacional</p>
+              <div class="row flex flex-wrap ">
+                <div
+                id="nombre"
+                data-component-type="input"
+                data-component-label="Nombre:"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-size="35em"
+              ></div>
+               
+              <div
+                id="actividad"
+                data-component-type="input"
+                data-component-label="Actividad:"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-size="14em"
+             ></div>
+
+              
+              </div>
+
+              <div class="row flex flex-wrap ">
+                <div
+                id="sexo"
+                data-component-type="input"
+                data-component-label="Sexo:"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-size="10em"
+              ></div>
+               
+              <div
+                id="curp"
+                data-component-type="input"
+                data-component-label="CURP:"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-size="14em"
+             ></div>
+
+              <div
+                id="fechaNacimiento"
+                data-component-type="input"
+                data-component-label="Fecha de Nacimineto:"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-size="14em"
+             ></div>
+
+              <div
+                id="cuenta"
+                data-component-type="input"
+                data-component-label="Cto. Bnmx:"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-size="6.7em"
+            ></div>
+              </div>
+
+
+              <div class="row flex flex-wrap ">
+               
+              <div
+                id="nacionalidad"
+                data-component-type="input"
+                data-component-label="Nacionalidad:"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-size="10em"
+             ></div>
+
+              <div
+                id="calidadMigratoria"
+                data-component-type="input"
+                data-component-label="Calidad Migratoria:"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-size="14em"
+             ></div>
+              </div>
+
+              <div class="row w-full overflow-auto heigthTablaM">
+              <div id="persona_fisica_nac" data-component-type="grid"></div>
+              </div>
+
             </div>
             <div id="tab_persona_fisica_internacional" data-component-type="tab-item" data-component-label="Persona Fïsica Internacional" data-component-img="male_user.png">
-              <p>Elementos dentro del Tab Persona Fïsica Internacional</p>
+              <div class="row flex flex-wrap ">
+                <div
+                id="pfi_nombre"
+                data-component-type="input"
+                data-component-label="Nombre"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-size="40em"
+              ></div>
+               
+              <div
+                id="pfi_actividad"
+                data-component-type="input"
+                data-component-label="ACT"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-size="14em"
+             ></div>
+
+              
+             </div>
+           
+            <div class="row flex flex-wrap ">
+              <div
+                id="pfi_rfc"
+                data-component-type="input"
+                data-component-label="RFC:"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-size="10em"
+             ></div>
+             <div
+                id="pfi_sexo"
+                data-component-type="input"
+                data-component-label="Sexo:"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-size="8em"
+             ></div>
+             <div
+                id="pfi_nacionalidad"
+                data-component-type="input"
+                data-component-label="Nacionalidad"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-size="8em"
+             ></div>
+              
+             <div
+                id="pfi_cuenta"
+                data-component-type="input"
+                data-component-label="Cto. Bnmx"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-size="8em"
+             ></div>
+            </div> 
+
+            <div class="row flex flex-wrap ">
+             <div
+                id="pfi_fechaNacimiento"
+                data-component-type="input"
+                data-component-label="Fec Nac"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-size="14em"
+             ></div>
+             <div
+                id="pfi_curp"
+                data-component-type="input"
+                data-component-label="CURP"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-size="10em"
+             ></div>
+              
+             <div
+                id="pfi_calidadMigratoria"
+                data-component-type="input"
+                data-component-label="Calidad Migratoria"
+                data-component-orientation="horizontal"
+                data-component-disabled="true"
+                data-component-size="16.5em"
+             ></div>
+            </div> 
+
+            <div class="row flex flex-wrap ">
+              <div
+                 id="pfi_paisnac"
+                 data-component-type="input"
+                 data-component-label="Pais Nac"
+                 data-component-orientation="horizontal"
+                 data-component-disabled="true"
+                 data-component-size="16.5em"
+              ></div>
+              <div
+                 id="pfi_edonac"
+                 data-component-type="input"
+                 data-component-label="Edo Nac"
+                 data-component-orientation="horizontal"
+                 data-component-disabled="true"
+                 data-component-size="14em"
+              ></div>
+             </div> 
+             
+             <div class="row w-full overflow-auto heigthTablaM">
+              <div id="persona_fisica_int" data-component-type="grid"></div>
+              </div>
+            
+
             </div>
             <div id="tab_persona_moral_nacional"  data-component-type="tab-item" data-component-label="Persona Moral Nacional" data-component-img="male_user.png">
-              <p>Elementos dentro del Tab Persona Moral Nacional</p>
+             
+              <div class="row flex flex-wrap ">
+                <div
+                  id="nombreCorto"
+                  data-component-type="input"
+                  data-component-label="Nombre Corto:"
+                  data-component-orientation="horizontal"
+                  data-component-disabled="true"
+                  data-component-size="15em"
+              ></div>
+                 
+                <div
+                  id="tipoUnidad"
+                  data-component-type="input"
+                  data-component-label="Tipo de Unidad:"
+                  data-component-orientation="horizontal"
+                  data-component-disabled="true"
+                  data-component-size="20em"
+             ></div>
+
+                <div
+                  id="rfc"
+                  data-component-type="input"
+                  data-component-label="RFC:"
+                  data-component-orientation="horizontal"
+                  data-component-disabled="true"
+                  data-component-size="10em"
+             ></div>
+               </div>
+
+
+
+               <div class="row flex flex-wrap ">
+                <div
+                  id="numNotario"
+                  data-component-type="input"
+                  data-component-label="Num. Notario:"
+                  data-component-orientation="horizontal"
+                  data-component-disabled="true"
+                  data-component-size="15em"
+              ></div>
+                 
+                <div
+                  id="nomNotario"
+                  data-component-type="input"
+                  data-component-label="Nom. Notario:"
+                  data-component-orientation="horizontal"
+                  data-component-disabled="true"
+                  data-component-size="20em"
+             ></div>
+
+                <div
+                  id="numEscConst"
+                  data-component-type="input"
+                  data-component-label="Num. Esc. Const:"
+                  data-component-orientation="horizontal"
+                  data-component-disabled="true"
+                  data-component-size="10em"
+             ></div>
+               </div>
+
+
+               <div class="row flex flex-wrap ">
+                <div
+                  id="fechaEscCons"
+                  data-component-type="input"
+                  data-component-label="Fecha Esc Cons:"
+                  data-component-orientation="horizontal"
+                  data-component-disabled="true"
+                  data-component-size="15em"
+              ></div>
+                 
+                <div
+                  id="regPubComer"
+                  data-component-type="input"
+                  data-component-label="Reg Pub Comer:"
+                  data-component-orientation="horizontal"
+                  data-component-disabled="true"
+                  data-component-size="20em"
+             ></div>
+
+                <div
+                  id="recompra"
+                  data-component-type="input"
+                  data-component-label="Recompra:"
+                  data-component-orientation="horizontal"
+                  data-component-disabled="true"
+                  data-component-size="10em"
+             ></div>
+               </div>
+
+               <div class="row" id="rowBnmx">
+                <div
+                  id="cteBnmx"
+                  data-component-type="input"
+                  data-component-label="Cte Bnmx:"
+                  data-component-orientation="horizontal"
+                  data-component-disabled="true"
+                  data-component-size="15em"
+              ></div>
+              </div>
+              <div class="row">
+                <div
+                  id="obsEscritura"
+                  data-component-type="input"
+                  data-component-label="Obs Escritura:"
+                  data-component-orientation="horizontal"
+                  data-component-disabled="true"
+                  data-component-size="46em"
+               ></div>
+              </div>
+
+              <div class="row">
+                <div
+                  id="clasificacion"
+                  data-component-type="input"
+                  data-component-label="Clasificacion"
+                  data-component-orientation="horizontal"
+                  data-component-disabled="true"
+                  data-component-size="46em"
+               ></div>
+              </div>
+
+              <div class="row">
+                <div
+                  id="clasificacionBanxico"
+                  data-component-type="input"
+                  data-component-label="Clasificacion Banxico"
+                  data-component-orientation="horizontal"
+                  data-component-disabled="true"
+                  data-component-size="46em"
+               ></div>
+              </div>
+
+
             </div>
             <div id="tab_persona_moral_extranjera" data-component-type="tab-item" data-component-label="Persona Moral Extranjera" data-component-img="male_user.png">
-              <p>Elementos dentro del Tab Persona Moral Extranjera</p>
+            
+                 <div class="row flex flex-wrap ">
+                  <div
+                    id="pme_nombreCorto"
+                    data-component-type="input"
+                    data-component-label="Nombre Corto:"
+                    data-component-orientation="horizontal"
+                    data-component-disabled="true"
+                    data-component-size="10em"
+                ></div>
+                   
+                  <div
+                    id="pme_pais"
+                    data-component-type="input"
+                    data-component-label="País:"
+                    data-component-orientation="horizontal"
+                    data-component-disabled="true"
+                    data-component-size="10em"
+               ></div>
+
+                  <div
+                    id="pme_rfcgpoPertenencia"
+                    data-component-type="input"
+                    data-component-label="Gpo. Pertenencia:"
+                    data-component-orientation="horizontal"
+                    data-component-disabled="true"
+                    data-component-size="10em"
+               ></div>
+                 </div>
+
+                 <div class="row flex flex-wrap ">
+                  <div
+                    id="pme_nacionalidad"
+                    data-component-type="input"
+                    data-component-label="Nacionalidad:"
+                    data-component-orientation="horizontal"
+                    data-component-disabled="true"
+                    data-component-size="10em"
+                ></div>
+                   
+                  <div
+                    id="pme_gpoNacional"
+                    data-component-type="input"
+                    data-component-label="Gpo. Nacional:"
+                    data-component-orientation="horizontal"
+                    data-component-disabled="true"
+                    data-component-size="10em"
+               ></div>
+
+                  <div
+                    id="pme_custLocal"
+                    data-component-type="input"
+                    data-component-label="Cust. Local:"
+                    data-component-orientation="horizontal"
+                    data-component-disabled="true"
+                    data-component-size="10em"
+               ></div>
+                 </div>
+                 <div class="row">
+                  <div
+                    id="pme_recompra"
+                    data-component-type="input"
+                    data-component-label="Recompra:"
+                    data-component-orientation="horizontal"
+                    data-component-disabled="true"
+                    data-component-size="15em"
+                ></div>
+                </div>
+
+                <div class="row" id="rowPme_Bnmx">
+                  <div
+                    id="pme_cteBnmx"
+                    data-component-type="input"
+                    data-component-label="Cte Bnmx:"
+                    data-component-orientation="horizontal"
+                    data-component-disabled="true"
+                    data-component-size="15em"
+                ></div>
+                </div>
+
+                <div class="row">
+                  <div
+                    id="pme_clasificacion"
+                    data-component-type="input"
+                    data-component-label="Clasificacion"
+                    data-component-orientation="horizontal"
+                    data-component-disabled="true"
+                    data-component-size="46em"
+                ></div>
+                </div>
+             
+
             </div>
             <div id="tab_clasificacion_contrato" data-component-type="tab-item" data-component-label="Clasificación Contrato" data-component-img="formatos.png">
               <div
@@ -292,7 +711,7 @@
                       data-component-type="input"
                       data-component-label="Justificación:" 
                       data-component-orientation="horizontal"
-                      data-component-size="20em"
+                      data-component-size="19em"
                       data-component-disabled="true"
                  
                    ></div>
@@ -325,7 +744,7 @@
                       data-component-type="input"
                       data-component-label="Justificación:" 
                       data-component-orientation="horizontal"
-                      data-component-size="20em"
+                      data-component-size="19em"
                       data-component-disabled="true"
                  
                    ></div>
@@ -358,7 +777,7 @@
                       data-component-type="input"
                       data-component-label="Justificación:" 
                       data-component-orientation="horizontal"
-                      data-component-size="20em"
+                      data-component-size="19em"
                       data-component-disabled="true"
                  
                    ></div>
@@ -382,7 +801,7 @@
                       data-component-type="input"
                       data-component-label="Calificado/No Calificado:" 
                       data-component-orientation="horizontal"
-                      data-component-width="17em"
+                      data-component-size="17em"
                       data-component-disabled="true"
                      
                   ></div>
@@ -392,7 +811,7 @@
                       data-component-type="input"
                       data-component-label="Justificación:" 
                       data-component-orientation="horizontal"
-                      data-component-size="20em"
+                      data-component-size="19em"
                       data-component-disabled="true"
                  
                    ></div>
@@ -426,7 +845,7 @@
                       data-component-type="input"
                       data-component-label="Justificación:" 
                       data-component-orientation="horizontal"
-                      data-component-size="20em"
+                      data-component-size="19em"
                       data-component-disabled="true"
                  
                    ></div>
@@ -461,7 +880,21 @@
                   data-component-label="Conocimiento y Experiencia"
               >
                   <div class="row flex inline-flex">
-                    <p>conocimiento experiencia</p>
+                    <div class="field-group flex items-center" id="ejemploQuiz">
+                      <div class="row">
+                        <table class="quiz">
+                          <thead>
+                            <tr>
+                              <th class="question" style="width: 40em;">Instrumento de Inversión</th>
+                              <th>No conoce ni ha invertido</th>
+                              <th>Sólo conoce</th>
+                              <th>Conoce y ha invertido</th>
+                            </tr>
+                          </thead>
+                          <tbody></tbody>
+                        </table>
+                      </div>
+                    </div>
                   </div>
              </div>
 
@@ -491,7 +924,6 @@
             <div id="tab_comisiones"  data-component-type="tab-item" data-component-label="Comisiones" data-component-img="calculator.png">
               <div class="row w-full overflow-auto">
                 <div id="cotitular2_comisiones" data-component-type="grid"></div>
-
               </div>
             </div>
             <div id="tab_documentacion" data-component-type="tab-item" data-component-label="Documentación" data-component-img="attachment.png">
@@ -505,6 +937,7 @@
                 <div id="S05" color="black">No Aplica</div>
               </div>
             </div>
+           
             <p> Contrato</p>
 
             <div class="row w-full overflow-auto heigthTablaC">
@@ -513,17 +946,20 @@
             <p>Cliente</p>
 
             <div class="row w-full overflow-auto heigthTablaC">
+            
             </div>
 
             <br>
             <p>Ejemplo de Panel Horizontal (arrastrar la linea que divide a los 2 paneles)</p>
             <div class="row">
-              <!-- <div id="horizontal-splitter" data-component-type="splitter" data-component-orientation="horizontal">
-                <div id="splitterLeft"></div>
-                <div id="splitterRigth"></div>
-              </div> -->
+   
               <div class="row w-full overflow-auto heigtTabla"> 
-                <div id="cotitular2_documentacion_contrato" data-component-type="grid"></div>
+                <div id="horizontal-splitter" data-component-type="splitter" data-component-orientation="horizontal">
+                 
+                  <div id="cotitular2_documentacion_contrato" data-component-type="grid"></div>
+                  <div id="splitterRigth"></div>
+                  
+                </div>
 
 
               </div>
@@ -576,7 +1012,7 @@
                     id="text_area_observaciones"
                     data-component-type="input"
                     data-component-orientation="horizontal"
-                    data-component-width="69em"
+                    data-component-size="69em"
                     data-component-disabled="true"
                   ></div>
                  </div>
@@ -587,7 +1023,7 @@
                     data-component-type="input"
                     data-component-label="Fecha Apertura"
                     data-component-orientation="horizontal"
-                    data-component-width="18em"
+                    data-component-size="18em"
                     data-component-disabled="true"
                   ></div>
 
@@ -596,7 +1032,7 @@
                     data-component-type="input"
                     data-component-label="Monto Inicial"
                     data-component-orientation="horizontal"
-                    data-component-width="18em"
+                    data-component-size="18em"
                     data-component-disabled="true"
                 ></div>
 
@@ -609,7 +1045,7 @@
                     data-component-type="input"
                     data-component-label="Sector"
                     data-component-orientation="horizontal"
-                    data-component-width="18em"
+                    data-component-size="18em"
                     data-component-disabled="true"
                   ></div>
 
@@ -618,7 +1054,7 @@
                     data-component-type="input"
                     data-component-label="Residencia"
                     data-component-orientation="horizontal"
-                    data-component-width="18em"
+                    data-component-size="18em"
                     data-component-disabled="true"
                 ></div>
 
@@ -632,7 +1068,7 @@
                     data-component-type="input"
                     data-component-label="Envio Correspondencia"
                     data-component-orientation="horizontal"
-                    data-component-width="18em"
+                    data-component-size="18em"
                     data-component-disabled="true"
                   ></div>
 
@@ -641,7 +1077,7 @@
                     data-component-type="input"
                     data-component-label="Tipo Cuenta"
                     data-component-orientation="horizontal"
-                    data-component-width="18em"
+                    data-component-size="18em"
                     data-component-disabled="true"
                 ></div>
 
@@ -656,7 +1092,7 @@
                     data-component-type="input"
                     data-component-label="Manejo Cuenta"
                     data-component-orientation="horizontal"
-                    data-component-width="18em"
+                    data-component-size="18em"
                     data-component-disabled="true"
                   ></div>
                 </div>
@@ -667,7 +1103,7 @@
                     data-component-type="input"
                     data-component-label="Custodia y Admon*"
                     data-component-orientation="horizontal"
-                    data-component-width="18em"
+                    data-component-size="18em"
                     data-component-disabled="true"
                   ></div>
 
@@ -676,7 +1112,7 @@
                     data-component-type="input"
                     data-component-label="Lim.Máx. de Operación"
                     data-component-orientation="horizontal"
-                    data-component-width="18em"
+                    data-component-size="18em"
                     data-component-disabled="true"
                 ></div>
 
@@ -689,7 +1125,7 @@
                     data-component-type="input"
                     data-component-label="ISR Mdo Din*"
                     data-component-orientation="horizontal"
-                    data-component-width="18em"
+                    data-component-size="18em"
                     data-component-disabled="true"
                   ></div>
 
@@ -698,7 +1134,7 @@
                     data-component-type="input"
                     data-component-label="Fecha últ Mov"
                     data-component-orientation="horizontal"
-                    data-component-width="18em"
+                    data-component-size="18em"
                     data-component-disabled="true"
                 ></div>
 
@@ -711,7 +1147,7 @@
                     data-component-type="input"
                     data-component-label="Porcentaje Acum. ISR"
                     data-component-orientation="horizontal"
-                    data-component-width="18em"
+                    data-component-size="18em"
                     data-component-disabled="true"
                   ></div>
 
@@ -720,7 +1156,7 @@
                     data-component-type="input"
                     data-component-label="Porcentaje de Acum. IDE"
                     data-component-orientation="horizontal"
-                    data-component-width="18em"
+                    data-component-size="18em"
                     data-component-disabled="true"
                 ></div>
 
@@ -733,7 +1169,7 @@
                     data-component-type="input"
                     data-component-label="Imprime Estado de Cuenta"
                     data-component-orientation="horizontal"
-                    data-component-width="18em"
+                    data-component-size="18em"
                     data-component-disabled="true"
                ></div>
                  </div>
@@ -755,8 +1191,14 @@
     </div>
   </div>
   <body>
+
+    
+
+    
+    
     <script src="/assets/scripts/jquery.min.js"></script>
     <script src="/assets/scripts/libs.min.js"></script>
+    <script src="/assets/scripts/splitter.js"></script>
     <script src="/assets/scripts/common.js"></script>
     <script src="/jqgui.js"></script>
     <script src="scripts.js"></script>

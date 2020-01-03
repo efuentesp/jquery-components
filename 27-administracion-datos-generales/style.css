@@ -223,3 +223,69 @@
 #field_digito {} */
 
 /*# sourceMappingURL=../../../maps/accimarket/27-administracion-datos-generales/styles.css.map */
+
+
+
+
+#field_pme_nombreCorto label,
+#field_pme_pais label,
+#field_pme_rfcgpoPertenencia label,
+#field_pme_custLocal label,
+#field_pme_nacionalidad label,
+#field_pme_recompra label,
+#field_pme_cteBnmx label,
+#field_pme_gpoNacional label,
+#field_pme_clasificacion label {
+
+    width: 10em;
+    text-align: left;
+}
+
+#field_pme_nombreCorto input,
+#field_pme_pais input,
+#field_pme_custLocal input,
+#field_pme_rfcgpoPertenencia input,
+#field_pme_nacionalidad input,
+#field_pme_gpoNacional input,
+#field_pme_recompra input,
+#field_pme_cteBnmx input,
+#field_pme_clasificacion input {
+    text-align: right;
+}
+
+
+#field_nombreCorto label,
+#field_tipoUnidad label,
+#field_numNotario label,
+#field_nomNotario label,
+#field_numEscConst label,
+#field_fechaEscCons label,
+#field_regPubComer label,
+#field_recompra label,
+#field_cteBnmx label,
+#field_obsEscritura label,
+#field_clasificacion label,
+#field_rfc label,
+#field_clasificacionBanxico label {
+    width: 10em;
+    text-align: left;
+}
+
+
+#field_nombreCorto input,
+#field_tipoUnidad input,
+#field_numNotario input,
+#field_nomNotario input,
+#field_numEscConst input,
+#field_fechaEscCons input,
+#field_regPubComer input,
+#field_recompra input,
+#field_cteBnmx input,
+#field_obsEscritura input,
+#field_clasificacion input,
+#field_rfc input,
+#field_clasificacionBanxico input {
+    text-align: right;
+}
+
+/*# sourceMappingURL=../../../maps/accimarket/27-administracion-datos-generales/styles_titular.css.map */

@@ -55,7 +55,135 @@ $("#fecha_discrecional_nodiscrecional").fieldInput();
 $("#anexo_descriptivo").fieldInput();
 
 
+// nacional
+
+$("#pfi_nombre").fieldInput();
+$("#pfi_actividad").fieldInput();
+$("#pfi_rfc").fieldInput();
+$("#pfi_sexo").fieldInput();
+$("#pfi_nacionalidad").fieldInput();
+$("#pfi_cuenta").fieldInput();
+$("#pfi_fechaNacimiento").fieldInput();
+$("#pfi_curp").fieldInput();
+$("#pfi_calidadMigratoria").fieldInput();
+
+
+$("#persona_fisica_int").grid();
+$("#table_persona_fisica_int").jqGrid({
+    datatype: "local",
+    height: "auto",
+    colNames: ["Nombre", "Apellido Paterno", "Apellido Materno", "Porcentaje %"],
+    colModel: [{
+            name: "nombre_persona_int",
+            width: 220
+        },
+        {
+            name: "apellido_pat_persona_int",
+            width: 220
+        },
+        {
+            name: "apellido_mat_persona_int",
+            width: 220
+        },
+        {
+            name: "porcentaje_persona_int",
+            width: 220
+        }
+    ],
+    rowNum: 10,
+    rowList: [10, 20, 30],
+    sortname: "nombre_persona_int",
+    sortorder: "desc",
+    viewrecords: true,
+    gridview: true,
+    autoencode: true,
+    caption: ""
+});
+
+//  nacional fisica internacional 
+$("#nombre").fieldInput();
+$("#actividad").fieldInput();
+$("#sexo").fieldInput();
+$("#curp").fieldInput();
+$("#fechaNacimiento").fieldInput();
+$("#cuenta").fieldInput();
+$("#nacionalidad").fieldInput();
+$("#calidadMigratoria").fieldInput();
+$("#pfi_paisnac").fieldInput();
+$("#pfi_edonac").fieldInput();
+
+$("#persona_fisica_nac").grid();
+$("#table_persona_fisica_nac").jqGrid({
+    datatype: "local",
+    height: "auto",
+    colNames: ["Nombre", "Apellido Paterno", "Apellido Materno", "Porcentaje %"],
+    colModel: [{
+            name: "nombre_persona_nac",
+            width: 220
+        },
+        {
+            name: "apellido_pat_persona_nac",
+            width: 220
+        },
+        {
+            name: "apellido_mat_persona_nac",
+            width: 220
+        },
+        {
+            name: "porcentaje_persona_nac",
+            width: 220
+        }
+    ],
+    rowNum: 10,
+    rowList: [10, 20, 30],
+    sortname: "nombre_persona_nac",
+    sortorder: "desc",
+    viewrecords: true,
+    gridview: true,
+    autoencode: true,
+    caption: ""
+});
+
+
+// moral extranjera 
+$("#pme_nombreCorto").fieldInput();
+$("#pme_pais").fieldInput();
+$("#pme_rfcgpoPertenencia").fieldInput();
+$("#pme_nacionalidad").fieldInput();
+$("#pme_gpoNacional").fieldInput();
+$("#pme_custLocal").fieldInput();
+$("#pme_recompra").fieldInput();
+$("#pme_cteBnmx").fieldInput();
+$("#pme_clasificacion").fieldInput();
+
+
+
+// moral nacional
+$("#nombreCorto").fieldInput();
+$("#tipoUnidad").fieldInput();
+$("#rfc").fieldInput();
+$("#numNotario").fieldInput();
+$("#nomNotario").fieldInput();
+$("#numEscConst").fieldInput();
+$("#fechaEscCons").fieldInput();
+$("#regPubComer").fieldInput();
+$("#recompra").fieldInput();
+
+
+$("#cteBnmx").fieldInput();
+$("#obsEscritura").fieldInput();
+$("#clasificacion").fieldInput();
+$("#clasificacionBanxico").fieldInput();
+
 // conocimiento y experiencia
+
+// Quiz group 3
+let encuesta_params = {};
+// Name of json
+http_findAll("encuesta", encuesta_params, payload => {
+    // Parameters: field name group, id of quiz, data
+    fillQuiz("ejemploQuiz", "encuesta", payload);
+});
 
 // limitantes a invertir
 
@@ -274,6 +402,8 @@ $("#table_cotitular2_firmas_autorizadas").jqGrid({
 });
 
 // documentacion
+$("#horizontal-splitter").fieldSplitter();
+
 $("#cotitular2_documentacion_contrato").grid();
 $("#table_cotitular2_documentacion_contrato").jqGrid({
     datatype: "local",
