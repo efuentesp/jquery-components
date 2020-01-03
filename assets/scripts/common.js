@@ -1945,6 +1945,7 @@ var fillQuiz = function(field_group, id, quiz) {
   var nAnswers = 0;
   var nQuestions = 0;
   var nResults = 0;
+  var answerSelectId = [];
   nQuestions = quiz[0].question.length;
   nAnswers = quiz[0].answer.length;
   nResults = quiz[0].result.length;
@@ -2011,6 +2012,7 @@ var fillQuiz = function(field_group, id, quiz) {
           "_" +
           i +
           '">';
+        answerSelectId.push(id + "_" + i + "_" + j);
         var optionValue = quiz[0].result[i].results[j].result;
         options = "";
         for (var k = 0; k < quiz[0].answer[j].options.length; k++) {
@@ -2027,8 +2029,19 @@ var fillQuiz = function(field_group, id, quiz) {
     }
     questions = question + answers + "</tr>";
     trElement.append(questions);
+    if (answerSelectId.length != 0) {
+      initializeSelect2(answerSelectId);
+    }
   }
 };
+function initializeSelect2(isQuizSelect2) {
+  for (var i = 0; i < isQuizSelect2.length; i++) {
+    $("#" + isQuizSelect2[i]).select2({
+      language: "es",
+      minimumResultsForSearch: Infinity
+    });
+  }
+}
 var fieldDateClear = function(id) {
   var btn_calendar_id = "#clear_" + id;
   var input_date_id = "#inpt-" + id;

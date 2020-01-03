@@ -73,5 +73,4 @@ let encuesta_params = {};
 http_findAll("encuesta", encuesta_params, payload => {
   // Parameters: field name group, id of quiz, data
   fillQuiz("ejemploQuiz", "encuesta", payload);
-  console.log("-------+> ", payload);
 });
