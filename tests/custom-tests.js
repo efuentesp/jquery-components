@@ -23,3 +23,9 @@ $("#payment2").select();
 $("#containerTest").fieldChart();
 $("#containerPieBorderTest").fieldChart();
 $("#containerBarTest").fieldChart();
+
+// Date Range
+$("#rango").fieldDateRange();
+validateDateRage("rango");
+fieldBeginDateRangeClear("rango");
+fieldEndDateRangeClear("rango");

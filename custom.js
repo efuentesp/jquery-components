@@ -67,6 +67,8 @@ $("#listado").fieldSwaplist();
 // Date Range
 $("#rango").fieldDateRange();
 validateDateRage("rango");
+fieldBeginDateRangeClear("rango");
+fieldEndDateRangeClear("rango");
 
 // Quiz group 3
 let encuesta_params = {};
