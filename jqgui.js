@@ -944,10 +944,15 @@ $.fn.fieldswitch = function() {
     let formcheckdiv = document.createElement("div");
 
     flexdiv.setAttribute("class", "field-label flex");
-    fielddiv.setAttribute("class", "field is_horizontal");
+    if (this.data("componentOrientation"))
+      fielddiv.setAttribute("class", "field is_" + this.data("componentOrientation"));
+    else
+      fielddiv.setAttribute("class", "field is_horizontal");
+
     fielddiv.setAttribute("id", id+"_");
     fieldcontroldiv.setAttribute("class", "field-control radio-toggle has-toggle-input");
-    fieldcontroldiv.setAttribute("custom-tooltip", this.data("componentTooltip"));
+    if (this.data("componentTooltip"))
+     fieldcontroldiv.setAttribute("custom-tooltip", this.data("componentTooltip"));
     formcheckdiv.setAttribute("class", "form-check");
 
     for (i = 0; i < items.length; i++) {
@@ -976,7 +981,6 @@ $.fn.fieldswitch = function() {
     }
 
     flexdiv.setAttribute("class", "field-label flex");
-    fielddiv.setAttribute("class", "field is_vertical");
 
     fieldcontroldiv.setAttribute("class", "field-control radio-toggle has-toggle-input");
     formcheckdiv.setAttribute("class", "form-check");
