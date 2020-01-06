@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Reperfilamiento de Personas Físicas</title>
+    <link href="/assets/css/libs.min.css" rel="stylesheet" />
+    <link href="/assets/css/main.css" rel="stylesheet" />
+    <link href="styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="content p-4">
+      <div id="criterios_busqueda_accordion" data-component-type="accordion">
+        <div
+          id="criterios_busqueda_accordion_item"
+          data-component-type="accordion-item"
+          data-component-label="Perfilamiento de Personas Físicas"
+        >
+          <form id="criterios_busqueda" class="form-group">
+            <div class="row">
+              <div
+                data-component-type="input"
+                id="contrato"
+                data-component-label="Contrato"
+                data-component-size="11em"
+                data-component-orientation="horizontal"
+                data-component-required="true"
+                data-component-maxlength="9"
+                data-comomponent-input-type="number"
+              ></div>
+              <div
+                data-component-type="input"
+                id="nombre"
+                data-component-label="Nombre"
+                data-component-size="35em"
+                data-component-disabled="true"
+                data-component-orientation="horizontal"
+              ></div>
+              <div
+                data-component-type="input"
+                id="perfil"
+                data-component-label="Perfil Actual"
+                data-component-size="15em"
+                data-component-disabled="true"
+                data-component-orientation="horizontal"
+              ></div>
+            </div>
+            <div class="row" id="rowPerfilar">
+              <div
+                data-component-type="select"
+                id="personaPerfilar"
+                data-component-label="Seleccione la persona que desea perfilar"
+                data-component-size="35em"
+                data-component-required="true"
+                data-component-placeholder="--Seleccione--"
+                data-component-orientation="horizontal"
+              ></div>
+            </div>
+            <div class="field-group flex items-center" id="grupoTodo">
+              <div class="row">
+                <p id="preguntas">Mapa de Liquidez</p>
+                <table class="informativoE">
+                  <tr>
+                    <td></td>
+                    <td class="estiloColumnaB"></td>
+                  </tr>
+                  <tr>
+                    <td class="h-20 w-40 text-center font-bold text-indigo-700">
+                      Necesidades de liquidez transaccional
+                    </td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td class="estiloColumnaD"></td>
+                  </tr>
+                  <tr>
+                    <td class="h-2"></td>
+                    <td class="h-2"></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td class="estiloColumnaA"></td>
+                  </tr>
+                  <tr>
+                    <td class="h-20 w-40 text-center font-bold text-indigo-700">
+                      Oportunidad de acumular patrimonio
+                    </td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td class="estiloColumnaC"></td>
+                  </tr>
+                  <tr>
+                    <td class="h-20 w-40 text-center font-bold text-indigo-700">
+                      Patrimonio liquido total 100%
+                    </td>
+                  </tr>
+                </table>
+
+                <table id="informativo">
+                  <tr class="text-center font-bold">
+                    <td>
+                      <p class="text-indigo-700">%</p>
+                    </td>
+                    <td>
+                      <p class="text-indigo-700">Monto $</p>
+                    </td>
+                    <td>
+                      <p class="text-indigo-700">Horizonte</p>
+                    </td>
+                    <td>
+                      <p class="text-indigo-700">Proposito</p>
+                    </td>
+                  </tr>
+                  <tr class="text-justify">
+                    <td>
+                      <div
+                        data-component-type="input"
+                        id="liquidezPor"
+                        data-component-disabled="true"
+                        data-component-orientation="horizontal"
+                      ></div>
+                    </td>
+                    <td>
+                      <div
+                        data-component-type="input"
+                        id="liquidezMonto"
+                        data-component-size="10em"
+                        data-component-orientation="horizontal"
+                      ></div>
+                    </td>
+                    <td>
+                      <p class="font-bold">Liquidez</p>
+                      <p>(Abarca todo el gasto corriente e un mes)</p>
+                    </td>
+                    <td>
+                      <p>
+                        Educacion gastos de vivienda, trasporte, tarjetas de
+                        credito, creditos personales, tiempo libre,
+                        alimentacion, vestimenta, cobertura (seguros).
+                      </p>
+                    </td>
+                  </tr>
+                  <tr class="text-justify">
+                    <td>
+                      <div
+                        data-component-type="input"
+                        id="cortoPlazoPor"
+                        data-component-disabled="true"
+                        data-component-orientation="horizontal"
+                      ></div>
+                    </td>
+                    <td>
+                      <div
+                        data-component-type="input"
+                        id="cortoPlazoMonto"
+                        data-component-size="10em"
+                        data-component-orientation="horizontal"
+                      ></div>
+                    </td>
+                    <td>
+                      <p class="font-bold">Corto Plazo</p>
+                      <p>
+                        (Se construye por la reserva de contigencia que debera
+                        separar para afrontar imprevistos o proyectos a corto
+                        plazo. Se recomienda entre 6 y 9 meses de su ingreso
+                        normal).
+                      </p>
+                    </td>
+                    <td>
+                      <p>
+                        Reserva para contingencia, viajes, cambio de auto,
+                        remodelacion, etc.
+                      </p>
+                    </td>
+                  </tr>
+                  <tr class="text-justify">
+                    <td>
+                      <div
+                        data-component-type="input"
+                        id="medianoPlazoPor"
+                        data-component-disabled="true"
+                        data-component-orientation="horizontal"
+                      ></div>
+                    </td>
+                    <td>
+                      <div
+                        data-component-type="input"
+                        id="medianoPlazoMonto"
+                        data-component-size="10em"
+                        data-component-orientation="horizontal"
+                      ></div>
+                    </td>
+                    <td>
+                      <p class="font-bold">Mediano Plazo</p>
+                      <p>
+                        (Es el dinero que le proporcionara los ingresos que
+                        requiere para mantener su estilo de vida actual y para
+                        proyectos a mas largo plazo).
+                      </p>
+                    </td>
+                    <td>
+                      <p>
+                        Ingresos constantes a largo plazo que le permita
+                        conservar su estilo de vida. Estudios de posgrado,
+                        comprar casa.
+                      </p>
+                    </td>
+                  </tr>
+                  <tr class="text-justify">
+                    <td>
+                      <div
+                        data-component-type="input"
+                        id="largoPlazoPor"
+                        data-component-disabled="true"
+                        data-component-orientation="horizontal"
+                      ></div>
+                    </td>
+                    <td>
+                      <div
+                        data-component-type="input"
+                        id="largoPlazoMonto"
+                        data-component-size="10em"
+                        data-component-orientation="horizontal"
+                      ></div>
+                    </td>
+                    <td>
+                      <p class="font-bold">Largo Plazo</p>
+                      <p>
+                        (EL resto de su patrimonio que no utilizara en menos de
+                        5 años).
+                      </p>
+                    </td>
+                    <td>
+                      <p>
+                        Acumulacion del patrimonio. Asegurar independencia
+                        financiera en el tiempo.
+                      </p>
+                    </td>
+                  </tr>
+                  <tr class="text-justify">
+                    <td>
+                      <div
+                        data-component-type="input"
+                        id="patrimonioPor"
+                        data-component-disabled="true"
+                        data-component-orientation="horizontal"
+                      ></div>
+                    </td>
+                    <td>
+                      <div
+                        data-component-type="input"
+                        id="patrimonioMonto"
+                        data-component-size="10em"
+                        data-component-disabled="true"
+                        data-component-orientation="horizontal"
+                      ></div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="field-group flex items-center" id="grupoDos">
+                <div class="row">
+                  <p id="preguntas">
+                    1. Para cada una de las siguiente preguntas
+                  </p>
+                </div>
+                <div class="row">
+                  <div
+                    id="edad"
+                    data-component-type="select"
+                    data-component-label="1.1 Intervalo de Edad"
+                    data-component-size="15em"
+                    data-component-required="true"
+                    data-component-placeholder="--Seleccione--"
+                    data-component-orientation="horizontal"
+                  ></div>
+                </div>
+                <div class="row">
+                  <div
+                    id="estudios"
+                    data-component-type="select"
+                    data-component-label="1.2 Nivel de estudios"
+                    data-component-size="15em"
+                    data-component-required="true"
+                    data-component-placeholder="--Seleccione--"
+                    data-component-orientation="horizontal"
+                  ></div>
+                </div>
+                <div class="row">
+                  <div
+                    id="ocupacion"
+                    data-component-type="select"
+                    data-component-label="1.3 Ocupacion"
+                    data-component-size="15em"
+                    data-component-required="true"
+                    data-component-placeholder="--Seleccione--"
+                    data-component-orientation="horizontal"
+                  ></div>
+                </div>
+                <div class="row">
+                  <p class="pt-3 pl-2" id="actividad">
+                    1.4 Actividad Profesional
+                  </p>
+                  <div class="field-group flex items-center" id="grupo_4">
+                    <div
+                      id="anterior"
+                      data-component-type="select"
+                      data-component-label="Anterior"
+                      data-component-size="21em"
+                      data-component-placeholder="--Seleccione--"
+                    ></div>
+                    <div
+                      id="actual"
+                      data-component-type="select"
+                      data-component-label="Actual"
+                      data-component-size="21em"
+                      data-component-placeholder="--Seleccione--"
+                    ></div>
+                    <div
+                      id="inversiones"
+                      data-component-type="options"
+                      data-component-label="Relacionada con Inversiones"
+                      data-component-size="21em"
+                      data-component-required="true"
+                      data-component-orientation="horizontal"
+                    >
+                      <div id="SI">SI</div>
+                      <div id="NO">NO</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div
+                    id="estrategia"
+                    data-component-type="select"
+                    data-component-label="1.5 Estrategia de inversion del Cliente generalmente utilizada"
+                    data-component-size="21em"
+                    data-component-placeholder="--Seleccione--"
+                    data-component-required="true"
+                    data-component-orientation="horizontal"
+                  ></div>
+                </div>
+                <div class="row">
+                  <div
+                    id="asesoria"
+                    data-component-type="select"
+                    data-component-label="1.6 El Cliente ha usuado asesoria para la toma de decisiones de inversion"
+                    data-component-size="15em"
+                    data-component-placeholder="--Seleccione--"
+                    data-component-required="true"
+                    data-component-orientation="horizontal"
+                  ></div>
+                </div>
+              </div>
+              <div class="field-group flex items-center" id="grupoTres">
+                <div class="row justify-end" id="grupoParrafo">
+                  <p class="font-bold pr-40">
+                    Si conoce y ha invertido, indique:
+                  </p>
+                </div>
+                <div class="row">
+                  <table class="quiz">
+                    <thead>
+                      <tr>
+                        <th class="question" style="width: 40em;">
+                          2. ¿Cuál es la experiencia en productos de inversión
+                          del cliente?
+                        </th>
+                        <th>No conoce ni ha invertido</th>
+                        <th>Sólo conoce</th>
+                        <th>Conoce y ha invertido</th>
+                        <th>Frecuencia</th>
+                        <th>Plazo</th>
+                        <th>Volumen</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="field-group flex items-center" id="grupoCuatro">
+                <div
+                  data-component-type="select"
+                  id="proposito"
+                  data-component-label="3. Seleccionar el Proposito de Inversion del Cliente (Estrategia)"
+                  data-component-required="true"
+                  data-component-orientation="horizontal"
+                  data-component-size="15em"
+                ></div>
+                <div
+                  data-component-type="select"
+                  id="tolerancia"
+                  data-component-label="4. Seleccionar la Tolerancia de Riesgo del Cliente."
+                  data-component-required="true"
+                  data-component-orientation="horizontal"
+                  data-component-size="35em"
+                ></div>
+                <div class="row">
+                  <div
+                    data-component-type="select"
+                    id="horizonteInversion"
+                    data-component-label="5. Seleccionar el horizonte de Inversion del Cliente."
+                    data-component-size="25em"
+                    data-component-required="true"
+                    data-component-placeholder="--Selecciona--"
+                    data-component-orientation="horizontal"
+                  ></div>
+                  <div
+                    class="field-group flex items-center"
+                    id="datosInfo_group"
+                  >
+                    <p
+                      class="bg-blue-600 font-bold py-4 pr-1"
+                      id="textoPortafolio"
+                    ></p>
+                    <div class="row">
+                      <p class="w-48 font-bold py-2 pr-10">Menor de 1 año</p>
+                      <p
+                        class="w-48 text-right font-bold py-2"
+                        id="menorDeUno"
+                      ></p>
+                    </div>
+                    <div class="row">
+                      <p class="w-48 font-bold py-2 pr-10">De 1 a 3 años</p>
+                      <p
+                        class="w-48 text-right font-bold py-2"
+                        id="deUnoaTres"
+                      ></p>
+                    </div>
+                    <div class="row">
+                      <p class="w-48 font-bold py-2 pr-10">Mayor a 3 años</p>
+                      <p
+                        class="w-48 text-right font-bold py-2"
+                        id="mayorDeTres"
+                      ></p>
+                    </div>
+                    <div class="row">
+                      <p class="w-48 bg-gray-400 font-bold py-2 pl-24">
+                        Total
+                      </p>
+                      <p
+                        class="w-48 bg-gray-400 text-right font-bold py-2"
+                        id="totalInver"
+                      ></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="field is_horizontal" id="field_limitantes">
+                  <div class="field-label flex">
+                    <label class="field-label"
+                      >5.1 El cliente tiene alguna limitante y/o restriccion
+                      para invertir</label
+                    ><span class="pr-5 required">*</span>
+                  </div>
+                  <div class="field-control" data-tooltip="">
+                    <label class="radio_button"
+                      >Ninguna<input
+                        type="radio"
+                        name="limitantes"
+                        id="radio_limitantes_0"
+                        value="false"
+                        required
+                        data-parsley-class-handler="#field_limitantes"
+                        data-parsley-errors-container="#field_error_block_limitantes"/><span
+                        class="checkmark"
+                      ></span></label
+                    ><label class="radio_button"
+                      >Si<input
+                        type="radio"
+                        name="limitantes"
+                        id="radio_limitantes_1"
+                        value="true"
+                        required
+                        data-parsley-class-handler="#field_limitantes"
+                        data-parsley-errors-container="#field_error_block_limitantes"/><span
+                        class="checkmark"
+                      ></span
+                    ></label>
+                    <div class="field-error">
+                      <div id="field_error_block_limitantes"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div
+                    class="field-group flex items-center"
+                    id="grupoInstrumentos"
+                  >
+                    <div class="row">
+                      <p id="preguntas">Especificar</p>
+                    </div>
+                    <div class="row">
+                      <p id="preguntas">Seleccione Independiente</p>
+                    </div>
+                    <div class="row">
+                      <div
+                        id="grupoInstrumento"
+                        data-component-type="select-plus-minus"
+                        data-component-label="Grupo Instrumento"
+                        data-component-size="18em"
+                      >
+                        <div id="1">Ejemplo Instrumentos</div>
+                        <div id="2">Ejemplo Dos Instrumentos</div>
+                      </div>
+
+                      <div
+                        id="grupoInstrumentoValor"
+                        data-component-type="select-plus-minus"
+                        data-component-label="Tipo Valor"
+                        data-component-size="12em"
+                      >
+                        <div id="1">Valor Instrumentos</div>
+                        <div id="2">Valor Dos Instrumentos</div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <p id="preguntas">Seleccione Dependiente</p>
+                    </div>
+                    <div class="row" id="rowEmisoras">
+                      <div
+                        id="emisoras"
+                        data-component-type="select-plus-minus"
+                        data-component-label="Emisoras"
+                        data-component-size="12em"
+                      >
+                        <div id="1">Ejemplo Emisoras</div>
+                        <div id="2">Ejemplo Dos Emisoras</div>
+                      </div>
+                      <p id="boton">BOTON</p>
+                      <div id="emisora" data-component-type="grid"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="grupoCinco">
+                <table class="quiz">
+                  <thead>
+                    <tr>
+                      <th class="question" style="width: 40em;">
+                        6. Seleccione la opción que corresponde a la situación
+                        financiera actual del cliente.
+                      </th>
+                      <th>0-20%</th>
+                      <th>20-40%</th>
+                      <th>40-60%</th>
+                      <th>60-80%</th>
+                      <th>80-100%</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+              <div id="grupoSeis">
+                <div class="row w-full mb-64">
+                  <p id="pregunta6_4">
+                    6.4 Selecciona el origen de los ingresos del Cliente
+                    destinados a invertir
+                  </p>
+                  <div
+                    data-component-type="checkbox"
+                    id="origen_uno"
+                    data-component-label=""
+                  >
+                    <div id="1" color="blue">Venta de Activos</div>
+                    <div id="2" color="blue">Venta de Bienes</div>
+                    <div id="3" color="blue">Premios</div>
+                    <div id="4" color="blue">Herencia</div>
+                    <div id="5" color="blue">Prestamos</div>
+                    <div id="6" color="blue">Patrimonio/Ahorro</div>
+                    <div id="7" color="blue">Salario Anual</div>
+                    <div id="8" color="blue">
+                      Traspaso/Cancelacion de cuentas de otro banco
+                    </div>
+                    <div id="9" color="blue">Pago de Dividendos</div>
+                    <div id="10" color="blue">Otro</div>
+                  </div>
+                  <div
+                    data-component-type="input"
+                    id="otros"
+                    data-component-label=""
+                    data-component-orientation="horizontal"
+                    data-component-size="16em"
+                  ></div>
+                </div>
+                <div class="row w-full">
+                  <div
+                    data-component-type="input"
+                    id="perfilDoc"
+                    data-component-label="Perfil"
+                    data-component-orientation="horizontal"
+                    data-component-size="15em"
+                  ></div>
+                  <div
+                    data-component-type="button-import"
+                    id="btnimport"
+                    data-component-size="small"
+                  ></div>
+                </div>
+                <div class="row w-full">
+                  <p id="preguntas">Inconsistencias</p>
+                </div>
+                <div class="row">
+                  <div class="row">
+                    <p id="preguntas">Descripcion del Perfil:</p>
+                    <table id="descripcionPerfil">
+                      <tr class="text-center font-bold">
+                        <td>
+                          <p>Perfil de Inversion</p>
+                        </td>
+                        <td>
+                          <p>Tolerancia al Riesgo</p>
+                        </td>
+                        <td>
+                          <p>Objetivo de Invesion</p>
+                        </td>
+                        <td>
+                          <p>Perfiles de Inversion</p>
+                          <p>(Riesgo del Inversionista)</p>
+                        </td>
+                        <td>
+                          <p>Perfil de Riesgo de los Productos</p>
+                        </td>
+                      </tr>
+                      <tr class="text-justify">
+                        <td>
+                          <p>Conservador (IR2)</p>
+                        </td>
+                        <td>
+                          <p>Conservador</p>
+                        </td>
+                        <td>
+                          <p>Defensivo</p>
+                        </td>
+                        <td>
+                          <p class="pt-3">
+                            El inversionista / Persona Moral con una estrategia
+                            conservadora busca una combincaionentre liquidez,
+                            seguridad y rendimiento, esto es invierte en valores
+                            con rendimientos ligeramente por encima de la tasa
+                            libre de riesgo* incluyendo perdidas anualizadas de
+                            un rango de 5 al 20% sobre el capital invertido.
+                            Invierte con una vision de corto plazo y mediano
+                            plazo(menos a 2 años).
+                          </p>
+                          <p class="pt-4">
+                            Estos inversionista esperan experimentar no mas que
+                            pequeñas minusvalas en su portafolio durante el
+                            transcurso de un periodo de un año y general
+                          </p>
+                        </td>
+                        <td>
+                          <p>
+                            Productos conservadores la mayoria con mercado
+                            secundario* y un volumen alto de opreacion, que
+                            pueden ser liquidos en el corto plazo (1 a 365 dias)
+                            y mediano plazo (1 a 2 años), con un bajo riesgo
+                            anualizado de perdida entre el 5 y 20% sobre el
+                            capital invertido.
+                          </p>
+                          <p class="pt-4">
+                            *Los Titulos Bancarios Estrucutrados no tienen
+                            mercado secundario.
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <div class="row" id="sticky-action-bar">
+                  <div
+                    data-component-type="button-send"
+                    id="buttonsend"
+                    data-component-label="Enviar"
+                    data-component-size="large"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="/assets/scripts/jquery.min.js"></script>
+    <script src="/assets/scripts/libs.min.js"></script>
+    <script src="/assets/scripts/common.js"></script>
+    <script src="/jqgui.js"></script>
+    <script src="scripts.js"></script>
+  </body>
+</html>

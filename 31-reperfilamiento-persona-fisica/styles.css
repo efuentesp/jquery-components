@@ -1,0 +1,177 @@
+.content .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.content #preguntas {
+  padding-left: 0.7em;
+}
+.content .informativoE {
+  margin-top: 3.5em;
+  margin-left: 25em;
+  height: 36em;
+}
+.content #informativo {
+  margin-left: 1em;
+  width: 70em;
+  height: 40em;
+}
+.content #informativo tr {
+  border: 2px solid #00f;
+}
+.content #informativo td {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 1.5rem;
+}
+.content .estiloColumnaB {
+  border-width: 3px;
+  border-style: solid none none solid;
+  border-color: #00f;
+  width: 1em;
+}
+.content .estiloColumnaD {
+  border-width: 3px;
+  border-style: none none solid solid;
+  border-color: #00f;
+}
+.content .estiloColumnaA {
+  border-width: 3px;
+  border-style: solid none none solid;
+  border-color: #00f;
+  width: 1em;
+  height: 4em;
+}
+.content .estiloColumnaC {
+  border-width: 3px;
+  border-style: none none solid solid;
+  border-color: #00f;
+  height: 5em;
+}
+.content #grupoTodo {
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.content #grupoDos {
+  width: 48em;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.content #grupoDos #field_estudios label {
+  width: 12.5em;
+}
+.content #grupoDos #field_ocupacion label {
+  width: 12.5em;
+}
+.content #grupoDos #field_estrategia label {
+  width: 35em;
+}
+.content #grupoDos #actividad {
+  width: 29em;
+}
+.content #grupoDos #field_actual label {
+  width: 4.9em;
+}
+.content #grupoDos #grupo_4 {
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.content #grupoTres {
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.content #grupoTres #grupoParrafo {
+  width: 112em;
+}
+.content #grupoCuatro {
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 85em;
+}
+.content #grupoCuatro #field_tolerancia label {
+  width: 33.5em;
+}
+.content #grupoCuatro #field_horizonteInversion {
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
+}
+.content #grupoCuatro #field_horizonteInversion label {
+  width: 33.5em;
+}
+.content #grupoCuatro #datosInfo_group {
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.content #grupoCuatro #datosInfo_group #textoPortafolio {
+  width: 24em;
+}
+.content #grupoInstrumentos {
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 80em;
+  padding-left: 30em;
+}
+.content #grupoInstrumentos label {
+  font-weight: 700;
+}
+.content #field_origen_uno .field-control div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 34em;
+}
+.content #field_origen_uno .checkbox_input {
+  width: 15em;
+}
+.content #field_otros {
+  position: absolute;
+  z-index: 1;
+  margin-top: 12em;
+  margin-left: 60em;
+}
+.content #pregunta6_4 {
+  padding-left: 0.8em;
+  padding-right: 2em;
+}
+.content #informativo {
+  width: 70em;
+}
+.content #informativo tr {
+  border: 2px solid #006fbb;
+}
+.content #informativo td {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 1.5rem;
+}
+.content #descripcionPerfil {
+  margin-left: 20em;
+  width: 65em;
+}
+.content #descripcionPerfil tr {
+  border: 2px solid #00f;
+}
+.content #descripcionPerfil td {
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+.content #grupoAsesor {
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.content #rowEmisoras {
+  display: -webkit-box;
+}
+#dialogText {
+  height: 15em;
+}
+table {
+  font-size: 1em;
+}
+
+#grupoCinco {
+  width: 100%;
+}
