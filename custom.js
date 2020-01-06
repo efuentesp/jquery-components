@@ -27,7 +27,6 @@ $("#tab2").tabgroup();
 $("#sidebar1").sidebarwrapper();
 $("#switch1").fieldswitch();
 
-
 // $("[data-component-type='text']").fieldInput();
 $("#contratoTxt").fieldInput();
 $("#contratoTxtFalse").fieldInput();
@@ -47,6 +46,7 @@ $("#formcontrato").form();
 $("#ejemploaccordion").customaccordion();
 
 $("#splitter").fieldSplitter();
+$("#buttonsplitter").button();
 
 $("#payment").select();
 
@@ -76,7 +76,7 @@ fieldEndDateRangeClear("rango");
 // Quiz group 3
 let encuesta_params = {};
 // Name of json
-http_findAll("encuesta", encuesta_params, payload => {
+http_findAll("encuesta", encuesta_params, function(payload) {
   // Parameters: field name group, id of quiz, data
   fillQuiz("ejemploQuiz", "encuesta", payload);
 });

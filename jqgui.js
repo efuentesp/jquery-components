@@ -937,7 +937,6 @@ $.fn.fieldswitch = function() {
     fieldlabeldiv.appendChild(fieldlabel);
     fieldlabeldiv.appendChild(fieldlabelspan);
 
-
     let flexdiv = document.createElement("div");
     let fielddiv = document.createElement("div");
     let fieldcontroldiv = document.createElement("div");
@@ -945,44 +944,54 @@ $.fn.fieldswitch = function() {
 
     flexdiv.setAttribute("class", "field-label flex");
     if (this.data("componentOrientation"))
-      fielddiv.setAttribute("class", "field is_" + this.data("componentOrientation"));
-    else
-      fielddiv.setAttribute("class", "field is_horizontal");
+      fielddiv.setAttribute(
+        "class",
+        "field is_" + this.data("componentOrientation")
+      );
+    else fielddiv.setAttribute("class", "field is_horizontal");
 
-    fielddiv.setAttribute("id", id+"_");
-    fieldcontroldiv.setAttribute("class", "field-control radio-toggle has-toggle-input");
+    fielddiv.setAttribute("id", id + "_");
+    fieldcontroldiv.setAttribute(
+      "class",
+      "field-control radio-toggle has-toggle-input"
+    );
     if (this.data("componentTooltip"))
-     fieldcontroldiv.setAttribute("custom-tooltip", this.data("componentTooltip"));
+      fieldcontroldiv.setAttribute(
+        "custom-tooltip",
+        this.data("componentTooltip")
+      );
     formcheckdiv.setAttribute("class", "form-check");
 
     for (i = 0; i < items.length; i++) {
-
-        let label = document.createElement("label");
-        if (i===0)
-         label.setAttribute("class", "form-check-label left active");
-        else
-         label.setAttribute("class", "form-check-label right");
-        let input = document.createElement("input");
-        let span = document.createElement("span");
-        input.setAttribute("class", "form-check-input");
-        input.setAttribute("type", "radio");
-        input.setAttribute("name", "switch");
-        input.setAttribute("id", "radio_switch_0");
-        input.setAttribute("value", items[i].dataset.componentKey);
-        input.setAttribute("style", "display: none");
-        if (i===0)
-         input.setAttribute("checked", "checked");
-        input.setAttribute("data-parsley-errors-container", "#field_error_block_switch");
-        input.setAttribute("data-parsley-multiple", "switch");
-        span.innerHTML=items[i].dataset.componentValue;
-        label.appendChild(input);
-        label.appendChild(span);
-        formcheckdiv.appendChild(label);
+      let label = document.createElement("label");
+      if (i === 0) label.setAttribute("class", "form-check-label left active");
+      else label.setAttribute("class", "form-check-label right");
+      let input = document.createElement("input");
+      let span = document.createElement("span");
+      input.setAttribute("class", "form-check-input");
+      input.setAttribute("type", "radio");
+      input.setAttribute("name", "switch");
+      input.setAttribute("id", "radio_switch_0");
+      input.setAttribute("value", items[i].dataset.componentKey);
+      input.setAttribute("style", "display: none");
+      if (i === 0) input.setAttribute("checked", "checked");
+      input.setAttribute(
+        "data-parsley-errors-container",
+        "#field_error_block_switch"
+      );
+      input.setAttribute("data-parsley-multiple", "switch");
+      span.innerHTML = items[i].dataset.componentValue;
+      label.appendChild(input);
+      label.appendChild(span);
+      formcheckdiv.appendChild(label);
     }
 
     flexdiv.setAttribute("class", "field-label flex");
 
-    fieldcontroldiv.setAttribute("class", "field-control radio-toggle has-toggle-input");
+    fieldcontroldiv.setAttribute(
+      "class",
+      "field-control radio-toggle has-toggle-input"
+    );
     formcheckdiv.setAttribute("class", "form-check");
 
     let fielderrordiv = document.createElement("div");
@@ -997,8 +1006,10 @@ $.fn.fieldswitch = function() {
     fielddiv.appendChild(fieldcontroldiv);
     this.append(fielddiv);
     $(".radio-toggle").toggleInput();
-    $("#" + id+"_").siblings().remove();
-    $("#" + id+"_").unwrap();
+    $("#" + id + "_")
+      .siblings()
+      .remove();
+    $("#" + id + "_").unwrap();
   }
 };
 
@@ -1039,7 +1050,7 @@ $.fn.fieldDateRange = function() {
 
   const divLabelBeginDate = document.createElement("div");
   divLabelBeginDate.setAttribute("class", "field-label flex");
-  divBeginDate.append(divLabelBeginDate);
+  divBeginDate.appendChild(divLabelBeginDate);
 
   const labelBeginDate = document.createElement("label");
   labelBeginDate.setAttribute("for", fieldId + "_begin_date");
@@ -1052,14 +1063,14 @@ $.fn.fieldDateRange = function() {
   }
   labelBeginDate.appendChild(spanBeginDateRequired);
 
-  divLabelBeginDate.append(labelBeginDate);
+  divLabelBeginDate.appendChild(labelBeginDate);
 
   const divControlInput = document.createElement("div");
   divControlInput.setAttribute("class", "field-control flex");
   if (tooltip) {
     divControlInput.setAttribute("custom-tooltip", tooltip);
   }
-  divBeginDate.append(divControlInput);
+  divBeginDate.appendChild(divControlInput);
 
   const divControlFieldInput = document.createElement("div");
   divControlFieldInput.setAttribute("class", "field-input flex items-center");
@@ -1074,7 +1085,7 @@ $.fn.fieldDateRange = function() {
     "data-parsley-errors-container",
     "#field_error_block_" + fieldId + "_begin_date"
   );
-  divControlFieldInput.append(inputBegin);
+  divControlFieldInput.appendChild(inputBegin);
 
   const inputBeginImage = document.createElement("input");
   inputBeginImage.setAttribute("class", "pl-1");
@@ -1082,14 +1093,14 @@ $.fn.fieldDateRange = function() {
   inputBeginImage.setAttribute("id", "clear_" + fieldId + "_begin_date");
   inputBeginImage.setAttribute("src", "../../assets/images/meddelete.png");
   inputBeginImage.setAttribute("style", "width:15px;height:15px;");
-  divControlFieldInput.append(inputBeginImage);
+  divControlFieldInput.appendChild(inputBeginImage);
 
   const spanBegin = document.createElement("span");
   spanBegin.setAttribute("class", "field-error flex");
 
   const divSpanBeginError = document.createElement("div");
   divSpanBeginError.setAttribute("class", "error-tip");
-  spanBegin.append(divSpanBeginError);
+  spanBegin.appendChild(divSpanBeginError);
 
   const divSpanMsgBeginError = document.createElement("div");
   divSpanMsgBeginError.setAttribute("class", "error-msg");
@@ -1097,9 +1108,9 @@ $.fn.fieldDateRange = function() {
     "id",
     "field_error_block_" + fieldId + "_begin_date"
   );
-  spanBegin.append(divSpanMsgBeginError);
-  divControlFieldInput.append(spanBegin);
-  divControlInput.append(divControlFieldInput);
+  spanBegin.appendChild(divSpanMsgBeginError);
+  divControlFieldInput.appendChild(spanBegin);
+  divControlInput.appendChild(divControlFieldInput);
 
   this.append(divBeginDate);
 
@@ -1109,7 +1120,7 @@ $.fn.fieldDateRange = function() {
 
   const divLabelEndDate = document.createElement("div");
   divLabelEndDate.setAttribute("class", "field-label flex");
-  divEndDate.append(divLabelEndDate);
+  divEndDate.appendChild(divLabelEndDate);
 
   const labelEndDate = document.createElement("label");
   labelEndDate.setAttribute("for", fieldId + "_end_date");
@@ -1122,14 +1133,14 @@ $.fn.fieldDateRange = function() {
   }
   labelEndDate.appendChild(spanEndDateRequired);
 
-  divLabelEndDate.append(labelEndDate);
+  divLabelEndDate.appendChild(labelEndDate);
 
   const divControlEndInput = document.createElement("div");
   divControlEndInput.setAttribute("class", "field-control flex");
   if (tooltip) {
     divControlEndInput.setAttribute("custom-tooltip", tooltip);
   }
-  divEndDate.append(divControlEndInput);
+  divEndDate.appendChild(divControlEndInput);
 
   const divControlFieldEndInput = document.createElement("div");
   divControlFieldEndInput.setAttribute(
@@ -1147,7 +1158,7 @@ $.fn.fieldDateRange = function() {
     "data-parsley-errors-container",
     "#field_error_block_" + fieldId + "_end_date"
   );
-  divControlFieldEndInput.append(inputEnd);
+  divControlFieldEndInput.appendChild(inputEnd);
 
   const inputEndImage = document.createElement("input");
   inputEndImage.setAttribute("class", "pl-1");
@@ -1155,14 +1166,14 @@ $.fn.fieldDateRange = function() {
   inputEndImage.setAttribute("id", "clear_" + fieldId + "_end_date");
   inputEndImage.setAttribute("src", "../../assets/images/meddelete.png");
   inputEndImage.setAttribute("style", "width:15px;height:15px;");
-  divControlFieldEndInput.append(inputEndImage);
+  divControlFieldEndInput.appendChild(inputEndImage);
 
   const spanEnd = document.createElement("span");
   spanEnd.setAttribute("class", "field-error flex");
 
   const divSpanEndError = document.createElement("div");
   divSpanEndError.setAttribute("class", "error-tip");
-  spanEnd.append(divSpanEndError);
+  spanEnd.appendChild(divSpanEndError);
 
   const divSpanMsgEndError = document.createElement("div");
   divSpanMsgEndError.setAttribute("class", "error-msg");
@@ -1170,9 +1181,9 @@ $.fn.fieldDateRange = function() {
     "id",
     "field_error_block_" + fieldId + "_end_date"
   );
-  spanEnd.append(divSpanMsgEndError);
-  divControlFieldEndInput.append(spanEnd);
-  divControlEndInput.append(divControlFieldEndInput);
+  spanEnd.appendChild(divSpanMsgEndError);
+  divControlFieldEndInput.appendChild(spanEnd);
+  divControlEndInput.appendChild(divControlFieldEndInput);
 
   this.append(divEndDate);
 };
@@ -1769,7 +1780,8 @@ $.fn.fieldSplitter = function() {
     ? this.data("componentOrientation")
     : "vertical";
   const splitterDIV = this.children("div");
-
+  const splitterFirstPanelContent = [].slice.call(splitterDIV[0].children);
+  const splitterSecondPanelContent = [].slice.call(splitterDIV[1].children);
   //Se indica id y orientacion del div principal
   this.attr("id", "splitter_container");
   this.attr("class", "div");
@@ -1804,10 +1816,12 @@ $.fn.fieldSplitter = function() {
     );
   }
 
-  const labelOpt1 = document.createElement("label");
-  var t1 = document.createTextNode("Aquí va el contenido del panel 1");
-  labelOpt1.appendChild(t1);
-  divPanel1.appendChild(labelOpt1);
+  // const labelOpt1 = document.createElement("label");
+  // var t1 = document.createTextNode("Aquí va el contenido del panel 1");
+  // labelOpt1.appendChild(t1);
+  Array.prototype.forEach.call(splitterFirstPanelContent, function(child) {
+    divPanel1.appendChild(child);
+  });
   divSimple.appendChild(divPanel1);
   /*
   const divSplitter = document.createElement("div");
@@ -1837,11 +1851,14 @@ $.fn.fieldSplitter = function() {
       "position: relative; z-index: 1; top: 0px; width: 1439px; height: 207px; user-select: text;"
     );
   }
-  const labelOpt2 = document.createElement("label");
-  var t2 = document.createTextNode("Aquí va el contenido del panel 2");
+  // const labelOpt2 = document.createElement("label");
+  // var t2 = document.createTextNode("Aquí va el contenido del panel 2");
 
-  labelOpt2.appendChild(t2);
-  divPanel2.appendChild(labelOpt2);
+  // labelOpt2.appendChild(t2);
+  // divPanel2.appendChild(labelOpt2);
+  Array.prototype.forEach.call(splitterSecondPanelContent, function(child) {
+    divPanel2.appendChild(child);
+  });
   divSimple.appendChild(divPanel2);
   this.append(divSimple);
   this.removeAttr("data-component-orientation");
