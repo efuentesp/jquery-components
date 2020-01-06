@@ -919,6 +919,84 @@ $.fn.sidebarwrapper = function() {
   }
 };
 
+$.fn.fieldswitch = function() {
+  if (this.data("componentType") === "field-switch") {
+    let id = this.attr("id");
+    let items = $("#" + id).children("div");
+
+    let fieldlabeldiv = document.createElement("div");
+    let fieldlabel = document.createElement("label");
+    let fieldlabelspan = document.createElement("span");
+
+    fieldlabeldiv.setAttribute("class", "field-label flex");
+    fieldlabel.setAttribute("class", "field-label");
+    fieldlabelspan.setAttribute("class", "pr-5");
+    fieldlabel.innerHTML = this.data("componentLabel");
+
+    fieldlabeldiv.appendChild(fieldlabel);
+    fieldlabeldiv.appendChild(fieldlabelspan);
+
+
+    let flexdiv = document.createElement("div");
+    let fielddiv = document.createElement("div");
+    let fieldcontroldiv = document.createElement("div");
+    let formcheckdiv = document.createElement("div");
+
+    flexdiv.setAttribute("class", "field-label flex");
+    fielddiv.setAttribute("class", "field is_horizontal");
+    fielddiv.setAttribute("id", id+"_");
+    fieldcontroldiv.setAttribute("class", "field-control radio-toggle has-toggle-input");
+    fieldcontroldiv.setAttribute("custom-tooltip", this.data("componentTooltip"));
+    formcheckdiv.setAttribute("class", "form-check");
+
+    for (i = 0; i < items.length; i++) {
+
+        let label = document.createElement("label");
+        if (i===0)
+         label.setAttribute("class", "form-check-label left active");
+        else
+         label.setAttribute("class", "form-check-label right");
+        let input = document.createElement("input");
+        let span = document.createElement("span");
+        input.setAttribute("class", "form-check-input");
+        input.setAttribute("type", "radio");
+        input.setAttribute("name", "switch");
+        input.setAttribute("id", "radio_switch_0");
+        input.setAttribute("value", items[i].dataset.componentKey);
+        input.setAttribute("style", "display: none");
+        if (i===0)
+         input.setAttribute("checked", "checked");
+        input.setAttribute("data-parsley-errors-container", "#field_error_block_switch");
+        input.setAttribute("data-parsley-multiple", "switch");
+        span.innerHTML=items[i].dataset.componentValue;
+        label.appendChild(input);
+        label.appendChild(span);
+        formcheckdiv.appendChild(label);
+    }
+
+    flexdiv.setAttribute("class", "field-label flex");
+    fielddiv.setAttribute("class", "field is_vertical");
+
+    fieldcontroldiv.setAttribute("class", "field-control radio-toggle has-toggle-input");
+    formcheckdiv.setAttribute("class", "form-check");
+
+    let fielderrordiv = document.createElement("div");
+    let fielderrorblockdiv = document.createElement("div");
+    fielderrordiv.setAttribute("class", "field-error");
+    fielderrorblockdiv.setAttribute("id", "field_error_block_switch");
+    fieldcontroldiv.appendChild(formcheckdiv);
+    fieldcontroldiv.appendChild(fielderrordiv);
+    fieldcontroldiv.appendChild(fielderrorblockdiv);
+    flexdiv.appendChild(fieldcontroldiv);
+    fielddiv.appendChild(fieldlabeldiv);
+    fielddiv.appendChild(fieldcontroldiv);
+    this.append(fielddiv);
+    $(".radio-toggle").toggleInput();
+    $("#" + id+"_").siblings().remove();
+    $("#" + id+"_").unwrap();
+  }
+};
+
 $.fn.fieldDateRange = function() {
   console.log("Entra ----- > ");
   const fieldId = this.attr("id");

@@ -24,6 +24,8 @@ $("#gridrecordscount1").gridrecordscount();
 $("#tab1").tabgroup();
 $("#tab2").tabgroup();
 $("#sidebar1").sidebarwrapper();
+$("#switch1").fieldswitch();
+
 
 // $("[data-component-type='text']").fieldInput();
 $("#contratoTxt").fieldInput();
