@@ -177,7 +177,7 @@ $("#clasificacionBanxico").fieldInput();
 // Quiz group 3
 let encuesta_params = {};
 // Name of json
-http_findAll("encuesta", encuesta_params, payload => {
+http_findAll("encuesta", encuesta_params, function(payload) {
   // Parameters: field name group, id of quiz, data
   fillQuiz("ejemploQuiz", "encuesta", payload);
 });
@@ -407,7 +407,7 @@ $("#table_cotitular2_firmas_autorizadas").jqGrid({
 });
 
 // documentacion
-$("#horizontal-splitter").fieldSplitter();
+$("#splitter").fieldSplitter();
 
 $("#cotitular2_documentacion_contrato").grid();
 $("#table_cotitular2_documentacion_contrato").jqGrid({
@@ -666,7 +666,7 @@ const form_buscar_contrato = $("#criterios-busqueda")
   })
   .on("form:submit", function() {
     const contrato = String($("#contrato").val());
-    http_findOne("contratos", contrato, payload => {
+    http_findOne("contratos", contrato, function(payload) {
       console.log(
         "-------> ",
         payload.cotitulares[0].clasificacion_contrato.servicio_inversion
@@ -687,7 +687,7 @@ const form_buscar_contrato = $("#criterios-busqueda")
     return false;
   });
 
-const llenarInfoContrato = payload => {
+const llenarInfoContrato = function(payload) {
   $("#digito").val(payload.digito);
   $("#dv").val(payload.dv);
   $("#estatus").val(payload.estatus);
@@ -701,7 +701,7 @@ const llenarInfoContrato = payload => {
   $("#libro").val(payload.libro);
 };
 
-const llenarTabContrato = (payload, i) => {
+const llenarTabContrato = function(payload, i) {
   $("#servicio_inversion").val(
     payload.cotitulares[i].clasificacion_contrato.servicio_inversion
   );
@@ -776,7 +776,7 @@ const llenarTabContrato = (payload, i) => {
   );
 };
 
-const llenarObservacionesContrato = (payload, i) => {
+const llenarObservacionesContrato = function(payload, i) {
   $("#fecha_apertura").val(payload.cotitulares[i].observaciones.fecha_apertura);
   $("#monto_inicial").val(payload.cotitulares[i].observaciones.monto_inicial);
   $("#sector").val(payload.cotitulares[i].observaciones.sector);
@@ -805,7 +805,7 @@ const llenarObservacionesContrato = (payload, i) => {
   );
 };
 
-const llenarCotitular_LimitantesInvertir = (payload, i) => {
+const llenarCotitular_LimitantesInvertir = function(payload, i) {
   const limitantesInvertirArray =
     payload.cotitulares[i].clasificacion_contrato.limitantes_invertitr;
   fillJqGrid(
@@ -814,7 +814,7 @@ const llenarCotitular_LimitantesInvertir = (payload, i) => {
   );
 };
 
-const llenarCotitular_RelacionEmisor = (payload, i) => {
+const llenarCotitular_RelacionEmisor = function(payload, i) {
   const relacionEmisorArray =
     payload.cotitulares[i].clasificacion_contrato.relacion_emisor;
   fillJqGrid(
@@ -823,13 +823,13 @@ const llenarCotitular_RelacionEmisor = (payload, i) => {
   );
 };
 
-const llenarCotitular_Comisiones = (payload, i) => {
+const llenarCotitular_Comisiones = function(payload, i) {
   const comisionesArray = payload.cotitulares[i].comisiones;
   fillJqGrid("#table_cotitular2_comisiones", comisionesArray);
 };
 //  documentacion
 
-const llenarCotitular_Documentacion = (payload, i) => {
+const llenarCotitular_Documentacion = function(payload, i) {
   const documentacionContratoArray =
     payload.cotitulares[i].documentacion.contrato;
   $("#table_cotitular2_documentacion_contrato").jqGrid("clearGridData");
@@ -846,17 +846,17 @@ const llenarCotitular_Documentacion = (payload, i) => {
   $("#table_cotitular2_documentacion_cliente").trigger("reloadGrid");
 };
 //
-const llenarCotitular_Domicilio = (payload, i) => {
+const llenarCotitular_Domicilio = function(payload, i) {
   const domicilioArray = payload.cotitulares[i].domicilio;
   fillJqGrid("#table_cotitular2_domicilio", domicilioArray);
 };
 
-const llenarCotitular_FirmasAutorizadas = (payload, i) => {
+const llenarCotitular_FirmasAutorizadas = function(payload, i) {
   const firmasAutorizadasArray = payload.cotitulares[i].firmas_autorizadas;
   fillJqGrid("#table_cotitular2_firmas_autorizadas", firmasAutorizadasArray);
 };
 
-const llenarCotitular_FormatosFiscales = (payload, i) => {
+const llenarCotitular_FormatosFiscales = function(payload, i) {
   const formatosFiscalesArray = payload.cotitulares[i].formatos_fiscales;
   fillJqGrid("#table_cotitular2_formatos_fiscales", formatosFiscalesArray);
   $("#table_cotitular2_formatos_fiscales").jqGrid("clearGridData");
@@ -866,12 +866,12 @@ const llenarCotitular_FormatosFiscales = (payload, i) => {
   $("#table_cotitular2_formatos_fiscales").trigger("reloadGrid");
 };
 
-const llenarCotitular_MediosComunicacion = (payload, i) => {
+const llenarCotitular_MediosComunicacion = function(payload, i) {
   const mediosComunicacionArray = payload.cotitulares[i].medio_comunicacion;
   fillJqGrid("#table_cotitular2_medio_comunicacion", mediosComunicacionArray);
 };
 
-const llenarCotitular_MedioLiquidacion = (payload, i) => {
+const llenarCotitular_MedioLiquidacion = function(payload, i) {
   const mediosComunicacionArray = payload.cotitulares[i].medio_liquidacion;
   fillJqGrid("#table_cotitular2_medio_liquidacion", mediosComunicacionArray);
 };
