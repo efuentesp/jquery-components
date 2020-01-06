@@ -608,7 +608,8 @@ $.fn.button = function() {
     ["button-pdf", "btn-pdf_32x32.png", ""],
     ["button-reset", "btn-reiniciar.png", "submit"],
     ["button-validate", "btn-validar.png", ""],
-    ["button-xls", "btn-xls_32x32.png", ""]
+    ["button-xls", "btn-xls_32x32.png", ""],
+    ["button-import", "btn-consultar_32x32.png", ""]
   ];
 
   var imgname = "";

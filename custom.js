@@ -19,6 +19,7 @@ $("#buttonsearch1").button();
 $("#buttonsearch2").button();
 $("#buttonsearch21").button();
 $("#buttonsearch3").button();
+$("#buttonimport").button();
 $("#grid1").grid();
 $("#gridrecordscount1").gridrecordscount();
 $("#tab1").tabgroup();
