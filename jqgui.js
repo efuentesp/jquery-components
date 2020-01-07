@@ -927,6 +927,8 @@ $.fn.fieldswitch = function() {
     let field_error_block = "field_error_block_" + id;
     let field_error_block_id = "#" + field_error_block
     let items = $("#" + id).children("div");
+    let spanRequiredClass =
+      "pr-5 " + (this.data("componentRequired") === true ? "required" : "");
 
     let fieldlabeldiv = document.createElement("div");
     let fieldlabel = document.createElement("label");
@@ -934,7 +936,9 @@ $.fn.fieldswitch = function() {
 
     fieldlabeldiv.setAttribute("class", "field-label flex");
     fieldlabel.setAttribute("class", "field-label");
-    fieldlabelspan.setAttribute("class", "pr-5");
+    fieldlabelspan.setAttribute("class", spanRequiredClass);
+    if (this.data("componentRequired"))
+      fieldlabelspan.innerHTML="*";
     fieldlabel.innerHTML = this.data("componentLabel");
 
     fieldlabeldiv.appendChild(fieldlabel);
@@ -978,6 +982,8 @@ $.fn.fieldswitch = function() {
       input.setAttribute("id", item_id);
       input.setAttribute("value", items[i].dataset.componentKey);
       input.setAttribute("style", "display: none");
+      if (this.data("componentRequired"))
+        input.setAttribute("required",this.data("componentRequired"));
       if (i === 0) input.setAttribute("checked", "checked");
       input.setAttribute("data-parsley-errors-container",field_error_block_id);
       input.setAttribute("data-parsley-multiple",id);
