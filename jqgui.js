@@ -922,7 +922,10 @@ $.fn.sidebarwrapper = function() {
 
 $.fn.fieldswitch = function() {
   if (this.data("componentType") === "field-switch") {
-    let id = this.attr("id");
+    let id= this.attr("id");
+    let fieldid = "field_" + id;
+    let field_error_block = "field_error_block_" + id;
+    let field_error_block_id = "#" + field_error_block
     let items = $("#" + id).children("div");
 
     let fieldlabeldiv = document.createElement("div");
@@ -950,7 +953,7 @@ $.fn.fieldswitch = function() {
       );
     else fielddiv.setAttribute("class", "field is_horizontal");
 
-    fielddiv.setAttribute("id", id + "_");
+    fielddiv.setAttribute("id", fieldid);
     fieldcontroldiv.setAttribute(
       "class",
       "field-control radio-toggle has-toggle-input"
@@ -963,6 +966,7 @@ $.fn.fieldswitch = function() {
     formcheckdiv.setAttribute("class", "form-check");
 
     for (i = 0; i < items.length; i++) {
+      var item_id = "radio_" + id + "_" + i
       let label = document.createElement("label");
       if (i === 0) label.setAttribute("class", "form-check-label left active");
       else label.setAttribute("class", "form-check-label right");
@@ -970,16 +974,13 @@ $.fn.fieldswitch = function() {
       let span = document.createElement("span");
       input.setAttribute("class", "form-check-input");
       input.setAttribute("type", "radio");
-      input.setAttribute("name", "switch");
-      input.setAttribute("id", "radio_switch_0");
+      input.setAttribute("name", id);
+      input.setAttribute("id", item_id);
       input.setAttribute("value", items[i].dataset.componentKey);
       input.setAttribute("style", "display: none");
       if (i === 0) input.setAttribute("checked", "checked");
-      input.setAttribute(
-        "data-parsley-errors-container",
-        "#field_error_block_switch"
-      );
-      input.setAttribute("data-parsley-multiple", "switch");
+      input.setAttribute("data-parsley-errors-container",field_error_block_id);
+      input.setAttribute("data-parsley-multiple",id);
       span.innerHTML = items[i].dataset.componentValue;
       label.appendChild(input);
       label.appendChild(span);
@@ -997,7 +998,7 @@ $.fn.fieldswitch = function() {
     let fielderrordiv = document.createElement("div");
     let fielderrorblockdiv = document.createElement("div");
     fielderrordiv.setAttribute("class", "field-error");
-    fielderrorblockdiv.setAttribute("id", "field_error_block_switch");
+    fielderrorblockdiv.setAttribute("id", field_error_block);
     fieldcontroldiv.appendChild(formcheckdiv);
     fieldcontroldiv.appendChild(fielderrordiv);
     fieldcontroldiv.appendChild(fielderrorblockdiv);
@@ -1006,10 +1007,10 @@ $.fn.fieldswitch = function() {
     fielddiv.appendChild(fieldcontroldiv);
     this.append(fielddiv);
     $(".radio-toggle").toggleInput();
-    $("#" + id + "_")
+    $("#" + fieldid)
       .siblings()
       .remove();
-    $("#" + id + "_").unwrap();
+    $("#" + fieldid).unwrap();
   }
 };
 
