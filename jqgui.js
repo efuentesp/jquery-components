@@ -950,12 +950,16 @@ $.fn.fieldswitch = function() {
     let formcheckdiv = document.createElement("div");
 
     flexdiv.setAttribute("class", "field-label flex");
+
+    let itemscenter=
+     this.data("componentOrientation")==="horizontal" ? " items-center":"";
+
     if (this.data("componentOrientation"))
       fielddiv.setAttribute(
         "class",
-        "field is_" + this.data("componentOrientation")
+        "field is_" + this.data("componentOrientation") + itemscenter
       );
-    else fielddiv.setAttribute("class", "field is_horizontal");
+    else fielddiv.setAttribute("class", "field is_horizontal items-center");
 
     fielddiv.setAttribute("id", fieldid);
     fieldcontroldiv.setAttribute(
