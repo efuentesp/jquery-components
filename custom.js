@@ -26,6 +26,7 @@ $("#tab1").tabgroup();
 $("#tab2").tabgroup();
 $("#sidebar1").sidebarwrapper();
 $("#switch1").fieldswitch();
+$("#spinner1").spinner();
 
 // $("[data-component-type='text']").fieldInput();
 $("#contratoTxt").fieldInput();

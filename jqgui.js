@@ -1024,6 +1024,24 @@ $.fn.fieldswitch = function() {
   }
 };
 
+$.fn.spinner = function() {
+  if (this.data("componentType") === "spinner") {
+   let id= "spinner_" +this.attr("id");
+   let img = document.createElement("img");
+   let spinnerdiv = document.createElement("div");
+   spinnerdiv.setAttribute("class", "spinner");
+   spinnerdiv.setAttribute("id", id);
+   img.setAttribute("src", "../../../../assets/images/loader.gif");
+   img.setAttribute("alt", "imagen");
+   img.setAttribute("width", "45px");
+   img.setAttribute("height", "45px");
+   spinnerdiv.appendChild(img);
+   this.append(spinnerdiv);
+   $("#" + id).unwrap();
+  }
+}
+
+
 $.fn.fieldDateRange = function() {
   console.log("Entra ----- > ");
   const fieldId = this.attr("id");
