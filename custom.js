@@ -27,6 +27,7 @@ $("#tab2").tabgroup();
 $("#sidebar1").sidebarwrapper();
 $("#switch1").fieldswitch();
 $("#spinner1").spinner();
+$("#timepicker1").fieldtimepicker();
 
 // $("[data-component-type='text']").fieldInput();
 $("#contratoTxt").fieldInput();

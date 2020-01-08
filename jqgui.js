@@ -1041,6 +1041,81 @@ $.fn.spinner = function() {
   }
 }
 
+$.fn.fieldtimepicker = function() {
+  if (this.data("componentType") === "field-time-picker") {
+   let timeid= "timepicker_" +this.attr("id");
+   let inputid= "input_" +this.attr("id");
+
+   let timediv = document.createElement("div");
+   timediv.setAttribute("class", "field is_horizontal items-center");
+   timediv.setAttribute("id", timeid);
+
+   let timelabeldiv = document.createElement("div");
+   timelabeldiv.setAttribute("class", "field-label flex");
+
+   let timelabel = document.createElement("label");
+   timelabel.setAttribute("for", inputid);
+   timelabel.innerHTML = "Hora";
+
+   timelabeldiv.appendChild(timelabel);
+
+   let controldiv = document.createElement("div");
+   controldiv.setAttribute("class", "field-control");
+
+   let inputdiv = document.createElement("div");
+   inputdiv.setAttribute("class", "field-input flex items-center");
+
+   let input = document.createElement("input");
+   input.setAttribute("class", "timepicker input hasWickedpicker");
+   input.setAttribute("id", inputid);
+   input.setAttribute("style", "width: 8em;");
+   input.setAttribute("data-parsley-errors-container", "#field_error_block_"+inputid);
+   input.setAttribute("onkeypress", "return false;");
+   input.setAttribute("aria-showingpicker", "false");
+   input.setAttribute("tabindex", "0");
+
+   inputdiv.appendChild(input);
+
+   let errordiv = document.createElement("div");
+   errordiv.setAttribute("class", "field-error");
+   let errorblockdiv = document.createElement("div");
+   errorblockdiv.setAttribute("id", "field_error_block_"+inputid);
+
+   errordiv.appendChild(errorblockdiv);
+
+   controldiv.appendChild(input);
+   controldiv.appendChild(inputdiv);
+   controldiv.appendChild(errordiv);
+
+   timediv.appendChild(timelabeldiv);
+   timediv.appendChild(controldiv);
+
+   this.append(timediv);
+   $("#" + timeid).unwrap();
+
+   let date = new Date;
+   let minutes = date.getMinutes();
+   let hour = date.getHours();
+
+   let timepickerinitialdata = {
+    now: hour+":"+minutes,
+    upArrow: "wickedpicker__controls__control-up",
+    downArrow: "wickedpicker__controls__control-down",
+    close: "wickedpicker__close",
+    hoverState: "hover-state",
+    title: "Hora",
+    showSeconds: false,
+    secondsInterval: 1,
+    minutesInterval: 1,
+    beforeShow: null,
+    show: null,
+    clearable: false
+   };
+
+   $("#"+inputid).wickedpicker(timepickerinitialdata);
+
+  }
+}
 
 $.fn.fieldDateRange = function() {
   console.log("Entra ----- > ");
