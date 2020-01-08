@@ -1043,11 +1043,31 @@ $.fn.spinner = function() {
 
 $.fn.fieldtimepicker = function() {
   if (this.data("componentType") === "field-time-picker") {
-   let timeid= "timepicker_" +this.attr("id");
+
+   let orientation = this.data("componentOrientation")
+      ? this.data("componentOrientation")
+      : "horizontal";
+
+   let label = this.data("componentLabel")
+         ? this.data("componentLabel")
+         : "Hora";
+
+   let date = new Date;
+   let minutes = date.getMinutes();
+   let hour = date.getHours();
+   let time = this.data("componentTime")
+               ? this.data("componentTime")
+               : hours+":"+minutes;
+
+   let timeid= "field_" +this.attr("id");
    let inputid= "input_" +this.attr("id");
 
    let timediv = document.createElement("div");
-   timediv.setAttribute("class", "field is_horizontal items-center");
+   if (orientation==="horizontal")
+     timediv.setAttribute("class", "field is_horizontal items-center");
+   else
+     timediv.setAttribute("class", "field is_vertical");
+
    timediv.setAttribute("id", timeid);
 
    let timelabeldiv = document.createElement("div");
@@ -1055,9 +1075,17 @@ $.fn.fieldtimepicker = function() {
 
    let timelabel = document.createElement("label");
    timelabel.setAttribute("for", inputid);
-   timelabel.innerHTML = "Hora";
+   timelabel.innerHTML = label;
+
+
+   let timespan = document.createElement("span");
+   timespan.setAttribute("class", "required");
+   timespan.innerHTML = "*";
 
    timelabeldiv.appendChild(timelabel);
+
+   if (this.data("componentRequired") === true)
+    timelabeldiv.appendChild(timespan);
 
    let controldiv = document.createElement("div");
    controldiv.setAttribute("class", "field-control");
@@ -1093,17 +1121,14 @@ $.fn.fieldtimepicker = function() {
    this.append(timediv);
    $("#" + timeid).unwrap();
 
-   let date = new Date;
-   let minutes = date.getMinutes();
-   let hour = date.getHours();
 
    let timepickerinitialdata = {
-    now: hour+":"+minutes,
+    now: time,
     upArrow: "wickedpicker__controls__control-up",
     downArrow: "wickedpicker__controls__control-down",
     close: "wickedpicker__close",
     hoverState: "hover-state",
-    title: "Hora",
+    title: label,
     showSeconds: false,
     secondsInterval: 1,
     minutesInterval: 1,
