@@ -28,6 +28,7 @@ $("#sidebar1").sidebarwrapper();
 $("#switch1").fieldswitch();
 $("#spinner1").spinner();
 $("#timepicker1").fieldtimepicker();
+$("#monthyear1").fieldmonthyear();
 
 // $("[data-component-type='text']").fieldInput();
 $("#contratoTxt").fieldInput();
@@ -81,4 +82,5 @@ let encuesta_params = {};
 http_findAll("encuesta", encuesta_params, function(payload) {
   // Parameters: field name group, id of quiz, data
   fillQuiz("ejemploQuiz", "encuesta", payload);
+
 });

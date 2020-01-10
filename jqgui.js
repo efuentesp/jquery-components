@@ -1142,6 +1142,17 @@ $.fn.fieldtimepicker = function() {
   }
 }
 
+$.fn.fieldmonthyear = function() {
+  if (this.data("componentType") === "field-month-year") {
+   let id = "field_" +this.attr("id");
+   let div = document.createElement("div");
+   div.setAttribute("id", id);
+   div.setAttribute("class", "monthpicker");
+   this.append(div);
+   $("#" + id).unwrap();
+  }
+}
+
 $.fn.fieldDateRange = function() {
   console.log("Entra ----- > ");
   const fieldId = this.attr("id");
