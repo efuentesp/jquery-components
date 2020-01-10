@@ -304,6 +304,7 @@ $.fn.fieldInputPlusMinus = function() {
   divControl.appendChild(ulTagList);
 
   fieldPlusMinus(fieldId, { maxsize: fieldMaxsize, nodes: fieldNodes });
+
 };
 
 $.fn.fieldSelectPlusMinus = function() {
@@ -807,6 +808,7 @@ $.fn.fieldInput = function() {
   c.removeAttr("data-component-tooltip");
   c.removeAttr("data-component-default-value");
   c.removeAttr("data-component-input-type");
+
   // });
 };
 

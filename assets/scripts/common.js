@@ -618,7 +618,6 @@ let fieldSelectPlusAutocomplete = function(id, params) {
   let payload = params.payload;
   let definedNodes = true;
   let numNodes = 4;
-  let maxsize = params.maxsize;
 
   if (params.nodes == undefined) {
     definedNodes = true;
@@ -672,8 +671,8 @@ let fieldSelectPlusAutocomplete = function(id, params) {
     let value_to_add = $(idInput + " option:selected").val();
 
     if (!existText(text_to_add, list)) {
-      if (!addedText(id, text_to_add, value_to_add, list, maxsize)) {
-        addNode(text_to_add, value_to_add, list, maxsize);
+      if (!addedText(text_to_add, value_to_add, list)) {
+        addNode(text_to_add, value_to_add, list, params.maxsize);
       }
     }
     fieldPlusMinusRepaintList(node);
@@ -691,8 +690,8 @@ let fieldSelectPlusAutocomplete = function(id, params) {
       if (!(value_to_add == "")) {
         var text_to_add = $(idInput + " option:selected").text();
         if (!existText(text_to_add, list)) {
-          if (!addedText(id, text_to_add, value_to_add, list, maxsize)) {
-            addNode(text_to_add, value_to_add, list, maxsize);
+          if (!addedText(text_to_add, value_to_add, list)) {
+            addNode(text_to_add, value_to_add, list, params.maxsize);
           }
         }
         fieldPlusMinusRepaintList(node);
@@ -1946,7 +1945,6 @@ var fillQuiz = function(field_group, id, quiz) {
   var nAnswers = 0;
   var nQuestions = 0;
   var nResults = 0;
-  var answerSelectId = [];
   nQuestions = quiz[0].question.length;
   nAnswers = quiz[0].answer.length;
   nResults = quiz[0].result.length;
@@ -2013,7 +2011,6 @@ var fillQuiz = function(field_group, id, quiz) {
           "_" +
           i +
           '">';
-        answerSelectId.push(id + "_" + i + "_" + j);
         var optionValue = quiz[0].result[i].results[j].result;
         options = "";
         for (var k = 0; k < quiz[0].answer[j].options.length; k++) {
@@ -2030,19 +2027,8 @@ var fillQuiz = function(field_group, id, quiz) {
     }
     questions = question + answers + "</tr>";
     trElement.append(questions);
-    if (answerSelectId.length != 0) {
-      initializeSelect2(answerSelectId);
-    }
   }
 };
-function initializeSelect2(isQuizSelect2) {
-  for (var i = 0; i < isQuizSelect2.length; i++) {
-    $("#" + isQuizSelect2[i]).select2({
-      language: "es",
-      minimumResultsForSearch: Infinity
-    });
-  }
-}
 var fieldDateClear = function(id) {
   var btn_calendar_id = "#clear_" + id;
   var input_date_id = "#inpt-" + id;
@@ -2723,12 +2709,10 @@ var barHighchart = function(params) {
       text: params.title
     },
     xAxis: {
-      categories: [params.dataSet[0]["title"], ""],
-      visible: false
+      categories: [params.dataSet[0]["title"], ""]
     },
     yAxis: {
       min: 0,
-      visible: false,
       title: {
         text: ""
       },
@@ -2923,4 +2907,18 @@ $(".datepicker").on("keydown", function(e) {
       verifyDate(date, $(this));
     }
   }
+
+});
+
+$( document ).ready(function() {
+  $('input').keypress(function(e){
+     var keyCode = e.which;
+     if ( !( (keyCode >= 48 && keyCode <= 57)
+       ||(keyCode >= 65 && keyCode <= 90)
+       || (keyCode >= 97 && keyCode <= 122))
+       && keyCode != 8 && keyCode != 32
+       && keyCode != 45 && keyCode != 46) {
+       e.preventDefault();
+     }
+  });
 });
