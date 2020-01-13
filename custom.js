@@ -1,80 +1,80 @@
-$("#contrato1").fieldInputPlusMinus();
-$("#contrato2").fieldInputPlusMinus();
-$("#contrato3").fieldInputPlusMinus();
-$("#contrato4").fieldInputPlusMinus();
-$("#contrato5").fieldInputPlusMinus();
-$("#contrato6").fieldInputPlusMinus();
+$("#divContrato1").fieldInputPlusMinus();
+$("#divContrato2").fieldInputPlusMinus();
+$("#divContrato3").fieldInputPlusMinus();
+$("#divContrato4").fieldInputPlusMinus();
+$("#divContrato5").fieldInputPlusMinus();
+$("#divContrato6").fieldInputPlusMinus();
 
-$("#contrato7").fieldSelectPlusMinus();
-$("#contrato8").fieldSelectPlusMinus();
-$("#contrato9").fieldSelectPlusMinus();
-$("#contrato10").fieldSelectPlusMinus();
+$("#divContrato7").fieldSelectPlusMinus();
+$("#divContrato8").fieldSelectPlusMinus();
+$("#divContrato9").fieldSelectPlusMinus();
+$("#divContrato10").fieldSelectPlusMinus();
 
-$("#contrato11").fieldSelectPlusMinusAutocomplete();
-$("#contrato12").fieldSelectPlusMinusAutocomplete();
-$("#contrato13").fieldSelectPlusMinusAutocomplete();
-$("#contrato14").fieldSelectPlusMinusAutocomplete();
+$("#divContrato11").fieldSelectPlusMinusAutocomplete();
+$("#divContrato12").fieldSelectPlusMinusAutocomplete();
+$("#divContrato13").fieldSelectPlusMinusAutocomplete();
+$("#divContrato14").fieldSelectPlusMinusAutocomplete();
 
-$("#buttonsearch1").button();
-$("#buttonsearch2").button();
-$("#buttonsearch21").button();
-$("#buttonsearch3").button();
-$("#buttonimport").button();
-$("#grid1").grid();
-$("#gridrecordscount1").gridrecordscount();
-$("#tab1").tabgroup();
-$("#tab2").tabgroup();
-$("#sidebar1").sidebarwrapper();
-$("#switch1").fieldswitch();
-$("#spinner1").spinner();
-$("#timepicker1").fieldtimepicker();
-$("#monthyear1").fieldmonthyear();
+$("#divButtonSearch1").button();
+$("#divButtonSearch2").button();
+$("#divButtonSearch21").button();
+$("#divButtonSearch3").button();
+$("#divButtonImport").button();
+$("#divGrid").grid();
+$("#divGridRecordsCount").gridrecordscount();
+$("#divTab1").tabgroup();
+$("#divTab2").tabgroup();
+$("#divSidebar").sidebarwrapper();
+$("#divSwitch").fieldswitch();
+$("#divSpinner").spinner();
+$("#divTimePicker").fieldtimepicker();
+$("#divMonthYear").fieldmonthyear();
 
 // $("[data-component-type='text']").fieldInput();
-$("#contratoTxt").fieldInput();
-$("#contratoTxtFalse").fieldInput();
-$("#contratoTxtVertical").fieldInput();
-$("#contratoTxtFalseVertical").fieldInput();
+$("#divTxtContrato").fieldInput();
+$("#divTxtContratoFalse").fieldInput();
+$("#divTxtContratoVertical").fieldInput();
+$("#divTxtContratoFalseVertical").fieldInput();
 
-$("#fecha1").fielDate();
-$("#fecha2").fielDate();
-$("#fecha3").fielDate();
-$("#fecha4").fielDate();
+$("#divFecha1").fielDate();
+$("#divFecha2").fielDate();
+$("#divFecha3").fielDate();
+$("#divFecha4").fielDate();
 
-$("#negocio").fieldOptions();
+$("#divNegocio").fieldOptions();
 
-$("#servicio_inversion").fieldCheckBox();
-$("#formcontrato").form();
+$("#divServicioInversion").fieldCheckBox();
+$("#divFormContrato").form();
 
-$("#ejemploaccordion").customaccordion();
+$("#divEjemploAccordion").customaccordion();
 
-$("#splitter").fieldSplitter();
-$("#buttonsplitter").button();
+$("#divSplitter").fieldSplitter();
+$("#divButtonSplitter").button();
 
-$("#payment").select();
+$("#divPayment").select();
 
-$("#graficasaccordion").customaccordion();
+$("#divGraficasAccordion").customaccordion();
 
 // HighChart
-$("#container").fieldChart();
-$("#containerBorder").fieldChart();
-$("#containerBar").fieldChart();
+$("#divContainer").fieldChart();
+$("#divContainerBorder").fieldChart();
+$("#divContainerBar").fieldChart();
 
 // ChartJs
-$("#stackChart").canvas();
-$("#barChart").canvas();
-$("#barChartNBar").canvas();
-$("#lineChart").canvas();
-$("#multiChart").canvas();
+$("#divStackChart").canvas();
+$("#divBarChart").canvas();
+$("#divBarChartNBar").canvas();
+$("#divLineChart").canvas();
+$("#divMultiChart").canvas();
 
 // Swap List
-$("#listado").fieldSwaplist();
+$("#divListado").fieldSwaplist();
 
 // Date Range
-$("#rango").fieldDateRange();
-validateDateRage("rango");
-fieldBeginDateRangeClear("rango");
-fieldEndDateRangeClear("rango");
+$("#divRango").fieldDateRange();
+validateDateRage("divRango");
+fieldBeginDateRangeClear("divRango");
+fieldEndDateRangeClear("divRango");
 
 // Quiz group 3
 let encuesta_params = {};
