@@ -701,10 +701,8 @@ $.fn.gridrecordscount = function() {
 };
 
 $.fn.fieldInput = function() {
-  // this.filter("[data-component-type='text']").each(function() {
   const c = $(this);
   const fieldId = c.attr("id");
-  // console.log("Id", fieldId);
   const fieldLabel = c.data("componentLabel") ? c.data("componentLabel") : "";
   let fieldType = "";
   if (c.data("componentInputType") === "integer") {
@@ -731,7 +729,7 @@ $.fn.fieldInput = function() {
   const spanRequiredClass =
     "pr-3 " + (c.data("componentRequired") == true ? "required" : "");
 
-  c.attr("id", "field_" + fieldId);
+  c.attr("id", fieldId);
   if (fieldClass === "is_horizontal") {
     fieldClass += " items-center";
   }
@@ -741,7 +739,7 @@ $.fn.fieldInput = function() {
   divLabel.setAttribute("class", "field-label flex");
 
   const label = document.createElement("label");
-  label.setAttribute("for", fieldId);
+  label.setAttribute("for", "lbl"+ removeDiv(fieldId));
   label.innerHTML = fieldLabel;
   divLabel.appendChild(label);
   c.append(divLabel);
@@ -759,12 +757,8 @@ $.fn.fieldInput = function() {
     divControl.setAttribute("custom-tooltip", c.data("componentTooltip"));
   }
 
-  // const divFieldInput = document.createElement("div");
-  // divFieldInput.setAttribute("class", "field-input has-addons flex");
-  // divControl.appendChild(divFieldInput);
-
   const input = document.createElement("input");
-  input.setAttribute("id", fieldId);
+  input.setAttribute("id", "txt"+removeDiv(fieldId));
   input.setAttribute("class", "input " + fieldType);
   input.setAttribute("type", "text");
   input.setAttribute("style", fieldWidth);
@@ -808,7 +802,6 @@ $.fn.fieldInput = function() {
   c.removeAttr("data-component-default-value");
   c.removeAttr("data-component-input-type");
 
-  // });
 };
 
 $.fn.tabgroup = function() {
