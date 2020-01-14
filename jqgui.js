@@ -809,7 +809,7 @@ $.fn.tabgroup = function() {
     let id = this.attr("id");
     let divtabgroup = document.createElement("div");
     divtabgroup.setAttribute("class", "tab-group");
-    divtabgroup.setAttribute("id", id + "_tabgroup");
+    divtabgroup.setAttribute("id","divTabGroup" + removeDiv(id));
     let items = $("#" + id).children("div");
     let ul = document.createElement("ul");
 
@@ -856,14 +856,14 @@ $.fn.tabgroup = function() {
     this.append(divtabgroup);
 
     if (this.data("componentOrientation") === "horizontal") {
-      $("#" + id + "_tabgroup")
+      $("#" + "divTabGroup" + removeDiv(id))
         .tabs()
         .addClass("ui-tabs-vertical ui-helper-clearfix");
-      $("#" + id + "_tabgroup > ul > li")
+      $("#" + "divTabGroup" + removeDiv(id) +" > ul > li")
         .removeClass("ui-corner-top")
         .addClass("ui-corner-left");
     } else {
-      $("#" + id + "_tabgroup").tabs();
+      $("#" + "divTabGroup" + removeDiv(id)).tabs();
     }
   }
 };
