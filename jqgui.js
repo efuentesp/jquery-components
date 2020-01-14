@@ -639,8 +639,7 @@ $.fn.button = function() {
 
     const button = document.createElement("button");
     button.setAttribute(
-      "id",
-      this.data("componentType") + "_" + this.attr("id")
+      "id", "btn"+ this.attr("id").replace('div','')
     );
 
     button.setAttribute("class", btnclass);
@@ -664,7 +663,7 @@ $.fn.button = function() {
     }
 
     this.append(button);
-    $("#" + this.data("componentType") + "_" + this.attr("id")).unwrap();
+    $("#" + "btn"+ this.attr("id").replace('div','')).unwrap();
   }
 };
 
