@@ -639,7 +639,7 @@ $.fn.button = function() {
 
     const button = document.createElement("button");
     button.setAttribute(
-      "id", "btn"+ this.attr("id").replace('div','')
+      "id", "btn"+ removeDiv(this.attr("id"))
     );
 
     button.setAttribute("class", btnclass);
@@ -663,7 +663,7 @@ $.fn.button = function() {
     }
 
     this.append(button);
-    $("#" + "btn"+ this.attr("id").replace('div','')).unwrap();
+    $("#" + "btn"+ removeDiv(this.attr("id"))).unwrap();
   }
 };
 
@@ -671,13 +671,13 @@ $.fn.grid = function() {
   if (this.data("componentType") === "grid") {
     const divgrid = document.createElement("div");
     const table = document.createElement("table");
-    table.setAttribute("id", "table_" + this.attr("id"));
+    table.setAttribute("id", "tbl" + removeDiv(this.attr("id")));
     const tr = document.createElement("tr");
     table.appendChild(tr);
     const td = document.createElement("td");
     tr.appendChild(td);
     const pager = document.createElement("div");
-    pager.setAttribute("id", "pager_" + this.attr("id"));
+    pager.setAttribute("id", "divPager" + removeDiv(this.attr("id")));
     divgrid.appendChild(table);
     divgrid.appendChild(pager);
     this.append(divgrid);
@@ -693,7 +693,7 @@ $.fn.gridrecordscount = function() {
       ? this.data("componentLabel")
       : "Total registros:";
     const spancount = document.createElement("span");
-    spancount.setAttribute("id", "count_" + this.attr("id"));
+    spancount.setAttribute("id", "spnCount" + removeDiv(this.attr("id")));
     span.appendChild(spancount);
     divgrid.appendChild(span);
     this.append(divgrid);

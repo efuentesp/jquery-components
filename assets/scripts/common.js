@@ -2922,3 +2922,10 @@ $( document ).ready(function() {
      }
   });
 });
+
+function removeDiv(str) {
+  if (str.startsWith("div"))
+   return str.replace('div','')
+  else
+   return str
+}
