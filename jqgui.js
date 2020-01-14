@@ -1020,7 +1020,7 @@ $.fn.fieldswitch = function() {
 
 $.fn.spinner = function() {
   if (this.data("componentType") === "spinner") {
-   let id= "spinner_" +this.attr("id");
+   let id= "div" + removeDiv(this.attr("id"));
    let img = document.createElement("img");
    let spinnerdiv = document.createElement("div");
    spinnerdiv.setAttribute("class", "spinner");
@@ -1053,8 +1053,8 @@ $.fn.fieldtimepicker = function() {
                ? this.data("componentTime")
                : hours+":"+minutes;
 
-   let timeid= "field_" +this.attr("id");
-   let inputid= "input_" +this.attr("id");
+   let timeid=   removeDiv(this.attr("id"));
+   let inputid=  removeDiv(this.attr("id"));
 
    let timediv = document.createElement("div");
    if (orientation==="horizontal")
@@ -1062,13 +1062,13 @@ $.fn.fieldtimepicker = function() {
    else
      timediv.setAttribute("class", "field is_vertical");
 
-   timediv.setAttribute("id", timeid);
+   timediv.setAttribute("id", "divTP" + timeid);
 
    let timelabeldiv = document.createElement("div");
    timelabeldiv.setAttribute("class", "field-label flex");
 
    let timelabel = document.createElement("label");
-   timelabel.setAttribute("for", inputid);
+   timelabel.setAttribute("for", "lbl"+inputid);
    timelabel.innerHTML = label;
 
 
@@ -1089,7 +1089,7 @@ $.fn.fieldtimepicker = function() {
 
    let input = document.createElement("input");
    input.setAttribute("class", "timepicker input hasWickedpicker");
-   input.setAttribute("id", inputid);
+   input.setAttribute("id", "txt" + inputid);
    input.setAttribute("style", "width: 8em;");
    input.setAttribute("data-parsley-errors-container", "#field_error_block_"+inputid);
    input.setAttribute("onkeypress", "return false;");
@@ -1113,7 +1113,7 @@ $.fn.fieldtimepicker = function() {
    timediv.appendChild(controldiv);
 
    this.append(timediv);
-   $("#" + timeid).unwrap();
+   $("#" + "divTP" + timeid).unwrap();
 
 
    let timepickerinitialdata = {
@@ -1131,19 +1131,19 @@ $.fn.fieldtimepicker = function() {
     clearable: false
    };
 
-   $("#"+inputid).wickedpicker(timepickerinitialdata);
+   $("#"+"txt" + inputid).wickedpicker(timepickerinitialdata);
 
   }
 }
 
 $.fn.fieldmonthyear = function() {
   if (this.data("componentType") === "field-month-year") {
-   let id = "field_" +this.attr("id");
+   let id = removeDiv(this.attr("id"));
    let div = document.createElement("div");
-   div.setAttribute("id", id);
+   div.setAttribute("id", "divMY" + id);
    div.setAttribute("class", "monthpicker");
    this.append(div);
-   $("#" + id).unwrap();
+   $("#" + "divMY" + id).unwrap();
   }
 }
 
