@@ -1773,14 +1773,14 @@ $.fn.fieldCheckBox = function() {
   const checkBoxOptionsDIV = this.children("div");
 
   //Se indica id y orientacion del div principal
-  this.attr("id", "field_" + fieldId);
+  this.attr("id", "div" + removeDiv(fieldId));
   this.attr("class", "field " + fieldClassOrientation);
 
   //Se genera componente para la leyenda del componente.
   const divLbl = document.createElement("div");
   divLbl.setAttribute("class", "field-label flex");
   const label = document.createElement("label");
-  label.setAttribute("for", "chk_" + fieldId);
+  label.setAttribute("for", "chk" + fieldId);
   var t = document.createTextNode(fieldLabel);
   label.appendChild(t);
   divLbl.appendChild(label);
@@ -1811,8 +1811,8 @@ $.fn.fieldCheckBox = function() {
     labelOpt.appendChild(t);
     const inptChckBox = document.createElement("input");
     inptChckBox.setAttribute("type", "checkbox");
-    inptChckBox.setAttribute("name", "chk_" + fieldId);
-    inptChckBox.setAttribute("id", "chk_" + fieldId + "_" + i);
+    inptChckBox.setAttribute("name", "chk" + removeDiv(fieldId));
+    inptChckBox.setAttribute("id", "chk" + removeDiv(fieldId) + i);
     inptChckBox.setAttribute("value", checkOption.id);
     if (this.data("componentRequired") == true) {
       inptChckBox.setAttribute("required", "required");
@@ -1820,7 +1820,7 @@ $.fn.fieldCheckBox = function() {
     inptChckBox.setAttribute("data-parsley-class-handler", "#field_" + fieldId);
     inptChckBox.setAttribute(
       "data-parsley-errors-container",
-      "#field_error_block_" + fieldId
+      "#divFieldErrorBlock" + removeDiv(fieldId)
     );
     inptChckBox.setAttribute("data-parsley-multiple", "chk_" + fieldId);
     labelOpt.appendChild(inptChckBox);
@@ -1847,7 +1847,7 @@ $.fn.fieldCheckBox = function() {
   const divError = document.createElement("div");
   divError.setAttribute("class", "field-error");
   const divErrorBlk = document.createElement("div");
-  divErrorBlk.setAttribute("id", "field_error_block_" + fieldId);
+  divErrorBlk.setAttribute("id", "divFieldErrorBlock" + removeDiv(fieldId));
   divError.appendChild(divErrorBlk);
   divTT.appendChild(divError);
 
