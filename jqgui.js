@@ -2085,7 +2085,7 @@ $.fn.select = function() {
       }
     });
     this.attr("class", "field is_" + orientation);
-    this.attr("id", "field_" + id);
+    this.attr("id", "div" + removeDiv(id));
 
     const spanlabeltag = document.createElement("span");
     if (required) {
@@ -2095,7 +2095,7 @@ $.fn.select = function() {
       spanlabeltag.setAttribute("class", "pr-3");
     }
     const labeltag = document.createElement("label");
-    labeltag.setAttribute("for", id);
+    labeltag.setAttribute("for", "lbl" + removeDiv(id));
     labeltag.innerText = label;
     labeltag.appendChild(spanlabeltag);
 
@@ -2105,8 +2105,8 @@ $.fn.select = function() {
 
     const selecttag = document.createElement("select");
     selecttag.setAttribute("class", "select2");
-    selecttag.setAttribute("id", id);
-    selecttag.setAttribute("name", id);
+    selecttag.setAttribute("id", "cmb" + removeDiv(id));
+    selecttag.setAttribute("name", "cmb" + removeDiv(id));
     selecttag.setAttribute("style", "width: " + size + ";");
     selecttag.setAttribute("data-parsley-trigger", "change");
     selecttag.setAttribute(
@@ -2149,13 +2149,13 @@ $.fn.select = function() {
     this.append(labeldiv);
     this.append(tooltipdiv);
 
-    $("#" + id).select2({
+    $("#" + "cmb" + removeDiv(id)).select2({
       language: "es",
       placeholder: placeholder,
       minimumResultsForSearch: Infinity
     });
     if (disabled) {
-      $("#" + id).prop("disabled", true);
+      $("#" + "cmb" + removeDiv(id)).prop("disabled", true);
     }
     if (value) {
       $("#" + id)
