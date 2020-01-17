@@ -917,8 +917,8 @@ $.fn.sidebarwrapper = function() {
 $.fn.fieldswitch = function() {
   if (this.data("componentType") === "field-switch") {
     let id= this.attr("id");
-    let fieldid = "field_" + id;
-    let field_error_block = "field_error_block_" + id;
+    let fieldid = "divField" + removeDiv(id);
+    let field_error_block = "divFieldErrorBlock" + removeDiv(id);
     let field_error_block_id = "#" + field_error_block
     let items = $("#" + id).children("div");
     let spanRequiredClass =
@@ -968,7 +968,7 @@ $.fn.fieldswitch = function() {
     formcheckdiv.setAttribute("class", "form-check");
 
     for (i = 0; i < items.length; i++) {
-      var item_id = "radio_" + id + "_" + i
+      var item_id = "rbn" + id  + i
       let label = document.createElement("label");
       if (i === 0) label.setAttribute("class", "form-check-label left active");
       else label.setAttribute("class", "form-check-label right");
