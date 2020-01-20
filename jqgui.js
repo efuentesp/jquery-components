@@ -203,7 +203,7 @@ $.fn.fieldInputPlusMinus = function() {
   const spanRequiredClass =
     "pr-3 " + (this.data("componentRequired") == true ? "required" : "");
 
-  this.attr("id", "field_" + fieldId);
+  this.attr("id", "divField" + removeDiv(fieldId));
   this.attr("class", "field " + fieldClass);
 
   const tooltip = this.data("componentTooltip")
@@ -328,7 +328,7 @@ $.fn.fieldSelectPlusMinus = function() {
   const tooltip = this.data("componentTooltip")
     ? this.data("componentTooltip")
     : "";
-  this.attr("id", "field_" + fieldId);
+  this.attr("id", "divField" + removeDiv(fieldId));
   this.attr("class", "field " + fieldClass);
 
   const divLabel = document.createElement("div");
@@ -381,7 +381,7 @@ $.fn.fieldSelectPlusMinus = function() {
     let id = $("#" + this.getAttribute("id")).attr("id");
     if (id) {
       group.push({ key: id, value: this.innerText });
-      document.getElementById("field_" + fieldId).removeChild(this);
+      document.getElementById("divField" + removeDiv(fieldId)).removeChild(this);
     }
   });
 
@@ -468,7 +468,7 @@ $.fn.fieldSelectPlusMinusAutocomplete = function() {
     ? this.data("componentTooltip")
     : "";
 
-  this.attr("id", "field_" + fieldId);
+  this.attr("id", "divField" + removeDiv(fieldId));
   this.attr("class", "field " + fieldClass);
 
   const divLabel = document.createElement("div");
@@ -729,7 +729,7 @@ $.fn.fieldInput = function() {
   const spanRequiredClass =
     "pr-3 " + (c.data("componentRequired") == true ? "required" : "");
 
-  c.attr("id", fieldId);
+  c.attr("id", "divField"+ removeDiv(fieldId));
   if (fieldClass === "is_horizontal") {
     fieldClass += " items-center";
   }
@@ -1062,7 +1062,7 @@ $.fn.fieldtimepicker = function() {
    else
      timediv.setAttribute("class", "field is_vertical");
 
-   timediv.setAttribute("id", "divTP" + timeid);
+   timediv.setAttribute("id", "divFieldTP" + timeid);
 
    let timelabeldiv = document.createElement("div");
    timelabeldiv.setAttribute("class", "field-label flex");
@@ -1113,7 +1113,7 @@ $.fn.fieldtimepicker = function() {
    timediv.appendChild(controldiv);
 
    this.append(timediv);
-   $("#" + "divTP" + timeid).unwrap();
+   $("#" + "divFieldTP" + timeid).unwrap();
 
 
    let timepickerinitialdata = {
@@ -1148,9 +1148,7 @@ $.fn.fieldmonthyear = function() {
 }
 
 $.fn.fieldDateRange = function() {
-  console.log("Entra ----- > ");
   const fieldId = this.attr("id");
-  console.log("ID :" + fieldId);
   const fieldBeginLabel = this.data("componentBeginLabel");
   const fieldEndLabel = this.data("componentEndLabel");
   const fieldClass = this.data("componentOrientation")
@@ -1168,7 +1166,7 @@ $.fn.fieldDateRange = function() {
     (this.data("componentSize") ? this.data("componentSize") : "8em") +
     ";";
 
-  this.attr("id", "field_" + fieldId);
+  this.attr("id", "divField" + removeDiv(fieldId));
   this.attr("class", "field " + fieldClass);
 
   const divControl = document.createElement("div");
@@ -1423,7 +1421,7 @@ $.fn.fielDate = function() {
     ? this.data("componentSize")
     : "8em";
 
-  this.attr("id", "field_" + fieldId);
+  this.attr("id", "divField" + removeDiv(fieldId));
   this.attr("class", "field " + fieldClassOrientation);
   const divLbl = document.createElement("div");
   divLbl.setAttribute("class", "field-label flex");
@@ -1639,16 +1637,6 @@ $.fn.fielDate = function() {
   $(".datepicker")
     .datepicker(ui_datepicker_settings)
     .prop("readonly", false);
-
-  /*
-  var fieldDateClear = function (id) {
-    var btn_calendar_id = "#clear_" + id;
-    var input_date_id = "#inpt-" + id;
-
-    $(btn_calendar_id).on("click", function() {
-        $(input_date_id).datepicker("setDate", null);
-    });
-  };*/
 };
 
 $.fn.fieldOptions = function() {
@@ -1667,7 +1655,7 @@ $.fn.fieldOptions = function() {
   const childrenDIV = this.children("div");
 
   //Se indica id y orientacion del div principal
-  this.attr("id", "field_" + fieldId);
+  this.attr("id", "divField" + removeDiv(fieldId));
   this.attr("class", "field " + fieldClassOrientation);
   //Se agrega div vacio
   const div1 = document.createElement("div");
@@ -1705,7 +1693,7 @@ $.fn.fieldOptions = function() {
     var t = document.createTextNode(divChild.innerHTML);
     labelOpt.appendChild(t);
     const inptOpt = document.createElement("input");
-    inptOpt.setAttribute("id", "radio_" + fieldId + "_" + i);
+    inptOpt.setAttribute("id", "rbn" + removeDiv(fieldId) + i);
     inptOpt.setAttribute("type", "radio");
     inptOpt.setAttribute("name", fieldId);
     inptOpt.setAttribute("value", divChild.id);
@@ -1725,7 +1713,7 @@ $.fn.fieldOptions = function() {
 
     inptOpt.setAttribute(
       "data-parsley-errors-container",
-      "#field_error_block_" + fieldId
+      "#divFieldErrorBlock" + removeDiv(fieldId)
     );
 
     inptOpt.setAttribute("data-parsley-multiple", fieldId);
@@ -1745,7 +1733,7 @@ $.fn.fieldOptions = function() {
   const divError = document.createElement("div");
   divError.setAttribute("class", "field-error");
   const divFieldError = document.createElement("div");
-  divFieldError.setAttribute("id", "field_error_block_" + fieldId);
+  divFieldError.setAttribute("id", "divFieldErrorBlock" + removeDiv(fieldId));
   divError.appendChild(divFieldError);
   divOpt.appendChild(divError);
   this.append(divOpt);
@@ -1773,7 +1761,7 @@ $.fn.fieldCheckBox = function() {
   const checkBoxOptionsDIV = this.children("div");
 
   //Se indica id y orientacion del div principal
-  this.attr("id", "div" + removeDiv(fieldId));
+  this.attr("id", "divField" + removeDiv(fieldId));
   this.attr("class", "field " + fieldClassOrientation);
 
   //Se genera componente para la leyenda del componente.
@@ -2085,7 +2073,7 @@ $.fn.select = function() {
       }
     });
     this.attr("class", "field is_" + orientation);
-    this.attr("id", "div" + removeDiv(id));
+    this.attr("id", "divField" + removeDiv(id));
 
     const spanlabeltag = document.createElement("span");
     if (required) {
