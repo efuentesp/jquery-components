@@ -2925,7 +2925,11 @@ $( document ).ready(function() {
 
 function removeDiv(str) {
   if (str.startsWith("div"))
-   return str.replace('div','')
+   return toUpperFirst(str.replace('div',''))
   else
    return str
+}
+
+function toUpperFirst(str) {
+  return str[0].toUpperCase() + str.substr(1)
 }

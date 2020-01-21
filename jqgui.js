@@ -631,11 +631,11 @@ $.fn.button = function() {
       ? this.data("componentTooltip")
       : "";
 
-    var btnclass = "button big-button";
+    var btnclass = "amButton amBigButton";
     if (this.data("componentSize") === "medium")
-      btnclass = "button medium-button flex items-center";
+      btnclass = "amButton amMediumButton flex items-center";
     if (this.data("componentSize") === "small")
-      btnclass = "button small-button";
+      btnclass = "amButton amSmallButton";
 
     const button = document.createElement("button");
     button.setAttribute(
@@ -722,24 +722,24 @@ $.fn.fieldInput = function() {
     (c.data("componentSize") ? c.data("componentSize") : "8em") +
     ";";
   let fieldClass =
-    "is_" +
+    "amIs" +
     (c.data("componentOrientation")
-      ? c.data("componentOrientation")
-      : "vertical");
+      ? toUpperFirst(c.data("componentOrientation"))
+      : "Vertical");
   const spanRequiredClass =
-    "pr-3 " + (c.data("componentRequired") == true ? "required" : "");
+    "pr-3 " + (c.data("componentRequired") == true ? "amRequired" : "");
 
   c.attr("id", "divField"+ removeDiv(fieldId));
-  if (fieldClass === "is_horizontal") {
+  if (fieldClass === "amIsHorizontal") {
     fieldClass += " items-center";
   }
-  c.attr("class", "field " + fieldClass);
+  c.attr("class", "amField " + fieldClass);
 
   const divLabel = document.createElement("div");
-  divLabel.setAttribute("class", "field-label flex");
+  divLabel.setAttribute("class", "amFieldLabel flex");
 
   const label = document.createElement("label");
-  label.setAttribute("for", "lbl"+ removeDiv(fieldId));
+  label.setAttribute("for", "txt"+ removeDiv(fieldId));
   label.innerHTML = fieldLabel;
   divLabel.appendChild(label);
   c.append(divLabel);
@@ -752,14 +752,14 @@ $.fn.fieldInput = function() {
   label.appendChild(spanRequired);
 
   const divControl = document.createElement("div");
-  divControl.setAttribute("class", "field-control");
+  divControl.setAttribute("class", "amFieldControl");
   if (c.data("componentTooltip")) {
     divControl.setAttribute("custom-tooltip", c.data("componentTooltip"));
   }
 
   const input = document.createElement("input");
   input.setAttribute("id", "txt"+removeDiv(fieldId));
-  input.setAttribute("class", "input " + fieldType);
+  input.setAttribute("class", "amInput " + fieldType);
   input.setAttribute("type", "text");
   input.setAttribute("style", fieldWidth);
   input.setAttribute("data-parsley-trigger", "keyup");
@@ -771,7 +771,7 @@ $.fn.fieldInput = function() {
   input.setAttribute("data-parsley-validation-threshold", "10");
   input.setAttribute(
     "data-parsley-errors-container",
-    "field_error_block_" + fieldId
+    "divFieldErrorBlock" + removeDiv(fieldId)
   );
 
   if (c.data("componentDisabled") === true) {
@@ -804,11 +804,13 @@ $.fn.fieldInput = function() {
 
 };
 
+
+
 $.fn.tabgroup = function() {
   if (this.data("componentType") === "tab-group") {
     let id = this.attr("id");
     let divtabgroup = document.createElement("div");
-    divtabgroup.setAttribute("class", "tab-group");
+    divtabgroup.setAttribute("class", "amTabGroup");
     divtabgroup.setAttribute("id","divTabGroup" + removeDiv(id));
     let items = $("#" + id).children("div");
     let ul = document.createElement("ul");
@@ -820,9 +822,9 @@ $.fn.tabgroup = function() {
       a.setAttribute("href", "#" + id);
       if ($("#" + this.getAttribute("id")).attr("data-component-img")) {
         let containerimage = document.createElement("div");
-        containerimage.setAttribute("class", "container-imgtxt");
+        containerimage.setAttribute("class", "amContainerImgtxt");
         let image = document.createElement("img");
-        image.setAttribute("class", "container-img_image");
+        image.setAttribute("class", "amContainerImgImage");
         image.setAttribute(
           "src",
           "../../assets/images/" +
@@ -830,7 +832,7 @@ $.fn.tabgroup = function() {
         );
         image.setAttribute("align", "middle");
         let containertext = document.createElement("div");
-        containertext.setAttribute("class", "container-img_text");
+        containertext.setAttribute("class", "amContainerImgText");
         containertext.innerHTML = $("#" + this.getAttribute("id")).attr(
           "data-component-label"
         );
@@ -922,14 +924,14 @@ $.fn.fieldswitch = function() {
     let field_error_block_id = "#" + field_error_block
     let items = $("#" + id).children("div");
     let spanRequiredClass =
-      "pr-5 " + (this.data("componentRequired") === true ? "required" : "");
+      "pr-5 " + (this.data("componentRequired") === true ? "amRequired" : "");
 
     let fieldlabeldiv = document.createElement("div");
     let fieldlabel = document.createElement("label");
     let fieldlabelspan = document.createElement("span");
 
-    fieldlabeldiv.setAttribute("class", "field-label flex");
-    fieldlabel.setAttribute("class", "field-label");
+    fieldlabeldiv.setAttribute("class", "amFieldLabel flex");
+    fieldlabel.setAttribute("class", "amFieldLabel");
     fieldlabelspan.setAttribute("class", spanRequiredClass);
     if (this.data("componentRequired"))
       fieldlabelspan.innerHTML="*";
@@ -943,7 +945,7 @@ $.fn.fieldswitch = function() {
     let fieldcontroldiv = document.createElement("div");
     let formcheckdiv = document.createElement("div");
 
-    flexdiv.setAttribute("class", "field-label flex");
+    flexdiv.setAttribute("class", "amFieldLabel flex");
 
     let itemscenter=
      this.data("componentOrientation")==="horizontal" ? " items-center":"";
@@ -951,30 +953,31 @@ $.fn.fieldswitch = function() {
     if (this.data("componentOrientation"))
       fielddiv.setAttribute(
         "class",
-        "field is_" + this.data("componentOrientation") + itemscenter
+        "amField amIs" + toUpperFirst(this.data("componentOrientation")) + itemscenter
       );
-    else fielddiv.setAttribute("class", "field is_horizontal items-center");
+    else fielddiv.setAttribute("class", "amField amIsHorizontal items-center");
 
     fielddiv.setAttribute("id", fieldid);
     fieldcontroldiv.setAttribute(
       "class",
-      "field-control radio-toggle has-toggle-input"
+      "amFieldControl amRadioToggle amHasToggleInput"
     );
+
     if (this.data("componentTooltip"))
       fieldcontroldiv.setAttribute(
         "custom-tooltip",
         this.data("componentTooltip")
       );
-    formcheckdiv.setAttribute("class", "form-check");
+    formcheckdiv.setAttribute("class", "amFormCheck");
 
     for (i = 0; i < items.length; i++) {
       var item_id = "rbn" + id  + i
       let label = document.createElement("label");
-      if (i === 0) label.setAttribute("class", "form-check-label left active");
-      else label.setAttribute("class", "form-check-label right");
+      if (i === 0) label.setAttribute("class", "amFormCheckLabel left active");
+      else label.setAttribute("class", "amFormCheckLabel right");
       let input = document.createElement("input");
       let span = document.createElement("span");
-      input.setAttribute("class", "form-check-input");
+      input.setAttribute("class", "amFormCheckInput");
       input.setAttribute("type", "radio");
       input.setAttribute("name", id);
       input.setAttribute("id", item_id);
@@ -991,17 +994,17 @@ $.fn.fieldswitch = function() {
       formcheckdiv.appendChild(label);
     }
 
-    flexdiv.setAttribute("class", "field-label flex");
+    flexdiv.setAttribute("class", "amFieldLabel flex");
 
     fieldcontroldiv.setAttribute(
       "class",
-      "field-control radio-toggle has-toggle-input"
+      "amFieldControl amRadioToggle has-toggle-input"
     );
-    formcheckdiv.setAttribute("class", "form-check");
+    formcheckdiv.setAttribute("class", "amFormCheck");
 
     let fielderrordiv = document.createElement("div");
     let fielderrorblockdiv = document.createElement("div");
-    fielderrordiv.setAttribute("class", "field-error");
+    fielderrordiv.setAttribute("class", "amFieldError");
     fielderrorblockdiv.setAttribute("id", field_error_block);
     fieldcontroldiv.appendChild(formcheckdiv);
     fieldcontroldiv.appendChild(fielderrordiv);
@@ -1010,7 +1013,7 @@ $.fn.fieldswitch = function() {
     fielddiv.appendChild(fieldlabeldiv);
     fielddiv.appendChild(fieldcontroldiv);
     this.append(fielddiv);
-    $(".radio-toggle").toggleInput();
+    $(".amRadioToggle").toggleInput();
     $("#" + fieldid)
       .siblings()
       .remove();
@@ -1023,7 +1026,7 @@ $.fn.spinner = function() {
    let id= "div" + removeDiv(this.attr("id"));
    let img = document.createElement("img");
    let spinnerdiv = document.createElement("div");
-   spinnerdiv.setAttribute("class", "spinner");
+   spinnerdiv.setAttribute("class", "amSpinner");
    spinnerdiv.setAttribute("id", id);
    img.setAttribute("src", "../../../../assets/images/loader.gif");
    img.setAttribute("alt", "imagen");
@@ -1058,22 +1061,22 @@ $.fn.fieldtimepicker = function() {
 
    let timediv = document.createElement("div");
    if (orientation==="horizontal")
-     timediv.setAttribute("class", "field is_horizontal items-center");
+     timediv.setAttribute("class", "field amIsHorizontal items-center");
    else
-     timediv.setAttribute("class", "field is_vertical");
+     timediv.setAttribute("class", "field amIsVertical");
 
-   timediv.setAttribute("id", "divFieldTP" + timeid);
+   timediv.setAttribute("id", "divField" + timeid);
 
    let timelabeldiv = document.createElement("div");
-   timelabeldiv.setAttribute("class", "field-label flex");
+   timelabeldiv.setAttribute("class", "amFieldLabel flex");
 
    let timelabel = document.createElement("label");
-   timelabel.setAttribute("for", "lbl"+inputid);
+   timelabel.setAttribute("for", inputid);
    timelabel.innerHTML = label;
 
 
    let timespan = document.createElement("span");
-   timespan.setAttribute("class", "required");
+   timespan.setAttribute("class", "amRequired");
    timespan.innerHTML = "*";
 
    timelabeldiv.appendChild(timelabel);
@@ -1082,16 +1085,16 @@ $.fn.fieldtimepicker = function() {
     timelabeldiv.appendChild(timespan);
 
    let controldiv = document.createElement("div");
-   controldiv.setAttribute("class", "field-control");
+   controldiv.setAttribute("class", "amFieldControl");
 
    let inputdiv = document.createElement("div");
-   inputdiv.setAttribute("class", "field-input flex items-center");
+   inputdiv.setAttribute("class", "amFieldInput flex items-center");
 
    let input = document.createElement("input");
    input.setAttribute("class", "timepicker input hasWickedpicker");
    input.setAttribute("id", "txt" + inputid);
    input.setAttribute("style", "width: 8em;");
-   input.setAttribute("data-parsley-errors-container", "#field_error_block_"+inputid);
+   input.setAttribute("data-parsley-errors-container", "#divFieldErrorBlock"+removeDiv(inputid));
    input.setAttribute("onkeypress", "return false;");
    input.setAttribute("aria-showingpicker", "false");
    input.setAttribute("tabindex", "0");
@@ -1099,9 +1102,9 @@ $.fn.fieldtimepicker = function() {
    inputdiv.appendChild(input);
 
    let errordiv = document.createElement("div");
-   errordiv.setAttribute("class", "field-error");
+   errordiv.setAttribute("class", "amFieldError");
    let errorblockdiv = document.createElement("div");
-   errorblockdiv.setAttribute("id", "field_error_block_"+inputid);
+   errorblockdiv.setAttribute("id", "divFieldErrorBlock"+removeDiv(inputid));
 
    errordiv.appendChild(errorblockdiv);
 
@@ -1113,7 +1116,7 @@ $.fn.fieldtimepicker = function() {
    timediv.appendChild(controldiv);
 
    this.append(timediv);
-   $("#" + "divFieldTP" + timeid).unwrap();
+   $("#" + "divField" + timeid).unwrap();
 
 
    let timepickerinitialdata = {
@@ -1140,10 +1143,10 @@ $.fn.fieldmonthyear = function() {
   if (this.data("componentType") === "field-month-year") {
    let id = removeDiv(this.attr("id"));
    let div = document.createElement("div");
-   div.setAttribute("id", "divMY" + id);
+   div.setAttribute("id", "div" + id);
    div.setAttribute("class", "monthpicker");
    this.append(div);
-   $("#" + "divMY" + id).unwrap();
+   $("#" + "div" + id).unwrap();
   }
 }
 
@@ -1153,7 +1156,7 @@ $.fn.fieldDateRange = function() {
   const fieldEndLabel = this.data("componentEndLabel");
   const fieldClass = this.data("componentOrientation")
     ? this.data("componentOrientation")
-    : "vertical";
+    : "Vertical";
   const fieldRequired =
     this.data("componentRequired") == true ? "required" : "";
   const tooltip = this.data("componentTooltip")
@@ -1167,10 +1170,10 @@ $.fn.fieldDateRange = function() {
     ";";
 
   this.attr("id", "divField" + removeDiv(fieldId));
-  this.attr("class", "field " + fieldClass);
+  this.attr("class", "field amIs" + toUpperFirst(fieldClass));
 
   const divControl = document.createElement("div");
-  divControl.setAttribute("class", "field-control flex");
+  divControl.setAttribute("class", "amFieldControl flex");
   if (tooltip) {
     divControl.setAttribute("custom-tooltip", tooltip);
   }
@@ -1181,7 +1184,7 @@ $.fn.fieldDateRange = function() {
   divBeginDate.setAttribute("id", "field_" + fieldId + "_begin_date");
 
   const divLabelBeginDate = document.createElement("div");
-  divLabelBeginDate.setAttribute("class", "field-label flex");
+  divLabelBeginDate.setAttribute("class", "amFieldLabel flex");
   divBeginDate.appendChild(divLabelBeginDate);
 
   const labelBeginDate = document.createElement("label");
@@ -1198,14 +1201,14 @@ $.fn.fieldDateRange = function() {
   divLabelBeginDate.appendChild(labelBeginDate);
 
   const divControlInput = document.createElement("div");
-  divControlInput.setAttribute("class", "field-control flex");
+  divControlInput.setAttribute("class", "amFieldControl flex");
   if (tooltip) {
     divControlInput.setAttribute("custom-tooltip", tooltip);
   }
   divBeginDate.appendChild(divControlInput);
 
   const divControlFieldInput = document.createElement("div");
-  divControlFieldInput.setAttribute("class", "field-input flex items-center");
+  divControlFieldInput.setAttribute("class", "amFieldIinput flex items-center");
 
   const inputBegin = document.createElement("input");
   inputBegin.setAttribute("class", "input datepicker_range");
@@ -1215,7 +1218,7 @@ $.fn.fieldDateRange = function() {
   inputBegin.setAttribute("readonly", "readonly");
   inputBegin.setAttribute(
     "data-parsley-errors-container",
-    "#field_error_block_" + fieldId + "_begin_date"
+    "#divFieldErrorBlock" + removeDiv(fieldId) + "BeginDate"
   );
   divControlFieldInput.appendChild(inputBegin);
 
@@ -1228,17 +1231,17 @@ $.fn.fieldDateRange = function() {
   divControlFieldInput.appendChild(inputBeginImage);
 
   const spanBegin = document.createElement("span");
-  spanBegin.setAttribute("class", "field-error flex");
+  spanBegin.setAttribute("class", "amFieldError flex");
 
   const divSpanBeginError = document.createElement("div");
-  divSpanBeginError.setAttribute("class", "error-tip");
+  divSpanBeginError.setAttribute("class", "amErrorTip");
   spanBegin.appendChild(divSpanBeginError);
 
   const divSpanMsgBeginError = document.createElement("div");
-  divSpanMsgBeginError.setAttribute("class", "error-msg");
+  divSpanMsgBeginError.setAttribute("class", "amErrorMsg");
   divSpanMsgBeginError.setAttribute(
     "id",
-    "field_error_block_" + fieldId + "_begin_date"
+    "divFieldErrorBlock" + removeDiv(fieldId) + "BeginDate"
   );
   spanBegin.appendChild(divSpanMsgBeginError);
   divControlFieldInput.appendChild(spanBegin);
@@ -1251,7 +1254,7 @@ $.fn.fieldDateRange = function() {
   divEndDate.setAttribute("id", "field_" + fieldId + "_end_date");
 
   const divLabelEndDate = document.createElement("div");
-  divLabelEndDate.setAttribute("class", "field-label flex");
+  divLabelEndDate.setAttribute("class", "amFieldLabel flex");
   divEndDate.appendChild(divLabelEndDate);
 
   const labelEndDate = document.createElement("label");
@@ -1268,7 +1271,7 @@ $.fn.fieldDateRange = function() {
   divLabelEndDate.appendChild(labelEndDate);
 
   const divControlEndInput = document.createElement("div");
-  divControlEndInput.setAttribute("class", "field-control flex");
+  divControlEndInput.setAttribute("class", "amFieldControl flex");
   if (tooltip) {
     divControlEndInput.setAttribute("custom-tooltip", tooltip);
   }
@@ -1277,7 +1280,7 @@ $.fn.fieldDateRange = function() {
   const divControlFieldEndInput = document.createElement("div");
   divControlFieldEndInput.setAttribute(
     "class",
-    "field-input flex items-center"
+    "amFieldInput flex items-center"
   );
 
   const inputEnd = document.createElement("input");
@@ -1288,7 +1291,7 @@ $.fn.fieldDateRange = function() {
   inputEnd.setAttribute("readonly", "readonly");
   inputEnd.setAttribute(
     "data-parsley-errors-container",
-    "#field_error_block_" + fieldId + "_end_date"
+    "#divFieldErrorBlock" + removeDiv(fieldId) + "EndDate"
   );
   divControlFieldEndInput.appendChild(inputEnd);
 
@@ -1301,17 +1304,17 @@ $.fn.fieldDateRange = function() {
   divControlFieldEndInput.appendChild(inputEndImage);
 
   const spanEnd = document.createElement("span");
-  spanEnd.setAttribute("class", "field-error flex");
+  spanEnd.setAttribute("class", "amFieldError flex");
 
   const divSpanEndError = document.createElement("div");
-  divSpanEndError.setAttribute("class", "error-tip");
+  divSpanEndError.setAttribute("class", "amErrorTip");
   spanEnd.appendChild(divSpanEndError);
 
   const divSpanMsgEndError = document.createElement("div");
-  divSpanMsgEndError.setAttribute("class", "error-msg");
+  divSpanMsgEndError.setAttribute("class", "amErrorMsg");
   divSpanMsgEndError.setAttribute(
     "id",
-    "field_error_block_" + fieldId + "_end_date"
+    "divFieldErrorBlock" + removeDiv(fieldId) + "EndDate"
   );
   spanEnd.appendChild(divSpanMsgEndError);
   divControlFieldEndInput.appendChild(spanEnd);
@@ -1407,7 +1410,7 @@ $.fn.fielDate = function() {
   const fieldId = this.attr("id");
   const fieldLabel = this.attr("data-component-label");
   const spanRequiredClass =
-    "pr-3 " + (this.data("componentRequired") == true ? "required" : "");
+    "pr-3 " + (this.data("componentRequired") == true ? "amRequired" : "");
   const fieldClassOrientation =
     "is_" +
     (this.data("componentOrientation")
@@ -1424,9 +1427,9 @@ $.fn.fielDate = function() {
   this.attr("id", "divField" + removeDiv(fieldId));
   this.attr("class", "field " + fieldClassOrientation);
   const divLbl = document.createElement("div");
-  divLbl.setAttribute("class", "field-label flex");
+  divLbl.setAttribute("class", "amFieldLabel flex");
   const label = document.createElement("label");
-  label.setAttribute("for", fieldId);
+  label.setAttribute("for", "divField" + removeDiv(fieldId));
   var t = document.createTextNode(fieldLabel);
   label.appendChild(t);
   const spanRequired = document.createElement("span");
@@ -1438,22 +1441,22 @@ $.fn.fielDate = function() {
   divLbl.appendChild(label);
   this.append(divLbl);
   const divDateTT = document.createElement("div");
-  divDateTT.setAttribute("class", "field-control");
+  divDateTT.setAttribute("class", "amFieldControl");
   divDateTT.setAttribute("custom-tooltip", toolTip);
 
   const divDate = document.createElement("div");
-  divDate.setAttribute("class", "field-input flex items-center");
+  divDate.setAttribute("class", "amFieldInput flex items-center");
   const inpt = document.createElement("input");
-  //inpt.setAttribute("class", "input datepicker hasDatepicker");
+
   inpt.setAttribute("class", "input datepicker");
-  inpt.setAttribute("id", "inpt-" + fieldId);
+  inpt.setAttribute("id", "txt" + fieldId);
   if (this.data("componentRequired") == true) {
     inpt.setAttribute("required", "required");
   }
   inpt.setAttribute("style", "width: " + fieldSize + ";");
   inpt.setAttribute(
     "data-parsley-errors-container",
-    "#field_error_block_" + fieldId
+    "#divFieldErrorBlock" + removeDiv(fieldId)
   );
   inpt.setAttribute("maxlength", "10");
   if (this.data("componentDisabled") === true) {
@@ -1461,15 +1464,7 @@ $.fn.fielDate = function() {
   }
 
   divDate.appendChild(inpt);
-  /*
 
-        const image = document.createElement("img");
-        image.setAttribute("class", "ui-datepicker-trigger");
-        image.setAttribute("src", "./images/btn-calendario.svg");
-        image.setAttribute("alt", "");
-        image.setAttribute("title", "");
-        divDate.appendChild(image);//divDate.append(image);
-        */
   if (isWithBotonClear) {
     const inpt2 = document.createElement("input");
     inpt2.setAttribute("class", "pl-1");
@@ -1477,18 +1472,17 @@ $.fn.fielDate = function() {
     inpt2.setAttribute("id", "clear_" + fieldId);
     inpt2.setAttribute("src", "../../assets/images/meddelete.png");
     inpt2.setAttribute("style", "width:15px;height:15px;");
-    //inpt2.setAttribute("value", " ");
 
     divDate.appendChild(inpt2);
   }
   const span = document.createElement("span");
-  span.setAttribute("class", "field-error flex");
+  span.setAttribute("class", "amFieldError flex");
   const divErrorTip = document.createElement("div");
-  divErrorTip.setAttribute("class", "error-tip");
+  divErrorTip.setAttribute("class", "amErrorTip");
   span.appendChild(divErrorTip);
   const divErrorMsg = document.createElement("div");
-  divErrorMsg.setAttribute("class", "error-msg");
-  divErrorMsg.setAttribute("id", "field_error_block_" + fieldId);
+  divErrorMsg.setAttribute("class", "amErrorMsg");
+  divErrorMsg.setAttribute("id", "divFieldErrorBlock" + removeDiv(fieldId));
   span.appendChild(divErrorMsg);
   divDate.appendChild(span);
   divDateTT.appendChild(divDate);
@@ -1507,7 +1501,7 @@ $.fn.fielDate = function() {
   $(".datepicker").mask("99-99-9999");
 
   $(function() {
-    $("#inpt-" + fieldId).datepicker({
+    $("#txt" + fieldId).datepicker({
       showOn: "button",
       buttonImage: "../../assets/images/btn-calendario.svg",
       buttonImageOnly: true,
@@ -1643,7 +1637,7 @@ $.fn.fieldOptions = function() {
   const fieldId = this.attr("id");
   const fieldLabel = this.attr("data-component-label");
   const spanRequiredClass =
-    "pr-5 " + (this.data("componentRequired") == true ? "required" : "");
+    "pr-5 " + (this.data("componentRequired") == true ? "amRequired" : "");
   const fieldClassOrientation =
     "is_" +
     (this.data("componentOrientation")
@@ -1731,7 +1725,7 @@ $.fn.fieldOptions = function() {
 
   //Se agrega div para errores
   const divError = document.createElement("div");
-  divError.setAttribute("class", "field-error");
+  divError.setAttribute("class", "amFieldError");
   const divFieldError = document.createElement("div");
   divFieldError.setAttribute("id", "divFieldErrorBlock" + removeDiv(fieldId));
   divError.appendChild(divFieldError);
