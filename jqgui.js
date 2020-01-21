@@ -2041,8 +2041,8 @@ $.fn.select = function() {
       ? this.data("componentLabel")
       : "";
     const orientation = this.data("componentOrientation")
-      ? this.data("componentOrientation")
-      : "vertical";
+      ? toUpperFirst(this.data("componentOrientation"))
+      : "Vertical";
     const size = this.data("componentSize")
       ? this.data("componentSize")
       : "8em";
@@ -2064,23 +2064,23 @@ $.fn.select = function() {
         this.removeAttributeNode(attributes[i]);
       }
     });
-    this.attr("class", "field is_" + orientation);
+    this.attr("class", "amField amIs" + orientation);
     this.attr("id", "divField" + removeDiv(id));
 
     const spanlabeltag = document.createElement("span");
     if (required) {
-      spanlabeltag.setAttribute("class", "pr-3 required");
+      spanlabeltag.setAttribute("class", "pr-3 amRequired");
       spanlabeltag.innerText = "*";
     } else {
       spanlabeltag.setAttribute("class", "pr-3");
     }
     const labeltag = document.createElement("label");
-    labeltag.setAttribute("for", "lbl" + removeDiv(id));
+    labeltag.setAttribute("for", "cmb" + removeDiv(id));
     labeltag.innerText = label;
     labeltag.appendChild(spanlabeltag);
 
     const labeldiv = document.createElement("div");
-    labeldiv.setAttribute("class", "field-label flex");
+    labeldiv.setAttribute("class", "amFieldLabel flex");
     labeldiv.appendChild(labeltag);
 
     const selecttag = document.createElement("select");
@@ -2091,7 +2091,7 @@ $.fn.select = function() {
     selecttag.setAttribute("data-parsley-trigger", "change");
     selecttag.setAttribute(
       "data-parsley-errors-container",
-      "#field_error_block_" + id
+      "#divFieldErrorBlock" + removeDiv(id)
     );
     if (required) {
       selecttag.setAttribute("required", "required");
@@ -2114,11 +2114,11 @@ $.fn.select = function() {
     this.empty();
 
     const diverror = document.createElement("div");
-    diverror.setAttribute("class", "field-error");
-    diverror.innerHTML = '<div id="field_error_block_' + id + '"></div>';
+    diverror.setAttribute("class", "amFieldError");
+    diverror.innerHTML = '<div id="divFieldErrorBlock' + removeDiv(id) + '"></div>';
 
     const tooltipdiv = document.createElement("div");
-    tooltipdiv.setAttribute("class", "field-control");
+    tooltipdiv.setAttribute("class", "amFieldControl");
     if (tooltip) {
       tooltipdiv.setAttribute("custom-tooltip", tooltip);
     }
