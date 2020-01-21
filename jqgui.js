@@ -1639,10 +1639,10 @@ $.fn.fieldOptions = function() {
   const spanRequiredClass =
     "pr-5 " + (this.data("componentRequired") == true ? "amRequired" : "");
   const fieldClassOrientation =
-    "is_" +
+    "amIs" +
     (this.data("componentOrientation")
-      ? this.data("componentOrientation")
-      : "vertical");
+      ? toUpperFirst(this.data("componentOrientation"))
+      : "Vertical");
   const toolTip = this.data("componentTooltip")
     ? this.data("componentTooltip")
     : "";
@@ -1650,30 +1650,30 @@ $.fn.fieldOptions = function() {
 
   //Se indica id y orientacion del div principal
   this.attr("id", "divField" + removeDiv(fieldId));
-  this.attr("class", "field " + fieldClassOrientation);
+  this.attr("class", "amField " + fieldClassOrientation);
   //Se agrega div vacio
-  const div1 = document.createElement("div");
-  div1.setAttribute("class", "field-label flex");
+  const divLabel = document.createElement("div");
+  divLabel.setAttribute("class", "amFieldLabel flex");
   const label = document.createElement("label");
-  label.setAttribute("class", "field-label");
+  label.setAttribute("class", "amFieldLabel");
   var t = document.createTextNode(fieldLabel);
   label.appendChild(t);
-  div1.appendChild(label);
+  divLabel.appendChild(label);
   const spanRequired = document.createElement("span");
   spanRequired.setAttribute("class", spanRequiredClass);
   if (this.data("componentRequired") == true) {
     spanRequired.innerHTML = "*";
   }
-  div1.appendChild(spanRequired);
+  divLabel.appendChild(spanRequired);
 
   const span = document.createElement("span");
   span.setAttribute("class", "pr-5");
-  div1.appendChild(span);
-  this.append(div1);
+  divLabel.appendChild(span);
+  this.append(divLabel);
 
   //Se anexan las opciones del componente Options
   const divOpt = document.createElement("div");
-  divOpt.setAttribute("class", "field-control");
+  divOpt.setAttribute("class", "amFieldControl");
   if (toolTip) {
     //divOpt.setAttribute("data-tooltip", toolTip);
     divOpt.setAttribute("custom-tooltip", toolTip);
@@ -1695,7 +1695,6 @@ $.fn.fieldOptions = function() {
       inptOpt.setAttribute("required", "required");
     }
 
-    //if (divChild.attributes.checked && divChild.attributes.checked.value == "true") {
     if (
       divChild.getAttribute("data-component-checked") != null &&
       divChild.getAttribute("data-component-checked") == "true"
@@ -1703,7 +1702,7 @@ $.fn.fieldOptions = function() {
       inptOpt.setAttribute("checked", "checked");
     }
 
-    inptOpt.setAttribute("data-parsley-class-handler", "#field_" + fieldId);
+    inptOpt.setAttribute("data-parsley-class-handler", "#divField" + removeDiv(fieldId));
 
     inptOpt.setAttribute(
       "data-parsley-errors-container",
@@ -1711,7 +1710,6 @@ $.fn.fieldOptions = function() {
     );
 
     inptOpt.setAttribute("data-parsley-multiple", fieldId);
-    //inptOpt.setAttribute("data-parsley-id", "22");
     labelOpt.appendChild(inptOpt);
     const span = document.createElement("span");
     span.setAttribute("class", "checkmark");
@@ -1743,12 +1741,12 @@ $.fn.fieldCheckBox = function() {
     ? this.data("componentLabel")
     : "";
   const spanRequiredClass =
-    "pr-5 " + (this.data("componentRequired") == true ? "required" : "");
+    "pr-5 " + (this.data("componentRequired") == true ? "amRequired" : "");
   const fieldClassOrientation =
-    "is_" +
+    "amIs" +
     (this.data("componentOrientation")
-      ? this.data("componentOrientation")
-      : "vertical");
+      ? toUpperFirst(this.data("componentOrientation"))
+      : "Vertical");
   const toolTip = this.data("componentTooltip")
     ? this.data("componentTooltip")
     : "";
@@ -1756,11 +1754,11 @@ $.fn.fieldCheckBox = function() {
 
   //Se indica id y orientacion del div principal
   this.attr("id", "divField" + removeDiv(fieldId));
-  this.attr("class", "field " + fieldClassOrientation);
+  this.attr("class", "amField " + fieldClassOrientation);
 
   //Se genera componente para la leyenda del componente.
   const divLbl = document.createElement("div");
-  divLbl.setAttribute("class", "field-label flex");
+  divLbl.setAttribute("class", "amFieldLabel flex");
   const label = document.createElement("label");
   label.setAttribute("for", "chk" + fieldId);
   var t = document.createTextNode(fieldLabel);
@@ -1775,13 +1773,13 @@ $.fn.fieldCheckBox = function() {
   this.append(divLbl);
 
   const divTT = document.createElement("div");
-  divTT.setAttribute("class", "field-control");
+  divTT.setAttribute("class", "amFieldControl");
   if (toolTip) {
     //divTT.setAttribute("data-tooltip", toolTip);
     divTT.setAttribute("custom-tooltip", toolTip);
   }
   const divOptionsCheckBox = document.createElement("div");
-  if (fieldClassOrientation == "is_horizontal") {
+  if (fieldClassOrientation == "amIsHorizontal") {
     divOptionsCheckBox.setAttribute("class", "flex");
   }
   for (var i = 0; i < checkBoxOptionsDIV.length; i++) {
@@ -1799,7 +1797,7 @@ $.fn.fieldCheckBox = function() {
     if (this.data("componentRequired") == true) {
       inptChckBox.setAttribute("required", "required");
     }
-    inptChckBox.setAttribute("data-parsley-class-handler", "#field_" + fieldId);
+    inptChckBox.setAttribute("data-parsley-class-handler", "#divField" + removeDiv(fieldId));
     inptChckBox.setAttribute(
       "data-parsley-errors-container",
       "#divFieldErrorBlock" + removeDiv(fieldId)
@@ -1827,7 +1825,7 @@ $.fn.fieldCheckBox = function() {
   divTT.appendChild(divOptionsCheckBox);
 
   const divError = document.createElement("div");
-  divError.setAttribute("class", "field-error");
+  divError.setAttribute("class", "amFieldError");
   const divErrorBlk = document.createElement("div");
   divErrorBlk.setAttribute("id", "divFieldErrorBlock" + removeDiv(fieldId));
   divError.appendChild(divErrorBlk);
