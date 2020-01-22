@@ -2930,7 +2930,7 @@ $(document).ready(function() {
 
 function removeDiv(str) {
   if (str.startsWith("div")) return toUpperFirst(str.replace("div", ""));
-  else return str;
+  else return toUpperFirst(str);
 }
 
 function toUpperFirst(str) {

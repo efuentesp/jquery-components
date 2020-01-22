@@ -1469,7 +1469,7 @@ $.fn.fielDate = function() {
   const inpt = document.createElement("input");
 
   inpt.setAttribute("class", "input datepicker");
-  inpt.setAttribute("id", "txt" + fieldId);
+  inpt.setAttribute("id", "txt" + toUpperFirst(fieldId));
   if (this.data("componentRequired") == true) {
     inpt.setAttribute("required", "required");
   }
@@ -1489,7 +1489,7 @@ $.fn.fielDate = function() {
     const inpt2 = document.createElement("input");
     inpt2.setAttribute("class", "pl-1");
     inpt2.setAttribute("type", "image");
-    inpt2.setAttribute("id", "clear_" + fieldId);
+    inpt2.setAttribute("id", "txtClear" + toUpperFirst(fieldId));
     inpt2.setAttribute("src", "../../assets/images/meddelete.png");
     inpt2.setAttribute("style", "width:15px;height:15px;");
 

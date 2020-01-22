@@ -815,8 +815,8 @@ var QUnitDate = QUnit.test("SELECTED OPTIONS - First option selected", function(
   assert
 ) {
   //arrange
-  const options = $("#field_negocio")
-    .children(".field-control")
+  const options = $("#divFieldNegocio")
+    .children(".amFieldControl")
     .children("label");
   const optionExpected = options[0];
   const optionSelectedValueExpected = optionExpected.childNodes[1].value;
@@ -841,8 +841,8 @@ var QUnitDate = QUnit.test(
   "SELECTED OPTIONS - Second option selected",
   function(assert) {
     //arrange
-    const options = $("#field_negocio")
-      .children(".field-control")
+    const options = $("#divFieldNegocio")
+      .children(".amFieldControl")
       .children("label");
     const optionExpected = options[1];
     const optionSelectedValueExpected = optionExpected.childNodes[1].value;
@@ -868,8 +868,8 @@ var QUnitDate = QUnit.test("SELECTED OPTIONS - Third option selected", function(
   assert
 ) {
   //arrange
-  const options = $("#field_negocio")
-    .children(".field-control")
+  const options = $("#divFieldNegocio")
+    .children(".amFieldControl")
     .children("label");
   const optionExpected = options[2];
   const optionSelectedValueExpected = optionExpected.childNodes[1].value;
@@ -893,7 +893,7 @@ var QUnitDate = QUnit.test("SELECTED OPTIONS - Third option selected", function(
 QUnit.test("DATEPICKER captura de fecha válida", function(assert) {
   // arrange
   const fechaIngresada = "01-01-2020";
-  const txtInputFecha = $("#inpt-fecha");
+  const txtInputFecha = $("#txtFecha");
 
   // act
   txtInputFecha.val(fechaIngresada);
@@ -907,7 +907,7 @@ QUnit.test("DATEPICKER captura de fecha inválida por dia", function(assert) {
   // arrange
   const fechaIngresada = "35-01-2020";
   const fechaEsperada = "04-02-2020";
-  const txtInputFecha = $("#inpt-fecha");
+  const txtInputFecha = $("#txtFecha");
 
   // act
   txtInputFecha.val(fechaIngresada);
@@ -921,7 +921,7 @@ QUnit.test("DATEPICKER captura de fecha inválida por mes", function(assert) {
   // arrange
   const fechaIngresada = "01-15-2020";
   const fechaEsperada = "01-03-2021";
-  const txtInputFecha = $("#inpt-fecha");
+  const txtInputFecha = $("#txtFecha");
 
   // act
   txtInputFecha.val(fechaIngresada);
@@ -936,7 +936,7 @@ QUnit.test("DATEPICKER captura de fecha inválida por año", function(assert) {
   const fechaIngresada = "01-01-1900";
   const actualYear = new Date().getFullYear();
   const fechaEsperada = "01-01-" + actualYear;
-  const txtInputFecha = $("#inpt-fecha");
+  const txtInputFecha = $("#txtFecha");
 
   // act
   txtInputFecha.val(fechaIngresada);
@@ -949,8 +949,8 @@ QUnit.test("DATEPICKER captura de fecha inválida por año", function(assert) {
 QUnit.test("DATEPICKER botón clear", function(assert) {
   // arrange
   const fechaIngresada = "16-11-2019";
-  const txtInputFecha = $("#inpt-fecha");
-  const btnClear = $("#clear_fecha");
+  const txtInputFecha = $("#txtFecha");
+  const btnClear = $("#txtClearFecha");
 
   // act
   txtInputFecha.val(fechaIngresada);
@@ -966,8 +966,8 @@ QUnit.test("DATEPICKER botón clear", function(assert) {
 QUnit.test("CHECKBOX Select first option", function(assert) {
   // arrange
   const index = 0;
-  const checksBox = $("#field_bancos")
-    .children("div .field-control")
+  const checksBox = $("#divFieldBancos")
+    .children("div .amFieldControl")
     .children("div")
     .children("label");
   const checkBoxExpected = checksBox[index];
@@ -995,8 +995,8 @@ QUnit.test("CHECKBOX Select first option", function(assert) {
 QUnit.test("CHECKBOX Select second option", function(assert) {
   // arrange
   const index = 1;
-  const checksBox = $("#field_bancos")
-    .children("div .field-control")
+  const checksBox = $("#divFieldBancos")
+    .children("div .amFieldControl")
     .children("div")
     .children("label");
   const checkBoxExpected = checksBox[index];
@@ -1024,8 +1024,8 @@ QUnit.test("CHECKBOX Select second option", function(assert) {
 QUnit.test("CHECKBOX Select third option", function(assert) {
   // arrange
   const index = 2;
-  const checksBox = $("#field_bancos")
-    .children("div .field-control")
+  const checksBox = $("#divFieldBancos")
+    .children("div .amFieldControl")
     .children("div")
     .children("label");
   const checkBoxExpected = checksBox[index];
@@ -1054,8 +1054,8 @@ QUnit.test("CHECKBOX Select first and second options", function(assert) {
   // arrange
   const index_1 = 0;
   const index_2 = 1;
-  const checksBox = $("#field_bancos")
-    .children("div .field-control")
+  const checksBox = $("#divFieldBancos")
+    .children("div .amFieldControl")
     .children("div")
     .children("label");
   const checkBoxExpected1 = checksBox[index_1];
@@ -1091,8 +1091,8 @@ QUnit.test("CHECKBOX Select first and third options", function(assert) {
   // arrange
   const index_1 = 0;
   const index_2 = 2;
-  const checksBox = $("#field_bancos")
-    .children("div .field-control")
+  const checksBox = $("#divFieldBancos")
+    .children("div .amFieldControl")
     .children("div")
     .children("label");
   const checkBoxExpected1 = checksBox[index_1];
@@ -1129,8 +1129,8 @@ QUnit.test("CHECKBOX Select first, second and third options", function(assert) {
   const index_1 = 0;
   const index_2 = 1;
   const index_3 = 2;
-  const checksBox = $("#field_bancos")
-    .children("div .field-control")
+  const checksBox = $("#divFieldBancos")
+    .children("div .amFieldControl")
     .children("div")
     .children("label");
   const checkBoxExpected1 = checksBox[index_1];
@@ -1184,7 +1184,7 @@ QUnit.test("1-DATEPICKER seleccionando una fecha con el calendario", function(as
     "-" +
     actualDate.getFullYear();
 
-  console.log("************ diaSeleccionadoCalendario: " + diaSeleccionadoCalendario); 
+  console.log("************ diaSeleccionadoCalendario: " + diaSeleccionadoCalendario);
   // act
   txtInputFecha.val(fechaIngresada);
   txtInputFecha.blur();
@@ -1242,7 +1242,7 @@ QUnit.test("ACCORDION - Colapsar accordion", function(assert) {
 
 QUnit.test("SELECT - Inicializado correctamente", function(assert) {
   // arrange
-  const select2 = $("#payment2").attr("class");
+  const select2 = $("#cmbPayment2").attr("class");
   const opt2 = $('option[value ="ET2"]').text();
   const opt3 = $('option[value ="CHK2"]').text();
   // act
@@ -1254,18 +1254,21 @@ QUnit.test("SELECT - Inicializado correctamente", function(assert) {
 
 QUnit.test("SELECT - Primer elemento seleccionado", function(assert) {
   // arrange
-  const selected = $("#payment2").val();
+  const selected = $("#cmbPayment2").val();
   // act
+  $("#cmbPayment2")
+    .val("ET2")
+    .trigger("change");
   // assert
-  assert.equal(selected, "ET2");
+  assert.equal($("#cmbPayment2").val(), "ET2");
 });
 
 QUnit.test("SELECT - Segundo elemento seleccionado", function(assert) {
   // arrange
   // act
-  $("#payment2")
+  $("#cmbPayment2")
     .val("CHK2")
     .trigger("change");
   // assert
-  assert.equal($("#payment2").val(), "CHK2");
+  assert.equal($("#cmbPayment2").val(), "CHK2");
 });
