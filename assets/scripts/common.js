@@ -210,13 +210,12 @@ var http_findAll = rest_findAll;
 var http_findOne = rest_findOne;
 var http_findOne$ = rest_findOne$;
 var http_create = rest_create;
-var existText = function(text_to_add, list) {
+
+var existText = function(textToAdd, list) {
   var exist = false;
   var count = 1;
   $.each($(list + " li a"), function() {
-    if (
-      $(list + " li:nth-child(" + count + ")").text() === text_to_add.trim()
-    ) {
+    if ($(list + " li:nth-child(" + count + ")").text() === textToAdd.trim()) {
       exist = true;
       return false;
     }
@@ -226,17 +225,17 @@ var existText = function(text_to_add, list) {
 };
 
 // Add text in empty field
-var addedText = function(id, text_to_add, value_to_add, list, maxsize) {
+var addedText = function(id, textToAdd, valueToAdd, list, maxsize) {
   let added = false;
   let count = 1;
   let sizeList = getList(id).length;
-
+  console.log();
   if (maxsize != null && maxsize != undefined) {
     if (sizeList < maxsize) {
       $.each($(list + " li a"), function() {
         if ($(list + " li:nth-child(" + count + ") a").text() === "") {
-          $(list + " li:nth-child(" + count + ") a").attr("id", value_to_add);
-          $(list + " li:nth-child(" + count + ") a").append(text_to_add);
+          $(list + " li:nth-child(" + count + ") a").attr("id", valueToAdd);
+          $(list + " li:nth-child(" + count + ") a").append(textToAdd);
           added = true;
           return false;
         }
@@ -248,8 +247,8 @@ var addedText = function(id, text_to_add, value_to_add, list, maxsize) {
   } else if (maxsize == undefined || maxsize == null) {
     $.each($(list + " li a"), function() {
       if ($(list + " li:nth-child(" + count + ") a").text() === "") {
-        $(list + " li:nth-child(" + count + ") a").attr("id", value_to_add);
-        $(list + " li:nth-child(" + count + ") a").append(text_to_add);
+        $(list + " li:nth-child(" + count + ") a").attr("id", valueToAdd);
+        $(list + " li:nth-child(" + count + ") a").append(textToAdd);
         added = true;
         return false;
       }
@@ -260,23 +259,23 @@ var addedText = function(id, text_to_add, value_to_add, list, maxsize) {
   }
   return added;
 };
-var addNode = function(text_to_add, value_to_add, list, maxsize) {
+var addNode = function(textToAdd, valueToAdd, list, maxsize) {
   if (maxsize != null && maxsize != undefined) {
     if ($(list + " li").length < maxsize) {
       $(list).append(
         "<li><a id=" +
-          value_to_add +
-          " class='delete_item' href='javascript:void();'>" +
-          text_to_add +
+          valueToAdd +
+          " class='amDeleteItem' href='javascript:void();'>" +
+          textToAdd +
           "</a></li>"
       );
     }
   } else {
     $(list).append(
       "<li><a id=" +
-        value_to_add +
-        " class='delete_item' href='javascript:void();'>" +
-        text_to_add +
+        valueToAdd +
+        " class='amDeleteItem' href='javascript:void();'>" +
+        textToAdd +
         "</a></li>"
     );
   }
@@ -302,7 +301,7 @@ function fieldPlusMinusRepaintList(node) {
   for (var i = 0; i < listSize; i++) {
     var tagLi = document.createElement("LI");
     var tagA = document.createElement("A");
-    tagA.setAttribute("class", "delete_item");
+    tagA.setAttribute("class", "amDeleteItem");
     tagA.setAttribute("href", "javascript:void();");
     if (i < listcontentid.length) {
       tagA.setAttribute("id", listcontentid[i]);
@@ -328,12 +327,12 @@ var removeHoverStyle = function(list) {
  *   maxsize (opcional): Si la lista solo permite un número limitado de elementos en la lista
  */
 var fieldPlusMinus = function(id, params) {
-  let idBtnPlus = "#btn_plus_" + id;
-  let idBtnMinus = "#btn_minus_" + id;
-  let idInput = "#" + id;
-  var idInputHidden = "#" + id + "_hidden";
-  let list = "ul#tag_list_" + id;
-  let node = "tag_list_" + id;
+  let idBtnPlus = "#btnPlus" + id;
+  let idBtnMinus = "#btnMinus" + id;
+  let idInput = "#txt" + id;
+  var idInputHidden = "#txt" + id + "Hidden";
+  let list = "ul#lstTagList" + id;
+  let node = "lstTagList" + id;
   let definedNodes = true;
   let numNodes = 4;
   let maxsize = params.maxsize;
@@ -346,7 +345,7 @@ var fieldPlusMinus = function(id, params) {
   if (definedNodes) {
     for (var i = 0; i < numNodes; i++) {
       $(list).append(
-        "<li><a class='delete_item' href='javascript:void();'></a></li>"
+        "<li><a class='amDeleteItem' href='javascript:void();'></a></li>"
       );
     }
   }
@@ -366,7 +365,7 @@ var fieldPlusMinus = function(id, params) {
           if ($(this).text() === $(idInputHidden).val()) {
             if (!definedNodes) {
               $(
-                "li:has('a.delete_item'):contains(" + $(this).text() + ")"
+                "li:has('a.amDeleteItem'):contains(" + $(this).text() + ")"
               ).remove();
               $(list + " li").length = $(list + " li").length - 1;
             } else {
@@ -378,7 +377,7 @@ var fieldPlusMinus = function(id, params) {
                 $(this).text("");
               } else {
                 $(
-                  "li:has('a.delete_item'):contains(" + $(this).text() + ")"
+                  "li:has('a.amDeleteItem'):contains(" + $(this).text() + ")"
                 ).remove();
                 $(this).text("");
                 $(list + " li").length = $(list + " li").length - 1;
@@ -393,11 +392,11 @@ var fieldPlusMinus = function(id, params) {
     }
   });
   var addValueToList = function() {
-    var text_to_add = $(idInput).val();
-    var value_to_add = $(idInput).val();
-    if (!existText(text_to_add, list)) {
-      if (!addedText(id, text_to_add, value_to_add, list, maxsize)) {
-        addNode(text_to_add, value_to_add, list, maxsize);
+    var textToAdd = $(idInput).val();
+    var valueToAdd = $(idInput).val();
+    if (!existText(textToAdd, list)) {
+      if (!addedText(id, textToAdd, valueToAdd, list, maxsize)) {
+        addNode(textToAdd, valueToAdd, list, maxsize);
       }
     }
     fieldPlusMinusRepaintList(node);
@@ -411,7 +410,7 @@ var fieldPlusMinus = function(id, params) {
         if ($(this).text() === $(idInputHidden).val()) {
           if (!definedNodes) {
             $(
-              "li:has('a.delete_item'):contains(" + $(this).text() + ")"
+              "li:has('a.amDeleteItem'):contains(" + $(this).text() + ")"
             ).remove();
             $(list + " li").length = $(list + " li").length - 1;
           } else {
@@ -423,7 +422,7 @@ var fieldPlusMinus = function(id, params) {
               $(this).text("");
             } else {
               $(
-                "li:has('a.delete_item'):contains(" + $(this).text() + ")"
+                "li:has('a.amDeleteItem'):contains(" + $(this).text() + ")"
               ).remove();
               $(this).text("");
               $(list + " li").length = $(list + " li").length - 1;
@@ -438,11 +437,11 @@ var fieldPlusMinus = function(id, params) {
   });
 
   // Set to input
-  $(list).delegate(".delete_item", "click", function() {
+  $(list).delegate(".amDeleteItem", "click", function() {
     $(idInputHidden).val(
       $(this)
         .parent()
-        .find(".delete_item")
+        .find(".amDeleteItem")
         .html()
     );
 
@@ -454,7 +453,7 @@ var fieldPlusMinus = function(id, params) {
     if (
       $(this)
         .parent()
-        .find(".delete_item")
+        .find(".amDeleteItem")
         .html() != ""
     ) {
       $(this).addClass("selected");
@@ -470,12 +469,12 @@ var fieldPlusMinus = function(id, params) {
  *   maxsize (opcional): Si la lista solo permite un número limitado de elementos en la lista
  */
 let fieldSelectPlusMinus = function(id, params) {
-  let idBtnPlus = "#btn_plus_" + id;
-  let idBtnMinus = "#btn_minus_" + id;
-  let idInput = "#" + id;
-  let idInputHidden = "#" + id + "_hidden";
-  let list = "ul#tag_list_" + id;
-  let node = "tag_list_" + id;
+  let idBtnPlus = "#btnPlus" + id;
+  let idBtnMinus = "#btnMinus" + id;
+  let idInput = "#cmb" + id;
+  let idInputHidden = "#txt" + id + "Hidden";
+  let list = "ul#lstTagList" + id;
+  let node = "lstTagList" + id;
   let definedNodes = true;
   let numNodes = 4;
   let maxsize = params.maxsize;
@@ -488,7 +487,7 @@ let fieldSelectPlusMinus = function(id, params) {
   if (definedNodes) {
     for (var i = 0; i < numNodes; i++) {
       $(list).append(
-        "<li><a class='delete_item' href='javascript:void();'></a></li>"
+        "<li><a class='amDeletItem' href='javascript:void();'></a></li>"
       );
     }
   }
@@ -526,11 +525,11 @@ let fieldSelectPlusMinus = function(id, params) {
   });
   removeHoverStyle(list);
   $(idBtnPlus).click(function() {
-    var text_to_add = $(idInput + " option:selected").text();
-    var value_to_add = $(idInput + " option:selected").val();
-    if (!existText(text_to_add, list)) {
-      if (!addedText(id, text_to_add, value_to_add, list, maxsize)) {
-        addNode(text_to_add, value_to_add, list, maxsize);
+    var textToAdd = $(idInput + " option:selected").text();
+    var valueToAdd = $(idInput + " option:selected").val();
+    if (!existText(textToAdd, list)) {
+      if (!addedText(id, textToAdd, valueToAdd, list, maxsize)) {
+        addNode(textToAdd, valueToAdd, list, maxsize);
       }
     }
     fieldPlusMinusRepaintList(node);
@@ -569,12 +568,12 @@ let fieldSelectPlusMinus = function(id, params) {
       .trigger("change");
     removeHoverStyle(list);
   });
-  $(list).delegate(".delete_item", "click", function() {
+  $(list).delegate(".amDeleteItem", "click", function() {
     $(idInputHidden)
       .val(
         $(this)
           .parent()
-          .find(".delete_item")
+          .find(".amDeleteItem")
           .attr("id")
       )
       .trigger("change");
@@ -587,7 +586,7 @@ let fieldSelectPlusMinus = function(id, params) {
     if (
       $(this)
         .parent()
-        .find(".delete_item")
+        .find(".amDeleteItem")
         .attr("id") != undefined
     ) {
       $(this).addClass("selected");
@@ -607,17 +606,18 @@ let fieldSelectPlusMinus = function(id, params) {
  *   maxsize (opcional): Si la lista solo permite un número limitado de elementos en la lista
  */
 let fieldSelectPlusAutocomplete = function(id, params) {
-  let idBtnPlus = "#btn_plus_" + id;
-  let idBtnMinus = "#btn_minus_" + id;
-  let idInput = "#" + id;
-  let idInputHidden = "#" + id + "_hidden";
-  let list = "ul#tag_list_" + id;
-  let node = "tag_list_" + id;
+  let idBtnPlus = "#btnPlus" + id;
+  let idBtnMinus = "#btnMinus" + id;
+  let idInput = "#cmb" + id;
+  let idInputHidden = "#txt" + id + "Hidden";
+  let list = "ul#lstTagList" + id;
+  let node = "lstTagList" + id;
   let attrId = params.id;
   let attrText = params.text;
   let payload = params.payload;
   let definedNodes = true;
   let numNodes = 4;
+  let maxsize = params.maxsize;
 
   if (params.nodes == undefined) {
     definedNodes = true;
@@ -628,7 +628,7 @@ let fieldSelectPlusAutocomplete = function(id, params) {
   if (definedNodes) {
     for (let i = 0; i < numNodes; i++) {
       $(list).append(
-        "<li><a class='delete_item' href='javascript:void();'></a></li>"
+        "<li><a class='amDeleteItem' href='javascript:void();'></a></li>"
       );
     }
   }
@@ -661,18 +661,18 @@ let fieldSelectPlusAutocomplete = function(id, params) {
       $(idInputHidden)
         .val(null)
         .trigger("change");
-      $(idInputHidden).removeClass("select-item");
+      // $(idInputHidden).removeClass("select-item");
       removeHoverStyle(list);
     }
   });
   removeHoverStyle(list);
   $(idBtnPlus).click(function() {
-    let text_to_add = $(idInput + " option:selected").text();
-    let value_to_add = $(idInput + " option:selected").val();
+    let textToAdd = $(idInput + " option:selected").text();
+    let valueToAdd = $(idInput + " option:selected").val();
 
-    if (!existText(text_to_add, list)) {
-      if (!addedText(text_to_add, value_to_add, list)) {
-        addNode(text_to_add, value_to_add, list, params.maxsize);
+    if (!existText(textToAdd, list)) {
+      if (!addedText(id, textToAdd, valueToAdd, list, maxsize)) {
+        addNode(textToAdd, valueToAdd, list, maxsize);
       }
     }
     fieldPlusMinusRepaintList(node);
@@ -686,12 +686,12 @@ let fieldSelectPlusAutocomplete = function(id, params) {
 
   $(idInput).change(function() {
     if (!$(idInputHidden).hasClass("select-item")) {
-      var value_to_add = $(idInput + " option:selected").val();
-      if (!(value_to_add == "")) {
-        var text_to_add = $(idInput + " option:selected").text();
-        if (!existText(text_to_add, list)) {
-          if (!addedText(text_to_add, value_to_add, list)) {
-            addNode(text_to_add, value_to_add, list, params.maxsize);
+      var valueToAdd = $(idInput + " option:selected").val();
+      if (!(valueToAdd == "")) {
+        var textToAdd = $(idInput + " option:selected").text();
+        if (!existText(textToAdd, list)) {
+          if (!addedText(id, textToAdd, valueToAdd, list, maxsize)) {
+            addNode(textToAdd, valueToAdd, list, maxsize);
           }
         }
         fieldPlusMinusRepaintList(node);
@@ -735,12 +735,12 @@ let fieldSelectPlusAutocomplete = function(id, params) {
     removeHoverStyle(list);
   });
 
-  $(list).delegate(".delete_item", "click", function() {
+  $(list).delegate(".amDeleteItem", "click", function() {
     $(idInputHidden)
       .val(
         $(this)
           .parent()
-          .find(".delete_item")
+          .find(".amDeleteItem")
           .attr("id")
       )
       .trigger("change");
@@ -756,7 +756,7 @@ let fieldSelectPlusAutocomplete = function(id, params) {
     if (
       $(this)
         .parent()
-        .find(".delete_item")
+        .find(".amDeleteItem")
         .attr("id") != undefined
     ) {
       $(this).addClass("selected");
@@ -785,11 +785,11 @@ let fieldSelectPlusAutocomplete = function(id, params) {
  */
 var getList = function(id) {
   var list = [];
-  $("#tag_list_" + id + " li").each(function() {
+  $("#lstTagList" + toUpperFirst(id) + " li").each(function() {
     var value = $(this)
       .text()
       .trim();
-    if (value != "") {
+    if (value !== "") {
       list.push(value);
     }
   });
@@ -2907,29 +2907,32 @@ $(".datepicker").on("keydown", function(e) {
       verifyDate(date, $(this));
     }
   }
-
 });
 
-$( document ).ready(function() {
-  $('input').keypress(function(e){
-     var keyCode = e.which;
-     if ( !( (keyCode >= 48 && keyCode <= 57)
-       ||(keyCode >= 65 && keyCode <= 90)
-       || (keyCode >= 97 && keyCode <= 122))
-       && keyCode != 8 && keyCode != 32
-       && keyCode != 45 && keyCode != 46) {
-       e.preventDefault();
-     }
+$(document).ready(function() {
+  $("input").keypress(function(e) {
+    var keyCode = e.which;
+    if (
+      !(
+        (keyCode >= 48 && keyCode <= 57) ||
+        (keyCode >= 65 && keyCode <= 90) ||
+        (keyCode >= 97 && keyCode <= 122)
+      ) &&
+      keyCode != 8 &&
+      keyCode != 32 &&
+      keyCode != 45 &&
+      keyCode != 46
+    ) {
+      e.preventDefault();
+    }
   });
 });
 
 function removeDiv(str) {
-  if (str.startsWith("div"))
-   return toUpperFirst(str.replace('div',''))
-  else
-   return str
+  if (str.startsWith("div")) return toUpperFirst(str.replace("div", ""));
+  else return str;
 }
 
 function toUpperFirst(str) {
-  return str[0].toUpperCase() + str.substr(1)
+  return str[0].toUpperCase() + str.substr(1);
 }

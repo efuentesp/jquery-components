@@ -1,37 +1,37 @@
 $.fn.fieldSwaplist = function() {
-  const fieldId = this.attr("id");
+  const fieldId = removeDiv(this.attr("id"));
   const fieldTitleSource = this.data("componentTitleSource");
   const fieldTitleDestination = this.data("componentTitleDestination");
-  const idSource = fieldId + "_source";
-  const idDestination = fieldId + "_destination";
+  const idSource = "lst" + toUpperFirst(fieldId) + "Source";
+  const idDestination = "lst" + toUpperFirst(fieldId) + "Destination";
 
   const divListSwapWrapper = document.createElement("div");
-  divListSwapWrapper.setAttribute("class", "listswap_wrapper");
-  divListSwapWrapper.setAttribute("id", fieldId);
+  divListSwapWrapper.setAttribute("class", "amListSwapWrapper");
+  divListSwapWrapper.setAttribute("id", "lst" + toUpperFirst(fieldId));
 
   const divRow = document.createElement("div");
-  divRow.setAttribute("class", "row");
+  divRow.setAttribute("class", "amRow");
   divListSwapWrapper.appendChild(divRow);
 
   const divSwapList = document.createElement("div");
-  divSwapList.setAttribute("id", "swaplist");
+  divSwapList.setAttribute("id", "divSwapList");
   divRow.appendChild(divSwapList);
 
   const divSwapListSource = document.createElement("div");
-  divSwapListSource.setAttribute("id", "swaplist-source");
+  divSwapListSource.setAttribute("id", "divSwapListSource");
   divSwapList.appendChild(divSwapListSource);
 
   const divSwapListControl = document.createElement("div");
-  divSwapListControl.setAttribute("class", "source_control");
+  divSwapListControl.setAttribute("class", "amSourceControl");
   divSwapList.appendChild(divSwapListControl);
 
   const divUp = document.createElement("div");
-  divUp.setAttribute("class", "up");
+  divUp.setAttribute("class", "amUp");
   divUp.setAttribute("style", "margin-top:3px;");
   divSwapListControl.appendChild(divUp);
 
   const buttonUp = document.createElement("button");
-  buttonUp.setAttribute("class", "up-button");
+  buttonUp.setAttribute("class", "amUpButton");
   divUp.appendChild(buttonUp);
 
   const imgUp = document.createElement("img");
@@ -40,12 +40,12 @@ $.fn.fieldSwaplist = function() {
   buttonUp.appendChild(imgUp);
 
   const divAdd = document.createElement("div");
-  divAdd.setAttribute("class", "add");
+  divAdd.setAttribute("class", "amAdd");
   divAdd.setAttribute("style", "margin-top:3px;");
   divSwapListControl.appendChild(divAdd);
 
   const buttonAdd = document.createElement("button");
-  buttonAdd.setAttribute("class", "right-button");
+  buttonAdd.setAttribute("class", "amRightButton");
   divAdd.appendChild(buttonAdd);
 
   const imgAdd = document.createElement("img");
@@ -54,12 +54,12 @@ $.fn.fieldSwaplist = function() {
   buttonAdd.appendChild(imgAdd);
 
   const divRemove = document.createElement("div");
-  divRemove.setAttribute("class", "remove");
+  divRemove.setAttribute("class", "amRemove");
   divRemove.setAttribute("style", "margin-top:3px;");
   divSwapListControl.appendChild(divRemove);
 
   const buttonRemove = document.createElement("button");
-  buttonRemove.setAttribute("class", "left-button");
+  buttonRemove.setAttribute("class", "amLeftButton");
   divRemove.appendChild(buttonRemove);
 
   const imgRemove = document.createElement("img");
@@ -68,12 +68,12 @@ $.fn.fieldSwaplist = function() {
   buttonRemove.appendChild(imgRemove);
 
   const divDown = document.createElement("div");
-  divDown.setAttribute("class", "down");
+  divDown.setAttribute("class", "amDown");
   divDown.setAttribute("style", "margin-top:3px;");
   divSwapListControl.appendChild(divDown);
 
   const buttonDown = document.createElement("button");
-  buttonDown.setAttribute("class", "down-button");
+  buttonDown.setAttribute("class", "amDownButton");
   divDown.appendChild(buttonDown);
 
   const imgDown = document.createElement("img");
@@ -82,49 +82,49 @@ $.fn.fieldSwaplist = function() {
   buttonDown.appendChild(imgDown);
 
   const divSwapListDestination = document.createElement("div");
-  divSwapListDestination.setAttribute("id", "swaplist-destination");
+  divSwapListDestination.setAttribute("id", "divSwapListDestination");
   divSwapList.appendChild(divSwapListDestination);
 
   const sourceTitle = document.createElement("p");
-  sourceTitle.setAttribute("class", "title");
+  sourceTitle.setAttribute("class", "amTitle");
   sourceTitle.innerHTML = fieldTitleSource;
   divSwapListSource.appendChild(sourceTitle);
 
   const destinationTitle = document.createElement("p");
-  destinationTitle.setAttribute("class", "title");
+  destinationTitle.setAttribute("class", "amTitle");
   destinationTitle.innerHTML = fieldTitleDestination;
   divSwapListDestination.appendChild(destinationTitle);
 
   const listSource = document.createElement("ul");
-  listSource.setAttribute("class", "column source");
+  listSource.setAttribute("class", "amColumn amSource");
   listSource.setAttribute("id", idSource);
   divSwapListSource.appendChild(listSource);
 
   const listDestination = document.createElement("ul");
-  listDestination.setAttribute("class", "column destination");
+  listDestination.setAttribute("class", "amColumn amDestination");
   listDestination.setAttribute("id", idDestination);
   divSwapListDestination.appendChild(listDestination);
 
   this.append(divListSwapWrapper);
 
   var sourceList = [
-    { id: "1", value: "option_1_1", label: "Valor 1" },
-    { id: "2", value: "option_1_2", label: "Valor 2" },
-    { id: "3", value: "option_1_3", label: "Valor 3" },
-    { id: "4", value: "option_1_4", label: "Valor 4" },
-    { id: "5", value: "option_1_5", label: "Valor 5" }
+    { id: "1", value: "option11", label: "Valor 1" },
+    { id: "2", value: "option12", label: "Valor 2" },
+    { id: "3", value: "option13", label: "Valor 3" },
+    { id: "4", value: "option14", label: "Valor 4" },
+    { id: "5", value: "option15", label: "Valor 5" }
   ];
 
   var destinationList = [
-    { id: "6", value: "option_1_6", label: "Valor 6" },
-    { id: "7", value: "option_1_7", label: "Valor 7" },
-    { id: "8", value: "option_1_8", label: "Valor 8" }
+    { id: "6", value: "option16", label: "Valor 6" },
+    { id: "7", value: "option17", label: "Valor 7" },
+    { id: "8", value: "option18", label: "Valor 8" }
   ];
 
   fillSwapList(idSource, sourceList);
   fillSwapList(idDestination, destinationList);
 
-  $("ul.column").on("click", "li", function() {
+  $("ul.amColumn").on("click", "li", function() {
     if (!$(this).hasClass("selected")) {
       console.log("selected");
       clearList();
@@ -133,33 +133,33 @@ $.fn.fieldSwaplist = function() {
   });
 
   const clearList = function() {
-    $("ul.column li").removeClass("selected");
+    $("ul.amColumn li").removeClass("selected");
   };
 
-  $(".up").click(function() {
+  $(".amUp").click(function() {
     var currents = $(".portlet.selected");
     currents.prev().before(currents);
   });
 
-  $(".down").click(function() {
+  $(".amDown").click(function() {
     var currents = $(".portlet.selected");
     currents.next().after(currents);
   });
 
-  $(".add").click(function() {
+  $(".amAdd").click(function() {
     var currents = $(".portlet.selected");
-    $(".column.destination").append(currents);
+    $(".amColumn.amDestination").append(currents);
     clearList();
   });
 
-  $(".remove").click(function() {
+  $(".amRemove").click(function() {
     var currents = $(".portlet.selected");
-    $(".column.source").append(currents);
+    $(".amColumn.amSource").append(currents);
     clearList();
   });
 
-  $(".column").sortable({
-    connectWith: ".column",
+  $(".amColumn").sortable({
+    connectWith: ".amColumn",
     handle: ".portlet-content",
     cancel: ".portlet-toggle",
     placeholder: "portlet-placeholder ui-corner-all"
@@ -171,8 +171,8 @@ $.fn.fieldSwaplist = function() {
     .addClass("ui-corner-all");
 };
 
-var fillSwapList = function(list_id, params) {
-  var list = $("#" + list_id);
+var fillSwapList = function(listId, params) {
+  var list = $("#" + listId);
 
   for (var i = 0; i < params.length; i++) {
     var data = params[i];
@@ -187,7 +187,7 @@ var fillSwapList = function(list_id, params) {
 };
 
 $.fn.fieldInputPlusMinus = function() {
-  const fieldId = this.attr("id");
+  const fieldId = toUpperFirst(removeDiv(this.attr("id")));
   const fieldMaxsize = this.data("componentMaxsize");
   const fieldNodes = this.data("componentNodes");
   const fieldDisabled = this.data("componentDisabled");
@@ -196,22 +196,23 @@ $.fn.fieldInputPlusMinus = function() {
     (this.data("componentSize") ? this.data("componentSize") : "8em") +
     ";";
   const fieldClass =
-    "is_" +
+    "amIs" +
     (this.data("componentOrientation")
-      ? this.data("componentOrientation")
-      : "vertical");
+      ? toUpperFirst(this.data("componentOrientation"))
+      : "Vertical");
   const spanRequiredClass =
     "pr-3 " + (this.data("componentRequired") == true ? "required" : "");
-
-  this.attr("id", "divField" + removeDiv(fieldId));
-  this.attr("class", "field " + fieldClass);
+  const inputRequired =
+    this.data("componentRequired") == true ? "required" : "";
+  this.attr("id", "divField" + fieldId);
+  this.attr("class", "amField " + fieldClass);
 
   const tooltip = this.data("componentTooltip")
     ? this.data("componentTooltip")
     : "";
 
   const divLabel = document.createElement("div");
-  divLabel.setAttribute("class", "field-label flex");
+  divLabel.setAttribute("class", "amFieldLabel flex");
 
   const label = document.createElement("label");
   label.setAttribute("for", fieldId);
@@ -227,10 +228,10 @@ $.fn.fieldInputPlusMinus = function() {
   label.appendChild(spanRequired);
 
   const divControl = document.createElement("div");
-  divControl.setAttribute("class", "field-control");
+  divControl.setAttribute("class", "divFieldControl");
 
   const divPlusMinus = document.createElement("div");
-  divPlusMinus.setAttribute("class", "field-plus-minus has-addons flex");
+  divPlusMinus.setAttribute("class", "amFieldPlusMinus amHasAddons flex");
   if (tooltip) {
     divPlusMinus.setAttribute("custom-tooltip", tooltip);
   }
@@ -238,11 +239,11 @@ $.fn.fieldInputPlusMinus = function() {
   this.append(divControl);
 
   const input = document.createElement("input");
-  input.setAttribute("id", fieldId);
-  input.setAttribute("class", "input");
+  input.setAttribute("id", "txt" + fieldId);
+  input.setAttribute("class", "amInput");
   input.setAttribute("type", "text");
   input.setAttribute("style", fieldWidth);
-  input.setAttribute("required", spanRequiredClass);
+  input.setAttribute("required", inputRequired);
   input.setAttribute("data-parsley-trigger", "keyup");
   input.setAttribute("data-parsley-maxlength", "32");
   input.setAttribute(
@@ -252,63 +253,71 @@ $.fn.fieldInputPlusMinus = function() {
   input.setAttribute("data-parsley-validation-threshold", "10");
   input.setAttribute(
     "data-parsley-errors-container",
-    "#field_error_block_" + fieldId
+    "#divFieldErrorBlock" + fieldId
   );
   input.disabled = fieldDisabled;
   divPlusMinus.appendChild(input);
 
   const inputHidden = document.createElement("input");
-  inputHidden.setAttribute("id", fieldId + "_hidden");
+  inputHidden.setAttribute("id", "txt" + fieldId + "Hidden");
   inputHidden.setAttribute("type", "hidden");
   divPlusMinus.appendChild(inputHidden);
 
   const plusBtn = document.createElement("button");
-  plusBtn.setAttribute("id", "btn_plus_" + fieldId);
+  plusBtn.setAttribute("id", "btnPlus" + fieldId);
   plusBtn.setAttribute("type", "button");
-  plusBtn.setAttribute("class", "button-noborder");
+  plusBtn.setAttribute("class", "amButtonNoborder");
   divPlusMinus.appendChild(plusBtn);
 
   const plusImg = document.createElement("img");
-  plusImg.setAttribute("class", "plus-icon");
+  plusImg.setAttribute("class", "amPlusIcon");
   plusImg.setAttribute("src", "../../assets/images/plus-icon.png");
   plusBtn.appendChild(plusImg);
 
   const minusBtn = document.createElement("button");
-  minusBtn.setAttribute("id", "btn_minus_" + fieldId);
+  minusBtn.setAttribute("id", "btnMinus" + fieldId);
   minusBtn.setAttribute("type", "button");
-  minusBtn.setAttribute("class", "button-noborder");
+  minusBtn.setAttribute("class", "buttonNoborder");
   divPlusMinus.appendChild(minusBtn);
 
   const minusImg = document.createElement("img");
-  minusImg.setAttribute("class", "plus-icon");
+  minusImg.setAttribute("class", "amPlusIcon");
   minusImg.setAttribute("src", "../../assets/images/minus-icon.png");
   minusBtn.appendChild(minusImg);
 
   const spanError = document.createElement("span");
-  spanError.setAttribute("class", "field-error flex");
+  spanError.setAttribute("class", "amFieldError flex");
   divControl.appendChild(spanError);
 
   const divErrorTip = document.createElement("div");
-  divErrorTip.setAttribute("class", "error-tip");
+  divErrorTip.setAttribute("class", "amErrorTip");
   spanError.appendChild(divErrorTip);
 
   const divErrorMsg = document.createElement("div");
-  divErrorMsg.setAttribute("id", "field_error_block_" + fieldId);
-  divErrorMsg.setAttribute("class", "error-msg");
+  divErrorMsg.setAttribute("id", "divFieldErrorBlock" + fieldId);
+  divErrorMsg.setAttribute("class", "amErrorMsg");
   spanError.appendChild(divErrorMsg);
 
   const ulTagList = document.createElement("ul");
-  ulTagList.setAttribute("id", "tag_list_" + fieldId);
-  ulTagList.setAttribute("class", "tag-list");
+  ulTagList.setAttribute("id", "lstTagList" + fieldId);
+  ulTagList.setAttribute("class", "amTagList");
   ulTagList.setAttribute("style", fieldWidth);
   divControl.appendChild(ulTagList);
 
+  this.removeAttr("data-component-type");
+  this.removeAttr("data-component-label");
+  this.removeAttr("data-component-required");
+  this.removeAttr("data-component-orientation");
+  this.removeAttr("data-component-size");
+  this.removeAttr("data-component-disabled");
+  this.removeAttr("data-component-tooltip");
+  this.removeAttr("data-component-nodes");
+  this.removeAttr("data-component-max-length");
   fieldPlusMinus(fieldId, { maxsize: fieldMaxsize, nodes: fieldNodes });
-
 };
 
 $.fn.fieldSelectPlusMinus = function() {
-  const fieldId = this.attr("id");
+  const fieldId = toUpperFirst(removeDiv(this.attr("id")));
   const fieldMaxsize = this.data("componentMaxsize");
   const fieldItems = this.data("componentItems");
   const fieldNodes = this.data("componentNodes");
@@ -319,20 +328,22 @@ $.fn.fieldSelectPlusMinus = function() {
     (this.data("componentSize") ? this.data("componentSize") : "8em") +
     ";";
   const fieldClass =
-    "is_" +
+    "amIs" +
     (this.data("componentOrientation")
-      ? this.data("componentOrientation")
-      : "vertical");
+      ? toUpperFirst(this.data("componentOrientation"))
+      : "Vertical");
   const spanRequiredClass =
-    "pr-3 " + (this.data("componentRequired") == true ? "required" : "");
+    "pr-3 " + (this.data("componentRequired") == true ? "amRequired" : "");
+  const selectRequired =
+    this.data("componentRequired") == true ? "required" : "";
   const tooltip = this.data("componentTooltip")
     ? this.data("componentTooltip")
     : "";
-  this.attr("id", "divField" + removeDiv(fieldId));
-  this.attr("class", "field " + fieldClass);
+  this.attr("id", "divField" + fieldId);
+  this.attr("class", "amField " + fieldClass);
 
   const divLabel = document.createElement("div");
-  divLabel.setAttribute("class", "field-label flex");
+  divLabel.setAttribute("class", "amFieldLabel flex");
 
   const label = document.createElement("label");
   label.setAttribute("for", fieldId);
@@ -348,10 +359,10 @@ $.fn.fieldSelectPlusMinus = function() {
   label.appendChild(spanRequired);
 
   const divControl = document.createElement("div");
-  divControl.setAttribute("class", "field-control");
+  divControl.setAttribute("class", "amFieldControl");
 
   const divPlusMinus = document.createElement("div");
-  divPlusMinus.setAttribute("class", "field-plus-minus has-addons flex");
+  divPlusMinus.setAttribute("class", "amFieldPlusMinus amHasAddons flex");
   divControl.appendChild(divPlusMinus);
   if (tooltip) {
     divPlusMinus.setAttribute("custom-tooltip", tooltip);
@@ -359,11 +370,10 @@ $.fn.fieldSelectPlusMinus = function() {
   this.append(divControl);
 
   const select = document.createElement("select");
-  select.setAttribute("id", fieldId);
+  select.setAttribute("id", "cmb" + fieldId);
   select.setAttribute("class", "select2");
-  select.setAttribute("type", "text");
   select.setAttribute("style", fieldWidth);
-  select.setAttribute("required", spanRequiredClass);
+  select.setAttribute("required", selectRequired);
   select.setAttribute("data-parsley-trigger", "keyup");
   select.setAttribute("data-parsley-maxlength", "32");
   select.setAttribute(
@@ -373,15 +383,14 @@ $.fn.fieldSelectPlusMinus = function() {
   select.setAttribute("data-parsley-validation-threshold", "10");
   select.setAttribute(
     "data-parsley-errors-container",
-    "#field_error_block_" + fieldId
+    "#divFieldErrorBlock" + fieldId
   );
-
   let group = [{ key: "", value: "" }];
   this.children().each(function() {
     let id = $("#" + this.getAttribute("id")).attr("id");
     if (id) {
       group.push({ key: id, value: this.innerText });
-      document.getElementById("divField" + removeDiv(fieldId)).removeChild(this);
+      document.getElementById("divField" + fieldId).removeChild(this);
     }
   });
 
@@ -398,56 +407,65 @@ $.fn.fieldSelectPlusMinus = function() {
   divPlusMinus.appendChild(select);
 
   const inputHidden = document.createElement("input");
-  inputHidden.setAttribute("id", fieldId + "_hidden");
+  inputHidden.setAttribute("id", "txt" + fieldId + "Hidden");
   inputHidden.setAttribute("type", "hidden");
   divPlusMinus.appendChild(inputHidden);
 
   const plusBtn = document.createElement("button");
-  plusBtn.setAttribute("id", "btn_plus_" + fieldId);
+  plusBtn.setAttribute("id", "btnPlus" + fieldId);
   plusBtn.setAttribute("type", "button");
-  plusBtn.setAttribute("class", "button-noborder");
+  plusBtn.setAttribute("class", "amButtonNoborder");
   divPlusMinus.appendChild(plusBtn);
 
   const plusImg = document.createElement("img");
-  plusImg.setAttribute("class", "plus-icon");
+  plusImg.setAttribute("class", "amPlusIcon");
   plusImg.setAttribute("src", "../../assets/images/plus-icon.png");
   plusBtn.appendChild(plusImg);
 
   const minusBtn = document.createElement("button");
-  minusBtn.setAttribute("id", "btn_minus_" + fieldId);
+  minusBtn.setAttribute("id", "btnMinus" + fieldId);
   minusBtn.setAttribute("type", "button");
-  minusBtn.setAttribute("class", "button-noborder");
+  minusBtn.setAttribute("class", "amButtonNoborder");
   divPlusMinus.appendChild(minusBtn);
 
   const minusImg = document.createElement("img");
-  minusImg.setAttribute("class", "plus-icon");
+  minusImg.setAttribute("class", "amPlusIcon");
   minusImg.setAttribute("src", "../../assets/images/minus-icon.png");
   minusBtn.appendChild(minusImg);
 
   const spanError = document.createElement("span");
-  spanError.setAttribute("class", "field-error flex");
+  spanError.setAttribute("class", "amFieldError flex");
   divControl.appendChild(spanError);
 
   const divErrorTip = document.createElement("div");
-  divErrorTip.setAttribute("class", "error-tip");
+  divErrorTip.setAttribute("class", "amErrorTip");
   spanError.appendChild(divErrorTip);
 
   const divErrorMsg = document.createElement("div");
-  divErrorMsg.setAttribute("id", "field_error_block_" + fieldId);
-  divErrorMsg.setAttribute("class", "error-msg");
+  divErrorMsg.setAttribute("id", "divFieldErrorBlock" + fieldId);
+  divErrorMsg.setAttribute("class", "amErrorMsg");
   spanError.appendChild(divErrorMsg);
 
   const ulTagList = document.createElement("ul");
-  ulTagList.setAttribute("id", "tag_list_" + fieldId);
-  ulTagList.setAttribute("class", "tag-list");
+  ulTagList.setAttribute("id", "lstTagList" + fieldId);
+  ulTagList.setAttribute("class", "amTagList");
   ulTagList.setAttribute("style", fieldWidth);
   divControl.appendChild(ulTagList);
 
+  this.removeAttr("data-component-type");
+  this.removeAttr("data-component-label");
+  this.removeAttr("data-component-required");
+  this.removeAttr("data-component-orientation");
+  this.removeAttr("data-component-size");
+  this.removeAttr("data-component-disabled");
+  this.removeAttr("data-component-tooltip");
+  this.removeAttr("data-component-nodes");
+  this.removeAttr("data-component-max-length");
   fieldSelectPlusMinus(fieldId, { maxsize: fieldMaxsize, nodes: fieldNodes });
 };
 
 $.fn.fieldSelectPlusMinusAutocomplete = function() {
-  let fieldId = this.attr("id");
+  const fieldId = toUpperFirst(removeDiv(this.attr("id")));
   let fieldMaxsize = this.data("componentMaxsize");
   let fieldItems = this.data("componentItems");
   let fieldNodes = this.data("componentNodes");
@@ -458,24 +476,26 @@ $.fn.fieldSelectPlusMinusAutocomplete = function() {
     (this.data("componentSize") ? this.data("componentSize") : "8em") +
     ";";
   const fieldClass =
-    "is_" +
+    "amIs" +
     (this.data("componentOrientation")
-      ? this.data("componentOrientation")
-      : "vertical");
+      ? toUpperFirst(this.data("componentOrientation"))
+      : "Vertical");
   const spanRequiredClass =
-    "pr-3 " + (this.data("componentRequired") == true ? "required" : "");
+    "pr-3 " + (this.data("componentRequired") == true ? "amRequired" : "");
+  const selectRequired =
+    this.data("componentRequired") == true ? "required" : "";
   const tooltip = this.data("componentTooltip")
     ? this.data("componentTooltip")
     : "";
 
-  this.attr("id", "divField" + removeDiv(fieldId));
-  this.attr("class", "field " + fieldClass);
+  this.attr("id", "divField" + fieldId);
+  this.attr("class", "amField " + fieldClass);
 
   const divLabel = document.createElement("div");
-  divLabel.setAttribute("class", "field-label flex");
+  divLabel.setAttribute("class", "amFieldLabel flex");
 
   const label = document.createElement("label");
-  label.setAttribute("for", fieldId);
+  label.setAttribute("for", "cmb" + fieldId);
   label.innerHTML = this.data("componentLabel");
   divLabel.appendChild(label);
   this.append(divLabel);
@@ -488,10 +508,10 @@ $.fn.fieldSelectPlusMinusAutocomplete = function() {
   label.appendChild(spanRequired);
 
   const divControl = document.createElement("div");
-  divControl.setAttribute("class", "field-control");
+  divControl.setAttribute("class", "amFieldControl");
 
   const divPlusMinus = document.createElement("div");
-  divPlusMinus.setAttribute("class", "field-plus-minus has-addons flex");
+  divPlusMinus.setAttribute("class", "amFieldPlusMinus amHasAddons flex");
   if (tooltip) {
     divPlusMinus.setAttribute("custom-tooltip", tooltip);
   }
@@ -500,11 +520,10 @@ $.fn.fieldSelectPlusMinusAutocomplete = function() {
   this.append(divControl);
 
   const select = document.createElement("select");
-  select.setAttribute("id", fieldId);
+  select.setAttribute("id", "cmb" + fieldId);
   select.setAttribute("class", "select2");
-  select.setAttribute("type", "text");
   select.setAttribute("style", fieldWidth);
-  select.setAttribute("required", spanRequiredClass);
+  select.setAttribute("required", selectRequired);
   select.setAttribute("data-parsley-trigger", "keyup");
   select.setAttribute("data-parsley-maxlength", "32");
   select.setAttribute(
@@ -514,7 +533,7 @@ $.fn.fieldSelectPlusMinusAutocomplete = function() {
   select.setAttribute("data-parsley-validation-threshold", "10");
   select.setAttribute(
     "data-parsley-errors-container",
-    "#field_error_block_" + fieldId
+    "#divFieldErrorBlock" + fieldId
   );
 
   var group = [
@@ -543,54 +562,61 @@ $.fn.fieldSelectPlusMinusAutocomplete = function() {
   divPlusMinus.appendChild(select);
 
   const inputHidden = document.createElement("input");
-  inputHidden.setAttribute("id", fieldId + "_hidden");
+  inputHidden.setAttribute("id", "txt" + fieldId + "Hidden");
+  inputHidden.setAttribute("class", "amInput");
   inputHidden.setAttribute("type", "hidden");
   divPlusMinus.appendChild(inputHidden);
 
   const plusBtn = document.createElement("button");
-  plusBtn.setAttribute("id", "btn_plus_" + fieldId);
+  plusBtn.setAttribute("id", "btnPlus" + fieldId);
   plusBtn.setAttribute("type", "button");
-  plusBtn.setAttribute("class", "button-noborder");
+  plusBtn.setAttribute("class", "amButtonNoborder");
   divPlusMinus.appendChild(plusBtn);
 
   const plusImg = document.createElement("img");
-  plusImg.setAttribute("class", "plus-icon");
+  plusImg.setAttribute("class", "amPlusIcon");
   plusImg.setAttribute("src", "../../assets/images/plus-icon.png");
   plusBtn.appendChild(plusImg);
 
   const minusBtn = document.createElement("button");
-  minusBtn.setAttribute("id", "btn_minus_" + fieldId);
+  minusBtn.setAttribute("id", "btnMinus" + fieldId);
   minusBtn.setAttribute("type", "button");
-  minusBtn.setAttribute("class", "button-noborder");
+  minusBtn.setAttribute("class", "amButtonNoborder");
   divPlusMinus.appendChild(minusBtn);
 
   const minusImg = document.createElement("img");
-  minusImg.setAttribute("class", "plus-icon");
+  minusImg.setAttribute("class", "amPlusIcon");
   minusImg.setAttribute("src", "../../assets/images/minus-icon.png");
   minusBtn.appendChild(minusImg);
 
-  const spanError = document.createElement("span");
-  spanError.setAttribute("class", "field-error flex");
+  const spanError = document.createElement("div");
+  spanError.setAttribute("class", "amFieldError");
   divControl.appendChild(spanError);
 
-  const divErrorTip = document.createElement("div");
-  divErrorTip.setAttribute("class", "error-tip");
-  spanError.appendChild(divErrorTip);
-
   const divErrorMsg = document.createElement("div");
-  divErrorMsg.setAttribute("id", "field_error_block_" + fieldId);
-  divErrorMsg.setAttribute("class", "error-msg");
+  divErrorMsg.setAttribute("id", "divFieldErrorBlock" + fieldId);
   spanError.appendChild(divErrorMsg);
 
   const ulTagList = document.createElement("ul");
-  ulTagList.setAttribute("id", "tag_list_" + fieldId);
-  ulTagList.setAttribute("class", "tag-list");
+  ulTagList.setAttribute("id", "lstTagList" + fieldId);
+  ulTagList.setAttribute("class", "amTagList");
   ulTagList.setAttribute("style", fieldWidth);
   divControl.appendChild(ulTagList);
 
+  this.removeAttr("data-component-type");
+  this.removeAttr("data-component-label");
+  this.removeAttr("data-component-required");
+  this.removeAttr("data-component-orientation");
+  this.removeAttr("data-component-size");
+  this.removeAttr("data-component-disabled");
+  this.removeAttr("data-component-tooltip");
+  this.removeAttr("data-component-nodes");
+  this.removeAttr("data-component-max-length");
+  this.removeAttr("data-component-maxsize");
+
   fieldSelectPlusAutocomplete(fieldId, {
-    maxsize: fieldMaxsize,
-    nodes: fieldNodes
+    nodes: fieldNodes,
+    maxsize: fieldMaxsize
   });
 };
 
@@ -638,9 +664,7 @@ $.fn.button = function() {
       btnclass = "amButton amSmallButton";
 
     const button = document.createElement("button");
-    button.setAttribute(
-      "id", "btn"+ removeDiv(this.attr("id"))
-    );
+    button.setAttribute("id", "btn" + removeDiv(this.attr("id")));
 
     button.setAttribute("class", btnclass);
 
@@ -663,7 +687,7 @@ $.fn.button = function() {
     }
 
     this.append(button);
-    $("#" + "btn"+ removeDiv(this.attr("id"))).unwrap();
+    $("#" + "btn" + removeDiv(this.attr("id"))).unwrap();
   }
 };
 
@@ -729,7 +753,7 @@ $.fn.fieldInput = function() {
   const spanRequiredClass =
     "pr-3 " + (c.data("componentRequired") == true ? "amRequired" : "");
 
-  c.attr("id", "divField"+ removeDiv(fieldId));
+  c.attr("id", "divField" + removeDiv(fieldId));
   if (fieldClass === "amIsHorizontal") {
     fieldClass += " items-center";
   }
@@ -739,7 +763,7 @@ $.fn.fieldInput = function() {
   divLabel.setAttribute("class", "amFieldLabel flex");
 
   const label = document.createElement("label");
-  label.setAttribute("for", "txt"+ removeDiv(fieldId));
+  label.setAttribute("for", "txt" + removeDiv(fieldId));
   label.innerHTML = fieldLabel;
   divLabel.appendChild(label);
   c.append(divLabel);
@@ -758,7 +782,7 @@ $.fn.fieldInput = function() {
   }
 
   const input = document.createElement("input");
-  input.setAttribute("id", "txt"+removeDiv(fieldId));
+  input.setAttribute("id", "txt" + removeDiv(fieldId));
   input.setAttribute("class", "amInput " + fieldType);
   input.setAttribute("type", "text");
   input.setAttribute("style", fieldWidth);
@@ -801,17 +825,14 @@ $.fn.fieldInput = function() {
   c.removeAttr("data-component-tooltip");
   c.removeAttr("data-component-default-value");
   c.removeAttr("data-component-input-type");
-
 };
-
-
 
 $.fn.tabgroup = function() {
   if (this.data("componentType") === "tab-group") {
     let id = this.attr("id");
     let divtabgroup = document.createElement("div");
     divtabgroup.setAttribute("class", "amTabGroup");
-    divtabgroup.setAttribute("id","divTabGroup" + removeDiv(id));
+    divtabgroup.setAttribute("id", "divTabGroup" + removeDiv(id));
     let items = $("#" + id).children("div");
     let ul = document.createElement("ul");
 
@@ -861,7 +882,7 @@ $.fn.tabgroup = function() {
       $("#" + "divTabGroup" + removeDiv(id))
         .tabs()
         .addClass("ui-tabs-vertical ui-helper-clearfix");
-      $("#" + "divTabGroup" + removeDiv(id) +" > ul > li")
+      $("#" + "divTabGroup" + removeDiv(id) + " > ul > li")
         .removeClass("ui-corner-top")
         .addClass("ui-corner-left");
     } else {
@@ -918,10 +939,10 @@ $.fn.sidebarwrapper = function() {
 
 $.fn.fieldswitch = function() {
   if (this.data("componentType") === "field-switch") {
-    let id= this.attr("id");
+    let id = this.attr("id");
     let fieldid = "divField" + removeDiv(id);
     let field_error_block = "divFieldErrorBlock" + removeDiv(id);
-    let field_error_block_id = "#" + field_error_block
+    let field_error_block_id = "#" + field_error_block;
     let items = $("#" + id).children("div");
     let spanRequiredClass =
       "pr-5 " + (this.data("componentRequired") === true ? "amRequired" : "");
@@ -933,8 +954,7 @@ $.fn.fieldswitch = function() {
     fieldlabeldiv.setAttribute("class", "amFieldLabel flex");
     fieldlabel.setAttribute("class", "amFieldLabel");
     fieldlabelspan.setAttribute("class", spanRequiredClass);
-    if (this.data("componentRequired"))
-      fieldlabelspan.innerHTML="*";
+    if (this.data("componentRequired")) fieldlabelspan.innerHTML = "*";
     fieldlabel.innerHTML = this.data("componentLabel");
 
     fieldlabeldiv.appendChild(fieldlabel);
@@ -947,13 +967,15 @@ $.fn.fieldswitch = function() {
 
     flexdiv.setAttribute("class", "amFieldLabel flex");
 
-    let itemscenter=
-     this.data("componentOrientation")==="horizontal" ? " items-center":"";
+    let itemscenter =
+      this.data("componentOrientation") === "horizontal" ? " items-center" : "";
 
     if (this.data("componentOrientation"))
       fielddiv.setAttribute(
         "class",
-        "amField amIs" + toUpperFirst(this.data("componentOrientation")) + itemscenter
+        "amField amIs" +
+          toUpperFirst(this.data("componentOrientation")) +
+          itemscenter
       );
     else fielddiv.setAttribute("class", "amField amIsHorizontal items-center");
 
@@ -971,7 +993,7 @@ $.fn.fieldswitch = function() {
     formcheckdiv.setAttribute("class", "amFormCheck");
 
     for (i = 0; i < items.length; i++) {
-      var item_id = "rbn" + id  + i
+      var item_id = "rbn" + id + i;
       let label = document.createElement("label");
       if (i === 0) label.setAttribute("class", "amFormCheckLabel left active");
       else label.setAttribute("class", "amFormCheckLabel right");
@@ -984,10 +1006,10 @@ $.fn.fieldswitch = function() {
       input.setAttribute("value", items[i].dataset.componentKey);
       input.setAttribute("style", "display: none");
       if (this.data("componentRequired"))
-        input.setAttribute("required",this.data("componentRequired"));
+        input.setAttribute("required", this.data("componentRequired"));
       if (i === 0) input.setAttribute("checked", "checked");
-      input.setAttribute("data-parsley-errors-container",field_error_block_id);
-      input.setAttribute("data-parsley-multiple",id);
+      input.setAttribute("data-parsley-errors-container", field_error_block_id);
+      input.setAttribute("data-parsley-multiple", id);
       span.innerHTML = items[i].dataset.componentValue;
       label.appendChild(input);
       label.appendChild(span);
@@ -1023,132 +1045,130 @@ $.fn.fieldswitch = function() {
 
 $.fn.spinner = function() {
   if (this.data("componentType") === "spinner") {
-   let id= "div" + removeDiv(this.attr("id"));
-   let img = document.createElement("img");
-   let spinnerdiv = document.createElement("div");
-   spinnerdiv.setAttribute("class", "amSpinner");
-   spinnerdiv.setAttribute("id", id);
-   img.setAttribute("src", "../../../../assets/images/loader.gif");
-   img.setAttribute("alt", "imagen");
-   img.setAttribute("width", "45px");
-   img.setAttribute("height", "45px");
-   spinnerdiv.appendChild(img);
-   this.append(spinnerdiv);
-   $("#" + id).unwrap();
+    let id = "div" + removeDiv(this.attr("id"));
+    let img = document.createElement("img");
+    let spinnerdiv = document.createElement("div");
+    spinnerdiv.setAttribute("class", "amSpinner");
+    spinnerdiv.setAttribute("id", id);
+    img.setAttribute("src", "../../../../assets/images/loader.gif");
+    img.setAttribute("alt", "imagen");
+    img.setAttribute("width", "45px");
+    img.setAttribute("height", "45px");
+    spinnerdiv.appendChild(img);
+    this.append(spinnerdiv);
+    $("#" + id).unwrap();
   }
-}
+};
 
 $.fn.fieldtimepicker = function() {
   if (this.data("componentType") === "field-time-picker") {
-
-   let orientation = this.data("componentOrientation")
+    let orientation = this.data("componentOrientation")
       ? this.data("componentOrientation")
       : "horizontal";
 
-   let label = this.data("componentLabel")
-         ? this.data("componentLabel")
-         : "Hora";
+    let label = this.data("componentLabel")
+      ? this.data("componentLabel")
+      : "Hora";
 
-   let date = new Date;
-   let minutes = date.getMinutes();
-   let hour = date.getHours();
-   let time = this.data("componentTime")
-               ? this.data("componentTime")
-               : hours+":"+minutes;
+    let date = new Date();
+    let minutes = date.getMinutes();
+    let hour = date.getHours();
+    let time = this.data("componentTime")
+      ? this.data("componentTime")
+      : hours + ":" + minutes;
 
-   let timeid=   removeDiv(this.attr("id"));
-   let inputid=  removeDiv(this.attr("id"));
+    let timeid = removeDiv(this.attr("id"));
+    let inputid = removeDiv(this.attr("id"));
 
-   let timediv = document.createElement("div");
-   if (orientation==="horizontal")
-     timediv.setAttribute("class", "field amIsHorizontal items-center");
-   else
-     timediv.setAttribute("class", "field amIsVertical");
+    let timediv = document.createElement("div");
+    if (orientation === "horizontal")
+      timediv.setAttribute("class", "field amIsHorizontal items-center");
+    else timediv.setAttribute("class", "field amIsVertical");
 
-   timediv.setAttribute("id", "divField" + timeid);
+    timediv.setAttribute("id", "divField" + timeid);
 
-   let timelabeldiv = document.createElement("div");
-   timelabeldiv.setAttribute("class", "amFieldLabel flex");
+    let timelabeldiv = document.createElement("div");
+    timelabeldiv.setAttribute("class", "amFieldLabel flex");
 
-   let timelabel = document.createElement("label");
-   timelabel.setAttribute("for", inputid);
-   timelabel.innerHTML = label;
+    let timelabel = document.createElement("label");
+    timelabel.setAttribute("for", inputid);
+    timelabel.innerHTML = label;
 
+    let timespan = document.createElement("span");
+    timespan.setAttribute("class", "amRequired");
+    timespan.innerHTML = "*";
 
-   let timespan = document.createElement("span");
-   timespan.setAttribute("class", "amRequired");
-   timespan.innerHTML = "*";
+    timelabeldiv.appendChild(timelabel);
 
-   timelabeldiv.appendChild(timelabel);
+    if (this.data("componentRequired") === true)
+      timelabeldiv.appendChild(timespan);
 
-   if (this.data("componentRequired") === true)
-    timelabeldiv.appendChild(timespan);
+    let controldiv = document.createElement("div");
+    controldiv.setAttribute("class", "amFieldControl");
 
-   let controldiv = document.createElement("div");
-   controldiv.setAttribute("class", "amFieldControl");
+    let inputdiv = document.createElement("div");
+    inputdiv.setAttribute("class", "amFieldInput flex items-center");
 
-   let inputdiv = document.createElement("div");
-   inputdiv.setAttribute("class", "amFieldInput flex items-center");
+    let input = document.createElement("input");
+    input.setAttribute("class", "timepicker input hasWickedpicker");
+    input.setAttribute("id", "txt" + inputid);
+    input.setAttribute("style", "width: 8em;");
+    input.setAttribute(
+      "data-parsley-errors-container",
+      "#divFieldErrorBlock" + removeDiv(inputid)
+    );
+    input.setAttribute("onkeypress", "return false;");
+    input.setAttribute("aria-showingpicker", "false");
+    input.setAttribute("tabindex", "0");
 
-   let input = document.createElement("input");
-   input.setAttribute("class", "timepicker input hasWickedpicker");
-   input.setAttribute("id", "txt" + inputid);
-   input.setAttribute("style", "width: 8em;");
-   input.setAttribute("data-parsley-errors-container", "#divFieldErrorBlock"+removeDiv(inputid));
-   input.setAttribute("onkeypress", "return false;");
-   input.setAttribute("aria-showingpicker", "false");
-   input.setAttribute("tabindex", "0");
+    inputdiv.appendChild(input);
 
-   inputdiv.appendChild(input);
+    let errordiv = document.createElement("div");
+    errordiv.setAttribute("class", "amFieldError");
+    let errorblockdiv = document.createElement("div");
+    errorblockdiv.setAttribute("id", "divFieldErrorBlock" + removeDiv(inputid));
 
-   let errordiv = document.createElement("div");
-   errordiv.setAttribute("class", "amFieldError");
-   let errorblockdiv = document.createElement("div");
-   errorblockdiv.setAttribute("id", "divFieldErrorBlock"+removeDiv(inputid));
+    errordiv.appendChild(errorblockdiv);
 
-   errordiv.appendChild(errorblockdiv);
+    controldiv.appendChild(input);
+    controldiv.appendChild(inputdiv);
+    controldiv.appendChild(errordiv);
 
-   controldiv.appendChild(input);
-   controldiv.appendChild(inputdiv);
-   controldiv.appendChild(errordiv);
+    timediv.appendChild(timelabeldiv);
+    timediv.appendChild(controldiv);
 
-   timediv.appendChild(timelabeldiv);
-   timediv.appendChild(controldiv);
+    this.append(timediv);
+    $("#" + "divField" + timeid).unwrap();
 
-   this.append(timediv);
-   $("#" + "divField" + timeid).unwrap();
+    let timepickerinitialdata = {
+      now: time,
+      upArrow: "wickedpicker__controls__control-up",
+      downArrow: "wickedpicker__controls__control-down",
+      close: "wickedpicker__close",
+      hoverState: "hover-state",
+      title: label,
+      showSeconds: false,
+      secondsInterval: 1,
+      minutesInterval: 1,
+      beforeShow: null,
+      show: null,
+      clearable: false
+    };
 
-
-   let timepickerinitialdata = {
-    now: time,
-    upArrow: "wickedpicker__controls__control-up",
-    downArrow: "wickedpicker__controls__control-down",
-    close: "wickedpicker__close",
-    hoverState: "hover-state",
-    title: label,
-    showSeconds: false,
-    secondsInterval: 1,
-    minutesInterval: 1,
-    beforeShow: null,
-    show: null,
-    clearable: false
-   };
-
-   $("#"+"txt" + inputid).wickedpicker(timepickerinitialdata);
-
+    $("#" + "txt" + inputid).wickedpicker(timepickerinitialdata);
   }
-}
+};
 
 $.fn.fieldmonthyear = function() {
   if (this.data("componentType") === "field-month-year") {
-   let id = removeDiv(this.attr("id"));
-   let div = document.createElement("div");
-   div.setAttribute("id", "div" + id);
-   div.setAttribute("class", "monthpicker");
-   this.append(div);
-   $("#" + "div" + id).unwrap();
+    let id = removeDiv(this.attr("id"));
+    let div = document.createElement("div");
+    div.setAttribute("id", "div" + id);
+    div.setAttribute("class", "monthpicker");
+    this.append(div);
+    $("#" + "div" + id).unwrap();
   }
-}
+};
 
 $.fn.fieldDateRange = function() {
   const fieldId = this.attr("id");
@@ -1702,7 +1722,10 @@ $.fn.fieldOptions = function() {
       inptOpt.setAttribute("checked", "checked");
     }
 
-    inptOpt.setAttribute("data-parsley-class-handler", "#divField" + removeDiv(fieldId));
+    inptOpt.setAttribute(
+      "data-parsley-class-handler",
+      "#divField" + removeDiv(fieldId)
+    );
 
     inptOpt.setAttribute(
       "data-parsley-errors-container",
@@ -1797,7 +1820,10 @@ $.fn.fieldCheckBox = function() {
     if (this.data("componentRequired") == true) {
       inptChckBox.setAttribute("required", "required");
     }
-    inptChckBox.setAttribute("data-parsley-class-handler", "#divField" + removeDiv(fieldId));
+    inptChckBox.setAttribute(
+      "data-parsley-class-handler",
+      "#divField" + removeDiv(fieldId)
+    );
     inptChckBox.setAttribute(
       "data-parsley-errors-container",
       "#divFieldErrorBlock" + removeDiv(fieldId)
@@ -2115,7 +2141,8 @@ $.fn.select = function() {
 
     const diverror = document.createElement("div");
     diverror.setAttribute("class", "amFieldError");
-    diverror.innerHTML = '<div id="divFieldErrorBlock' + removeDiv(id) + '"></div>';
+    diverror.innerHTML =
+      '<div id="divFieldErrorBlock' + removeDiv(id) + '"></div>';
 
     const tooltipdiv = document.createElement("div");
     tooltipdiv.setAttribute("class", "amFieldControl");
