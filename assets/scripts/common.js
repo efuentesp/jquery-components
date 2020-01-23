@@ -13,80 +13,10 @@ var __assign =
       };
     return __assign.apply(this, arguments);
   };
-var REST_URL = "http://localhost:3000";
-/******
-var DATE_FORMAT = "dd-mm-yy";
-var DATE_FORMAT_MONTH_YEAR = "MM yy";
-var ui_datepicker_settings = {
-    showOn: "both",
-    buttonImage: "../../assets/images/btn-calendario.svg",
-    buttonImageOnly: true,
-    buttonText: "",
-    dateFormat: DATE_FORMAT,
-    changeMonth: true,
-    changeYear: true,
-    showButtonPanel: true,
-    currentText: "Hoy",
-    closeText: "Limpiar",
-    onClose: function (dateText, inst) {
-        if ($(window.event.srcElement).hasClass("ui-datepicker-close")) {
-            document.getElementById(this.id).value = "";
-        }
-    }
-};
-$.datepicker.regional["es"] = {
-    monthNames: [
-        "Enero",
-        "Febrero",
-        "Marzo",
-        "Abril",
-        "Mayo",
-        "Junio",
-        "Julio",
-        "Agosto",
-        "Septiembre",
-        "Octubre",
-        "Noviembre",
-        "Diciembre"
-    ],
-    monthNamesShort: [
-        "Ene",
-        "Feb",
-        "Mar",
-        "Abr",
-        "May",
-        "Jun",
-        "Jul",
-        "Ago",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dic"
-    ],
-    dayNames: [
-        "Domingo",
-        "Lunes",
-        "Martes",
-        "Miércoles",
-        "Jueves",
-        "Viernes",
-        "Sábado"
-    ],
-    dayNamesShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
-    dayNamesMin: ["D", "L ", "M ", "M ", "J ", "V ", "S "]
-};
-$.datepicker.setDefaults($.datepicker.regional["es"]);
-var ui_datepicker_month_year_settings = {
-    changeMonth: true,
-    changeYear: true,
-    showButtonPanel: false,
-    dateFormat: DATE_FORMAT_MONTH_YEAR,
-    onChangeMonthYear: function (year, month, inst) {
-        $(this).datepicker("setDate", new Date(inst.selectedYear, inst.selectedMonth, 1));
-    }
-};*/
+var restURL = "http://localhost:3000";
+
 var icons = { header: "plus-icon", activeHeader: "minus-icon" };
-var ui_accordion_settings = {
+var uiAccordionSettings = {
   collapsible: true,
   icons: icons,
   heightStyle: "content"
@@ -111,15 +41,15 @@ $('div[class*="field-plus-minus"]').each(function(index, item) {
   }
 });
 $(".tab-group").tabs();
-$(".accordion").accordion(ui_accordion_settings);
+$(".accordion").accordion(uiAccordionSettings);
 /******
 $(".splitter-vertical").splitter();
 $(".splitter-horizontal").splitter({ type: "h" });
 */
-var fillJqGrid = function(grid_id, data) {
-  $(grid_id).jqGrid("clearGridData");
+var fillJqGrid = function(gridId, data) {
+  $(gridId).jqGrid("clearGridData");
   data.forEach(function(item, i) {
-    return $(grid_id).jqGrid("addRowData", i + 1, item);
+    return $(gridId).jqGrid("addRowData", i + 1, item);
   });
 };
 $(".radio-toggle").toggleInput();
@@ -145,11 +75,11 @@ $("[href='#previous']").html(
 $("[href='#finish']").html(
   '<img src="../../assets/images/btn-enviar.png">Enviar</img>'
 );
-var rest_findAll = function(resource, params, cb) {
-  var api_params = $.param(params);
-  var url = api_params
-    ? REST_URL + "/" + resource + "?" + api_params
-    : REST_URL + "/" + resource;
+var restFindAll = function(resource, params, cb) {
+  var apiParams = $.param(params);
+  var url = apiParams
+    ? restURL + "/" + resource + "?" + apiParams
+    : restURL + "/" + resource;
   $.ajax({
     url: url,
     contentType: "application/json",
@@ -159,8 +89,8 @@ var rest_findAll = function(resource, params, cb) {
     }
   });
 };
-var rest_create = function(resource, payload, cb) {
-  var url = REST_URL + "/" + resource;
+var restCreate = function(resource, payload, cb) {
+  var url = restURL + "/" + resource;
   $.ajax({
     type: "POST",
     url: url,
@@ -172,8 +102,8 @@ var rest_create = function(resource, payload, cb) {
     }
   });
 };
-var rest_findOne = function(resource, id, cb) {
-  var url = REST_URL + "/" + resource + "/" + id;
+var restFindOne = function(resource, id, cb) {
+  var url = restURL + "/" + resource + "/" + id;
   $.ajax({
     url: url,
     contentType: "application/json",
@@ -183,8 +113,8 @@ var rest_findOne = function(resource, id, cb) {
     }
   });
 };
-var rest_findOne$ = function(resource, id) {
-  var url = REST_URL + "/" + resource + "/" + id;
+var restFindOne$ = function(resource, id) {
+  var url = restURL + "/" + resource + "/" + id;
   return $.ajaxAsObservable({
     url: url,
     contentType: "application/json",
@@ -206,10 +136,10 @@ var rpc = function(url, params, cb) {
 $("select[name=quiz_select]").select2({
   minimumResultsForSearch: Infinity
 });
-var http_findAll = rest_findAll;
-var http_findOne = rest_findOne;
-var http_findOne$ = rest_findOne$;
-var http_create = rest_create;
+var httpFindAll = restFindAll;
+var httpFindOne = restFindOne;
+var httpFindOne$ = restFindOne$;
+var httpCreate = restCreate;
 
 var existText = function(textToAdd, list) {
   var exist = false;
@@ -797,8 +727,8 @@ var getList = function(id) {
 };
 var getChecked = function(id) {
   var selected = [];
-  var query_select = "#field_" + id + " input[type=checkbox]";
-  $(query_select).each(function() {
+  var querySelect = "#field" + toUpperFirst(id) + " input[type=checkbox]";
+  $(querySelect).each(function() {
     if ($(this).is(":checked")) {
       selected.push($(this).attr("value"));
     }
@@ -806,8 +736,8 @@ var getChecked = function(id) {
   return selected;
 };
 var getOptionSelected = function(id) {
-  var query_select = "input[name='" + id + "']:checked";
-  return $(query_select).val();
+  var querySelect = "input[name='" + id + "']:checked";
+  return $(querySelect).val();
 };
 
 var backgroundSet = function(elements) {
@@ -1843,7 +1773,7 @@ var pieChart = function(params) {
   });
 };
 
-$("#btn_clean").click(function() {
+$("#btnClean").click(function() {
   $(".form-group")
     .parsley()
     .reset();
@@ -1854,7 +1784,7 @@ $("#btn_clean").click(function() {
 });
 var getCheckedCheckbox = function(id) {
   var list = [];
-  list = $("input[name='chk_" + id + "']:checked")
+  list = $("input[name='chk" + toUpperFirst(id) + "']:checked")
     .map(function() {
       return $(this).val();
     })
@@ -1906,7 +1836,7 @@ function copyGridContentToClipboard(gridNameID, includeGroups) {
         });
         tableContent += "</tr>";
       });
-      var tableID = "___" + gridNameID;
+      var tableID = "tbl" + toUpperFirst(gridNameID);
       var table = $(
         '<table id="' +
           tableID +
@@ -1932,8 +1862,8 @@ function copyGridContentToClipboard(gridNameID, includeGroups) {
     }
   }
 }
-var fillQuiz = function(field_group, id, quiz) {
-  var trElement = $("#" + field_group + " tbody");
+var fillQuiz = function(fieldGroup, id, quiz) {
+  var trElement = $("#" + fieldGroup + " tbody");
   var answerOption = "";
   var answerSelect = "";
   var answersSelect = "";
@@ -1954,13 +1884,13 @@ var fillQuiz = function(field_group, id, quiz) {
       question += "<span class='required'>*</span>";
     }
     question +=
-      "<div class='field-error'><div id='field_error_block_encuesta_" +
-      i +
+      "<div class='field-error'><div id='divFieldErrorBlockEncuesta" +
+      toUpperFirst(i) +
       "'></div></div></td>";
     answers = "";
     options = "";
     for (var j = 0; j < nAnswers; j++) {
-      var answer_points = quiz[0].question[i].points
+      var answerPoints = quiz[0].question[i].points
         ? quiz[0].question[i].points[j]
         : "1";
       var disabled = quiz[0].answer[j].disabled;
@@ -1970,26 +1900,22 @@ var fillQuiz = function(field_group, id, quiz) {
           "<td>" +
           "<div class='answer'>" +
           "<input type='radio' id='" +
-          id +
-          "_" +
-          i +
-          "_" +
-          j +
+          toUpperFirst(id) +
+          toUpperFirst(i) +
+          toUpperFirst(j) +
           "' name='" +
-          id +
-          "_" +
-          i +
-          "' required data-parsley-errors-container='#field_error_block_" +
-          id +
-          "_" +
-          j +
+          toUpperFirst(id) +
+          toUpperFirst(i) +
+          "' required data-parsley-errors-container='#divFieldErrorBlock" +
+          toUpperFirst(id) +
+          toUpperFirst(j) +
           "'";
         if (quiz[0].result[i].results[j].result) {
           answerOption += "checked='checked'";
         }
         answerOption +=
           "data-points='" +
-          answer_points +
+          answerPoints +
           "'>" +
           "<span class='checkmark'></span>" +
           "</div>" +
@@ -1999,17 +1925,15 @@ var fillQuiz = function(field_group, id, quiz) {
       if (quiz[0].answer[j].type == "select") {
         answerSelect =
           '<td><div class="answer">' +
-          '<select class="select2" id="encuesta_' +
-          i +
-          "_" +
-          j +
+          '<select class="select2" id="encuesta' +
+          toUpperFirst(i) +
+          toUpperFirst(j) +
           '" name="quiz_select" style="width: 12em;" required ' +
           db +
           " " +
-          'data-parsley-errors-container="#field_error_block_' +
-          id +
-          "_" +
-          i +
+          'data-parsley-errors-container="#divFieldErrorBlock' +
+          toUpperFirst(id) +
+          toUpperFirst(i) +
           '">';
         var optionValue = quiz[0].result[i].results[j].result;
         options = "";
@@ -2223,58 +2147,7 @@ var xml2json = function(xml, tab) {
     "\n}"
   );
 };
-// var fillSwapList = function (id, list_id, params) {
-//     var _id = "#" + id;
-//     var list = $("#listado_" + list_id);
-//     for (var i = 0; i < params.length; i++) {
-//         var data = params[i];
-//         list.append("<li class='portlet' value=" +
-//             data.value +
-//             "><div class='portlet-content'>" +
-//             data.label +
-//             "</div></li>");
-//     }
-// };
-// $("ul.column").on("click", "li", function () {
-//     if ($(this).hasClass("selected")) {
-//         $(this).removeClass("selected");
-//     }
-//     else {
-//         clearList();
-//         $(this).addClass("selected");
-//     }
-// });
-// $(".up").click(function () {
-//     var currents = $(".portlet.selected");
-//     currents.prev().before(currents);
-// });
-// $(".down").click(function () {
-//     var currents = $(".portlet.selected");
-//     currents.next().after(currents);
-// });
-// $(".add").click(function () {
-//     var currents = $(".portlet.selected");
-//     $(".column.destination").append(currents);
-//     clearList();
-// });
-// $(".remove").click(function () {
-//     var currents = $(".portlet.selected");
-//     $(".column.source").append(currents);
-//     clearList();
-// });
-// $(".column").sortable({
-//     connectWith: ".column",
-//     handle: ".portlet-content",
-//     cancel: ".portlet-toggle",
-//     placeholder: "portlet-placeholder ui-corner-all"
-// });
-// $(".portlet")
-//     .addClass("ui-widget ui-widget-content ui-helper-clearfix ui-corner-all")
-//     .find(".portlet-content")
-//     .addClass("ui-corner-all");
-// var clearList = function () {
-//     $("ul.column li").removeClass("selected");
-// };
+
 var formatNumber = {
   separador: ",",
   sepDecimal: ".",
@@ -2356,36 +2229,6 @@ var isSelectedColumnn = function(columnName, selectedColumns) {
   }
   return isSelected;
 };
-/******
-var responsiveEffect = function (widthTable, numColumnsBase, selectedColumns, idTable, idSplitterContainer) {
-    var colModel = $("#" + idTable).jqGrid('getGridParam', 'colModel');
-    var numColumnas = selectedColumns.length + numColumnsBase;
-    var gridWidth = $("#splitter-container").parent().width();
-    if (gridWidth > widthTable) {
-        gridWidth = widthTable;
-    }
-    widthColumns = gridWidth / numColumnas;
-    $("#" + idTable).jqGrid("setGridWidth", gridWidth, true);
-    for (var j = 0; j < colModel.length; j++) {
-        $("#" + idTable).jqGrid('resizeColumn', colModel[j].name, 0);
-        if (j < 2 || isSelectedColumnn(colModel[j].name, selectedColumns)) {
-            $("#" + idTable).jqGrid('resizeColumn', colModel[j].name, widthColumns);
-        }
-    }
-    $("#gbox_" + idTable).attr("style", "width: " + gridWidth + "px;");
-    $("#gview_" + idTable).attr("style", "width: " + gridWidth + "px;");
-    windowResize(widthTable, idTable, idSplitterContainer);
-};
-var windowResize = function (widthTable, idTable, idSplitterContainer) {
-    $(window).on("resize", function () {
-        var gridWidth = $("#" + idSplitterContainer).parent().width();
-        if (gridWidth > widthTable) {
-            gridWidth = widthTable;
-        }
-        $("#" + idTable).jqGrid("setGridWidth", gridWidth, true);
-    });
-};
-*/
 
 var colorSet = function(rMin, rMax, gMin, gMax, bMin, bMax, min, max) {
   var c = "";
@@ -2739,7 +2582,6 @@ var barHighchart = function(params) {
     series: arrayData
   });
 };
-//# sourceMappingURL=../maps/common.js.map
 
 var verifyYear = function(day, month, year) {
   var countMonthYear = 0;

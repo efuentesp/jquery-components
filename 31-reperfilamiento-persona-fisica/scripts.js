@@ -28,7 +28,7 @@ $("#asesoria").select();
 //grupo3
 let encuesta_params = {};
 // Name of json
-http_findAll("encuesta", encuesta_params, payload => {
+httpFindAll("encuesta", encuesta_params, payload => {
   // Parameters: field name group, id of quiz, data
   fillQuiz("grupoTres", "encuesta", payload);
 });
@@ -78,7 +78,7 @@ $("#table_emisora").jqGrid({
 //grupo5
 let encuesta2_params = {};
 // Name of json
-http_findAll("encuesta2", encuesta2_params, payload => {
+httpFindAll("encuesta2", encuesta2_params, payload => {
   // Parameters: field name group, id of quiz, data
   fillQuiz("grupoCinco", "encuesta2", payload);
 });
@@ -129,7 +129,7 @@ function mostrarOcultar(tipo) {
 // ----------     SERVICIOS     ---------- //
 
 let select_params = {};
-http_findAll("edadesService", select_params, function(payload) {
+httpFindAll("edadesService", select_params, function(payload) {
   $("#edad").select2({
     placeholder: "--Seleccione--",
     minimumResultsForSearch: Infinity,
@@ -137,7 +137,7 @@ http_findAll("edadesService", select_params, function(payload) {
   });
 });
 
-http_findAll("estudiosService", select_params, function(payload) {
+httpFindAll("estudiosService", select_params, function(payload) {
   $("#estudios").select2({
     placeholder: "--Seleccione--",
     minimumResultsForSearch: Infinity,
@@ -145,7 +145,7 @@ http_findAll("estudiosService", select_params, function(payload) {
   });
 });
 
-http_findAll("ocupacionService", select_params, function(payload) {
+httpFindAll("ocupacionService", select_params, function(payload) {
   $("#ocupacion").select2({
     placeholder: "--Seleccione--",
     minimumResultsForSearch: Infinity,
@@ -153,7 +153,7 @@ http_findAll("ocupacionService", select_params, function(payload) {
   });
 });
 
-http_findAll("estrategiaService", select_params, function(payload) {
+httpFindAll("estrategiaService", select_params, function(payload) {
   $("#estrategia").select2({
     placeholder: "--Seleccione--",
     minimumResultsForSearch: Infinity,
@@ -161,7 +161,7 @@ http_findAll("estrategiaService", select_params, function(payload) {
   });
 });
 
-http_findAll("asesoriaService", select_params, function(payload) {
+httpFindAll("asesoriaService", select_params, function(payload) {
   $("#asesoria").select2({
     placeholder: "--Seleccione--",
     minimumResultsForSearch: Infinity,
@@ -169,7 +169,7 @@ http_findAll("asesoriaService", select_params, function(payload) {
   });
 });
 
-http_findAll("propositoService", select_params, function(payload) {
+httpFindAll("propositoService", select_params, function(payload) {
   $("#proposito").select2({
     placeholder: "--Seleccione--",
     minimumResultsForSearch: Infinity,
@@ -177,7 +177,7 @@ http_findAll("propositoService", select_params, function(payload) {
   });
 });
 
-http_findAll("toleranciaService", select_params, function(payload) {
+httpFindAll("toleranciaService", select_params, function(payload) {
   $("#tolerancia").select2({
     placeholder: "--Seleccione--",
     minimumResultsForSearch: Infinity,
@@ -185,7 +185,7 @@ http_findAll("toleranciaService", select_params, function(payload) {
   });
 });
 
-http_findAll("horizonteInversion", select_params, function(payload) {
+httpFindAll("horizonteInversion", select_params, function(payload) {
   $("#horizonteInversion")
     .select2({
       placeholder: "--Seleccione--",
@@ -206,7 +206,7 @@ http_findAll("horizonteInversion", select_params, function(payload) {
 });
 
 function obtienRangos(select_params) {
-  http_findAll("detallePortaFolio", select_params, payload => {
+  httpFindAll("detallePortaFolio", select_params, payload => {
     if (payload.length > 0) {
       document.getElementById("menorDeUno").innerHTML =
         payload[0].menorDeUn + "%";

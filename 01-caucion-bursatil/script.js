@@ -29,7 +29,7 @@ $("#button-clean_btnclean").click(function() {
     .reset();
   // $("#payment").parsley();
   contratos_params = {};
-  http_findAll("contratos", contratos_params, function(payload) {
+  httpFindAll("contratos", contratos_params, function(payload) {
     $("#table_gridcontratos").jqGrid("clearGridData");
     $("#table_gridcontratos").jqGrid("setGridParam", { data: payload });
     $("#table_gridcontratos").trigger("reloadGrid");
@@ -39,7 +39,7 @@ $("#button-clean_btnclean").click(function() {
 });
 
 var contratos_params = {};
-http_findAll("contratos", contratos_params, function(payload) {
+httpFindAll("contratos", contratos_params, function(payload) {
   llenaGridContratos(payload);
   var rec_count = payload.length;
   $("#count_countcontratos").html(rec_count);
@@ -232,7 +232,7 @@ var form = $("#criterios-busqueda")
       contratos_params.contrato = listejemplo;
       console.log("--> contratos_params.contrato ", contratos_params.contrato);
     }
-    http_findAll("contratos", contratos_params, function(payload) {
+    httpFindAll("contratos", contratos_params, function(payload) {
       $("#table_gridcontratos").jqGrid("clearGridData");
       $("#table_gridcontratos").jqGrid("setGridParam", { data: payload });
       $("#table_gridcontratos").trigger("reloadGrid");

@@ -1905,12 +1905,12 @@ $.fn.customaccordion = function() {
     });
 
     var icons = { header: "plus-icon", activeHeader: "minus-icon" };
-    var ui_accordion_settings = {
+    var uiAccordionSettings = {
       collapsible: true,
       icons: icons,
       heightStyle: "content"
     };
-    this.accordion(ui_accordion_settings);
+    this.accordion(uiAccordionSettings);
   }
 };
 

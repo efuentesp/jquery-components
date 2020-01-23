@@ -177,7 +177,7 @@ $("#clasificacionBanxico").fieldInput();
 // Quiz group 3
 let encuesta_params = {};
 // Name of json
-http_findAll("encuesta", encuesta_params, function(payload) {
+httpFindAll("encuesta", encuesta_params, function(payload) {
   // Parameters: field name group, id of quiz, data
   fillQuiz("ejemploQuiz", "encuesta", payload);
 });
@@ -666,7 +666,7 @@ const form_buscar_contrato = $("#criterios-busqueda")
   })
   .on("form:submit", function() {
     const contrato = String($("#contrato").val());
-    http_findOne("contratos", contrato, function(payload) {
+    httpFindOne("contratos", contrato, function(payload) {
       console.log(
         "-------> ",
         payload.cotitulares[0].clasificacion_contrato.servicio_inversion

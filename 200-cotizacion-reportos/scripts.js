@@ -17,7 +17,7 @@ $("#gridCotizacion").grid();
 $("#gridCountCotizacion").gridrecordscount();
 
 let cotizacion_reporto_params = {};
-http_findAll("cotizacion_reporto", cotizacion_reporto_params, function (payload) {
+httpFindAll("cotizacion_reporto", cotizacion_reporto_params, function (payload) {
     console.log(payload);
     llenaGridCotizacionReporto(payload);
     let rec_count = payload.length;

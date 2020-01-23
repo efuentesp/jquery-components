@@ -15,7 +15,7 @@ $("#titulos").fieldInput();
 $("#precio_pactado").fieldInput();
 $("#monto").fieldInput();
 $("#btn_add").button();
-$("#btn_clean").button();
+$("#btnClean").button();
 
 
 $("#grupo_grids").tabgroup();
@@ -24,7 +24,7 @@ $("#contratos_directos").grid();
 $("#count_contratos_directos").gridrecordscount();
 $("#btn_send").button();
 $("#btn_validate").button();
-$("#btn_clean").button();
+$("#btnClean").button();
 $("#captura").fieldInput();
 
 

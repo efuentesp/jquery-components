@@ -34,7 +34,7 @@ $("#buscaErroresInput").fieldInput();
 $("#gridErrores").grid();
 // ----------------------   GRID table_gridBandas   ----------------------
 var captura_reportos_params = {};
-http_findAll("captura_reportos", captura_reportos_params, function(payload) {
+httpFindAll("captura_reportos", captura_reportos_params, function(payload) {
   llenaGridCapturaReporto(payload);
 });
 
@@ -88,7 +88,7 @@ var llenaGridCapturaReporto = function(captura_reportos) {
 
 // ----------------------   GRID table_gridContratos   ----------------------
 var contratos_reportos_params = {};
-http_findAll("contratos_reportos", contratos_reportos_params, function(
+httpFindAll("contratos_reportos", contratos_reportos_params, function(
   payload
 ) {
   llenaGridContratosReportos(payload);
@@ -380,7 +380,7 @@ var llenaGridContratosReportos = function(contratos_reportos) {
 
 // ----------------------   GRID table_gridEnviados   ----------------------
 var envios_reportos_params = {};
-http_findAll("envios_reportos", contratos_reportos_params, function(payload) {
+httpFindAll("envios_reportos", contratos_reportos_params, function(payload) {
   llenaGridErroresReportos(payload);
 });
 var llenaGridEnviosReportos = function(envios_reportos) {
@@ -670,7 +670,7 @@ var llenaGridEnviosReportos = function(envios_reportos) {
 
 // ----------------------   GRID table_gridErrores   ----------------------
 var errores_reportos_params = {};
-http_findAll("envios_reportos", contratos_reportos_params, function(payload) {
+httpFindAll("envios_reportos", contratos_reportos_params, function(payload) {
   llenaGridEnviosReportos(payload);
 });
 var llenaGridErroresReportos = function(envios_reportos) {
