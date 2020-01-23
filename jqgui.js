@@ -894,46 +894,47 @@ $.fn.tabgroup = function() {
 $.fn.sidebarwrapper = function() {
   if (this.data("componentType") === "sidebar-wrapper") {
     var id = this.attr("id");
+    this.attr("id","div"+ removeDiv(id));
 
-    $("[data-component-type=sidebar-wrapper]").attr("class", "sidebar-wrapper");
+    $("[data-component-type=sidebar-wrapper]").attr("class", "amSidebarWrapper");
     $("[data-component-type=sidebar-wrapper]").removeAttr(
       "data-component-type"
     );
     let expanded = "";
 
     if ($("[data-component-type=sidebar]").data("componentExpanded") === false)
-      expanded = " isClosed";
+      expanded = " amIsClosed";
 
-    $("[data-component-type=sidebar]").attr("class", "sidebar" + expanded);
+    $("[data-component-type=sidebar]").attr("class", "amSidebar" + expanded);
     $("[data-component-type=sidebar]").removeAttr("data-component-type");
-    $("[data-component-type=sidebar-content]").attr("class", "sidebar-content");
+    $("[data-component-type=sidebar-content]").attr("class", "amSidebarContent");
     $("[data-component-type=sidebar-content]").removeAttr(
       "data-component-type"
     );
     $("[data-component-type=sidebar-collapsible-button]").attr(
       "class",
-      "sidebar-collapsible-button"
+      "amSidebarCollapsibleButton"
     );
     $("[data-component-type=sidebar-collapsible-button]").removeAttr(
       "data-component-type"
     );
 
     // $("#" + id + " *").removeAttr("data-component-type");
-    $("#" + id).removeAttr("data-component-type");
+    $("#" + "div"+ removeDiv(id)).removeAttr("data-component-type");
   }
 
-  $(".sidebar-collapsible-button").on("click", function() {
-    $("#" + id + " .sidebar").toggleClass("isClosed");
+  $(".amSidebarCollapsibleButton").on("click", function() {
+    $("#" + "div"+ removeDiv(id) + " .amSidebar").toggleClass("amIsClosed");
   });
 
-  var expandSideBar = $(".sidebar").attr("expand") == "true";
+  var expandSideBar = $(".amSidebar").attr("expand") == "true";
   if (expandSideBar) {
-    $(".sidebar_content")
+    $(".amSidebarContent")
       .parent()
       .attr("style", "width: 250px !important;");
-    $(".sidebar_content").addClass("is_open");
-    $(".sidebar_button").addClass("is_open");
-    $(".content").addClass("is_sidebar_open");
+    $(".amSidebarContent").addClass("amIsOpen");
+    $(".amSidebarButton").addClass("amIsOpen");
+    $(".amContent").addClass("amIsSidebarOpen");
   }
 };
 
@@ -1890,7 +1891,7 @@ $.fn.form = function() {
 
 $.fn.customaccordion = function() {
   if (this.data("componentType") === "accordion") {
-    this.attr("class", "accordion");
+    this.attr("class", "mAccordion");
     this.attr("data-component-type", null);
     this.children().each(function() {
       let item = $("#" + this.getAttribute("id"));
@@ -1898,7 +1899,7 @@ $.fn.customaccordion = function() {
         ? item.data("componentLabel")
         : "";
       $("<h3>" + label + "</h3>").insertBefore("#" + this.getAttribute("id"));
-      $("#" + this.getAttribute("id")).attr("class", "accordion-content");
+      $("#" + this.getAttribute("id")).attr("class", "amAccordionContent");
       item.attr("id", null);
       item.attr("data-component-type", null);
       item.attr("data-component-label", null);
@@ -1910,6 +1911,7 @@ $.fn.customaccordion = function() {
       icons: icons,
       heightStyle: "content"
     };
+
     this.accordion(uiAccordionSettings);
   }
 };

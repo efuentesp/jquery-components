@@ -1221,7 +1221,7 @@ QUnit.test("ACCORDION - Inicializado correctamente", function(assert) {
   const role = $("#testaccordion").attr("role");
   const uiclass = $("#testaccordion").hasClass("ui-accordion");
   const headers = $("#testaccordion").children("h3.ui-accordion-header");
-  const content = $("#testaccordion").children("div.accordion-content");
+  const content = $("#testaccordion").children("div.amAccordionContent");
   // act
   // assert
   assert.equal(role, "tablist");
