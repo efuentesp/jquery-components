@@ -1925,7 +1925,7 @@ $.fn.fieldSplitter = function() {
   const splitterFirstPanelContent = [].slice.call(splitterDIV[0].children);
   const splitterSecondPanelContent = [].slice.call(splitterDIV[1].children);
   //Se indica id y orientacion del div principal
-  this.attr("id", "splitter_container");
+  this.attr("id", "div"+ removeDiv(fieldId) );
   this.attr("class", "div");
   const divSimple = document.createElement("div");
 
@@ -1958,26 +1958,10 @@ $.fn.fieldSplitter = function() {
     );
   }
 
-  // const labelOpt1 = document.createElement("label");
-  // var t1 = document.createTextNode("Aquí va el contenido del panel 1");
-  // labelOpt1.appendChild(t1);
   Array.prototype.forEach.call(splitterFirstPanelContent, function(child) {
     divPanel1.appendChild(child);
   });
   divSimple.appendChild(divPanel1);
-  /*
-  const divSplitter = document.createElement("div");
-  divSplitter.setAttribute("class", "splitter-bar splitter-bar-" + fieldClassOrientation + " ui-state-default  splitter-pane");
-  divSplitter.setAttribute("unselectable", "on");
-  divSplitter.setAttribute("style", "position: absolute; user-select: none; z-index: 100; cursor: col-resize; left: 856px; height: 400px;");
-
-  const a = document.createElement("a");
-  a.setAttribute("href", "javascript:void(0)");
-  a.setAttribute("accesskey", "");
-  a.setAttribute("tabindex", "0");
-  divSplitter.appendChild(a);
-  divSimple.appendChild(divSplitter);
-  */
 
   const divPanel2 = document.createElement("div");
   divPanel2.setAttribute("class", "pane splitter-pane");
@@ -1993,11 +1977,7 @@ $.fn.fieldSplitter = function() {
       "position: relative; z-index: 1; top: 0px; width: 1439px; height: 207px; user-select: text;"
     );
   }
-  // const labelOpt2 = document.createElement("label");
-  // var t2 = document.createTextNode("Aquí va el contenido del panel 2");
 
-  // labelOpt2.appendChild(t2);
-  // divPanel2.appendChild(labelOpt2);
   Array.prototype.forEach.call(splitterSecondPanelContent, function(child) {
     divPanel2.appendChild(child);
   });
@@ -2012,53 +1992,12 @@ $.fn.fieldSplitter = function() {
     $("#" + paneSplitter.id).remove();
     $("#" + paneSplitter.id).remove();
   }
-  //=================================================================================
-  //$(".splitter-bar-vertical").dblclick(function () {
-  //console.log("===========================>>> Al menos ya escucha el evento dblclick...");
-  //$(".splitter-vertical").splitter();
-  //});
+
 
   $(".splitter-vertical").splitter();
   $(".splitter-horizontal").splitter({ type: "h" });
 
-  /******
-  var responsiveEffect = function(
-    widthTable,
-    numColumnsBase,
-    selectedColumns,
-    idTable,
-    idSplitterContainer
-  ) {
-    var colModel = $("#" + idTable).jqGrid("getGridParam", "colModel");
-    var numColumnas = selectedColumns.length + numColumnsBase;
-    var gridWidth = $("#splitter-container")
-      .parent()
-      .width();
-    if (gridWidth > widthTable) {
-      gridWidth = widthTable;
-    }
-    widthColumns = gridWidth / numColumnas;
-    $("#" + idTable).jqGrid("setGridWidth", gridWidth, true);
-    for (var j = 0; j < colModel.length; j++) {
-      $("#" + idTable).jqGrid("resizeColumn", colModel[j].name, 0);
-      if (j < 2 || isSelectedColumnn(colModel[j].name, selectedColumns)) {
-        $("#" + idTable).jqGrid("resizeColumn", colModel[j].name, widthColumns);
-      }
-    }
-    $("#gbox_" + idTable).attr("style", "width: " + gridWidth + "px;");
-    $("#gview_" + idTable).attr("style", "width: " + gridWidth + "px;");
-    windowResize(widthTable, idTable, idSplitterContainer);
-  };
-  var windowResize = function (widthTable, idTable, idSplitterContainer) {
-      $(window).on("resize", function () {
-          var gridWidth = $("#" + idSplitterContainer).parent().width();
-          if (gridWidth > widthTable) {
-              gridWidth = widthTable;
-          }
-          $("#" + idTable).jqGrid("setGridWidth", gridWidth, true);
-      });
-  };
-  */
+
 };
 
 // --------------------   SELECT   -------------------- //
