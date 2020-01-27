@@ -11,14 +11,14 @@
   <body>
     <div class="content p-4">
       <div class="row">
-        <div id="criterios_busqueda_accordion" data-component-type="accordion">
+        <div id="divCriteriosBusquedaAccordion" data-component-type="accordion">
           <div
-            id="criterios_busqueda_accordion_item"
+            id="divCriteriosBusquedaAccordionItem"
             data-component-type="accordion-item"
           >
-            <form id="criterios-busqueda" class="form-group is-search-form">
+            <form id="frmCriteriosBusqueda" class="form-group is-search-form">
               <div
-                id="fecha"
+                id="divFecha"
                 data-component-type="date"
                 data-component-label="Fecha"
                 data-component-required="true"
@@ -27,14 +27,14 @@
                 data-component-clear="true"
               ></div>
               <div
-                id="contrato"
+                id="divContrato"
                 data-component-type="input-plus-minus"
                 data-component-label="Contrato"
                 data-component-required="true"
                 data-component-tooltip="Contrato"
               ></div>
               <div
-                id="digito"
+                id="divDigito"
                 data-component-type="input-plus-minus"
                 data-component-label="Digito"
                 data-component-required="true"
@@ -42,43 +42,43 @@
                 data-component-tooltip="Dígito"
               ></div>
               <div
-                id="negocio"
+                id="divNegocio"
                 data-component-type="options"
                 data-component-label=""
                 data-component-required="true"
                 data-component-orientation="vertical"
                 data-component-tooltip="Negocio"
               >
-                <div id="CB">Casa de Bolsa</div>
-                <div id="B">Banco</div>
+                <div id="divCB">Casa de Bolsa</div>
+                <div id="divB">Banco</div>
               </div>
               <div
-                id="products3"
+                id="divProducts"
                 data-component-type="checkbox"
                 data-component-label="Estatus"
                 data-component-required="true"
                 data-component-orientation="horizontal"
               >
-                <div id="A">A</div>
-                <div id="B">B</div>
-                <div id="C">C</div>
+                <div id="divA">A</div>
+                <div id="divB">B</div>
+                <div id="divC">C</div>
               </div>
               <div
-                id="payment"
+                id="divPayment"
                 data-component-type="select"
                 data-component-label="Payment method"
                 data-component-size="12em"
                 data-component-required="true"
                 data-component-tooltip="Payment method"
               >
-                <div id="ET">
+                <div id="divET">
                   Electronic transfer
                 </div>
-                <div id="CHK">Check</div>
-                <div id="ELEGIBLE">Elegible</div>
+                <div id="divCHK">Check</div>
+                <div id="divELEGIBLE">Elegible</div>
               </div>
               <div
-                id="ejemplo"
+                id="divEjemplo"
                 data-component-type="select-plus-minus-autocomplete"
                 data-component-label="Contrato"
                 data-component-required="true"
@@ -86,25 +86,25 @@
               ></div>
               <div class="column" id="botones-accion">
                 <div
-                  id="btnsearch"
+                  id="divBtnSearch"
                   data-component-type="button-search"
                   data-component-label="Consultar"
                   data-component-tooltip="Consultar"
                 ></div>
                 <div
-                  id="btnclean"
+                  id="divBtnClean"
                   data-component-type="button-clean"
                   data-component-label="Limpiar"
                   data-component-tooltip="Limpiar"
                 ></div>
                 <div
-                  id="btnpdf"
+                  id="divBtnPdf"
                   data-component-type="button-pdf"
                   data-component-label="PDF"
                   data-component-tooltip="PDF"
                 ></div>
                 <div
-                  id="btnxls"
+                  id="divBtnXls"
                   data-component-type="button-xls"
                   data-component-label="XLS"
                   data-component-tooltip="XLS"
@@ -116,9 +116,9 @@
       </div>
       <div class="row has_border">
         <div class="row w-full overflow-auto">
-          <div id="gridcontratos" data-component-type="grid"></div>
+          <div id="divGridContratos" data-component-type="grid"></div>
           <div
-            id="countcontratos"
+            id="divCountContratos"
             data-component-type="grid-records-count"
             data-component-label="Total registros: "
           ></div>

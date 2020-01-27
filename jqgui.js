@@ -668,8 +668,11 @@ $.fn.button = function() {
 
     button.setAttribute("class", btnclass);
 
-    if (type !== "" && btnclass === "button big-button")
+    if (type !== "")
       button.setAttribute("type", type);
+
+    if (type === "submit")
+      button.setAttribute("value", "validate");
 
     if (this.data("componentDisabled") === true)
       button.setAttribute("disabled", "disabled");
@@ -695,7 +698,7 @@ $.fn.grid = function() {
   if (this.data("componentType") === "grid") {
     const divgrid = document.createElement("div");
     const table = document.createElement("table");
-    table.setAttribute("id", "tbl" + removeDiv(this.attr("id")));
+    table.setAttribute("id", "dtg" + removeDiv(this.attr("id")));
     const tr = document.createElement("tr");
     table.appendChild(tr);
     const td = document.createElement("td");
