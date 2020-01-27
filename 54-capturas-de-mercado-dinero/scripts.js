@@ -1,36 +1,36 @@
 /* ----------   Datos de la Orden  ----------  */
-$("#consultas_tab_group").tabgroup();
-$("#form_datos_orden").form();
-$("#reset").fieldCheckBox();
-$("#option_grupo_contrato").fieldOptions();
-$("#inputGrupo").fieldInput();
-$("#inputContrato").select();
-$("#fecha_liquidacion").fielDate();
-$("#inputOperacion").fieldInput();
-$("#inputEmisora").fieldInput();
-$("#inputTv").fieldInput();
-$("#inputPlazo").fieldInput();
-$("#inputTasa").fieldInput();
-$("#switchSobretasa").fieldswitch();
-$("#inputSpread").fieldInput();
-$("#option_titulos_monto").fieldOptions();
-$("#inputCantidad").fieldInput();
-$("#inputPrecio").fieldInput();
-$("#inputTipoCambio").fieldInput();
-$("#inputPosicion").fieldInput();
-$("#inputEfectivoDisponible").fieldInput();
-$("#btnclean").button();
-$("#btnadd").button();
+$("#divConsultasTabGroup").tabgroup();
+$("#frmDatosOrden").form();
+$("#divReset").fieldCheckBox();
+$("#divOptionGrupoContrato").fieldOptions();
+$("#divInputGrupo").fieldInput();
+$("#divInputContrato").select();
+$("#divFechaLiquidacion").fielDate();
+$("#divInputOperacion").fieldInput();
+$("#divInputEmisora").fieldInput();
+$("#divInputTv").fieldInput();
+$("#divInputPlazo").fieldInput();
+$("#divInputTasa").fieldInput();
+$("#divSwitchSobretasa").fieldswitch();
+$("#divInputSpread").fieldInput();
+$("#divOptionTitulosMonto").fieldOptions();
+$("#divInputCantidad").fieldInput();
+$("#divInputPrecio").fieldInput();
+$("#divInputTipoCambio").fieldInput();
+$("#divInputPosicion").fieldInput();
+$("#divInputEfectivoDisponible").fieldInput();
+$("#divBtnClean").button();
+$("#divBtnAdd").button();
 
 /* ----------   Lista de la Órdenes  ----------  */
-$("#tabgroup_ordenes_envios_ordenes").tabgroup();
-$("#grid_ordenes").grid();
-$("#btnsend").button();
-$("#btnvalidate").button();
-$("#btndelete").button();
-$("#btnreset").button();
+$("#divTabgroupOrdenesEnviosOrdenes").tabgroup();
+$("#divGridOrdenes").grid();
+$("#divBtnSend").button();
+$("#divBtnValidate").button();
+$("#divBtnDelete").button();
+$("#divBtnReset").button();
 
-$("#table_grid_ordenes").jqGrid({
+$("#dtgGridOrdenes").jqGrid({
   datatype: "local",
   height: "auto",
   shrinkToFit: false,

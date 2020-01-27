@@ -11,15 +11,15 @@
   </head>
 
   <body>
-    <div id="consultas_tab_group" data-component-type="tab-group">
+    <div id="divConsultasTabGroup" data-component-type="tab-group">
       <div
-        id="reinversion"
+        id="divReinversion"
         data-component-type="tab-item"
         data-component-label="Reinversión"
       ></div>
 
       <div
-        id="ordenesEnDirecto"
+        id="divOrdenesEnDirecto"
         data-component-type="tab-item"
         data-component-label="Órdenes en Directo"
       >
@@ -30,33 +30,33 @@
             <div class="row flex flex-wrap justify-between">
               <p class="pb-4 font-bold">Datos de la Órden</p>
               <div
-                id="reset"
+                id="divReset"
                 data-component-type="checkbox"
                 data-component-label="reset"
                 data-component-orientation="horizontal"
                 data-component-tooltip="checkbox tooltip"
               >
-                <div id="SO1" color="white"></div>
+                <div id="divSO1" color="white"></div>
               </div>
             </div>
             <div
-              id="div_datos_ordenes"
+              id="divDatosOrdenes"
               class="card bg-white border border-solid border-gray-300 rounded p-4"
             >
-              <form id="form_datos_orden">
+              <form id="frmDatosOrden">
                 <div
-                  id="option_grupo_contrato"
+                  id="divOptionGrupoContrato"
                   data-component-label=""
                   data-component-type="options"
                   data-component-orientation="vertical"
                 >
-                  <div id="G">Grupo</div>
-                  <div id="C">Contrato</div>
+                  <div id="divG">Grupo</div>
+                  <div id="divC">Contrato</div>
                 </div>
 
                 <div class="row flex flex-wrap justify-between">
                   <div
-                    id="inputGrupo"
+                    id="divInputGrupo"
                     data-component-type="input"
                     data-component-label="Grupo"
                     data-component-required="true"
@@ -65,7 +65,7 @@
                   ></div>
 
                   <div
-                    id="inputContrato"
+                    id="divInputContrato"
                     data-component-type="select"
                     data-component-label="Contrato"
                     data-component-required="true"
@@ -75,7 +75,7 @@
                 </div>
 
                 <div
-                  id="fecha_liquidacion"
+                  id="divFechaLiquidacion"
                   data-component-type="date"
                   data-component-label="Fecha de Liquidación"
                   data-component-required="false"
@@ -84,7 +84,7 @@
                   data-component-size="10em"
                 ></div>
                 <div
-                  id="inputOperacion"
+                  id="divInputOperacion"
                   data-component-type="input"
                   data-component-label="Operación"
                   data-component-required="true"
@@ -93,7 +93,7 @@
                 ></div>
 
                 <div
-                  id="inputEmisora"
+                  id="divInputEmisora"
                   data-component-type="input"
                   data-component-label="Emisora"
                   data-component-required="true"
@@ -103,7 +103,7 @@
 
                 <div class="row flex flex-wrap justify-between">
                   <div
-                    id="inputTv"
+                    id="divInputTv"
                     data-component-type="input"
                     data-component-label="TV"
                     data-component-required="false"
@@ -113,7 +113,7 @@
                   ></div>
 
                   <div
-                    id="inputPlazo"
+                    id="divInputPlazo"
                     data-component-type="input"
                     data-component-label="Plazo"
                     data-component-required="false"
@@ -124,7 +124,7 @@
                 </div>
                 <div class="row flex flex-wrap justify-between">
                   <div
-                    id="inputTasa"
+                    id="divInputTasa"
                     data-component-type="input"
                     data-component-label="Tasa"
                     data-component-required="true"
@@ -133,7 +133,7 @@
                   ></div>
 
                   <div
-                    id="switchSobretasa"
+                    id="divSwitchSobretasa"
                     data-component-type="field-switch"
                     data-component-label="Tipo"
                     data-component-orientation="horizontal"
@@ -152,24 +152,24 @@
                 </div>
 
                 <div
-                  id="inputSpread"
+                  id="divInputSpread"
                   data-component-type="input"
                   data-component-label="Spread"
                   data-component-required="true"
                   data-component-orientation="horizontal"
                 ></div>
                 <div
-                  id="option_titulos_monto"
+                  id="divOptionTitulosMonto"
                   data-component-label=""
                   data-component-type="options"
                   data-component-orientation="vertical"
                 >
-                  <div id="T">Títulos</div>
-                  <div id="M">Monto</div>
+                  <div id="divT">Títulos</div>
+                  <div id="divM">Monto</div>
                 </div>
 
                 <div
-                  id="inputCantidad"
+                  id="divInputCantidad"
                   data-component-type="input"
                   data-component-label="Cantidad"
                   data-component-required="true"
@@ -178,7 +178,7 @@
                 ></div>
 
                 <div
-                  id="inputPrecio"
+                  id="divInputPrecio"
                   data-component-type="input"
                   data-component-label="Precio"
                   data-component-required="true"
@@ -187,7 +187,7 @@
                 ></div>
 
                 <div
-                  id="inputTipoCambio"
+                  id="divInputTipoCambio"
                   data-component-type="input"
                   data-component-label="Tipo de Cambio/UDIS"
                   data-component-required="false"
@@ -196,7 +196,7 @@
                 ></div>
 
                 <div
-                  id="inputPosicion"
+                  id="divInputPosicion"
                   data-component-type="input"
                   data-component-label="Posición"
                   data-component-required="true"
@@ -206,7 +206,7 @@
                 ></div>
 
                 <div
-                  id="inputEfectivoDisponible"
+                  id="divInputEfectivoDisponible"
                   data-component-type="input"
                   data-component-label="Efectivo Disponible"
                   data-component-required="false"
@@ -217,14 +217,14 @@
               </form>
             </div>
             <div class="row pt-5 ">
-              <div class="field-group flex" id="botones_datos_ordenes">
+              <div class="field-group flex" id="divBotonesDatosOrdenes">
                 <div
-                  id="btnadd"
+                  id="divBtnAdd"
                   data-component-type="button-add"
                   data-component-label="Agregar"
                 ></div>
                 <div
-                  id="btnclean"
+                  id="divBtnClean"
                   data-component-type="button-clean"
                   data-component-label="Limpiar"
                 ></div>
@@ -233,7 +233,7 @@
           </div>
           <div
             class="row bg-gray-100 p-4 border border-solid border-gray-300 rounded"
-            id="contenido"
+            id="divContenido"
           >
             <div class="row">
               <p class="pb-4 font-bold ">Lista de órdenes</p>
@@ -242,44 +242,44 @@
               class="card bg-white border border-solid border-gray-300 rounded p-4"
             >
               <div
-                id="tabgroup_ordenes_envios_ordenes"
+                id="divTabgroupOrdenesEnviosOrdenes"
                 data-component-type="tab-group"
               >
                 <div
-                  id="tab_ordenes"
+                  id="divTabOrdenes"
                   data-component-type="tab-item"
                   data-component-label=" Órdenes"
                 >
                   <div class="row w-full overflow-auto">
-                    <div id="grid_ordenes" data-component-type="grid"></div>
+                    <div id="divGridOrdenes" data-component-type="grid"></div>
                   </div>
                 </div>
                 <div
-                  id="tab_envios_ordenes"
+                  id="divTabEnviosOrdenes"
                   data-component-type="tab-item"
                   data-component-label=" Envíos y órdenes"
                 ></div>
               </div>
             </div>
             <div class="row pt-5">
-              <div class="field-group flex" id="botones_lista_ordenes">
+              <div class="field-group flex" id="divBotonesListaOrdenes">
                 <div
-                  id="btnvalidate"
+                  id="divBtnValidate"
                   data-component-type="button-validate"
                   data-component-label="Validar"
                 ></div>
                 <div
-                  id="btnsend"
+                  id="divBtnSend"
                   data-component-type="button-send"
                   data-component-label="Enviartodas"
                 ></div>
                 <div
-                  id="btndelete"
+                  id="divBtnDelete"
                   data-component-type="button-delete"
                   data-component-label="Borrar"
                 ></div>
                 <div
-                  id="btnreset"
+                  id="divBtnReset"
                   data-component-type="button-reset"
                   data-component-label="Reiniciar"
                 ></div>
@@ -290,7 +290,7 @@
       </div>
 
       <div
-        id="validacionDeInstrucciones"
+        id="divValidacionDeInstrucciones"
         data-component-type="tab-item"
         data-component-label="Validación de Instrucciones"
       ></div>
