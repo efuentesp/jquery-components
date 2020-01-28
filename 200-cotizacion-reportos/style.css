@@ -1,8 +1,8 @@
-#filtros label {
+#divFiltros label {
     width: 80px
 }
 
-#filtros #field_fecha_banda label {
+#divFiltros #divFieldFechaBanda label {
     width: 72px
 }
 
@@ -22,18 +22,18 @@
     height: 100vh
 }
 
-#div-cotizacion-reportos-grid {
+#divCotizacionReportosGrid {
     border: 1px solid #919eab
 }
 
-#gbox_table_gridCotizacion,
-#gview_table_gridCotizacion,
-#gview_table_gridCotizacion div:nth-child(2),
-#gview_table_gridCotizacion div:nth-child(3),
-#gview_table_gridCotizacion div:nth-child(3) div,
-#gview_table_gridCotizacion div:nth-child(4),
-#gview_table_gridCotizacion div:nth-child(4) div,
-#table_gridCotizacion_toppager {
+#gbox_dtgGridCotizacion,
+#gview_dtgGridCotizacion,
+#gview_dtgGridCotizacion div:nth-child(2),
+#gview_dtgGridCotizacion div:nth-child(3),
+#gview_dtgGridCotizacion div:nth-child(3) div,
+#gview_dtgGridCotizacion div:nth-child(4),
+#gview_dtgGridCotizacion div:nth-child(4) div,
+#dtgGridCotizacion_toppager {
     width: 100% !important
 }
 

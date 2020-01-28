@@ -14,44 +14,44 @@
       <div></div>
     </header>
 
-    <div id="aside" data-component-type="sidebar-wrapper">
+    <div id="divAside" data-component-type="sidebar-wrapper">
       <div data-component-type="sidebar">
         <div data-component-type="sidebar-content">
           <div class="block overflow-y-auto">
             <span class="bg-gray-300 block p-3 font-bold text-lg mb-3"
               >DATOS PARA LA COTIZACION</span
             >
-            <div id="filtros">
-              <form class="form-group" id="criterios-busqueda">
+            <div id="divFiltros">
+              <form class="form-group" id="frmCriteriosBusqueda">
                 <div
-                  id="grupo"
+                  id="divGrupo"
                   data-component-type="select"
                   data-component-label="Grupo"
                   data-component-size="12em"
                 ></div>
                 <div
-                  id="instrumento"
+                  id="divInstrumento"
                   data-component-type="select"
                   data-component-label="Instrumento"
                   data-component-size="12em"
                 ></div>
 
                 <div
-                  id="monto_invertir"
+                  id="divMontoInvertir"
                   data-component-type="text"
                   data-component-label="Monto a invertir"
                   data-component-size="12em"
                 ></div>
 
                 <div
-                  id="plazo"
+                  id="divPlazo"
                   data-component-type="text"
                   data-component-label="Plazo"
                   data-component-size="12em"
                 ></div>
 
                 <div
-                  id="fecha_banda"
+                  id="divFechaBanda"
                   data-component-type="date"
                   data-component-label="Fecha"
                   data-component-required="true"
@@ -62,14 +62,14 @@
                 ></div>
 
                 <div
-                  id="button"
+                  id="divButton"
                   data-component-label="Reset"
                   data-component-type="button-reset"
                   data-component-size="large"
                   data-component-disabled="false"
                 ></div>
                 <div
-                  id="btnsearch"
+                  id="divBtnSearch"
                   data-component-type="button-search"
                   data-component-label="Consultar"
                   data-component-size="large"
@@ -77,7 +77,7 @@
                 ></div>
 
                 <div
-                  id="btnclean"
+                  id="divBtnClean"
                   data-component-type="button-clean"
                   data-component-label="Limpiar"
                   data-component-size="large"
@@ -95,20 +95,20 @@
             Datos de la cotización
           </span>
           <div class="w-full overflow-auto">
-            <div data-component-type="tab-group" id="tabs_resultados_busqueda">
+            <div data-component-type="tab-group" id="divTabsResultadosBusqueda">
               <div
-                id="tab_detalle"
+                id="divTabDetalle"
                 data-component-type="tab-item"
                 data-component-label="Detalle"
               >
                 <div
                   class="row w-full overflow-auto text-black"
-                  id="div-cotizacion-reportos-grid"
+                  id="divCotizacionReportosGrid"
                 >
-                  <div id="gridCotizacion" data-component-type="grid"></div>
+                  <div id="divGridCotizacion" data-component-type="grid"></div>
                 </div>
                 <div
-                  id="gridCountCotizacion"
+                  id="divGridCountCotizacion"
                   data-component-type="grid-records-count"
                 ></div>
               </div>

@@ -1,32 +1,32 @@
-$("#aside").sidebarwrapper();
-$("#criterios-busqueda").form();
-$("#grupo").select();
-$("#instrumento").select();
-$("#monto_invertir").fieldInput();
-$("#plazo").fieldInput();
-$("#button").button();
-$("#btnsearch").button();
-$("#btnclean").button();
-$("#fecha_banda").fielDate();
+$("#divAside").sidebarwrapper();
+$("#frmCriteriosBusqueda").form();
+$("#divGrupo").select();
+$("#divInstrumento").select();
+$("#divMontoInvertir").fieldInput();
+$("#divPlazo").fieldInput();
+$("#divButton").button();
+$("#divBtnSearch").button();
+$("#divBtnClean").button();
+$("#divFechaBanda").fielDate();
 
 
-$("#tabs_resultados_busqueda").tabgroup();
+$("#divTabsResultadosBusqueda").tabgroup();
 
-$("#div-cotizacion-reportos-grid").grid();
-$("#gridCotizacion").grid();
-$("#gridCountCotizacion").gridrecordscount();
+$("#divCotizacionReportosGrid").grid();
+$("#divGridCotizacion").grid();
+$("#divGridCountCotizacion").gridrecordscount();
 
-let cotizacion_reporto_params = {};
-httpFindAll("cotizacion_reporto", cotizacion_reporto_params, function (payload) {
+let cotizacionReportoParams = {};
+httpFindAll("cotizacion_reporto", cotizacionReportoParams, function (payload) {
     console.log(payload);
     llenaGridCotizacionReporto(payload);
-    let rec_count = payload.length;
-    $("#count_gridCountCotizacion").html(rec_count);
+    let recCount = payload.length;
+    $("#spnCountGridCountCotizacion").html(recCount);
 });
 
-let llenaGridCotizacionReporto = function (cotizacion_reporto) {
-    $("#table_gridCotizacion").jqGrid({
-        data: cotizacion_reporto,
+let llenaGridCotizacionReporto = function (cotizacionReporto) {
+    $("#dtgGridCotizacion").jqGrid({
+        data: cotizacionReporto,
         datatype: "local",
         toppager: true,
         gridview: true,
