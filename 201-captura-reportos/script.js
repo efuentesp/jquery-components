@@ -1,46 +1,46 @@
 $("#aside").sidebarwrapper();
 
 // ----------------------   COMPONENTES baraLateral   ----------------------
-$("#criterios-busqueda").form();
-$("#fBanda").fielDate();
-$("#cboGrupo").select();
-$("#cboInstrumento").select();
-$("#btnsearchbandas").button();
-$("#criterios-Filtros").form();
-$("#contrato").fieldInputPlusMinus();
-$("#digito").fieldInputPlusMinus();
-$("#btnsearchbandas2").button();
-$("#Criterios-Datos").form();
-$("#tazaPactada").fieldInput();
-$("#plazo").fieldInput();
-$("#montoInvertir").fieldInput();
-$("#btnadd").button();
-$("#btnclean").button();
+$("#frmCriteriosBusqueda").form();
+$("#divFBanda").fielDate();
+$("#divCboGrupo").select();
+$("#divCboInstrumento").select();
+$("#divBtnSearchBandas").button();
+$("#frmCriteriosFiltros").form();
+$("#divContrato").fieldInputPlusMinus();
+$("#divDigito").fieldInputPlusMinus();
+$("#divBtnsearchBandasDos").button();
+$("#frmCriteriosDatos").form();
+$("#divTazaPactada").fieldInput();
+$("#divPlazo").fieldInput();
+$("#divMontoInvertir").fieldInput();
+$("#divBtnAdd").button();
+$("#divBtnClean").button();
 // ----------------------   COMPONENTES mainDiv   ----------------------
-$("#grupo_grids").tabgroup();
-$("#buscaBandasInput").fieldInput();
-$("#gridBandas").grid();
-$("#btnreset").button();
-$("#buscaContratosInput").fieldInput();
-$("#gridContratos").grid();
-$("#btnsend").button();
-$("#btnvalidate").button();
-$("#btnclean").button();
-$("#totales").fieldInput();
-$("#buscaEnviosInput").fieldInput();
-$("#gridEnviados").grid();
-$("#btnresetenviados").button();
-$("#buscaErroresInput").fieldInput();
-$("#gridErrores").grid();
+$("#divGrupoGrids").tabgroup();
+$("#divBuscaBandasInput").fieldInput();
+$("#divGridBandas").grid();
+$("#divBtnReset").button();
+$("#divBuscaContratosInput").fieldInput();
+$("#divGridContratos").grid();
+$("#divBtnSend").button();
+$("#divBtnValidate").button();
+$("#divBtnClean").button();
+$("#divTotales").fieldInput();
+$("#divBuscaEnviosInput").fieldInput();
+$("#divGridEnviados").grid();
+$("#divBtnResetEnviados").button();
+$("#divBuscaErroresInput").fieldInput();
+$("#divGridErrores").grid();
 // ----------------------   GRID table_gridBandas   ----------------------
-var captura_reportos_params = {};
-httpFindAll("captura_reportos", captura_reportos_params, function(payload) {
+var capturaReportosParams = {};
+httpFindAll("captura_reportos", capturaReportosParams, function(payload) {
   llenaGridCapturaReporto(payload);
 });
 
-var llenaGridCapturaReporto = function(captura_reportos) {
-  $("#table_gridBandas").jqGrid({
-    data: captura_reportos,
+var llenaGridCapturaReporto = function(capturaReportos) {
+  $("#dtgGridBandas").jqGrid({
+    data: capturaReportos,
     datatype: "local",
     height: "auto",
     toppager: true,
@@ -87,15 +87,15 @@ var llenaGridCapturaReporto = function(captura_reportos) {
 };
 
 // ----------------------   GRID table_gridContratos   ----------------------
-var contratos_reportos_params = {};
-httpFindAll("contratos_reportos", contratos_reportos_params, function(
+var contratosReportosParams = {};
+httpFindAll("contratos_reportos", contratosReportosParams, function(
   payload
 ) {
   llenaGridContratosReportos(payload);
 });
-var llenaGridContratosReportos = function(contratos_reportos) {
-  $("#table_gridContratos").jqGrid({
-    data: contratos_reportos,
+var llenaGridContratosReportos = function(contratosReportos) {
+  $("#dtgGridContratos").jqGrid({
+    data: contratosReportos,
     datatype: "local",
     shrinkToFit: false,
     toppager: true,
@@ -379,13 +379,13 @@ var llenaGridContratosReportos = function(contratos_reportos) {
 };
 
 // ----------------------   GRID table_gridEnviados   ----------------------
-var envios_reportos_params = {};
-httpFindAll("envios_reportos", contratos_reportos_params, function(payload) {
+var enviosReportosParams = {};
+httpFindAll("envios_reportos", contratosReportosParams, function(payload) {
   llenaGridErroresReportos(payload);
 });
-var llenaGridEnviosReportos = function(envios_reportos) {
-  $("#table_gridEnviados").jqGrid({
-    data: envios_reportos,
+var llenaGridEnviosReportos = function(enviosReportos) {
+  $("#dtgGridEnviados").jqGrid({
+    data: enviosReportos,
     datatype: "local",
     shrinkToFit: false,
     toppager: true,
@@ -669,13 +669,13 @@ var llenaGridEnviosReportos = function(envios_reportos) {
 };
 
 // ----------------------   GRID table_gridErrores   ----------------------
-var errores_reportos_params = {};
-httpFindAll("envios_reportos", contratos_reportos_params, function(payload) {
+var erroresReportosParams = {};
+httpFindAll("envios_reportos", contratosReportosParams, function(payload) {
   llenaGridEnviosReportos(payload);
 });
-var llenaGridErroresReportos = function(envios_reportos) {
-  $("#table_gridErrores").jqGrid({
-    data: envios_reportos,
+var llenaGridErroresReportos = function(enviosReportos) {
+  $("#dtgGridErrores").jqGrid({
+    data: enviosReportos,
     datatype: "local",
     shrinkToFit: false,
     toppager: true,

@@ -1,4 +1,4 @@
-#DatosAplicar label,
+#divDatosAplicar label,
 #divConsulta label {
   width: 80px;
 }
@@ -12,13 +12,13 @@ select {
 .content.is_sidebar_open {
   padding-left: 233px !important;
 }
-#div-bandas-reportos-grid,
-#div-contratos-reportos-grid,
-#div-envios-reportos-grid,
-#div-errores-reportos-grid {
+#divBandasReportosGrid,
+#divContratosReportosGrid,
+#divEenviosRreportosGrid,
+#divErroresReportosGrid {
   border: 1px solid #919eab;
 }
-#div-bandas-reportos-grid {
+#divBandasReportosGrid {
   width: 700px;
 }
 html {
@@ -45,43 +45,43 @@ html {
 #wilsonDiv {
   display: none;
 }
-#gbox_table_gridBandas,
-#gview_table_gridBandas,
-#gview_table_gridBandas div:nth-child(2),
-#gview_table_gridBandas div:nth-child(3),
-#gview_table_gridBandas div:nth-child(3) div,
-#gview_table_gridBandas div:nth-child(4),
-#gview_table_gridBandas div:nth-child(4) div,
-#table_gridBandas_toppager {
+#gbox_dtgGridBandas,
+#gview_dtgGridBandas,
+#gview_dtgGridBandas div:nth-child(2),
+#gview_dtgGridBandas div:nth-child(3),
+#gview_dtgGridBandas div:nth-child(3) div,
+#gview_dtgGridBandas div:nth-child(4),
+#gview_dtgGridBandas div:nth-child(4) div,
+#dtgGridBandas_toppager {
   width: 100% !important;
 }
-#gbox_table_gridContratos,
-#gbox_table_gridEnviados,
-#gbox_table_gridErrores,
-#gview_table_gridContratos,
-#gview_table_gridEnviados,
-#gview_table_gridEnviados div:nth-child(2),
-#gview_table_gridErrores,
-#gview_table_gridErrores div:nth-child(2),
-#table_gridContratos_toppager,
-#table_gridEnviados_toppager,
-#table_gridErrores_toppager {
+#gbox_dtgGridContratos,
+#gbox_dtgGridEnviados,
+#gbox_dtgGridErrores,
+#gview_dtgGridContratos,
+#gview_dtgGridEnviados,
+#gview_dtgGridEnviados div:nth-child(2),
+#gview_dtgGridErrores,
+#gview_dtgGridErrores div:nth-child(2),
+#dtgGridContratos_toppager,
+#dtgGridEnviados_toppager,
+#dtgGridErrores_toppager {
   width: 100% !important;
 }
-#pg_table_gridBandas_toppager,
-#pg_table_gridContratos_toppager,
-#pg_table_gridEnviados_toppager,
-#pg_table_gridErrores_toppager {
+#pg_dtgGridBandas_toppager,
+#pg_dtgGridContratos_toppager,
+#pg_dtgGridEnviados_toppager,
+#pg_dtgGridErrores_toppager {
   text-align: -webkit-center;
 }
-#tab_dos,
-#tab_uno {
+#divTabDos,
+#divTabUno {
   padding: 0;
 }
-#buscadorTabla {
+#divBuscadorTabla {
   background: #e2e8f0;
 }
-#buscadorTabla input {
+#divBuscadorTabla input {
   height: 18px;
 }
 /*# sourceMappingURL=../../../maps/accimarket/201-captura-reportos/styles.css.map */

@@ -10,18 +10,18 @@
     <link href="styles.css" rel="stylesheet" />
   </head>
   <body>
-    <div id="aside" data-component-type="sidebar-wrapper">
+    <div id="divAside" data-component-type="sidebar-wrapper">
       <div data-component-type="sidebar">
         <div data-component-type="sidebar-content">
-          <div id="baraLateral">
+          <div id="divBarraLateral">
             <div class="block overflow-y-auto">
               <span class="bg-gray-300 block p-3 font-bold text-lg mb-3">
                 CONSULTA DE BANDAS
               </span>
               <div id="divConsulta">
-                <form class="form-group" id="criterios-busqueda">
+                <form class="form-group" id="frmCriteriosBusqueda">
                   <div
-                    id="fBanda"
+                    id="divFBanda"
                     data-component-type="date"
                     data-component-label="Fecha Banda"
                     data-component-required="false"
@@ -31,30 +31,30 @@
                     data-component-tooltip="DD/MM/AAAA"
                   ></div>
                   <div
-                    id="cboGrupo"
+                    id="divCboGrupo"
                     data-component-type="select"
                     data-component-label="Grupo"
                     data-component-size="12em"
                     data-component-required="false"
                     data-component-orientation="horizontal"
                   >
-                    <div id="ET1">Electronic transfer</div>
-                    <div id="CHK1">Check</div>
+                    <div id="divET1">Electronic transfer</div>
+                    <div id="divCHK1">Check</div>
                   </div>
                   <div
-                    id="cboInstrumento"
+                    id="divCboInstrumento"
                     data-component-type="select"
                     data-component-label="Instrumento"
                     data-component-size="12em"
                     data-component-required="false"
                     data-component-orientation="horizontal"
                   >
-                    <div id="ET2">Electronic transfer</div>
-                    <div id="CHK2">Check</div>
+                    <div id="divET2">Electronic transfer</div>
+                    <div id="divCHK2">Check</div>
                   </div>
                   <div class="row mt-6 flex justify-center mb-4">
                     <div
-                      id="btnsearchbandas"
+                      id="divBtnSearchBandas"
                       data-component-type="button-search"
                       data-component-label="Consultar"
                     ></div>
@@ -64,10 +64,10 @@
               <span class="bg-gray-300 block p-3 font-bold text-lg mb-3">
                 CONSULTA DE BANDAS
               </span>
-              <div id="filtros">
-                <form class="form-group" id="criterios-Filtros">
+              <div id="divFiltros">
+                <form class="form-group" id="divCriteriosFiltros">
                   <div
-                    id="contrato"
+                    id="divContrato"
                     data-component-type="input-plus-minus"
                     data-component-label="Contrato"
                     data-component-required="false"
@@ -75,7 +75,7 @@
                     data-component-width="14em"
                   ></div>
                   <div
-                    id="digito"
+                    id="divDigito"
                     data-component-type="input-plus-minus"
                     data-component-label="Digito"
                     data-component-required="false"
@@ -84,7 +84,7 @@
                   ></div>
                   <div class="row mt-6 flex justify-center mb-4">
                     <div
-                      id="btnsearchbandas2"
+                      id="divBtnSearchBandasDos"
                       data-component-type="button-search"
                       data-component-label="Consultar"
                     ></div>
@@ -94,10 +94,10 @@
               <span class="bg-gray-300 block p-3 font-bold text-lg mb-3">
                 DATOS POR APLICAR
               </span>
-              <div id="DatosAplicar">
-                <form class="form-group" id="Criterios-Datos">
+              <div id="divDatosAplicar">
+                <form class="form-group" id="frmCriteriosDatos">
                   <div
-                    id="tazaPactada"
+                    id="divTazaPactada"
                     data-component-type="input"
                     data-component-label="Taza Pactada"
                     data-component-required="true"
@@ -106,7 +106,7 @@
                     data-component-max-length="6"
                   ></div>
                   <div
-                    id="plazo"
+                    id="divPlazo"
                     data-component-type="text"
                     data-component-label="Plazo"
                     data-component-required="true"
@@ -114,7 +114,7 @@
                     data-component-width="10em"
                   ></div>
                   <div
-                    id="montoInvertir"
+                    id="divMontoInvertir"
                     data-component-type="text"
                     data-component-label="Monto a Invertir"
                     data-component-required="true"
@@ -123,12 +123,12 @@
                   ></div>
                   <div class="row mt-6 flex justify-center mb-4">
                     <div
-                      id="btnadd"
+                      id="divBtnAdd"
                       data-component-type="button-add"
                       data-component-label="Agregar"
                     ></div>
                     <div
-                      id="btnclean"
+                      id="divBtnClean"
                       data-component-type="button-clean"
                       data-component-label="Limpiar"
                     ></div>
@@ -141,19 +141,19 @@
         <div data-component-type="sidebar-collapsible-button"></div>
       </div>
       <div data-component-type="sidebar-content">
-        <div id="mainDiv">
+        <div id="divMainDiv">
           <span class="bg-gray-300 block p-3 font-bold text-lg"
             >Listado de Órdenes</span
           >
-          <div id="grupo_grids" data-component-type="tab-group">
+          <div id="divGrupoGrids" data-component-type="tab-group">
             <div
-              id="tab_uno"
+              id="divTabUno"
               data-component-type="tab-item"
               data-component-label="Movimientos por Contrato"
             >
-              <div class="px-0 mb-1" id="buscadorTabla">
+              <div class="px-0 mb-1" id="divBuscadorTabla">
                 <div
-                  id="buscaBandasInput"
+                  id="divBuscaBandasInput"
                   data-component-type="input"
                   data-component-label="Bandas: "
                   data-component-disabled="true"
@@ -163,27 +163,27 @@
                 ></div>
               </div>
               <div class="justify-center mx-32">
-                <div class="field-group flex items-center" id="botones-group">
+                <div class="field-group flex items-center" id="divBotonesGroup">
                   <div
                     class="row w-full overflow-auto"
-                    id="div-bandas-reportos-grid"
+                    id="divBandasReportosGrid"
                   >
                     <div class="text-black">
-                      <div id="gridBandas" data-component-type="grid"></div>
+                      <div id="divGridBandas" data-component-type="grid"></div>
                     </div>
                   </div>
                   <div class="row mt-6 mx-16 flex justify-center">
                     <div
-                      id="btnreset"
+                      id="divBtnReset"
                       data-component-type="button-reset"
                       data-component-label="Reiniciar"
                     ></div>
                   </div>
                 </div>
               </div>
-              <div class="px-0 mt-32 mb-1" id="buscadorTabla">
+              <div class="px-0 mt-32 mb-1" id="divBuscadorTabla">
                 <div
-                  id="buscaContratosInput"
+                  id="divBuscaContratosInput"
                   data-component-type="input"
                   data-component-label="Contratos: "
                   data-component-disabled="true"
@@ -194,29 +194,29 @@
               </div>
               <div
                 class="row w-full overflow-auto text-black"
-                id="div-contratos-reportos-grid"
+                id="divContratosReportosGrid"
               >
-                <div id="gridContratos" data-component-type="grid"></div>
+                <div id="divGridContratos" data-component-type="grid"></div>
               </div>
               <div class="row mt-6 flex"></div>
-              <div class="field-group flex items-center" id="botones-group">
+              <div class="field-group flex items-center" id="divBotonesGroup">
                 <div
-                  id="btnsend"
+                  id="divBtnSend"
                   data-component-type="button-send"
                   data-component-label="Enviar"
                 ></div>
                 <div
-                  id="btnvalidate"
+                  id="divBtnValidate"
                   data-component-type="button-validate"
                   data-component-label="Validar"
                 ></div>
                 <div
-                  id="btnclean"
+                  id="divBtnClean"
                   data-component-type="button-clean"
                   data-component-label="Limpiar"
                 ></div>
                 <div
-                  id="totales"
+                  id="divTotales"
                   data-component-type="input"
                   data-component-label="$Total: "
                   data-component-orientation="horizontal"
@@ -225,13 +225,13 @@
               </div>
             </div>
             <div
-              id="tab_dos"
+              id="divTabDos"
               data-component-label="Reportes"
               data-component-type="tab-item"
             >
-              <div class="px-0 mb-1" id="buscadorTabla">
+              <div class="px-0 mb-1" id="divBuscadorTabla">
                 <div
-                  id="buscaEnviosInput"
+                  id="divBuscaEnviosInput"
                   data-component-type="input"
                   data-component-label="Envios: "
                   data-component-size="8em"
@@ -241,20 +241,20 @@
               </div>
               <div
                 class="row w-full overflow-auto text-black"
-                id="div-envios-reportos-grid"
+                id="divEnviosReportosGrid"
               >
-                <div id="gridEnviados" data-component-type="grid"></div>
+                <div id="divGridEnviados" data-component-type="grid"></div>
               </div>
               <row class="mt-6 flex justify-center">
                 <div
-                  id="btnresetenviados"
+                  id="divBtnResetEnviados"
                   data-component-type="button-reset"
                   data-component-label="Reiniciar"
                 ></div>
               </row>
-              <div class="px-0 mt-32 mb-1" id="buscadorTabla">
+              <div class="px-0 mt-32 mb-1" id="divBuscadorTabla">
                 <div
-                  id="buscaErroresInput"
+                  id="divBuscaErroresInput"
                   data-component-type="input"
                   data-component-label="Errores: "
                   data-component-disabled="true"
@@ -264,9 +264,9 @@
               </div>
               <div
                 class="row w-full overflow-auto text-black"
-                id="div-errores-reportos-grid"
+                id="divErroresReportosGrid"
               >
-                <div id="gridErrores" data-component-type="grid"></div>
+                <div id="divGridErrores" data-component-type="grid"></div>
               </div>
             </div>
           </div>
