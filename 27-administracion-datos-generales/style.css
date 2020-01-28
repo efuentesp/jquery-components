@@ -1,129 +1,129 @@
-#field_digito {
+#divFieldDigito {
     justify-content: flex-end;
 }
 
 
-#field_asesor_inversion label {
+#divFieldAsesorInversion label {
     width: 20em;
     text-align: end
 }
 
-#field_tipo_manifiesto label {
+#divFieldTipoManifiesto label {
     width: 20em;
     text-align: end
 }
 
-#field_servicio_inversion label {
+#divFieldServicioInversion label {
     width: 20em;
     text-align: end
 }
 
-#field_carta_ejecucion label {
+#divFieldCartaEjecucion label {
     width: 20em;
     text-align: end
 }
 
-#field_carta_ejecucion_2 label {
+#divFieldCartaEjecucionDos label {
     width: 20em;
     text-align: end
 }
 
-#field_institucional_pract_vta label {
+#divFieldInstitucionalPractVta label {
     width: 20em;
     text-align: end
 }
 
-#field_sofisticado_nosofisticado label {
+#divFieldSofisticadoNosofisticado label {
     width: 20em;
     text-align: end
 }
 
-#field_elegible_noelegible label {
+#divFieldElegibleNoelegible label {
     width: 20em;
     text-align: end
 }
 
-#field_calificado_nocalificado label {
+#divFieldCalificadoNocalificado label {
     width: 20em;
     text-align: end
 }
 
-#field_discrecional_nodiscrecional label {
+#divFieldDiscrecionalNodiscrecional label {
     width: 20em;
     text-align: end
 }
 
-#field_anexo_descriptivo label {
+#divFieldAnexoDescriptivo label {
     width: 20em;
     text-align: end
 }
 
-#field_fecha_carta_ejecucion label {
+#divFieldFechaCartaEjecucion label {
     width: 3.1em;
     text-align: end
 }
 
-#field_fecha_carta_ejecucion_2 label {
+#divFieldFechaCartaEjecucionDos label {
     width: 3.1em;
     text-align: end
 }
 
-#field_fecha_institucional_pract_vta label {
+#divFieldInstitucionalPractVta label {
     width: 2.9em;
     text-align: end
 }
 
-#field_fecha_sofisticado_nosofisticado label {
+#divFieldFechaSofisticadoNosofisticado label {
     width: 2.9em;
     text-align: end
 }
 
-#field_fecha_elegible_noelegible label {
+#divFieldFechaElegibleNoelegible label {
     width: 2.9em;
     text-align: end
 }
 
-#field_fecha_calificado_nocalificado label {
+#divFieldFechaCalificadoNocalificado label {
     width: 2.9em;
     text-align: end
 }
 
-#field_fecha_discrecional_nodiscrecional label {
+#divFieldFechaDiscrecionalNodiscrecional label {
     width: 2.9em;
     text-align: end
 }
 
-#field_text_area_observaciones label {
+#divFieldTextAreaObservaciones label {
     width: 2em;
     text-align: end
 }
 
-#field_fecha_apertura label {
+#divFieldFechaApertura label {
     width: 14em;
     text-align: end
 }
 
-#field_monto_inicial label {
+#divFieldMontoInicial label {
     width: 17em;
     text-align: end
 }
 
-#field_sector label {
+#divFieldSector label {
     width: 14em;
     text-align: end
 }
 
-#field_residencia label {
+#divFieldResidencia label {
     width: 17em;
     text-align: end
 }
 
-#field_envio_correspondencia label {
+#divFieldEnvioCorrespondencia label {
     width: 14em;
     text-align: end
 }
 
-#field_tipo_cuenta label {
+#divFieldTipoCuenta label {
     width: 17em;
     text-align: end
 }
@@ -134,46 +134,46 @@
     font-weight: 700
 }
 
-#field_manejo_cuenta {
+#divFieldManejoCuenta {
     margin-left: 19.9em
 }
 
-#field_manejo_cuenta label {
+#divFieldManejoCuenta label {
     width: 17em;
     text-align: end
 }
 
-#field_custodia_admon label {
+#divFieldCustodiaAdmon label {
     width: 14em;
     text-align: end
 }
 
-#field_lim_max_operacion label {
+#divFieldLimMaxOperacion label {
     width: 17em;
     text-align: end
 }
 
-#field_isr_mdo_din label {
+#divFieldIsrMdoDin label {
     width: 14em;
     text-align: end
 }
 
-#field_fecha_ult_mov label {
+#divFieldFechaUltMov label {
     width: 17em;
     text-align: end
 }
 
-#field_porcentaje_acum_isr label {
+#divFieldPorcentajeAcumIsr label {
     width: 14em;
     text-align: end
 }
 
-#field_porcentaje_acum_ide label {
+#divFieldPorcentajeAcumIde label {
     width: 17em;
     text-align: end
 }
 
-#field_imprime_estado_cuenta label {
+#divFieldImprimeEstadoCuenta label {
     width: 14em;
     text-align: end
 }
@@ -219,7 +219,7 @@
     }
 }
 
-/* 
+/*
 #field_digito {} */
 
 /*# sourceMappingURL=../../../maps/accimarket/27-administracion-datos-generales/styles.css.map */
@@ -227,66 +227,66 @@
 
 
 
-#field_pme_nombreCorto label,
-#field_pme_pais label,
-#field_pme_rfcgpoPertenencia label,
-#field_pme_custLocal label,
-#field_pme_nacionalidad label,
-#field_pme_recompra label,
-#field_pme_cteBnmx label,
-#field_pme_gpoNacional label,
-#field_pme_clasificacion label {
+#divFieldPmeNombreCorto label,
+#divFieldPmePais label,
+#divFieldPmeRfcgpoPertenencia label,
+#divFieldPmeCustLocal label,
+#divFieldPmeNacionalidad label,
+#divFieldPmeRecompra label,
+#divFieldPmeCteBnmx label,
+#divFieldPmeGpoNacional label,
+#divFieldPmeClasificacion label {
 
     width: 10em;
     text-align: left;
 }
 
-#field_pme_nombreCorto input,
-#field_pme_pais input,
-#field_pme_custLocal input,
-#field_pme_rfcgpoPertenencia input,
-#field_pme_nacionalidad input,
-#field_pme_gpoNacional input,
-#field_pme_recompra input,
-#field_pme_cteBnmx input,
-#field_pme_clasificacion input {
+#divFieldPmeNombreCorto input,
+#divFieldPmePais input,
+#divFieldPmeCustLocal input,
+#divFieldPmeRfcgpoPertenencia input,
+#divFieldPmeNacionalidad input,
+#divFieldPmeGpoNacional input,
+#divFieldPmeRecompra input,
+#divFieldPmeCteBnmx input,
+#divFieldPmeClasificacion input {
     text-align: right;
 }
 
 
-#field_nombreCorto label,
-#field_tipoUnidad label,
-#field_numNotario label,
-#field_nomNotario label,
-#field_numEscConst label,
-#field_fechaEscCons label,
-#field_regPubComer label,
-#field_recompra label,
-#field_cteBnmx label,
-#field_obsEscritura label,
-#field_clasificacion label,
-#field_RFC label,
-#field_fechaRegPubComer label,
-#field_clasificacionBanxico label {
+#divFieldNombreCorto label,
+#divFieldTipoUnidad label,
+#divFieldNumNotario label,
+#divFieldNomNotario label,
+#divFieldNumEscConst label,
+#divFieldFechaEscCons label,
+#divFieldRegPubComer label,
+#divFieldRecompra label,
+#divFieldCteBnmx label,
+#divFieldObsEscritura label,
+#divFieldClasificacion label,
+#divFieldRFC label,
+#divFieldFechaRegPubComer label,
+#divFieldClasificacionBanxico label {
     width: 10em;
     text-align: left;
 }
 
 
-#field_nombreCorto input,
-#field_tipoUnidad input,
-#field_numNotario input,
-#field_nomNotario input,
-#field_numEscConst input,
-#field_fechaEscCons input,
-#field_regPubComer input,
-#field_recompra input,
-#field_cteBnmx input,
-#field_obsEscritura input,
-#field_clasificacion input,
-#field_RFC input,
-#field_fechaRegPubComer input,
-#field_clasificacionBanxico input {
+#divFieldNombreCorto input,
+#divFieldTipoUnidad input,
+#divFieldNumNotario input,
+#divFieldNomNotario input,
+#divFieldNumEscConst input,
+#divFieldFechaEscCons input,
+#divFieldRegPubComer input,
+#divFieldRecompra input,
+#divFieldCteBnmx input,
+#divFieldObsEscritura input,
+#divFieldClasificacion input,
+#divFieldRFC input,
+#divFieldFechaRegPubComer input,
+#divFieldClasificacionBanxico input {
     text-align: right;
 }
 

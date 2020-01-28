@@ -1885,7 +1885,7 @@ var fillQuiz = function(fieldGroup, id, quiz) {
     }
     question +=
       "<div class='field-error'><div id='divFieldErrorBlockEncuesta" +
-      toUpperFirst(i) +
+      i +
       "'></div></div></td>";
     answers = "";
     options = "";
@@ -1901,14 +1901,14 @@ var fillQuiz = function(fieldGroup, id, quiz) {
           "<div class='answer'>" +
           "<input type='radio' id='" +
           toUpperFirst(id) +
-          toUpperFirst(i) +
-          toUpperFirst(j) +
+          i +
+          j +
           "' name='" +
           toUpperFirst(id) +
-          toUpperFirst(i) +
+          i +
           "' required data-parsley-errors-container='#divFieldErrorBlock" +
           toUpperFirst(id) +
-          toUpperFirst(j) +
+          j +
           "'";
         if (quiz[0].result[i].results[j].result) {
           answerOption += "checked='checked'";
@@ -1926,14 +1926,14 @@ var fillQuiz = function(fieldGroup, id, quiz) {
         answerSelect =
           '<td><div class="answer">' +
           '<select class="select2" id="encuesta' +
-          toUpperFirst(i) +
-          toUpperFirst(j) +
+          i +
+          j +
           '" name="quiz_select" style="width: 12em;" required ' +
           db +
           " " +
           'data-parsley-errors-container="#divFieldErrorBlock' +
           toUpperFirst(id) +
-          toUpperFirst(i) +
+          i +
           '">';
         var optionValue = quiz[0].result[i].results[j].result;
         options = "";
