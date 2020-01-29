@@ -15,15 +15,15 @@ $("#divContrato12").fieldSelectPlusMinusAutocomplete();
 $("#divContrato13").fieldSelectPlusMinusAutocomplete();
 $("#divContrato14").fieldSelectPlusMinusAutocomplete();
 
-$("#divButtonSearch1").button();
-$("#divButtonSearch2").button();
-$("#divButtonSearch21").button();
-$("#divButtonSearch3").button();
+$("#divButtonSave").button();
+$("#divButtonSearchSmall").button();
+$("#divButtonSearch").button();
+$("#divButtonSearchMedium").button();
 $("#divButtonImport").button();
 $("#divGrid").grid();
 $("#divGridRecordsCount").gridrecordscount();
-$("#divTab1").tabgroup();
-$("#divTab2").tabgroup();
+$("#divTabUno").tabgroup();
+$("#divTabDos").tabgroup();
 $("#divSidebar").sidebarwrapper();
 $("#divSwitch").fieldswitch();
 $("#divSpinner").spinner();
@@ -36,10 +36,10 @@ $("#divTxtContratoFalse").fieldInput();
 $("#divTxtContratoVertical").fieldInput();
 $("#divTxtContratoFalseVertical").fieldInput();
 
-$("#divFecha1").fielDate();
-$("#divFecha2").fielDate();
-$("#divFecha3").fielDate();
-$("#divFecha4").fielDate();
+$("#divFechaHorizontal").fielDate();
+$("#divFechaVertical").fielDate();
+$("#divFechaHorizontalDos").fielDate();
+$("#divFechaVericalDos").fielDate();
 
 $("#divNegocio").fieldOptions();
 
@@ -81,6 +81,6 @@ let encuesta_params = {};
 // Name of json
 httpFindAll("encuesta", encuesta_params, function(payload) {
   // Parameters: field name group, id of quiz, data
-  fillQuiz("ejemploQuiz", "encuesta", payload);
+  fillQuiz("divEjemploQuiz", "encuesta", payload);
 
 });
