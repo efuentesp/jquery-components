@@ -3,7 +3,7 @@
   display: -ms-flexbox;
   display: flex;
 }
-.content #preguntas {
+.content #pPreguntas {
   padding-left: 0.7em;
 }
 .content .informativoE {
@@ -11,15 +11,15 @@
   margin-left: 25em;
   height: 36em;
 }
-.content #informativo {
+.content #dtgInformativo {
   margin-left: 1em;
   width: 70em;
   height: 40em;
 }
-.content #informativo tr {
+.content #dtgInformativo tr {
   border: 2px solid #00f;
 }
-.content #informativo td {
+.content #dtgInformativo td {
   padding-left: 1rem;
   padding-right: 1rem;
   padding-bottom: 1.5rem;
@@ -48,74 +48,74 @@
   border-color: #00f;
   height: 5em;
 }
-.content #grupoTodo {
+.content #divGrupoTodo {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
-.content #grupoDos {
+.content #divGrupoDos {
   width: 48em;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
-.content #grupoDos #field_estudios label {
+.content #divGrupoDos #divFieldEstudios label {
   width: 12.5em;
 }
-.content #grupoDos #field_ocupacion label {
+.content #divGrupoDos #divFieldOcupacion label {
   width: 12.5em;
 }
-.content #grupoDos #field_estrategia label {
+.content #divGrupoDos #divFieldEstrategia label {
   width: 35em;
 }
 .content #grupoDos #actividad {
   width: 29em;
 }
-.content #grupoDos #field_actual label {
+.content #divGrupoDos #divFieldActual label {
   width: 4.9em;
 }
-.content #grupoDos #grupo_4 {
+.content #divGrupoDos #divGrupoCuatro {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
-.content #grupoTres {
+.content #divGrupoTres {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
-.content #grupoTres #grupoParrafo {
+.content #divGrupoTres #gdivGupoParrafo {
   width: 112em;
 }
-.content #grupoCuatro {
+.content #divGrupoCuatroDos {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: 85em;
 }
-.content #grupoCuatro #field_tolerancia label {
+.content #divGrupoCuatroDos #divFieldTolerancia label {
   width: 33.5em;
 }
-.content #grupoCuatro #field_horizonteInversion {
+.content #divGrupoCuatroDos #divFieldHorizonteInversion {
   -webkit-box-align: baseline;
   -ms-flex-align: baseline;
   align-items: baseline;
 }
-.content #grupoCuatro #field_horizonteInversion label {
+.content #divGrupoCuatroDos #divFieldhorizonteInversion label {
   width: 33.5em;
 }
-.content #grupoCuatro #datosInfo_group {
+.content #divGrupoCuatroDos #divDatosInfoGroup {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
-.content #grupoCuatro #datosInfo_group #textoPortafolio {
+.content #divGrupoCuatroDos #divDatosInfoGroup #pTextoPortafolio {
   width: 24em;
 }
-.content #grupoInstrumentos {
+.content #divGrupoInstrumentos {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: 80em;
   padding-left: 30em;
 }
-.content #grupoInstrumentos label {
+.content #divGrupoInstrumentos label {
   font-weight: 700;
 }
-.content #field_origen_uno .field-control div {
+.content #divFieldOrigenUno .field-control div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -123,38 +123,38 @@
   flex-wrap: wrap;
   width: 34em;
 }
-.content #field_origen_uno .checkbox_input {
+.content #divFieldOrigenUno .checkbox_input {
   width: 15em;
 }
-.content #field_otros {
+.content #divFieldOtros {
   position: absolute;
   z-index: 1;
   margin-top: 12em;
   margin-left: 60em;
 }
-.content #pregunta6_4 {
+.content #pPregunta64 {
   padding-left: 0.8em;
   padding-right: 2em;
 }
-.content #informativo {
+.content #dtgInformativo {
   width: 70em;
 }
-.content #informativo tr {
+.content #dtgInformativo tr {
   border: 2px solid #006fbb;
 }
-.content #informativo td {
+.content #dtgInformativo td {
   padding-left: 1rem;
   padding-right: 1rem;
   padding-bottom: 1.5rem;
 }
-.content #descripcionPerfil {
+.content #dtgDescripcionPerfil {
   margin-left: 20em;
   width: 65em;
 }
-.content #descripcionPerfil tr {
+.content #dtgDescripcionPerfil tr {
   border: 2px solid #00f;
 }
-.content #descripcionPerfil td {
+.content #dtgDescripcionPerfil td {
   padding-right: 1rem;
   padding-left: 1rem;
 }
@@ -162,7 +162,7 @@
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
-.content #rowEmisoras {
+.content #divRowEmisoras {
   display: -webkit-box;
 }
 #dialogText {
@@ -172,6 +172,6 @@ table {
   font-size: 1em;
 }
 
-#grupoCinco {
+#divGrupoCinco {
   width: 100%;
 }

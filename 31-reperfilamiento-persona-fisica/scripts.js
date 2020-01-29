@@ -1,68 +1,68 @@
-$("#criterios_busqueda_accordion").customaccordion();
-$("#criterios_busqueda").form();
-$("#contrato").fieldInput();
-$("#nombre").fieldInput();
-$("#perfil").fieldInput();
-$("#personaPerfilar").select();
-$("#liquidezPor").fieldInput();
-$("#liquidezMonto").fieldInput();
-$("#cortoPlazoPor").fieldInput();
-$("#cortoPlazoMonto").fieldInput();
-$("#medianoPlazoPor").fieldInput();
-$("#medianoPlazoMonto").fieldInput();
-$("#largoPlazoPor").fieldInput();
-$("#largoPlazoMonto").fieldInput();
-$("#patrimonioPor").fieldInput();
-$("#patrimonioMonto").fieldInput();
+$("#divCriteriosBusquedaAccordion").customaccordion();
+$("#frmCriteriosBusqueda").form();
+$("#divContrato").fieldInput();
+$("#divNombre").fieldInput();
+$("#divPerfil").fieldInput();
+$("#divPersonaPerfilar").select();
+$("#divLiquidezPor").fieldInput();
+$("#divLiquidezMonto").fieldInput();
+$("#divCortoPlazoPor").fieldInput();
+$("#divCortoPlazoMonto").fieldInput();
+$("#divMedianoPlazoPor").fieldInput();
+$("#divMedianoPlazoMonto").fieldInput();
+$("#divLargoPlazoPor").fieldInput();
+$("#divLargoPlazoMonto").fieldInput();
+$("#divPatrimonioPor").fieldInput();
+$("#divPatrimonioMonto").fieldInput();
 
 //grupo2
-$("#edad").select();
-$("#estudios").select();
-$("#ocupacion").select();
-$("#anterior").select();
-$("#actual").select();
-$("#inversiones").fieldOptions();
-$("#estrategia").select();
-$("#asesoria").select();
+$("#divEdad").select();
+$("#divEstudios").select();
+$("#divOcupacion").select();
+$("#divAnterior").select();
+$("#divAtual").select();
+$("#divInversiones").fieldOptions();
+$("#divEstrategia").select();
+$("#divAsesoria").select();
 
 //grupo3
 let encuesta_params = {};
 // Name of json
 httpFindAll("encuesta", encuesta_params, payload => {
   // Parameters: field name group, id of quiz, data
-  fillQuiz("grupoTres", "encuesta", payload);
+  fillQuiz("divGrupoTres", "encuesta", payload);
 });
 
 //grupo4
-$("#proposito").select();
-$("#tolerancia").select();
-$("#horizonteInversion").select();
-$("#limitantes").fieldOptions();
-$("#grupoInstrumento").fieldSelectPlusMinus();
-$("#grupoInstrumentoValor").fieldSelectPlusMinus();
-$("#emisoras").fieldSelectPlusMinus();
-$("#emisora").grid();
+$("#divProposito").select();
+$("#divTolerancia").select();
+$("#divHorizonteInversion").select();
+$("#divLimitantes").fieldOptions();
+$("#divGrupoInstrumento").fieldSelectPlusMinus();
+$("#divGrupoInstrumentoValor").fieldSelectPlusMinus();
+$("#divEmisoras").fieldSelectPlusMinus();
+$("#divEmisora").grid();
 
-$("#grupoInstrumentos").hide();
+$("#divGrupoInstrumentos").hide();
 
-$("input[name='limitantes']").change(() => {
-  var opcion = $("input[name='limitantes']:checked").val();
+$("input[name='divLimitantes']").change(() => {
+  var opcion = $("input[name='divLimitantes']:checked").val();
   console.log(opcion);
-  if (opcion == "true") {
-    $("#grupoInstrumentos").show();
+  if (opcion == "divSi") {
+    $("#divGrupoInstrumentos").show();
   } else {
-    $("#grupoInstrumentos").hide();
+    $("#divGrupoInstrumentos").hide();
   }
 });
 
-$("#boton").click(() => {
+$("#pBoton").click(() => {
   var parametros = '[{ "emisora": "Emi", "tipoValor": "1" }]';
-  $("#table_emisora")
+  $("#dtgEemisora")
     .jqGrid("addRow", { data: parametros })
     .trigger("reloadGrid");
 });
 
-$("#table_emisora").jqGrid({
+$("#dtgEmisora").jqGrid({
   datatype: "local",
   height: 100,
   width: 305,
@@ -80,49 +80,49 @@ let encuesta2_params = {};
 // Name of json
 httpFindAll("encuesta2", encuesta2_params, payload => {
   // Parameters: field name group, id of quiz, data
-  fillQuiz("grupoCinco", "encuesta2", payload);
+  fillQuiz("divGrupoCinco", "encuesta2", payload);
 });
 
 //grupo6
-$("#origen_uno").fieldCheckBox();
-$("#otros").fieldInput();
-$("#perfilDoc").fieldInput();
-$("#btnimport").button();
-$("#buttonsend").button();
+$("#divOrigenUno").fieldCheckBox();
+$("#divOtros").fieldInput();
+$("#divPerfilDoc").fieldInput();
+$("#divBtnImport").button();
+$("#divButtonSend").button();
 
-$("#chk_origen_uno_9").click(() => {
-  if ($("#chk_origen_uno_9").is(":checked")) {
-    $("#field_otros").show();
+$("#chkOrigenUno9").click(() => {
+  if ($("#chkOrigenUno9").is(":checked")) {
+    $("#divFieldOtros").show();
   } else {
-    $("#field_otros").hide();
+    $("#divFieldOtros").hide();
   }
 });
 
 $(document).ready(function() {
   mostrarOcultar(true);
-  var element = document.getElementById("datosInfo_group");
+  var element = document.getElementById("divDatosInfoGroup");
   element.classList.remove("flex");
-  $("#field_otros").hide();
+  $("#divFieldOtros").hide();
 });
 
 function mostrarOcultar(tipo) {
   if (tipo) {
-    $("#mesaggePerfil").show();
-    $("#rowPerfilar").show();
-    $("#grupoTodo").show();
-    $("#grupoAsesor").hide();
-    $("#sticky-action-bar").show();
+    $("#divMesaggePerfil").show();
+    $("#divRowPerfilar").show();
+    $("#divGrupoTodo").show();
+    $("#divGrupoAsesor").hide();
+    $("#divStickyActionBar").show();
   } else {
-    $("#mesaggePerfil").html(
+    $("#divMesaggePerfil").html(
       "El contrato tiene asociado un Asesor en Inversión, por lo tanto se le debe asignar por default el Perfil de Inversión P7 (NO APLICA)."
     );
-    $("#downloadPerfil").html(
+    $("#divDownloadPerfil").html(
       "Clic en el boton PDF para descargar la documentacion. "
     );
-    $("#rowPerfilar").hide();
-    $("#grupoTodo").hide();
-    $("#grupoAsesor").show();
-    $("#sticky-action-bar").hide();
+    $("#divRowPerfilar").hide();
+    $("#divGrupoTodo").hide();
+    $("#divGrupoAsesor").show();
+    $("#divStickyActionBar").hide();
   }
 }
 
@@ -130,7 +130,7 @@ function mostrarOcultar(tipo) {
 
 let select_params = {};
 httpFindAll("edadesService", select_params, function(payload) {
-  $("#edad").select2({
+  $("#cmbEdad").select2({
     placeholder: "--Seleccione--",
     minimumResultsForSearch: Infinity,
     data: payload
@@ -138,7 +138,7 @@ httpFindAll("edadesService", select_params, function(payload) {
 });
 
 httpFindAll("estudiosService", select_params, function(payload) {
-  $("#estudios").select2({
+  $("#cmbEstudios").select2({
     placeholder: "--Seleccione--",
     minimumResultsForSearch: Infinity,
     data: payload
@@ -146,7 +146,7 @@ httpFindAll("estudiosService", select_params, function(payload) {
 });
 
 httpFindAll("ocupacionService", select_params, function(payload) {
-  $("#ocupacion").select2({
+  $("#cmbOcupacion").select2({
     placeholder: "--Seleccione--",
     minimumResultsForSearch: Infinity,
     data: payload
@@ -154,7 +154,7 @@ httpFindAll("ocupacionService", select_params, function(payload) {
 });
 
 httpFindAll("estrategiaService", select_params, function(payload) {
-  $("#estrategia").select2({
+  $("#cmbEstrategia").select2({
     placeholder: "--Seleccione--",
     minimumResultsForSearch: Infinity,
     data: payload
@@ -162,7 +162,7 @@ httpFindAll("estrategiaService", select_params, function(payload) {
 });
 
 httpFindAll("asesoriaService", select_params, function(payload) {
-  $("#asesoria").select2({
+  $("#cmbAsesoria").select2({
     placeholder: "--Seleccione--",
     minimumResultsForSearch: Infinity,
     data: payload
@@ -170,7 +170,7 @@ httpFindAll("asesoriaService", select_params, function(payload) {
 });
 
 httpFindAll("propositoService", select_params, function(payload) {
-  $("#proposito").select2({
+  $("#cmbProposito").select2({
     placeholder: "--Seleccione--",
     minimumResultsForSearch: Infinity,
     data: payload
@@ -178,7 +178,7 @@ httpFindAll("propositoService", select_params, function(payload) {
 });
 
 httpFindAll("toleranciaService", select_params, function(payload) {
-  $("#tolerancia").select2({
+  $("#cmbTolerancia").select2({
     placeholder: "--Seleccione--",
     minimumResultsForSearch: Infinity,
     data: payload
@@ -186,14 +186,14 @@ httpFindAll("toleranciaService", select_params, function(payload) {
 });
 
 httpFindAll("horizonteInversion", select_params, function(payload) {
-  $("#horizonteInversion")
+  $("#combHorizonteInversion")
     .select2({
       placeholder: "--Seleccione--",
       minimumResultsForSearch: Infinity,
       data: payload
     })
     .change(function() {
-      var element = document.getElementById("textoPortafolio");
+      var element = document.getElementById("pTextoPortafolio");
       element.innerHTML = $(this)
         .find("option:selected")
         .text();
@@ -208,22 +208,22 @@ httpFindAll("horizonteInversion", select_params, function(payload) {
 function obtienRangos(select_params) {
   httpFindAll("detallePortaFolio", select_params, payload => {
     if (payload.length > 0) {
-      document.getElementById("menorDeUno").innerHTML =
+      document.getElementById("pMenorDeUno").innerHTML =
         payload[0].menorDeUn + "%";
-      document.getElementById("deUnoaTres").innerHTML =
+      document.getElementById("pMeUnoaTres").innerHTML =
         payload[0].deUnoaTres + "%";
-      document.getElementById("mayorDeTres").innerHTML =
+      document.getElementById("pMayorDeTres").innerHTML =
         payload[0].mayorDeTres + "%";
-      document.getElementById("totalInver").innerHTML =
+      document.getElementById("pTotalInver").innerHTML =
         +payload[0].menorDeUn +
         +payload[0].deUnoaTres +
         +payload[0].mayorDeTres +
         "%";
     } else {
-      document.getElementById("menorDeUno").innerHTML = "";
-      document.getElementById("deUnoaTres").innerHTML = "";
-      document.getElementById("mayorDeTres").innerHTML = "";
-      document.getElementById("totalInver").innerHTML = "";
+      document.getElementById("pMenorDeUno").innerHTML = "";
+      document.getElementById("pDeUnoaTres").innerHTML = "";
+      document.getElementById("pMayorDeTres").innerHTML = "";
+      document.getElementById("pTotalInver").innerHTML = "";
     }
   });
 }
